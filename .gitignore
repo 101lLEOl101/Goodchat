@@ -4,4 +4,5 @@
 .idea
 .venv
 __pycache__/
+.sqlite3
 o,visualstudiocode,venv,sublimetext
