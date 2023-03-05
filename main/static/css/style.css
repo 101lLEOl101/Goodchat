@@ -1,3 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
+
+body{
+    background-color: #262626;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+header{
+    display: flex;
+
+    align-items: center;
+    color: white;
+    background-color: #000000;
+    margin: 0;
+    height: 50px;
+    border-bottom: #534A8A solid 5px;
+}
+
+.logo{
+    position: absolute;
+    right: 95%;
+}
+/* этот рег хеадер отвечает за слова РЕГИСТРАЦИЯ */
+.reg-header{
+    color: white;
+    text-align: center;
+
+}
+
+.form-input{
+    background-color: #000000;
+    border-radius: 12px;
+    border: #8270F2 solid 2px;
+    padding: 15px;
+    color: #797979;
+    width: 250px;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.text_box_rules{
+    background-color: #C6C6C6;
+    width: 880px;
+    height: 650px;
+    color: black;
+    text-align:start;
+    font-size: 25px;
+    padding: 40px;
+    border: black solid 5px;
+    border-radius: 14px;
+
+    margin-right: 100px;
+}
+
+li{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.rules_head{
+    color:red;
+}
+.reg_box{
+    display: flex;
+    margin-top: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn_add{
+    background-color: #000000;
+    border-radius: 12px;
+    border: #8270F2 solid 2px;
+    padding: 15px;
+    color: #534A8A;
+    width: 100%;
+    font-size: 20px;
+    transition: all 0.5s;
+    margin-bottom: 33%;
+}
+
 .header_menu{
     width: 100%;
     height: 100%;
