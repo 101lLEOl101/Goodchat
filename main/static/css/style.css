@@ -14,9 +14,9 @@ header{
     background-color: #000000;
     border-bottom: #534A8A solid 5px;
     width: 100%;
-    height: 14%;
+    height: 10%;
     position: fixed;
-    margin-top: -150px;
+
 }
 .header_menu{
     width: 100%;
@@ -38,13 +38,15 @@ header{
 
 .main{
     display: block;
-    margin-top: 150px;
+
 }
 
 /* Navigation*/
 .navigation{
-    display: inline-block;
+    display: inline-flex;
     width: 10%;
+    height: 100%;
+    position: fixed;
 
 }
 .side_menu{
@@ -53,18 +55,19 @@ header{
     border-bottom-right-radius: 50px;
     position: fixed;
     width: fit-content;
-    height: 75%;
+    height: fit-content;
     box-shadow: 0px 10px 10px #534a8a;
+    margin-top: 11%;
 }
 
 .side_icon{
-    width: 50px;
-    height: 50px;
+    width: 37.5px;
+    height: 37.5px;
     background-color: black;
-    border-radius: 31px;
-    margin: 5px;
-    margin-top: 20px;
-    border: 4px solid #534a8a;
+    border-radius: 25px;
+    margin: 3px;
+    margin-top: 10px;
+    border: 3px solid #534a8a;
 }
 
 .icona{
@@ -76,6 +79,7 @@ header{
     width: 90%;
     display: inline-block;
     margin-left: 10%;
+    margin-top: 100px;
 }
 /* main end*/
 
@@ -92,6 +96,7 @@ header{
     box-shadow: 0px 10px 10px #534a8a;
     margin-bottom: 100px;
     margin-inline: auto;
+
 }
 /*main page END*/
 
