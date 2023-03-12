@@ -21,4 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main_page, name='home'),
     path('register/', views.regist, name='reg'),
+    path('settings/', views.settings_page, name='setting'),
+    path('settingsprofile/', views.settings_profile_page, name='set-prof'),
 ]

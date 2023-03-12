@@ -18,3 +18,11 @@ def regist(request):
   form = RegistrForm()
   data['form'] = form
  return render(request, 'reg.html', data)
+
+def settings_page(request):
+  context = {}
+  return render(request, "settings.html", context)
+
+def settings_profile_page(request):
+ context = {}
+ return render(request, "settings_profile.html", context)

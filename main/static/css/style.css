@@ -96,8 +96,7 @@ width:100;
     border-radius: 5px;
     box-shadow: 0px 10px 10px #534a8a;
     margin-bottom: 100px;
-    margin-inline: auto;
-
+    padding-top:1px
 }
 /*main page END*/
 
@@ -168,66 +167,135 @@ li{
 /* POST_TEMPLATE_CSS*/
 
 .post-box {
-	background: #BBB9B9;
-	border-radius: 37px;
-	overflow: hidden;
-	height: 587px;
-	width: 722px;
+background: #BBB9B9;
+border-radius: 37px;
+overflow: hidden;
+height: 587px;
+width: 722px;
 }
 
 .post-header {
-	width: 100%;
-	display: inline-flex;
-	justify-content: space-between;
-	background: #1E1E1E;
-	border-radius: 37px 37px 0px 0px;
+width: 100%;
+display: inline-flex;
+justify-content: space-between;
+background: #1E1E1E;
+border-radius: 37px 37px 0px 0px;
 }
 
 .post-name {
-	color: #fff;
-	margin-left:33px;
+color: #fff;
+margin-left:33px;
 }
 
 .post-author {
-	color: #fff;
-	margin-right: 22px;
-	margin-top: 25px;
-	cursor: pointer;
+color: #fff;
+margin-right: 22px;
+margin-top: 25px;
+cursor: pointer;
 }
 
 .text-wrap {
-	display: inline-flex;
-	justify-content: space-between;
-	margin-top: 10px;
-	width: 100%;
+display: inline-flex;
+justify-content: space-between;
+margin-top: 10px;
+width: 100%;
 }
 
 .img-marks {
-	background-image: url("https://cdn-icons-png.flaticon.com/512/58/58516.png");
-	width: 38px;
-	height: 38px;
-	background-size: contain;
-	background-repeat: no-repeat;
-	margin-top: 18px;
-	cursor: pointer;
+background-image: url("https://cdn-icons-png.flaticon.com/512/58/58516.png");
+width: 38px;
+height: 38px;
+background-size: contain;
+background-repeat: no-repeat;
+margin-top: 18px;
+cursor: pointer;
 }
 
 .post-text {
-	background: #D9D9D9;
-	width: 632px;
-	height: 35px;
-	border-radius: 14px;
-	margin-left: 26px;
-	padding-top: 10px;
-	padding-left: 11px;
+background: #D9D9D9;
+width: 632px;
+height: 35px;
+border-radius: 14px;
+margin-left: 26px;
+padding-top: 10px;
+padding-left: 11px;
 }
 
 .post-image {
-	width: 643px;
-	height: 500px;
-	margin-left: 26px;
-	background: url("https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png");
-	background-size:cover;
-	border-radius: 27px;
+width: 643px;
+height: 500px;
+margin-left: 26px;
+background: url("https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png");
+background-size:cover;
+border-radius: 27px;
 }
 /* Post template END*/
+
+.setting-btn{
+    padding:20px;
+    font-size:30px;
+    color:white;
+    border: 2px solid white;
+    background-color:black;
+    border-radius:20px;
+    text-decoration: none;
+}
+/* Profile-card */
+.profile-card {
+    width: 400px;
+    height: 700px;
+    background: #000;
+    box-shadow: 0px 4px 4px #8270F2;
+    border-radius: 50px;
+    padding-top:67px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-pic {
+    width: 198px;
+    height: 198px;
+    margin-left:101px;
+    background: url("https://i.pinimg.com/236x/66/1e/ce/661ece4c9340138ac3a170db0d86f25f.jpg");
+    border: 2px solid #000;
+    border-radius: 100%
+}
+
+.user-nickname {
+    display: box;
+    width: 278px;
+    height:35px;
+    margin-left:61px;
+    text-align:center;
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 16px;
+    padding-top: 15px;
+}
+
+.user-info {
+    display: box;
+    width: 278px;
+    height: 154px;
+    margin-left: 61px;
+    margin-top: 73px;
+    padding-top:20px;
+    text-align:center;
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 12px;
+
+}
+
+.btn {
+    width: 328px;
+    height: 32px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #fff;
+    text-align: center;
+    margin-left: 36px;
+    margin-top: 20px;
+    padding-top: 5px;
+}
+/* Profile-card END */
