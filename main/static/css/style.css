@@ -158,9 +158,15 @@ li{
     width: 100%;
     font-size: 20px;
     transition: all 0.5s;
-    margin-bottom: 33%;
+    
 }
 /* Regestration END*/
+
+/* Login page */ 
+.auth-link{
+    text-decoration: none;
+    color: black;
+}
 
 
 
