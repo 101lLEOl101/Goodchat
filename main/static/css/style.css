@@ -91,7 +91,8 @@ font-size: calc(17px + 16 * (130vw / 1280));
 
 /* MAIN_PAGE (HOME)*/
 .main_page{
-    width: 95%;
+
+    width: 90%;
     height: 1000px;
     background-color: #000000;
     border-radius: 5px;
