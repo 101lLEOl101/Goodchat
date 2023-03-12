@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .forms import RegistrForm
-from .forms import LogForm
 
 def main_page(request):
  context = {}
@@ -20,7 +19,16 @@ def regist(request):
   data['form'] = form
  return render(request, 'reg.html', data)
 
- #Заглушка !!!!! !!! !! ! ! ! ! ! !  ! 
+ def settings_page(request):
+  context = {}
+  return render(request, "settings.html", context)
+
+
+def settings_profile_page(request):
+ context = {}
+ return render(request, "settings_profile.html", context)
+
+ #Заглушка !!!!! !!! !! ! ! ! ! ! !  !
 def login_page(request):
   data = {}
   form = LogForm()
