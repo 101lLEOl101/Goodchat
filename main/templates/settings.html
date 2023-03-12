@@ -5,15 +5,9 @@
 {% block content %}
 <div>
     <div class = "main_page">
-        <div style = "margin:80px">
-            <a href="{% url 'set-prof' %}" class="setting-btn">Настройки профиля</a><br>
-        </div>
-        <div style = "margin:80px">
-            <a href="{% url 'login' %}" class="setting-btn">Сменить профиль</a><br>
-        </div>
-        <div style = "margin:80px">
-            <a href="" class="setting-btn">Выход</a><br>
-        </div>
+        <a href="{% url 'set-prof' %}" class="setting-btn">Настройки профиля</a>
+        <a href="{% url 'login' %}" class="setting-btn">Сменить профиль</a>
+        <a href="" class="setting-btn">Выход</a>
     </div>
 </div>
 {% endblock %}
