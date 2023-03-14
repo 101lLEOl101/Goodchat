@@ -20,9 +20,9 @@ from users import views as users_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.main_page, name='home'),
-    path('register/', views.regist, name='reg'),
-    path('settings/', views.settings_page, name='setting'),
-    path('settingsprofile/', views.settings_profile_page, name='set-prof'),
-    path('login/', views.login_page, name='login'),
+    path('', main_views.main_page, name='home'),
+    path('register/', main_views.regist, name='reg'),
+    path('settings/', main_views.settings_page, name='setting'),
+    path('settingsprofile/', main_views.settings_profile_page, name='set-prof'),
+    path('login/', users_views.login_page, name='login'),
 ]
