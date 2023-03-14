@@ -1,46 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
+/* BASE */
+/* base.html: header*/
+body{
+    background-color: #262626;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    color: white;
+    background-color: #000000;
+    border-bottom: #534A8A solid 5px;
+    width: 100%;
+    height: 5%;
+    position: fixed;
+
+}
 .header_menu{
     width: 100%;
     height: 100%;
     background-color: black;
     box-shadow: 0px 10px 33px #534a8a;
 }
-header{
-    width: 100%;
-    height: 14%;
-    position: fixed;
 
-}
 .logo_h{
     height: 100%;
 }
-body{
-    margin: 0;
-    background-color: #262626;
+
+.logo{
+    position: absolute;
+    right: 95%;
+}
+/*header: end*/
+/*main*/
+
+.main{
+    display: block;
+
+}
+
+/* Navigation*/
+.navigation{
+    display: inline-flex;
+    width: 10%;
+    height: 100%;
+    position: fixed;
+
+}
+.side_icon{
+    width: calc(24px + 16 * (200vw / 1280));
+    height: calc(24px + 16 * (200vw / 1280));
+    background-color: black;
+    border-radius: 1000px;
+    margin: 3px;
+    margin-top: 10px;
+    border: 3px solid #534a8a;
+    margin-right:5px;
+}
+
+.icona{
+margin-left:20%;
+margin-top: 18%;
+font-size: calc(17px + 16 * (130vw / 1280));
 }
 .side_menu{
     background-color: black;
-    border-radius: 30px;
-    width: 110px;
+    border-top-right-radius: calc(25px + 16 * (200vw / 1280));
+    border-bottom-right-radius: calc(25px + 16 * (200vw / 1280));
     position: fixed;
-    height: 70%;
-    margin-left: -60px;
+    width: fit-content;
+    height: fit-content;
     box-shadow: 0px 10px 10px #534a8a;
+    margin-top: calc(100px + 16 * (200vw / 1280));
 }
+
+/* Content */
 .content{
-    padding-top: 10%;
-    width: 85%;
-    background-color: gray;
+    width: 90%;
+    display: inline-block;
     margin-left: 10%;
-    display: inline-block;
+    margin-top: 100px;
 }
+/* main end*/
+
+/* BASE END*/
+
+
+
+/* MAIN_PAGE (HOME)*/
 .main_page{
-    width: 100%;
+
+    width: 90%;
     height: 1000px;
-    background-color: #D9D9D9;
+    background-color: #000000;
+    border-radius: 5px;
+    box-shadow: 0px 10px 10px #534a8a;
+    margin-bottom: 100px;
+    padding-top:1px
 }
-nav{
-    display: inline-block;
+/*main page END*/
+
+
+
+/* REGESTRATION */
+/* этот рег хеадер отвечает за слова РЕГИСТРАЦИЯ */
+.reg-header{
+    color: white;
+    text-align: center;
+
 }
-.main{
-    display: block;
+
+.form-input{
+    background-color: #000000;
+    border-radius: 12px;
+    border: #8270F2 solid 2px;
+    padding: 15px;
+    color: #797979;
+    width: 250px;
+    margin-bottom: 15px;
+    font-size: 20px;
 }
+
+.text_box_rules{
+    background-color: #C6C6C6;
+    width: 880px;
+    height: 650px;
+    color: black;
+    text-align:start;
+    font-size: 25px;
+    padding: 40px;
+    border: black solid 5px;
+    border-radius: 14px;
+
+    margin-right: 100px;
+}
+
+li{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.rules_head{
+    color:red;
+}
+.reg_box{
+    display: flex;
+    margin-top: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn_add{
+    background-color: #000000;
+    border-radius: 12px;
+    border: #8270F2 solid 2px;
+    padding: 15px;
+    color: #534A8A;
+    width: 100%;
+    font-size: 20px;
+    transition: all 0.5s;
+    
+}
+/* Regestration END*/
+
+/* Login page */ 
+.auth-link{
+    text-decoration: none;
+    color: black;
+}
+
+
+
+/* POST_TEMPLATE_CSS*/
+
+.post-box {
+background: #BBB9B9;
+border-radius: 37px;
+overflow: hidden;
+height: 587px;
+width: 722px;
+}
+
+.post-header {
+width: 100%;
+display: inline-flex;
+justify-content: space-between;
+background: #1E1E1E;
+border-radius: 37px 37px 0px 0px;
+}
+
+.post-name {
+color: #fff;
+margin-left:33px;
+}
+
+.post-author {
+color: #fff;
+margin-right: 22px;
+margin-top: 25px;
+cursor: pointer;
+}
+
+.text-wrap {
+display: inline-flex;
+justify-content: space-between;
+margin-top: 10px;
+width: 100%;
+}
+
+.img-marks {
+background-image: url("https://cdn-icons-png.flaticon.com/512/58/58516.png");
+width: 38px;
+height: 38px;
+background-size: contain;
+background-repeat: no-repeat;
+margin-top: 18px;
+cursor: pointer;
+}
+
+.post-text {
+background: #D9D9D9;
+width: 632px;
+height: 35px;
+border-radius: 14px;
+margin-left: 26px;
+padding-top: 10px;
+padding-left: 11px;
+}
+
+.post-image {
+width: 643px;
+height: 500px;
+margin-left: 26px;
+background: url("https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png");
+background-size:cover;
+border-radius: 27px;
+}
+/* Post template END*/
+
+.ou-setting-btn{
+    margin:80px;
+    width: 40%;
+}
+
+.setting-btn{
+    padding:1%;
+    color:white;
+    font-size: calc(24px + 16 * (100vw / 2560));
+    padding-right:auto;
+    padding:left:auto;
+    border: 2px solid white;
+    background-color:black;
+    border-radius:20px;
+    text-decoration: none;
+    width: 50%;
+    display: grid;
+    text-align: center;
+    margin:auto;
+    margin-top:5%;
+}
+
+/* Profile-card */
+.profile-card {
+    width: 400px;
+    height: 700px;
+    background: #000;
+    box-shadow: 0px 4px 4px #8270F2;
+    border-radius: 50px;
+    padding-top:67px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-pic {
+    width: 198px;
+    height: 198px;
+    margin-left:101px;
+    background: url("https://i.pinimg.com/236x/66/1e/ce/661ece4c9340138ac3a170db0d86f25f.jpg");
+    border: 2px solid #000;
+    border-radius: 100%
+}
+
+.user-nickname {
+    display: box;
+    width: 278px;
+    height:35px;
+    margin-left:61px;
+    text-align:center;
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 16px;
+    padding-top: 15px;
+}
+
+.user-info {
+    display: box;
+    width: 278px;
+    height: 154px;
+    margin-left: 61px;
+    margin-top: 73px;
+    padding-top:20px;
+    text-align:center;
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 12px;
+
+}
+
+.btn {
+    width: 328px;
+    height: 32px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #fff;
+    text-align: center;
+    margin-left: 36px;
+    margin-top: 20px;
+    padding-top: 5px;
+}
+/* Profile-card END */

@@ -12,18 +12,55 @@
 <body>
 <header>
     <div class = "header_menu">
-        <a href = "main_page.html">
-            <img src = "static\images\logo.png" class = "logo_h" alt = "Home Page">
+        <a href = "{% url 'home' %}">
+            <img src = "..\static\images\logo.png" class = "logo_h" alt = "Home Page">
         </a>
     </div>
 </header>
-<div class = "main">
-    <nav>
-        <div class = "side_menu">
+<div class = "navigation">
+    <div class = "side_menu">
+        <div class = "side_icon" style="margin-top: 30px;">
+            <a href = "{% url 'reg' %}">
+                <i class="fa-regular fa-user icona" style="color: #ffffff"></i>
+            </a>
         </div>
-    </nav>
-    {% block content %}
-    {% endblock %}
+        <div class = "side_icon">
+            <a href = "{% url 'reg' %}">
+                <i class="fa-regular fa-comment-dots icona" style="color: #ffffff"></i>
+            </a>
+        </div>
+        <div class = "side_icon">
+            <a href = "{% url 'setting' %}">
+                <i class="fa-solid fa-gear icona" style="color: #ffffff"></i>
+            </a>
+        </div>
+        <div class = "side_icon">
+            <a href = "{% url 'reg' %}">
+                <i class="fa-solid fa-globe icona" style="color: #ffffff;"></i>
+            </a>
+        </div>
+        <div class = "side_icon">
+            <a href = "{% url 'reg' %}">
+                <i class="fa-regular fa-bookmark icona" style="color: #ffffff;"></i>
+            </a>
+        </div>
+        <div class = "side_icon">
+            <a href = "{% url 'reg' %}">
+                <i class="fa-sharp fa-solid fa-plus icona" style="color: #ffffff;"></i>
+            </a>
+        </div>
+        <div class = "side_icon" style="margin-bottom: 30px;">
+            <a href = "{% url 'reg' %}">
+                <i class="fa-solid fa-magnifying-glass icona" style="color: #ffffff;"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<div class = "main">
+    <div class = "content">
+        {% block content %}
+        {% endblock %}
+    </div>
 </div>
 
 <script src="{% static '/js/script.js' %}"></script>
