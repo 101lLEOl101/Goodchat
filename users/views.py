@@ -22,7 +22,8 @@ def login_page(request):
 
             if user is not None:
                 login(request, user)
-                return redirect('home')
+                current_user_id = request.user.id
+                return redirect(f'/profile/{current_user_id}')
             else:
                 context['message'] = 'Error: bad login/password'
                 context['form'] = auth_form
