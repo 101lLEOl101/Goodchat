@@ -6,12 +6,14 @@ from .forms import LoginForm
 
 
 def login_page(request):
+    """
+    View function which processes the user authorization form 
+    and performs the authorization.
+    """
     context = {}
 
     if request.method == 'POST':
         auth_form = LoginForm(request.POST)
-
-        print(f'Request: {dict(request.POST)}')
 
         if auth_form.is_valid():
             username = auth_form.data['username']
@@ -26,8 +28,6 @@ def login_page(request):
                 context['form'] = auth_form
 
         else:
-            print('Error: invalid form')
-
             context['message'] = 'Error: invalid form'
             context['form'] = LoginForm()
 
