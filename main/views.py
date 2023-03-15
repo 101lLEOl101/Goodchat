@@ -32,11 +32,3 @@ def settings_profile_page(request):
     return render(request, "settings_profile.html", context)
 
     # Заглушка !!!!! !!! !! ! ! ! ! ! !  !
-
-
-def login_page(request):
-    data = {}
-    form = LogForm()
-    data['form'] = form
-    return render(request, 'login.html', data)
-    # Конец заглушки ( Давид К. )
