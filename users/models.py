@@ -40,8 +40,8 @@ class Profile(models.Model):
     user = models.OneToOneField(to=User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     surname = models.CharField(max_length=50)
-    avatar = models.ImageField(upload_to="static/profile_avatars/", 
-                               default="static/img/DEFAULT_AVATAR.png", 
+    avatar = models.ImageField(upload_to="static/profile_avatars/",
+                               default="static/img/DEFAULT_AVATAR.png",
                                blank=True)
     about = models.CharField(max_length=500)
     country = models.CharField(max_length=50, blank=True)

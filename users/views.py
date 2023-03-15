@@ -36,3 +36,6 @@ def login_page(request):
         context['form'] = LoginForm()
 
     return render(request, 'login.html', context=context)
+
+
+

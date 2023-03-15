@@ -25,4 +25,5 @@ urlpatterns = [
     path('settings/', main_views.settings_page, name='setting'),
     path('settingsprofile/', main_views.settings_profile_page, name='set-prof'),
     path('login/', users_views.login_page, name='login'),
+    path('profile/<int:id>', main_views.profile, name='profile'),
 ]
