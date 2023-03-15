@@ -3,7 +3,18 @@
 {% block title %}Страница профиля{% endblock %}
 
 {% block content %}
-<div class = "content">
-    <div>ID искомого профиля: {{ profile_id }}</div>
+<div class="content">
+    <div class="profile-card" style="color:#fff">
+        <img src="{{ profile.avatar.url }}" style="background-color: #fff;">
+        <span>ID: {{ profile.id }}</span><br>
+        <span>Имя: {{ profile.name }}</span><br>
+        <span>Фамилия: {{ profile.surname }}</span><br>
+        <span>Статус: {{ profile.about }}</span><br>
+        <span>Страна: {{ profile.country }}</span><br>
+        <span>Город: {{ profile.city }}</span><br>
+        <span>Образование: {{ profile.education }}</span><br>
+        <span>Компания: {{ profile.company }}</span><br>
+        <span>Мне нравится: {{ profile.hobby }}</span><br>
+    </div>
 </div>
 {% endblock %}
