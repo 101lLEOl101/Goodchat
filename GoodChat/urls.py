@@ -28,6 +28,7 @@ urlpatterns = [
     path('settingsprofile/', main_views.settings_profile_page, name='set-prof'),
     path('login/', users_views.login_page, name='login'),
     path('profile/<int:id>', main_views.profile),
+    path('post/<int:id>', main_views.post),
 ]
 
 if settings.DEBUG:

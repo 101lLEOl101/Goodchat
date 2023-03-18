@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from .forms import RegistrForm
 from users.models import Profile
+from main.models import Post
 
 
 def main_page(request):
@@ -42,6 +43,7 @@ def profile(request, id):
     """
     try:
         profile = Profile.objects.get(id=id)
+        post = Post.objects.all()
     except Profile.DoesNotExist:
         return redirect('home')
 
@@ -55,7 +57,28 @@ def profile(request, id):
                            'education': profile.education,
                            'company': profile.company,
                            'hobby': profile.hobby,
+                           },
+               'posts': {'id': post.id,
+                           'author': post.author,
+                           'content': post.content,
+                           'date': post.date,
+               }
+               }
+
+    return render(request, 'profile.html', 'post_template',  context=context)
+
+
+def post(request, id):
+    try:
+        post = Post.objects.get(id=id)
+    except Post.DoesNotExist:
+        return redirect('home')
+
+    context = {'post': {'id': post.id,
+                           'author': post.author,
+                           'content': post.content,
+                           'date': post.date,
                            }
                }
 
-    return render(request, 'profile.html', context=context)
+    return render(request, 'post_template', context=context)
