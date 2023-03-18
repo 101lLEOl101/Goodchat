@@ -2,7 +2,8 @@
 /* BASE */
 /* base.html: header*/
 body{
-    background-color: #262626;
+    background-image: url("../../static/images/background.jpg");
+    background-size: 100%;
     margin: 0;
     font-family: 'Inter', sans-serif;
 }
