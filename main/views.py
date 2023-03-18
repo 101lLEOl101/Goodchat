@@ -8,6 +8,10 @@ def main_page(request):
     context = {}
     return render(request, 'main_page.html', context)
 
+def bookmarks_page(request):
+    context = {}
+    return render(request, "bookmarks_page.html", context)
+
 
 def regist(request):
     data = {}
