@@ -47,7 +47,6 @@ header{
     width: 10%;
     height: 100%;
     position: fixed;
-
 }
 .side_icon{
     width: calc(24px + 16 * (200vw / 1280));
@@ -55,16 +54,42 @@ header{
     background-color: black;
     border-radius: 1000px;
     margin: 3px;
+    color:white;
     margin-top: 10px;
     border: 3px solid #534a8a;
     margin-right:5px;
+    transition:0.3s;
+}
+
+.now-side_icon{
+    width: calc(24px + 16 * (200vw / 1280));
+    height: calc(24px + 16 * (200vw / 1280));
+    background-color: white;
+    color: black;
+    border-radius: 1000px;
+    margin: 3px;
+    margin-top: 10px;
+    border: 3px solid #534a8a;
+    margin-right:5px;
+    transition: 0.3s;
 }
 
 .icona{
+color: white;
 margin-left:20%;
 margin-top: 18%;
 font-size: calc(17px + 16 * (130vw / 1280));
+transition: 0.3s;
 }
+
+.now-icona{
+color: black;
+margin-left:20%;
+margin-top: 18%;
+font-size: calc(17px + 16 * (130vw / 1280));
+transition: 0.3s;
+}
+
 .side_menu{
     background-color: black;
     border-top-right-radius: calc(25px + 16 * (200vw / 1280));
