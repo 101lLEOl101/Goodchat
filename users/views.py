@@ -2,7 +2,57 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth import login
 from django.contrib.auth import authenticate
+from django.db import IntegrityError
 from .forms import LoginForm
+from .forms import RegistrationForm
+from .models import User
+from .signals import user_created
+from .signals import create_profile
+
+
+def registration_page(request):
+    context = {}
+    context['form'] = RegistrationForm()
+
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            context['form'] = form
+
+            name = form.data['name']
+            surname = form.data['surname']
+            login = form.data['login']
+            email = form.data['email']
+            password = form.data['password']
+
+            try:
+                user = User.objects.create_user(username=login,
+                                                email=email,
+                                                password=password,
+                                                is_active=True)
+                
+                user.save()
+                
+                # user_created.connect(create_profile, 
+                #                      dispatch_uid=user.id)
+                
+                user_created.send(sender=User, 
+                                  user=user,
+                                  name=name, 
+                                  surname=surname)
+                
+                request.user = user
+                
+                return redirect(f'/profile/{request.user.id}')
+            except IntegrityError as error:
+                context['form'] = form
+                print(error)
+                
+
+        else:
+            context['form'] = form
+
+    return render(request, 'registration.html', context=context)
 
 
 def login_page(request):
@@ -37,6 +87,3 @@ def login_page(request):
         context['form'] = LoginForm()
 
     return render(request, 'login.html', context=context)
-
-
-
