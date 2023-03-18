@@ -5,17 +5,21 @@
 {% block content %}
 <div>
 	<div class = "main_page">
-		<div class = "post-box">
-			<div class = "post-header">
-				<h2 class = "post-name">Название</h2>
-				<p class = "post-author">Никнейм</p>
-			</div>
-			<div class = "text-wrap">
-				<p class = "post-text"> Текс </p>
-				<div class = "img-marks"></div>
-			</div>
-			<div class = "post-image"></div>
-		</div>
+        {% for post in posts %}
+      <div class="post-box">
+        <div class="post-header">
+          <h2 class="post-name"></h2>
+          <p class="post-author">{{ post.author }}</p>
+        </div>
+
+        <div class="text-wrap">
+          <p class="post-text">{{ post.content }}</p>
+          <div class="img-marks"></div>
+        </div>
+
+        <div class="post-image"></div>
+      </div>
+      {% endfor %}
 	</div>
 </div>
 {% endblock %}

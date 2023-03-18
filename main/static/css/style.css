@@ -128,7 +128,6 @@ transition: 0.3s;
 
 /* MAIN_PAGE (HOME)*/
 .main_page{
-
     width: 90%;
     height: 2000px;
     background-color: #000000;
@@ -230,6 +229,8 @@ overflow: hidden;
 height: 587px;
 width: 722px;
 margin-top: 35px;
+margin-right: auto;
+margin-left: auto;
 }
 
 .post-header {

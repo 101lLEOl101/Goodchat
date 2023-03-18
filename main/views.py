@@ -8,10 +8,14 @@ from .forms import RegistrForm
 
 
 def main_page(request):
-    context = {
-        'profile': {
-            'id': request.user.id
-        }
+    posts = Post.objects.all()
+    context = {'profile': {'id': request.user.id,
+                           },
+               'posts': [{'id': post.id,
+                          'author': post.author,
+                          'content': post.content,
+                          'date': post.date,
+               } for post in posts]
     }
     return render(request, 'main_page.html', context)
 
