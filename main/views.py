@@ -8,16 +8,44 @@ from .forms import RegistrForm
 
 
 def main_page(request):
-    context = {}
+    context = {
+        'profile': {
+            'id': request.user.id
+        }
+    }
     return render(request, 'main_page.html', context)
 
+def add_post_page(request):
+    context = {
+        'profile': {
+            'id': request.user.id
+        }
+    }
+    return render(request, 'add_post_page.html', context)
+
+def find_friend_page(request):
+    context = {
+        'profile': {
+            'id': request.user.id
+        }
+    }
+    return render(request, 'find_friend_page.html', context)
+
 def bookmarks_page(request):
-    context = {}
+    context = {
+        'profile': {
+            'id': request.user.id
+        }
+    }
     return render(request, "bookmarks_page.html", context)
 
 
 def regist(request):
-    data = {}
+    data = {
+        'profile': {
+            'id': request.user.id
+        }
+    }
     if request.method == 'POST':
         form = RegistrForm(request.POST)
         if form.is_valid():
@@ -32,12 +60,20 @@ def regist(request):
 
 
 def settings_page(request):
-    context = {}
+    context = {
+        'profile': {
+            'id': request.user.id
+        }
+    }
     return render(request, 'settings.html', context)
 
 
 def settings_profile_page(request):
-    context = {}
+    context = {
+        'profile': {
+            'id': request.user.id
+        }
+    }
     return render(request, 'settings_profile.html', context)
 
     # Заглушка !!!!! !!! !! ! ! ! ! ! !  !

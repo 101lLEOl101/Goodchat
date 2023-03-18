@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static '/css/style.css' %}">
     <title>{% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" type="image/x-icon" href="..\static\images\kvlogo.png" />
 </head>
 <body>
 <header>
@@ -44,12 +45,12 @@
             </a>
         </div>
         <div  id = "add" class = "side_icon">
-            <a class = "hr" href = "{% url 'registration' %}">
+            <a class = "hr" href = "{% url 'addpost' %}">
                 <i class="fa-sharp fa-solid fa-plus icona"></i>
             </a>
         </div>
-        <div  id = "find" class = "side_icon" style="margin-bottom: 30px;">
-            <a class = "hr" href = "{% url 'registration' %}">
+        <div  id = "f" class = "side_icon" style="margin-bottom: 30px;">
+            <a class = "hr" href = "{% url 'findfriend' %}">
                 <i class="fa-solid fa-magnifying-glass icona"></i>
             </a>
         </div>
