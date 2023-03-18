@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from .forms import RegistrForm
 from users.models import Profile
 from main.models import Post
+from main.models import Comment
 
 
 def main_page(request):
@@ -71,6 +72,7 @@ def profile(request, id):
 def post(request, id):
     try:
         post = Post.objects.get(id=id)
+        comment = Comment.objects.filter(post=post)
     except Post.DoesNotExist:
         return redirect('home')
 
@@ -78,7 +80,12 @@ def post(request, id):
                            'author': post.author,
                            'content': post.content,
                            'date': post.date,
-                           }
+                           },
+               'comment': {
+                           'author': comment.author,
+                           'content': comment.content,
+                           'date': comment.date,
+               }
                }
 
     return render(request, 'post_template', context=context)
