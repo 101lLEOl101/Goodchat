@@ -332,6 +332,9 @@ cursor: pointer;
 
 /* Profile-card */
 .profile-card {
+    position: fixed;
+    left: 80%;
+    top: 15%;
     width: 400px;
     height: 900px;
     background: #000;
