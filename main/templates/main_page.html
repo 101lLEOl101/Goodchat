@@ -6,20 +6,22 @@
 <div>
 	<div class = "main_page">
         {% for post in posts %}
-      <div class="post-box">
-        <div class="post-header">
-          <h2 class="post-name"></h2>
-          <p class="post-author">{{ post.author }}</p>
-        </div>
+        <div class = "main_page_post">
+            <div class="post-box">
+                <div class="post-header">
+                    <h2 class="post-name"></h2>
+                    <p class="post-author">{{ post.author }}</p>
+                </div>
 
-        <div class="text-wrap">
-          <div class="post-text">{{ post.content }}</div>
-          <i class="fa-regular fa-bookmark post-bookmark"></i>
-        </div>
+                <div class="text-wrap">
+                    <div class="post-text">{{ post.content }}</div>
+                    <i class="fa-regular fa-bookmark post-bookmark"></i>
+                </div>
 
-        <div class="post-image"></div>
-      </div>
-      {% endfor %}
+                <div class="post-image"></div>
+            </div>
+        </div>
+        {% endfor %}
 	</div>
 </div>
 {% endblock %}
