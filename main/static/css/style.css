@@ -58,11 +58,9 @@ header{
     height: calc(24px + 11 * (200vw / 1280));
     background-color: black;
     border-radius: 1000px;
-    margin: 3px;
+    margin: 6px;
     color:white;
-    margin-top: 10px;
-    border: 3px solid #8270F2;
-    margin-right:5px;
+    border: 2px solid #8270F2;
     transition:0.3s;
 }
 
@@ -72,10 +70,8 @@ header{
     background-color: white;
     color: black;
     border-radius: 1000px;
-    margin: 3px;
-    margin-top: 10px;
-    border: 3px solid #8270F2;
-    margin-right:5px;
+    margin: 6px;
+    border: 2px solid #8270F2;
     transition: 0.3s;
 }
 
@@ -97,9 +93,10 @@ transition: 0.3s;
 
 .side_menu{
     background-color: black;
-    border-top-right-radius: calc(25px + 16 * (200vw / 1280));
-    border-bottom-right-radius: calc(25px + 16 * (200vw / 1280));
+    border-top-right-radius: calc((24px + 11 * (200vw / 1280)) / 2);
+    border-bottom-right-radius: calc((24px + 11 * (200vw / 1280)) / 2);
     position: fixed;
+    border: solid 1px #8270F2;
     /* width: fit-content; */
     /* height: fit-content; */
     box-shadow: 0px 10px 10px #8270F2;
@@ -130,6 +127,14 @@ transition: 0.3s;
 .main_page{
     width: 90%;
     height: 2000px;
+    border-radius: 5px;
+    margin-bottom: 100px;
+    padding-top:1px
+}
+
+.setting_page{
+    width: 90%;
+    height: 1000px;
     background-color: #000000;
     border-radius: 5px;
     box-shadow: 0px 10px 10px #8270F2;
@@ -142,9 +147,7 @@ transition: 0.3s;
     width: 813px;
     justify-content: center;
     height: 1119px;
-    background-color: #000000;
     border-radius: 5px;
-    box-shadow: 0px 10px 10px #534a8a;
     margin-bottom: 100px;
     padding-top: 1px;
 }
@@ -223,31 +226,32 @@ li{
 /* POST_TEMPLATE_CSS*/
 
 .post-box {
-background: #BBB9B9;
+background: black;
 border-radius: 37px;
 overflow: hidden;
-height: 587px;
 width: 722px;
 margin-top: 35px;
 margin-right: auto;
 margin-left: auto;
+box-shadow: 0px 10px 10px #8270F2;
 }
 
 .post-header {
 width: 100%;
 display: inline-flex;
 justify-content: space-between;
-background: #1E1E1E;
+background: black;
+border-bottom: solid 3px #8270F2;
 border-radius: 37px 37px 0px 0px;
 }
 
 .post-name {
-color: #fff;
+color: white;
 margin-left:33px;
 }
 
 .post-author {
-color: #fff;
+color: white;
 margin-right: 22px;
 margin-top: 25px;
 cursor: pointer;
@@ -258,6 +262,13 @@ display: inline-flex;
 justify-content: space-between;
 margin-top: 10px;
 width: 100%;
+margin-bottom: 10px;
+}
+
+.post-bookmark {
+color: white;
+font-size: 40px;
+margin: 5px;
 }
 
 .img-marks {
@@ -271,13 +282,13 @@ cursor: pointer;
 }
 
 .post-text {
-background: #D9D9D9;
+background: black;
+border: solid 1px white;
+color: white;
 width: 632px;
-height: 35px;
 border-radius: 14px;
 margin-left: 26px;
-padding-top: 10px;
-padding-left: 11px;
+padding: 12px;
 }
 
 .post-image {
@@ -286,7 +297,9 @@ height: 500px;
 margin-left: 26px;
 background: url("https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png");
 background-size:cover;
+border: solid 1px white;
 border-radius: 27px;
+margin-bottom: 26px
 }
 /* Post template END*/
 
