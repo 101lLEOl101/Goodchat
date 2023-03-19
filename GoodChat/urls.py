@@ -32,6 +32,8 @@ urlpatterns = [
     path('post/<int:id>', main_views.post),
     path('addpost', main_views.add_post_page, name = 'addpost'),
     path('findfriend', main_views.find_friend_page, name = 'findfriend'),
+
+    path('profile/1',main_views.find_friend_page, name = 'profile/1'),
 ]
 
 if settings.DEBUG:
