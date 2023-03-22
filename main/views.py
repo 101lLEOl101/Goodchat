@@ -1,10 +1,16 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 from users.models import Profile
 from users.models import User
 from main.models import Post
 from main.models import Comment
 from .forms import RegistrForm
+
+
+@login_required(login_url='/login/')
+def self_profile(request):
+    return redirect(f'/profile/{request.user.id}')
 
 
 def main_page(request):

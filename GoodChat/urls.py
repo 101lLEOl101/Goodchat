@@ -29,6 +29,7 @@ urlpatterns = [
     path('settingsprofile/', main_views.settings_profile_page, name='set-prof'),
     path('login/', users_views.login_page, name='login'),
     path('profile/<int:id>', main_views.profile),
+    path('profile/', main_views.self_profile),
     path('post/<int:id>', main_views.post),
     path('addpost', main_views.add_post_page, name = 'addpost'),
     path('findfriend', main_views.find_friend_page, name = 'findfriend'),

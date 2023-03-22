@@ -11,6 +11,9 @@ from .signals import create_profile
 
 
 def registration_page(request):
+    if request.user.is_authenticated:
+        return redirect(to='/profile/')
+    
     context = {}
     context['form'] = RegistrationForm()
 
@@ -30,24 +33,47 @@ def registration_page(request):
                                                 email=email,
                                                 password=password,
                                                 is_active=True)
-                
+
                 user.save()
-                
-                # user_created.connect(create_profile, 
-                #                      dispatch_uid=user.id)
-                
-                user_created.send(sender=User, 
+
+                user_created.send(sender=User,
                                   user=user,
-                                  name=name, 
+                                  name=name,
                                   surname=surname)
-                
+
                 request.user = user
-                
+
                 return redirect(f'/profile/{request.user.id}')
             except IntegrityError as error:
                 context['form'] = form
-                print(error)
+                is_login_unique = False
+                is_email_unique = False
+
+                try:
+                    User.objects.get(username=login)
+                except User.DoesNotExist:
+                    is_login_unique = True
+
+                try:
+                    User.objects.get(email=email)
+                except User.DoesNotExist:
+                    is_email_unique = True
+
+                if not is_login_unique and not is_email_unique:
+                    not_unique_fields = 'login, email'
+                elif not is_login_unique:
+                    not_unique_fields = 'login'
+                elif not is_email_unique:
+                    not_unique_fields = 'email'
+
+                message = f"""
+                User with this data is already registered, 
+                check this fields: {not_unique_fields}.
+                """
+
+                context['message'] = message
                 
+                print(error)
 
         else:
             context['form'] = form
@@ -60,6 +86,9 @@ def login_page(request):
     View function which processes the user authorization form 
     and performs the authorization.
     """
+    if request.user.is_authenticated:
+        return redirect(to='/profile/')
+    
     context = {}
 
     if request.method == 'POST':
