@@ -2,18 +2,23 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth import login
 from django.contrib.auth import authenticate
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from .forms import LoginForm
 from .forms import RegistrationForm
 from .models import User
 from .signals import user_created
-from .signals import create_profile
 
 
 def registration_page(request):
+    """
+    View function which processes the user registration form 
+    and performs the registration of new user.
+    """
     if request.user.is_authenticated:
-        return redirect(to='/profile/')
-    
+        return redirect('self-profile')
+
     context = {}
     context['form'] = RegistrationForm()
 
@@ -22,40 +27,38 @@ def registration_page(request):
         if form.is_valid():
             context['form'] = form
 
-            name = form.data['name']
-            surname = form.data['surname']
-            login = form.data['login']
-            email = form.data['email']
-            password = form.data['password']
+            u_name = form.data['name']
+            u_surname = form.data['surname']
+            u_login = form.data['login']
+            u_email = form.data['email']
+            u_password = form.data['password']
 
             try:
-                user = User.objects.create_user(username=login,
-                                                email=email,
-                                                password=password,
+                user = User.objects.create_user(username=u_login,
+                                                email=u_email,
+                                                password=u_password,
                                                 is_active=True)
 
                 user.save()
 
                 user_created.send(sender=User,
                                   user=user,
-                                  name=name,
-                                  surname=surname)
+                                  name=u_name,
+                                  surname=u_surname)
 
-                request.user = user
-
-                return redirect(f'/profile/{request.user.id}')
+                return redirect('login')
             except IntegrityError as error:
                 context['form'] = form
                 is_login_unique = False
                 is_email_unique = False
 
                 try:
-                    User.objects.get(username=login)
+                    User.objects.get(username=u_login)
                 except User.DoesNotExist:
                     is_login_unique = True
 
                 try:
-                    User.objects.get(email=email)
+                    User.objects.get(email=u_email)
                 except User.DoesNotExist:
                     is_email_unique = True
 
@@ -72,7 +75,7 @@ def registration_page(request):
                 """
 
                 context['message'] = message
-                
+
                 print(error)
 
         else:
@@ -87,8 +90,8 @@ def login_page(request):
     and performs the authorization.
     """
     if request.user.is_authenticated:
-        return redirect(to='/profile/')
-    
+        return redirect('self-profile')
+
     context = {}
 
     if request.method == 'POST':
@@ -101,18 +104,23 @@ def login_page(request):
 
             if user is not None:
                 login(request, user)
-                current_user_id = request.user.id
-                return redirect(f'/profile/{current_user_id}')
-            else:
-                context['message'] = 'Error: bad login/password'
-                context['form'] = auth_form
+                return redirect('self-profile')
+
+            context['message'] = """
+            Incorrect login or password - there is no user with such data
+            """
+            context['form'] = auth_form
 
         else:
-            context['message'] = 'Error: invalid form'
             context['form'] = LoginForm()
 
     else:
-        context['message'] = 'Waiting for user data'
         context['form'] = LoginForm()
 
     return render(request, 'login.html', context=context)
+
+
+@login_required(login_url='login')
+def logout_page(request):
+    logout(request)
+    return redirect('login')

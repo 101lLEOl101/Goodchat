@@ -30,9 +30,13 @@
             <!-- <div>Message: "{{ message }}"</div> -->
             <form method="POST" class="form-reg">
                 {% csrf_token %}
-                {% for form_input in form %}
-                <p>{{ form_input }}</p>
+                {% for field in form %}
+                <p>{{ field }}</p>
+                <div class="form-error">{{ field.errors }}</div>
                 {% endfor %}
+                {% if message %}
+                <p>{{ message }}</p>
+                {% endif %}
 
                 <button type="submit" class="btn_add">Войти</button>
 

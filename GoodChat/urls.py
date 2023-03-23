@@ -24,16 +24,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main_views.main_page, name='home'),
     path('bookmarks', main_views.bookmarks_page, name='bookmarks'),
-    path('register/', users_views.registration_page, name='registration'),
     path('settings/', main_views.settings_page, name='setting'),
     path('settingsprofile/', main_views.settings_profile_page, name='set-prof'),
     path('login/', users_views.login_page, name='login'),
+    path('register/', users_views.registration_page, name='registration'),
+    path('logout/', users_views.logout_page, name='logout'),
     path('profile/<int:id>', main_views.profile),
-    path('profile/', main_views.self_profile),
+    path('profile/', main_views.self_profile, name='self-profile'),
     path('post/<int:id>', main_views.post),
     path('addpost', main_views.add_post_page, name = 'addpost'),
     path('findfriend', main_views.find_friend_page, name = 'findfriend'),
-
     path('profile/1',main_views.find_friend_page, name = 'profile/1'),
 ]
 
