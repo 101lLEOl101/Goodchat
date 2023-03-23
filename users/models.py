@@ -49,3 +49,7 @@ class Profile(models.Model):
     education = models.CharField(max_length=150, blank=True)
     company = models.CharField(max_length=150, blank=True)
     hobby = models.CharField(max_length=150, blank=True)
+
+    class Meta:
+        verbose_name = _('profile')
+        verbose_name_plural = _('profiles')

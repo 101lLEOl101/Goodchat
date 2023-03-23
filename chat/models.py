@@ -1,16 +1,39 @@
 from django.db import models
-from users import User
+from django.utils.translation import gettext_lazy as _
+from users.models import User
 
 # Create your models here.
+
+
 class Chat(models.Model):
-    pass
+    """
+    Base model of chat
+    """
+    name = models.CharField(max_length=50, blank=True, 
+                            verbose_name=_('chat name'))
+    is_multy = models.BooleanField(default=False, 
+                                   verbose_name=_('is multichat'))
+    date_create = models.DateTimeField(auto_now=True, 
+                                       verbose_name=_('date of creation'))
+    
+    class Meta:
+        verbose_name = _('chat')
+        verbose_name_plural = _('chats')
 
 
-class MultyChat(Chat):
-    name = models.CharField(verbose_name='chat name', max_length=50)
-
-
-class DuoChat(Chat):
-    member1 = models.ForeignKey(to=User, verbose_name='first member')
-    member2 = models.ForeignKey(to=User, verbose_name='second member')
+class Message(models.Model):
+    """
+    Base model of message
+    """
+    chat = models.ForeignKey(to=Chat, on_delete=models.CASCADE, 
+                             verbose_name=_('chat'))
+    author = models.ForeignKey(to=User, on_delete=models.CASCADE, 
+                               verbose_name=_('author'))
+    content = models.TextField(verbose_name=_('content'))
+    date_create = models.DateTimeField(auto_now=True, 
+                                       verbose_name=_('date of creation'))
+    
+    class Meta:
+        verbose_name = _('message')
+        verbose_name_plural = _('messages')
     
