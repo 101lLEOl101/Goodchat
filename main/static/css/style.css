@@ -124,7 +124,6 @@ transition: 0.3s;
     background: #000;
     box-shadow: 0px 4px 4px #8270F2;
     border-radius: 50px;
-    padding-top:67px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -137,7 +136,6 @@ transition: 0.3s;
 /* MAIN_PAGE (HOME)*/
 .main_page{
     width: 90%;
-    height: 2000px;
     border-radius: 5px;
     margin: 0 auto;
     margin-top:7vh;
@@ -212,7 +210,6 @@ li{
 }
 .reg_box{
     display: flex;
-    margin-top: 50px;
     align-items: center;
     justify-content: center;
     position: fixed;
@@ -348,15 +345,15 @@ cursor: pointer;
 .profile-card {
     position: fixed;
     right: 1%;
-    top: 10%;
     transform: translateY (-50%);
     width: 400px;
     height: 800px;
     background: rgba(0, 0, 0, 0.75);
     box-shadow: 0px 4px 4px #8270F2;
     border-radius: 50px;
-    padding:50 px 0;
-
+    padding: 50px 0;
+    transform: translateY(-50%);
+    top: 50%;
 }
 
 .profile-pic {
