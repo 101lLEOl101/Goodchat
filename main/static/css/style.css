@@ -97,7 +97,10 @@ transition: 0.3s;
     border-bottom-right-radius: calc((24px + 11 * (200vw / 1280)) / 2);
     position: fixed;
     border: solid 1px #8270F2;
+    /* width: fit-content; */
+    /* height: fit-content; */
     box-shadow: 0px 10px 10px #8270F2;
+    /* margin-top: calc(100px + 16 * (200vw / 1280)); */
     transform: translateY(-50%);
     top: 50%;
     max-height: 80%;
@@ -134,6 +137,7 @@ transition: 0.3s;
 /* MAIN_PAGE (HOME)*/
 .main_page{
     width: 90%;
+    height: 2000px;
     border-radius: 5px;
     margin: 0 auto;
     margin-top:7vh;
@@ -147,6 +151,7 @@ transition: 0.3s;
     background-color: #000000;
     border-radius: 5px;
     box-shadow: 0px 10px 10px #8270F2;
+    margin-bottom: 100px;
     padding-top:1px
 }
 /* Специально для профиля */
@@ -207,6 +212,7 @@ li{
 }
 .reg_box{
     display: flex;
+    margin-top: 50px;
     align-items: center;
     justify-content: center;
     position: fixed;
@@ -239,7 +245,7 @@ li{
 /* POST_TEMPLATE_CSS*/
 
 .post-box {
-    background: black;
+    background: rgba(0, 0, 0, 0.75);
     border-radius: 37px;
     overflow: hidden;
     width: 65%;
@@ -253,7 +259,7 @@ li{
 width: 100%;
 display: inline-flex;
 justify-content: space-between;
-background: black;
+background: rgba(0, 0, 0, 0.75);
 border-bottom: solid 3px #8270F2;
 border-radius: 37px 37px 0px 0px;
 }
@@ -325,6 +331,8 @@ cursor: pointer;
     padding:1%;
     color:white;
     font-size: calc(24px + 16 * (100vw / 2560));
+    padding-right:auto;
+    padding:left:auto;
     border: 2px solid white;
     background-color:black;
     border-radius:20px;
@@ -339,16 +347,15 @@ cursor: pointer;
 /* Profile-card */
 .profile-card {
     position: fixed;
-    left: 80%;
-    top: 15%;
+    right: 1%;
+    top: 10%;
+    transform: translateY (-50%);
     width: 400px;
-    height: 900px;
-    background: #000;
+    height: 800px;
+    background: rgba(0, 0, 0, 0.75);
     box-shadow: 0px 4px 4px #8270F2;
     border-radius: 50px;
-    padding-top:67px;
-    margin-left: auto;
-    margin-right: auto;
+    padding:50 px 0;
 
 }
 
