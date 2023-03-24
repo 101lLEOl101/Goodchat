@@ -128,17 +128,14 @@ transition: 0.3s;
     margin-bottom: 100px;
     padding-top:1px
 }
-.main_page_post{
-
-}
 
 .setting_page{
     width: 90%;
-    height: 1000px;
+    height: 100vh;
+    margin: 0 auto;
     background-color: #000000;
     border-radius: 5px;
     box-shadow: 0px 10px 10px #8270F2;
-    margin-bottom: 100px;
     padding-top:1px
 }
 /* Специально для профиля */
@@ -205,7 +202,6 @@ li{
     transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
-    max-height: 80%;
 }
 
 .btn_add{
@@ -318,8 +314,6 @@ cursor: pointer;
     padding:1%;
     color:white;
     font-size: calc(24px + 16 * (100vw / 2560));
-    padding-right:auto;
-    padding:left:auto;
     border: 2px solid white;
     background-color:black;
     border-radius:20px;
@@ -328,7 +322,7 @@ cursor: pointer;
     display: grid;
     text-align: center;
     margin:auto;
-    margin-top:5%;
+    margin-top:10%;
 }
 
 /* Profile-card */
