@@ -108,6 +108,14 @@ def chat_page(request):
     }
     return render(request, 'chat_list.html', context)
 
+def messenger_page(request):
+    context = {
+        'profile': {
+            'id': request.user.id
+        }
+    }
+    return render(request, 'messenger.html', context)
+
 
 def settings_profile_page(request):
     context = {

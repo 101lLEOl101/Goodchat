@@ -34,6 +34,7 @@ urlpatterns = [
     path('addpost', main_views.add_post_page, name = 'addpost'),
     path('findfriend', main_views.find_friend_page, name = 'findfriend'),
     path('chat', main_views.chat_page, name = 'chat'),
+    path('messenger', main_views.messenger_page, name='messenger'),
 
     path('profile/1',main_views.find_friend_page, name = 'profile/1'),
 ]
