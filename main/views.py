@@ -43,6 +43,35 @@ def bookmarks_page(request):
     }
     return render(request, "bookmarks_page.html", context)
 
+#Заглушка для проверки чужого профиля
+def diff_profile_page(request, id:int):
+    try:
+        profile = Profile.objects.get(id=id)
+        user = User.objects.get(id=id)
+        posts = Post.objects.filter(author=user)
+    except Profile.DoesNotExist:
+        return redirect('home')
+
+    context = {'profile': {'id': profile.id,
+                           'name': profile.name,
+                           'surname': profile.surname,
+                           'avatar': profile.avatar,
+                           'about': profile.about,
+                           'country': profile.country,
+                           'city': profile.city,
+                           'education': profile.education,
+                           'company': profile.company,
+                           'hobby': profile.hobby,
+                           },
+               'posts': [{'id': post.id,
+                          'author': post.author,
+                          'content': post.content,
+                          'date': post.date,
+                          } for post in posts]
+               }
+
+    return render(request, 'profile_diffrent.html', context=context)
+
 
 def regist(request):
     data = {
@@ -70,6 +99,14 @@ def settings_page(request):
         }
     }
     return render(request, 'settings.html', context)
+
+def chat_page(request):
+    context = {
+        'profile': {
+            'id': request.user.id
+        }
+    }
+    return render(request, 'chat_list.html', context)
 
 
 def settings_profile_page(request):

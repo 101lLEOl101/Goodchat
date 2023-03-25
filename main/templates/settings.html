@@ -3,11 +3,9 @@
 {% block title %}Настройки{% endblock %}
 
 {% block content %}
-<div>
-    <div class = "setting_page">
-        <a href="{% url 'set-prof' %}" class="setting-btn">Настройки профиля</a>
-        <a href="{% url 'login' %}" class="setting-btn">Сменить профиль</a>
-        <a href="" class="setting-btn">Выход</a>
-    </div>
+<div class = "setting_page">
+    <a href="{% url 'set-prof' %}" class="setting-btn">Настройки профиля</a>
+    <a href="{% url 'login' %}" class="setting-btn">Сменить профиль</a>
+    <a href="" class="setting-btn">Выход</a>
 </div>
 {% endblock %}

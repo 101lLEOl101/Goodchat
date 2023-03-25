@@ -15,6 +15,7 @@
         <a href = "{% url 'home' %}" class = "logo_h">
             <img src = "..\static\images\logo.png" class = "logo_h" alt = "Home Page">
         </a>
+
     </div>
 </header>
 <div class = "navigation">
@@ -25,7 +26,7 @@
             </a>
         </div>
         <div  id = "mes" class = "side_icon">
-            <a class = "hr" href = "{% url 'registration' %}">
+            <a class = "hr" href = "{% url 'chat' %}">
                 <i class="fa-regular fa-comment-dots icona"></i>
             </a>
         </div>
@@ -57,12 +58,9 @@
     </div>
 </div>
 <div class = "main">
-    <div class="content">
-
-        {% block content %}
-        {% endblock %}
-    </div>
-</div>
+    {% block content %}
+    {% endblock %}
+</div>r=
 
 <script src="{% static '/js/script.js' %}"></script>
 <script src="https://kit.fontawesome.com/a5b3356b6d.js" crossorigin="anonymous"></script>
