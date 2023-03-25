@@ -48,3 +48,9 @@ class LogForm(forms.Form):
         'class': 'form-input',
         'placeholder': 'Пароль'
     }))
+    
+class PostForm(forms.Form):
+    content = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'text-of-new-post',
+        'placeholder': 'Ваш текст'
+    }))

@@ -5,6 +5,7 @@ from users.models import User
 from main.models import Post
 from main.models import Comment
 from .forms import RegistrForm
+from .forms import PostForm
 
 
 def main_page(request):
@@ -15,17 +16,34 @@ def main_page(request):
                           'author': post.author,
                           'content': post.content,
                           'date': post.date,
-               } for post in posts]
-    }
+                          } for post in posts]
+               }
     return render(request, 'main_page.html', context)
+
 
 def add_post_page(request):
     context = {
         'profile': {
             'id': request.user.id
-        }
+        },
+        'form': PostForm(),
     }
+    
+    if request.method == 'POST':
+        post_form = PostForm(request.POST)
+        if post_form.is_valid():
+            post_author = request.user
+            post_content = post_form.data['content']
+            post = Post(author=post_author,
+                        content=post_content)
+            post.save()
+            return redirect(f'/profile/{request.user.id}')
+        
+        context['form'] = post_form()
+        context['message'] = 'Incorrect form, try again'    
+
     return render(request, 'add_post_page.html', context)
+
 
 def find_friend_page(request):
     context = {
@@ -35,6 +53,7 @@ def find_friend_page(request):
     }
     return render(request, 'find_friend_page.html', context)
 
+
 def bookmarks_page(request):
     context = {
         'profile': {
@@ -43,8 +62,10 @@ def bookmarks_page(request):
     }
     return render(request, "bookmarks_page.html", context)
 
-#Заглушка для проверки чужого профиля
-def diff_profile_page(request, id:int):
+# Заглушка для проверки чужого профиля
+
+
+def diff_profile_page(request, id: int):
     try:
         profile = Profile.objects.get(id=id)
         user = User.objects.get(id=id)
@@ -100,6 +121,7 @@ def settings_page(request):
     }
     return render(request, 'settings.html', context)
 
+
 def chat_page(request):
     context = {
         'profile': {
@@ -120,7 +142,7 @@ def settings_profile_page(request):
     # Заглушка !!!!! !!! !! ! ! ! ! ! !  !
 
 
-def profile(request, id:int):
+def profile(request, id: int):
     """
     View function which represents page with wall of the current user by id
     """
@@ -143,7 +165,9 @@ def profile(request, id:int):
                            'hobby': profile.hobby,
                            },
                'posts': [{'id': post.id,
-                          'author': post.author,
+                          'author': {'name': post.author,
+                                     'link': f'/profile/{post.author.id}',
+                                     },
                           'content': post.content,
                           'date': post.date,
                           } for post in posts]
@@ -152,7 +176,7 @@ def profile(request, id:int):
     return render(request, 'profile.html',  context=context)
 
 
-def post(request, id:int):
+def post(request, id: int):
     """
     View function which represents the page with current post by id 
     and comments for that post
@@ -164,7 +188,9 @@ def post(request, id:int):
         return redirect('home')
 
     context = {'post': {'id': post.id,
-                        'author': post.author,
+                        'author': {'name': post.author,
+                                   'link': f'/profile/{post.author.id}',
+                                   },
                         'content': post.content,
                         'date': post.date,
                         },

@@ -1,75 +1,24 @@
 {% extends 'base.html' %}
 
-{% block title %}Авторизация{% endblock %}
+{% block title %}Мессенджер{% endblock %}
 
 {% block content %}
-    <div class="container">
-        User: {{ user }}
+    <div class="chat_box">
+        <h2 style="text-align:center;"> Личные сообщения </h2>
 
         {% for chat in chats %}
-            <div class="chat">
-                <div class="name">
-                    {{ chat.name }}
+        <a href="chat/{{chat.id}}">
+            <div class="chat_item">
+
+                <img class="chat-user-pic" src="{{chat.avatar.url}}">
+                <div class="chat_texts">
+                <h2>{{ chat.name }}</h2>
+                <h3>{{ chat.last_message.content }}</h3>
                 </div>
-                <div class="message">
-                    {{ chat.last_message.content }}
-                </div>
-                <hr>
-                <a class="link" href="chat/{{chat.id}}">View</a>
+            
             </div>
+        </a>
         {% endfor %}
 
     </div>
-
-    <style>
-        .container {
-            display: block;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            height: 80vh;
-            width: 70%;
-            margin: auto;
-            padding: 3rem;
-        }
-
-        .chat {
-            display: block;
-            text-align: conter;
-            margin-right: 5%;
-            margin-left: 5%;
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background-color:rgba(255, 255, 255, 0.4);
-            border-radius: 20px;
-            color: #faf;
-        }
-
-        .name {
-            display: block;
-            padding: 0.5rem;
-            margin: 0.2rem;
-            height: 20px;
-            border: 1px solid #faf;
-        }
-
-        .message {
-            display: block;
-            color: rgba(152, 205, 255, 0.685);
-            padding: 0.5rem;
-            height: 20px;
-            margin: 0.2rem;
-            border: 1px solid rgb(152, 205, 255);
-        }
-
-        .link {
-            display: block;
-            margin: 0.2rem;
-            padding: 0.3rem;
-            border: 1px solid #73ff00;
-            color: #73ff00;
-            text-decoration: none;
-            text-align: center;
-        }
-    </style>
-
 {% endblock %}
