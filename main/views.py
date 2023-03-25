@@ -71,6 +71,14 @@ def settings_page(request):
     }
     return render(request, 'settings.html', context)
 
+def chat_page(request):
+    context = {
+        'profile': {
+            'id': request.user.id
+        }
+    }
+    return render(request, 'chat_list.html', context)
+
 
 def settings_profile_page(request):
     context = {
