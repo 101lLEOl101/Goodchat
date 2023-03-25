@@ -18,6 +18,7 @@ header{
     width: 100%;
     height: 7%;
     position: fixed;
+    z-index: 1;
 
 
 }
@@ -26,6 +27,7 @@ header{
     height: 100%;
     background-color: black;
     box-shadow: 0px 10px 33px #8270F2;
+
 }
 
 .logo_h{
@@ -110,7 +112,7 @@ transition: 0.3s;
 .content{
     width: 90%;
     display:inline-block;
-    margin-left: 10%;
+
     margin-top: 100px;
 }
 /* Огромный жирный блок для профилей */
@@ -203,6 +205,7 @@ li{
 .reg_box{
     display: flex;
     margin-top: 50px;
+    margin-left: 10%;
     align-items: center;
     justify-content: center;
 }
@@ -218,12 +221,63 @@ li{
     transition: all 0.5s;
     
 }
+
+.btn_add:hover{
+    background-color: transparent;
+    border-radius: 12px;
+    border: #000000 solid 3px;
+    color: black;
+    font-weight: bold;
+
+
+}
+
+.btn_profile{
+    background-color: #000000;
+    border-radius: 12px;
+    border: #8270F2 solid 2px;
+    padding: 15px;
+    color: #8270F2;
+    width: 100%;
+    font-size: 20px;
+    transition: all 0.5s;
+
+}
+
+.btn_profile:hover{
+    background-color: #000000;
+    border-radius: 12px;
+    border: #000000 solid 3px;
+
+    box-shadow: 0px 0px 33px #8270F2;
+
+
+}
 /* Regestration END*/
 
 /* Login page */ 
 .auth-link{
     text-decoration: none;
     color: #8270F2;
+    margin-top: 10px;
+    font-size:13px;
+    text-shadow:
+		-0   -1px 6px #000000,
+		 0   -1px 6px #000000,
+		-0    1px 6px #000000,
+		 0    1px 6px #000000,
+		-1px -0   6px #000000,
+		 1px -0   6px #000000,
+		-1px  0   6px #000000,
+		 1px  0   6px #000000,
+		-1px -1px 6px #000000,
+		 1px -1px 6px #000000,
+		-1px  1px 6px #000000,
+		 1px  1px 6px #000000,
+		-1px -1px 6px #000000,
+		 1px -1px 6px #000000,
+		-1px  1px 6px #000000,
+		 1px  1px 6px #000000;
 }
 
 
@@ -333,17 +387,16 @@ cursor: pointer;
 /* Profile-card */
 .profile-card {
     position: fixed;
-    left: 80%;
-    top: 15%;
+    right: 100px;
+    top: -100px;
     width: 400px;
-    height: 900px;
+    height: 800px;
     background: #000;
     box-shadow: 0px 4px 4px #8270F2;
-    border-radius: 50px;
-    padding-top:67px;
-    margin-left: auto;
-    margin-right: auto;
-
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    padding-top:130px;
+    transform: scale(0.8,0.8);
 }
 
 .profile-pic {
