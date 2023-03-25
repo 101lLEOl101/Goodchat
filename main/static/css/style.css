@@ -201,16 +201,16 @@ transition: 0.3s;
 }
 
 .text_box_rules{
-    background-color: #C6C6C6;
+    background-color: rgba(0,0,0,50%);
     width: 880px;
     height: 650px;
-    color: black;
+    color: rgba(255,255,255,85%);
     text-align:start;
     font-size: 25px;
     padding: 40px;
     border: black solid 5px;
     border-radius: 14px;
-
+    box-shadow: 0px 0px 10px #8270F2;
     margin-right: 100px;
 }
 
@@ -219,7 +219,7 @@ li{
     margin-top: 5px;
 }
 .rules_head{
-    color:red;
+    color:#8270F2;
 }
 .reg_box{
     display: flex;
