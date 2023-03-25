@@ -18,6 +18,7 @@ header{
     width: 100%;
     height: 7%;
     position: fixed;
+    z-index: 1;
 
 
 }
@@ -136,6 +137,7 @@ transition: 0.3s;
 /* MAIN_PAGE (HOME)*/
 .main_page{
     width: 90%;
+    height: 2000px;
     border-radius: 5px;
     margin: 0 auto;
     margin-top:7vh;
@@ -210,6 +212,7 @@ li{
 }
 .reg_box{
     display: flex;
+    margin-top: 50px;
     align-items: center;
     justify-content: center;
     position: fixed;
@@ -229,12 +232,63 @@ li{
     transition: all 0.5s;
     
 }
+
+.btn_add:hover{
+    background-color: transparent;
+    border-radius: 12px;
+    border: #000000 solid 3px;
+    color: black;
+    font-weight: bold;
+
+
+}
+
+.btn_profile{
+    background-color: #000000;
+    border-radius: 12px;
+    border: #8270F2 solid 2px;
+    padding: 15px;
+    color: #8270F2;
+    width: 100%;
+    font-size: 20px;
+    transition: all 0.5s;
+
+}
+
+.btn_profile:hover{
+    background-color: #000000;
+    border-radius: 12px;
+    border: #000000 solid 3px;
+
+    box-shadow: 0px 0px 33px #8270F2;
+
+
+}
 /* Regestration END*/
 
 /* Login page */ 
 .auth-link{
     text-decoration: none;
     color: #8270F2;
+    margin-top: 10px;
+    font-size:13px;
+    text-shadow:
+		-0   -1px 6px #000000,
+		 0   -1px 6px #000000,
+		-0    1px 6px #000000,
+		 0    1px 6px #000000,
+		-1px -0   6px #000000,
+		 1px -0   6px #000000,
+		-1px  0   6px #000000,
+		 1px  0   6px #000000,
+		-1px -1px 6px #000000,
+		 1px -1px 6px #000000,
+		-1px  1px 6px #000000,
+		 1px  1px 6px #000000,
+		-1px -1px 6px #000000,
+		 1px -1px 6px #000000,
+		-1px  1px 6px #000000,
+		 1px  1px 6px #000000;
 }
 
 
@@ -454,6 +508,7 @@ cursor: pointer;
     height: 2vh;
     margin-left: 45px;
     margin-top: 10px;
+
     transition: 0.2s;
     border: 0;
     border-bottom: 2px solid white;
@@ -502,5 +557,6 @@ cursor: pointer;
     height: 30vh;
     margin: 0.5vh 1.5%;
     background-image: url("https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png");
+    background-size: ;
 }
 /* New-post END */ 
