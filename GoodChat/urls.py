@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from main import views as main_views
 from users import views as users_views
+from chat import views as chat_views
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -32,8 +33,11 @@ urlpatterns = [
     path('post/<int:id>', main_views.post),
     path('addpost', main_views.add_post_page, name = 'addpost'),
     path('findfriend', main_views.find_friend_page, name = 'findfriend'),
-
+    
     path('profile/1',main_views.find_friend_page, name = 'profile/1'),
+    
+    path('chatlist', chat_views.chat_list, name='chat-list'),
+    path('chat/<int:id>', chat_views.chat_page),
 ]
 
 if settings.DEBUG:
