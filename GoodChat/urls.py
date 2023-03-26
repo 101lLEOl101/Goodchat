@@ -26,7 +26,7 @@ urlpatterns = [
     path('bookmarks', main_views.bookmarks_page, name='bookmarks'),
     path('register/', users_views.registration_page, name='registration'),
     path('settings/', main_views.settings_page, name='setting'),
-    path('settingsprofile/', main_views.settings_profile_page, name='set-prof'),
+    path('settingsprofile/<int:id>', main_views.settings_profile_page),
     path('login/', users_views.login_page, name='login'),
     path('profile/<int:id>', main_views.profile),
     path('profiled/<int:id>', main_views.diff_profile_page),
@@ -35,8 +35,10 @@ urlpatterns = [
     path('findfriend', main_views.find_friend_page, name = 'findfriend'),
     path('chat', main_views.chat_page, name = 'chat'),
     path('messenger', main_views.messenger_page, name='messenger'),
-
+    #плохие ссылки
+    path('settingsprofile/1', main_views.settings_profile_page, name = 'settingsprofile/1'),
     path('profile/1',main_views.find_friend_page, name = 'profile/1'),
+    #плохие ссылки
 ]
 
 if settings.DEBUG:

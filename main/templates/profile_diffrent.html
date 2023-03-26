@@ -20,20 +20,20 @@
         </div>
         {% endfor %}
 	</div>
-  <div class="profile-card" style="height: 950px;">
+  <div class="profile-card">
     <img src="{{ profile.avatar.url }}" class="profile-pic" />
 
     <h3 class="user-nickname">Имя: {{ profile.name }} </h3>
     <p class="user-nickname">Фамилия: {{ profile.surname }}</p>
     <p class="user-info">About user <br> {{ profile.about }} </p>
     <p class="user-nickname">Мне нравится: {{ profile.hobby }}</p>
-      <button class="btn_profile" style="width: 250px; margin-left: 80px">
+      <button class="btn_profile">
       Написать
-    </button><button class="btn_profile" style="width: 250px; margin-left: 80px; margin-top:20px; margin-bottom:20px;">
+    </button><button class="btn_profile">
       Добавить в друзья
     </button>
 
-    <button class="btn_profile" style="width: 250px; margin-left: 80px">
+    <button class="btn_profile">
       Подробнее
     </button>
   </div>

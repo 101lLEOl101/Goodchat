@@ -116,14 +116,28 @@ def messenger_page(request):
     }
     return render(request, 'messenger.html', context)
 
+def settings_profile_page(request, id:int):
+    try:
+        profile = Profile.objects.get(id=id)
+        user = User.objects.get(id=id)
+        posts = Post.objects.filter(author=user)
+    except Profile.DoesNotExist:
+        return redirect('home')
 
-def settings_profile_page(request):
-    context = {
-        'profile': {
-            'id': request.user.id
-        }
-    }
-    return render(request, 'settings_profile.html', context)
+    context = {'profile': {'id': profile.id,
+                           'name': profile.name,
+                           'surname': profile.surname,
+                           'avatar': profile.avatar,
+                           'about': profile.about,
+                           'country': profile.country,
+                           'city': profile.city,
+                           'education': profile.education,
+                           'company': profile.company,
+                           'hobby': profile.hobby,
+                           }
+               }
+
+    return render(request, 'settings_profile.html', context=context)
 
     # Заглушка !!!!! !!! !! ! ! ! ! ! !  !
 
