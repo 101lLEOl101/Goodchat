@@ -39,8 +39,7 @@ def add_post_page(request):
         if post_form.is_valid():
             post_author = request.user
             post_content = post_form.data['content']
-            post = Post(author=post_author,
-                        content=post_content)
+            post = Post(author=post_author, content=post_content)
             post.save()
             return redirect('self-profile')
         
