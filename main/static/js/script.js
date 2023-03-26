@@ -1,4 +1,4 @@
-if (window.location.pathname == "/profile/") {
+if (window.location.pathname == "/profile") {
 prof.classList.add("now-side_icon");
 prof.classList.remove("side_icon");
 i = prof.querySelector('.hr').querySelector('.icona');
@@ -12,7 +12,7 @@ i = mes.querySelector('.hr').querySelector('.icona');
 i.classList.add("now-icona");
 i.classList.remove("icona");
 }
-else if (window.location.pathname == "/settings/") {
+else if (window.location.pathname == "/settings") {
 set.classList.add("now-side_icon");
 set.classList.remove("side_icon");
 i = set.querySelector('.hr').querySelector('.icona');
