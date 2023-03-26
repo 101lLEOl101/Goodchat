@@ -572,6 +572,10 @@ cursor: pointer;
     box-shadow: 0px 0px 33px #8270F2;
 }
 
+a{
+text-decoration: none;
+}
+
 .chat_item{
     display:flex;
     align-items:center;

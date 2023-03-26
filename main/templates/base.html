@@ -20,12 +20,12 @@
     </div>
     {% if user.is_authenticated %}
         <div class="auth_box">
-        <button class="auth_btn">Выход</button>
+        <a href="{% url 'logout' %}" class="auth_btn">Выход</a>
         </div>
     {% else %}
         <div class="auth_box">
-        <button class="auth_reg_btn">Регистрация</button>
-        <button class="auth_btn">Вход</button>
+        <a href="{% url 'registration' %}" class="auth_reg_btn">Регистрация</a>
+        <a href="{% url 'login' %}" class="auth_btn">Вход</a>
         </div>
      {% endif %}
 </header>
