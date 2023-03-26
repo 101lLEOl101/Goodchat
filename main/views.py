@@ -25,7 +25,7 @@ def main_page(request):
                }
     return render(request, 'main_page.html', context)
 
-
+@login_required(login_url='login')
 def add_post_page(request):
     context = {
         'profile': {
@@ -42,7 +42,7 @@ def add_post_page(request):
             post = Post(author=post_author,
                         content=post_content)
             post.save()
-            return redirect(f'/profile/{request.user.id}')
+            return redirect('self-profile')
         
         context['form'] = post_form()
         context['message'] = 'Incorrect form, try again'    

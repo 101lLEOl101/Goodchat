@@ -49,3 +49,27 @@ def get_chat_avatar(chat:Chat, current_user:User) -> ImageFieldFile:
     friend = get_profile(friend)
         
     return friend.avatar
+
+def get_chat_messages(chat:Chat, current_user:User):
+    messages_objects = Message.objects.filter(chat=chat)
+    me = get_profile(current_user)
+    
+    messages = []
+    for message_object in messages_objects:
+        author = get_profile(message_object.author)
+        
+        if me == author:
+            is_myown = True
+        else:
+            is_myown = False
+        
+        message = {
+            'author': author.name,
+            'content': message_object.content,
+            'date_create': message_object.date_create,
+            'is_myown': is_myown,
+        }
+        
+        messages.append(message)
+        
+    return messages

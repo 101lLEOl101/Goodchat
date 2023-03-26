@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from .models import Chat
 from .models import Message
 from .models import Access
 from .utils import generate_chat
+from .utils import get_chat_messages
 # Create your views here.
 
 
@@ -27,9 +29,12 @@ def chat_list(request):
 def chat_page(request, id):
     context = {}
     
-    chat = Chat.objects.get(id=id)
-    messages = Message.objects.filter(chat=chat)
+    try:
+        chat = Chat.objects.get(id=id)
+    except Chat.DoesNotExist:
+        return redirect('chatlist')
     
+    messages = get_chat_messages(chat, request.user)
     chat = generate_chat(chat, request.user)
     context['chat'] = chat
     context['messages'] = messages
