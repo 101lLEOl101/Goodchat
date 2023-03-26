@@ -1,10 +1,15 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 from users.models import Profile
 from users.models import User
 from main.models import Post
 from main.models import Comment
-from .forms import RegistrForm
+
+
+@login_required(login_url='login')
+def self_profile(request):
+    return redirect(f'/profile/{request.user.id}')
 
 
 def main_page(request):
@@ -15,9 +20,10 @@ def main_page(request):
                           'author': post.author,
                           'content': post.content,
                           'date': post.date,
-               } for post in posts]
-    }
+                          } for post in posts]
+               }
     return render(request, 'main_page.html', context)
+
 
 def add_post_page(request):
     context = {
@@ -27,6 +33,7 @@ def add_post_page(request):
     }
     return render(request, 'add_post_page.html', context)
 
+
 def find_friend_page(request):
     context = {
         'profile': {
@@ -34,6 +41,7 @@ def find_friend_page(request):
         }
     }
     return render(request, 'find_friend_page.html', context)
+
 
 def bookmarks_page(request):
     context = {
@@ -71,25 +79,6 @@ def diff_profile_page(request, id:int):
                }
 
     return render(request, 'profile_diffrent.html', context=context)
-
-
-def regist(request):
-    data = {
-        'profile': {
-            'id': request.user.id
-        }
-    }
-    if request.method == 'POST':
-        form = RegistrForm(request.POST)
-        if form.is_valid():
-            form.save()
-            data['form'] = form
-            data['res'] = 'Всё прошло успешно'
-            return render(request, 'reg.html', data)
-    else:
-        form = RegistrForm()
-        data['form'] = form
-    return render(request, 'reg.html', data)
 
 
 def settings_page(request):
@@ -142,7 +131,7 @@ def settings_profile_page(request, id:int):
     # Заглушка !!!!! !!! !! ! ! ! ! ! !  !
 
 
-def profile(request, id:int):
+def profile(request, id):
     """
     View function which represents page with wall of the current user by id
     """
@@ -174,7 +163,7 @@ def profile(request, id:int):
     return render(request, 'profile.html',  context=context)
 
 
-def post(request, id:int):
+def post(request, id):
     """
     View function which represents the page with current post by id 
     and comments for that post
