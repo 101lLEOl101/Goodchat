@@ -16,7 +16,18 @@
             <img src = "..\static\images\logo.png" class = "logo_h" alt = "Home Page">
         </a>
 
+
     </div>
+    {% if user.is_authenticated %}
+        <div class="auth_box">
+        <button class="auth_btn">Выход</button>
+        </div>
+    {% else %}
+        <div class="auth_box">
+        <button class="auth_reg_btn">Регистрация</button>
+        <button class="auth_btn">Вход</button>
+        </div>
+     {% endif %}
 </header>
 <div class = "navigation">
     <div  class = "side_menu">
