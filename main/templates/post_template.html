@@ -5,8 +5,8 @@
 {% block content %}
 <div class = "post-box">
 	<div class = "post-header">
-		<h2 class = "post-name">Naming</h2>
-		<p class = "post-author">{{ post.author }}</p>
+		<h2 class = "post-name"></h2>
+		<a href="{{ post.author.link }}"" class = "post-author">{{ post.author.name }}</a>
 	</div>
 
 	<div class = "text-wrap">

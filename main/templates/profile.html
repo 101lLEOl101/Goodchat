@@ -3,21 +3,22 @@
 <!--<div class="content_for_profile"> -->
 <div class = "main_page">
         {% for post in posts %}
-        <div class = "main_page_post">
-            <div class="post-box">
-                <div class="post-header">
-                    <h2 class="post-name"></h2>
-                    <p class="post-author">{{ post.author }}</p>
-                </div>
+          <div class = "main_page_post">
+              <div class="post-box">
+                  <div class="post-header">
+                      <h2 class="post-name"></h2>
+                      <a href="{{post.author.link}}" class="post-author">{{ post.author.name }}</a>
+                  </div>
 
-                <div class="text-wrap">
-                    <div class="post-text">{{ post.content }}</div>
-                    <i class="fa-regular fa-bookmark post-bookmark"></i>
-                </div>
+                  <div class="text-wrap">
+                      <div class="post-text">{{ post.content }}</div>
+                      <i class="fa-regular fa-bookmark post-bookmark"></i>
+                  </div>
 
-                <div class="post-image"></div>
-            </div>
-        </div>
+                  <div class="post-image"></div>
+                  <a href="/post/{{post.id}}">Посмотреть</a>
+              </div>
+          </div>
         {% endfor %}
 	</div>
   <div class="profile-card">

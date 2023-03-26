@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Мессенджер{% endblock %}
+
+{% block content %}
+    <div class="chat_box">
+        <h2 style="text-align:center;"> Личные сообщения </h2>
+
+        {% for chat in chats %}
+        <a href="chat/{{chat.id}}">
+            <div class="chat_item">
+
+                <img class="chat-user-pic" src="{{chat.avatar.url}}">
+                <div class="chat_texts">
+                <h2>{{ chat.name }}</h2>
+                <h3>{{ chat.last_message.content }}</h3>
+                </div>
+            
+            </div>
+        </a>
+        {% endfor %}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}Авторизация{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="name">{{ chat.name }}</div>
+        
+        {% for message in messages %}
+            <div class="message">
+                <div class="author">{{message.author}}</div>
+                <div class="mcontent">{{message.content}}</div>
+                <div class="time">{{message.date_create}}</div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <style>
+        .container {
+            display: block;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            height: 80vh;
+            width: 70%;
+            margin: auto;
+            padding: 3rem;
+        }
+
+        .chat {
+            display: block;
+            text-align: conter;
+            margin-right: 5%;
+            margin-left: 5%;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color:rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            color: #faf;
+        }
+
+        .name {
+            display: block;
+            padding: 10px;
+            margin: auto;
+            margin-bottom: 3rem;
+            text-align: center;
+            height: 20px;
+            border: 1px solid #faf;
+        }
+
+        .message {
+            display: block;
+            color: rgba(152, 205, 255, 0.685);
+            padding: 0.5rem;
+            margin-left: 10rem;
+            margin-right: 2rem;
+            margin-top: 0.5rem;
+            border: 1px solid rgb(152, 205, 255);
+            border-radius: 20px;
+        }
+
+        .author {
+            display: block;
+            margin: 0.3rem;
+            padding: 0.1rem;
+            color: #fff;
+            border: 1px solid #fff;
+            border-radius: 5px;
+        }
+    
+        .mcontent {
+            display: block;
+            padding: 0.1rem;
+            margin: 0.3rem;
+            color: #a1ff8ea9;
+            border: 1px solid #a1ff8ea9;
+            border-radius: 5px;
+        }
+
+        .time {
+            display: block;
+            padding: 0.1rem;
+            margin: 0.3rem;
+            color: rgba(148, 1, 136, 0.612);
+            text-align: right;
+            border: 1px solid rgba(148, 1, 136, 0.612);
+            border-radius: 5px;
+        }
+    </style>
+
+{% endblock %}
