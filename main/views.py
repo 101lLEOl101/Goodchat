@@ -7,23 +7,15 @@ from main.models import Post
 from main.models import Comment
 from .forms import PostForm
 
-@login_required(login_url='login')
+
+@login_required
 def self_profile(request):
     return redirect(f'/profile/{request.user.id}')
 
 
-
 def main_page(request):
-    try:
-        profile = Profile.objects.get(id=request.user.id)
-    except Profile.DoesNotExist:
-        return redirect('home')
     posts = Post.objects.all()
-    context = {'profile': {
-                            'id': request.user.id,
-                            'avatar': profile.avatar,
-                           },
-               'posts': [{'id': post.id,
+    context = {'posts': [{'id': post.id,
                           'author': post.author,
                           'content': post.content,
                           'date': post.date,
@@ -31,20 +23,11 @@ def main_page(request):
                }
     return render(request, 'main_page.html', context)
 
-@login_required(login_url='login')
+
+@login_required
 def add_post_page(request):
-    try:
-        profile = Profile.objects.get(id=request.user.id)
-    except Profile.DoesNotExist:
-        return redirect('home')
-    context = {
-        'profile': {
-            'id': request.user.id,
-            'avatar': profile.avatar,
-        },
-        'form': PostForm(),
-    }
-    
+    context = {}
+
     if request.method == 'POST':
         post_form = PostForm(request.POST)
         if post_form.is_valid():
@@ -53,27 +36,21 @@ def add_post_page(request):
             post = Post(author=post_author, content=post_content)
             post.save()
             return redirect('self-profile')
-        
+
         context['form'] = post_form()
-        context['message'] = 'Incorrect form, try again'    
+        context['message'] = 'Incorrect form, try again'
+    else:
+        context['form'] = PostForm()
 
     return render(request, 'add_post_page.html', context)
 
 
+@login_required
 def find_friend_page(request):
-    try:
-        profile = Profile.objects.get(id=request.user.id)
-    except Profile.DoesNotExist:
-        return redirect('home')
-    context = {
-        'profile': {
-            'id': request.user.id,
-            'avatar': profile.avatar,
-        }
-    }
-    return render(request, 'find_friend_page.html', context)
+    return render(request, 'find_friend_page.html')
 
 
+@login_required
 def bookmarks_page(request):
     try:
         profile = Profile.objects.get(id=request.user.id)
@@ -121,6 +98,7 @@ def diff_profile_page(request, id: int):
     return render(request, 'profile_diffrent.html', context=context)
 
 
+@login_required
 def settings_page(request):
     try:
         profile = Profile.objects.get(id=request.user.id)
@@ -135,39 +113,19 @@ def settings_page(request):
     return render(request, 'settings.html', context)
 
 
+@login_required
 def chat_page(request):
-    try:
-        profile = Profile.objects.get(id=request.user.id)
-        user = User.objects.get(id=request.user.id)
-        posts = Post.objects.filter(author=user)
-    except Profile.DoesNotExist:
-        return redirect('home')
-    context = {
-        'profile': {
-            'id': request.user.id,
-            'avatar': profile.avatar,
-        }
-    }
-    return render(request, 'chat_list.html', context)
+    return render(request, 'chat_list.html')
 
+
+@login_required
 def messenger_page(request):
-    try:
-        profile = Profile.objects.get(id=request.user.id)
-    except Profile.DoesNotExist:
-        return redirect('home')
-    context = {
-        'profile': {
-                'id': request.user.id,
-            'avatar': profile.avatar,
-        }
-    }
-    return render(request, 'messenger.html', context)
+    return render(request, 'messenger.html')
 
-def settings_profile_page(request, id:int):
-    try:
-        profile = Profile.objects.get(id=id)
-    except Profile.DoesNotExist:
-        return redirect('home')
+
+@login_required
+def settings_profile_page(request, id: int):
+    profile = Profile.objects.get(id=id)
 
     context = {'profile': {'id': profile.id,
                            'name': profile.name,
@@ -192,11 +150,12 @@ def profile(request, id: int):
     View function which represents page with wall of the current user by id
     """
     try:
-        profile = Profile.objects.get(id=id)
         user = User.objects.get(id=id)
-        posts = Post.objects.filter(author=user)
-    except Profile.DoesNotExist:
+    except:
         return redirect('home')
+    
+    profile = Profile.objects.get(user=user)
+    posts = Post.objects.filter(author=user)
 
     context = {'profile': {'id': profile.id,
                            'name': profile.name,
@@ -232,8 +191,7 @@ def post(request, id: int):
     except Post.DoesNotExist:
         return redirect('home')
 
-    context = {'profile': {'id': request.user.id},
-                'post': {'id': post.id,
+    context = {'post': {'id': post.id,
                         'author': {'name': post.author,
                                    'link': f'/profile/{post.author.id}',
                                    },

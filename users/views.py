@@ -20,17 +20,7 @@ def registration_page(request):
     if request.user.is_authenticated:
         return redirect('self-profile')
 
-    try:
-        profile = Profile.objects.get(id=request.user.id)
-    except Profile.DoesNotExist:
-        return redirect('home')
-    context = {
-        'profile': {
-            'id': request.user.id,
-            'avatar': profile.avatar,
-        }
-    }
-    context['form'] = RegistrationForm()
+    context = {}
 
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -90,6 +80,9 @@ def registration_page(request):
 
         else:
             context['form'] = form
+            
+    else:
+        context['form'] = RegistrationForm()
 
     return render(request, 'registration.html', context=context)
 
@@ -101,17 +94,8 @@ def login_page(request):
     """
     if request.user.is_authenticated:
         return redirect('self-profile')
-
-    try:
-        profile = Profile.objects.get(id=request.user.id)
-    except Profile.DoesNotExist:
-        return redirect('home')
-    context = {
-        'profile': {
-            'id': request.user.id,
-            'avatar': profile.avatar,
-        }
-    }
+    
+    context = {}
 
     if request.method == 'POST':
         auth_form = LoginForm(request.POST)
@@ -139,7 +123,7 @@ def login_page(request):
     return render(request, 'login.html', context=context)
 
 
-@login_required(login_url='login')
+@login_required
 def logout_page(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')
