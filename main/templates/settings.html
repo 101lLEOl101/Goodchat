@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class = "setting_page">
-    <a href = "{% url 'settingsprofile' profile.id %}" class="setting-btn">Настройки профиля</a>
+    <a href = "settingsprofile/{{profile.id}}" class="setting-btn">Настройки профиля</a>
     <a href = "{% url 'logout' %}" class="setting-btn">Выход</a>
 </div>
 {% endblock %}
