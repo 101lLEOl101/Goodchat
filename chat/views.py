@@ -6,12 +6,22 @@ from .models import Message
 from .models import Access
 from .utils import generate_chat
 from .utils import get_chat_messages
+from users.models import Profile
 # Create your views here.
 
 
 @login_required(login_url='login')
 def chat_list(request):
-    context = {}
+    try:
+        profile = Profile.objects.get(id=request.user.id)
+    except Profile.DoesNotExist:
+        return redirect('home')
+    context = {
+        'profile': {
+            'id': request.user.id,
+            'avatar': profile.avatar,
+        }
+    }
     context['user'] = request.user
 
     chats_objects = [access.chat
@@ -27,7 +37,16 @@ def chat_list(request):
     return render(request, 'chatlist.html', context)
 
 def chat_page(request, id):
-    context = {}
+    try:
+        profile = Profile.objects.get(id=request.user.id)
+    except Profile.DoesNotExist:
+        return redirect('home')
+    context = {
+        'profile': {
+            'id': request.user.id,
+            'avatar': profile.avatar,
+        }
+    }
     
     try:
         chat = Chat.objects.get(id=id)
