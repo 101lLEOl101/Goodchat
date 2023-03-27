@@ -8,7 +8,6 @@ from django.db import IntegrityError
 from .forms import LoginForm
 from .forms import RegistrationForm
 from .models import User
-from .models import Profile
 from .signals import user_created
 
 
@@ -20,16 +19,7 @@ def registration_page(request):
     if request.user.is_authenticated:
         return redirect('self-profile')
 
-    try:
-        profile = Profile.objects.get(id=request.user.id)
-    except Profile.DoesNotExist:
-        return redirect('home')
-    context = {
-        'profile': {
-            'id': request.user.id,
-            'avatar': profile.avatar,
-        }
-    }
+    context = {}
     context['form'] = RegistrationForm()
 
     if request.method == 'POST':
@@ -102,16 +92,7 @@ def login_page(request):
     if request.user.is_authenticated:
         return redirect('self-profile')
 
-    try:
-        profile = Profile.objects.get(id=request.user.id)
-    except Profile.DoesNotExist:
-        return redirect('home')
-    context = {
-        'profile': {
-            'id': request.user.id,
-            'avatar': profile.avatar,
-        }
-    }
+    context = {}
 
     if request.method == 'POST':
         auth_form = LoginForm(request.POST)

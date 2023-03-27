@@ -20,13 +20,12 @@
     </div>
     {% if user.is_authenticated %}
         <div class="auth_box">
-            <img class="img_header" src = "{{profile.avatar.url}}">
-            <a href="{% url 'logout' %}" class="auth_btn">Выход</a>
+        <a href="{% url 'logout' %}" class="auth_btn">Выход</a>
         </div>
     {% else %}
         <div class="auth_box">
-            <a href="{% url 'registration' %}" class="auth_reg_btn">Регистрация</a>
-            <a href="{% url 'login' %}" class="auth_btn">Вход</a>
+        <a href="{% url 'registration' %}" class="auth_reg_btn">Регистрация</a>
+        <a href="{% url 'login' %}" class="auth_btn">Вход</a>
         </div>
      {% endif %}
 </header>
