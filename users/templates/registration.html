@@ -31,10 +31,10 @@
             {% csrf_token %}
             {% for f in form %}
             <p>{{ f }}</p>
-            <div class="form-error">{{ f.errors }}</div>
+            <div style="color:white;" class="form-error">{{ f.errors }}</div>
             {% endfor %}
             {% if message %}    
-            <div class="form-error"> WARNING {{ message }}</div>
+            <div style="color:white;" class="form-error"> WARNING {{ message }}</div>
             {% endif %}
             <button type="submit" class="btn_add">Зарегистрироваться</button>
             

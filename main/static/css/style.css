@@ -520,6 +520,10 @@ cursor: pointer;
     height: 65vh;
 }
 
+.add-img-post{
+    width: 100px;
+}
+
 .add-new-post-btn {
     width: 150px;
     font-weight: bolder;
@@ -548,6 +552,10 @@ cursor: pointer;
     height: 30vh;
     border-color: white;
     border-radius: 14px;
+}
+
+.form-error{
+background-color:white;
 }
 
 .image-placeholder {
