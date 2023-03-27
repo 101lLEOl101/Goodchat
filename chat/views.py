@@ -9,10 +9,9 @@ from .utils import get_chat_messages
 # Create your views here.
 
 
-@login_required(login_url='login')
+@login_required
 def chat_list(request):
     context = {}
-    context['user'] = request.user
 
     chats_objects = [access.chat
                      for access
@@ -26,18 +25,19 @@ def chat_list(request):
 
     return render(request, 'chatlist.html', context)
 
+
+@login_required
 def chat_page(request, id):
     context = {}
-    
+
     try:
         chat = Chat.objects.get(id=id)
     except Chat.DoesNotExist:
         return redirect('chatlist')
-    
+
     messages = get_chat_messages(chat, request.user)
     chat = generate_chat(chat, request.user)
     context['chat'] = chat
     context['messages'] = messages
-    
-    
+
     return render(request, 'chat.html', context)
