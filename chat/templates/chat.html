@@ -1,12 +1,14 @@
 {% extends 'base.html' %} 
 {% block title %}Авторизация{% endblock %} 
 {% block content %}
+
 <div class="messenger_box" id="messenger_box">
     <h2 style="text-align:center;"> Личные сообщения </h2>
     <div class="ur_friend" >
         <img src="{{chat.avatar.url}}" class="friend-user-pic">
         <p>{{chat.name}}</p>
     </div>
+<div class="messenger_contener">
     {% for message in messages %}
             
             {% if message.is_myown %}
@@ -25,11 +27,10 @@
                 </div>
             </div>
     {% endfor %}
-
+</div>
     <div class="input-area-mess">
         <textarea placeholder="Введите сообщение" class="message_area"></textarea>
         <button class="btn_message">Отправить</button>
     </div>
 </div>
-
 {% endblock %}

@@ -47,3 +47,6 @@ i = f.querySelector('.hr').querySelector('.icona');
 i.classList.add("now-icona");
 i.classList.remove("icona");
 }
+
+
+

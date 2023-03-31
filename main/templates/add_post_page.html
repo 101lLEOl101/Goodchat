@@ -5,14 +5,59 @@
 {% block content %}
 	<div class = "post-workspace">
 		<div class = "new-post-header">
-			<button class = "add-new-post-btn" form="new-post-form">Добавить запись</button>
+			<button class = "btn_post" form="new-post-form">Добавить запись</button>
 		</div>
 		<div class = "new-post-text-img">
-			<form method="POST" id="new-post-form">
+			<form method="POST" id="new-post-form" class="form-add-post">
 				{% csrf_token %} 
 				{{ form }}
+					<div class="input-file-row">
+						<label class="input-file">
+						<input type="file" name="file[]" multiple accept="image/*">
+						<span>Выберите файл</span>
+						</label>
+						<div class="input-file-list"></div>
+				</div>
 			</form>
-			<div class="image-placeholder"></div>
+
 		</div>
 	</div>
+<script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
+<script>
+var dt = new DataTransfer();
+
+$('.input-file input[type=file]').on('change', function(){
+	let $files_list = $(this).closest('.input-file').next();
+	$files_list.empty();
+
+	for(var i = 0; i < this.files.length; i++){
+		let file = this.files.item(i);
+		dt.items.add(file);
+
+		let reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onloadend = function(){
+			let new_file_input = '<div class="input-file-list-item">' +
+				'<img class="input-file-list-img" src="' + reader.result + '">' +
+				'<span class="input-file-list-name">' + file.name + '</span>' +
+				'<a href="#" onclick="removeFilesItem(this); return false;" class="input-file-list-remove">x</a>' +
+			'</div>';
+			$files_list.append(new_file_input);
+		}
+	};
+	this.files = dt.files;
+});
+
+function removeFilesItem(target){
+	let name = $(target).prev().text();
+	let input = $(target).closest('.input-file-row').find('input[type=file]');
+	$(target).closest('.input-file-list-item').remove();
+	for(let i = 0; i < dt.items.length; i++){
+		if(name === dt.items[i].getAsFile().name){
+			dt.items.remove(i);
+		}
+	}
+	input[0].files = dt.files;
+}
+</script>
 {% endblock %}
