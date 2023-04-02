@@ -1,3 +1,4 @@
+console.log()
 if (window.location.pathname == "/profile") {
 prof.classList.add("now-side_icon");
 prof.classList.remove("side_icon");
@@ -5,14 +6,14 @@ i = prof.querySelector('.hr').querySelector('.icona');
 i.classList.add("now-icona");
 i.classList.remove("icona");
 }
-else if (window.location.pathname == "/chat" || window.location.pathname == "/messenger") {
+else if (window.location.pathname.indexOf("chatlist") >= 0 || window.location.pathname.indexOf("chat") >= 0) {
 mes.classList.add("now-side_icon");
 mes.classList.remove("side_icon");
 i = mes.querySelector('.hr').querySelector('.icona');
 i.classList.add("now-icona");
 i.classList.remove("icona");
 }
-else if (window.location.pathname == "/settings") {
+else if (window.location.pathname.indexOf("/settings") >= 0 || window.location.pathname.indexOf("settingsprofile") >= 0) {
 set.classList.add("now-side_icon");
 set.classList.remove("side_icon");
 i = set.querySelector('.hr').querySelector('.icona');
