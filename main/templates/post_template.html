@@ -15,15 +15,27 @@
 	</div>
 
 	<div class = "post-image"></div>
-</div>
+	<form class="input-area-mess" method="POST">
+		{% csrf_token %}
+		{{ form }}
+        <button class="btn_message" type="submit">Отправить</button>
+    </form>
+	<h1 style="text-align:center; color:white;"> Комментарии </h1>
+	{% for comment in comments %}
 
-{% for comment in comments %}
-<div style="background-color: #fff;">
-	<p>{{ comment.author }}</p>
-	<p>{{ comment.content }}</p>
-</div>
+	<div class="comment-box">
+	<div class="timestamp">
+	<p class="comment-author">{{ comment.author }}</p>
+	<p class="time">{{ comment.date }}</p>
+	</div>
+
+	<p class="comment-text">{{ comment.content }}</p>
+	</div>
 
 {% endfor %}
+</div>
+
+
 </div>
 {% endblock %}
 
