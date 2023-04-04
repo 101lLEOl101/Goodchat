@@ -18,7 +18,7 @@ def main_page(request):
     context = {'posts': [{'id': post.id,
                           'author': post.author,
                           'content': post.content,
-                          'date': post.date,
+                          'date': post.date_create,
                           } for post in posts]
                }
     return render(request, 'main_page.html', context)
@@ -84,7 +84,7 @@ def diff_profile_page(request, id: int):
                'posts': [{'id': post.id,
                           'author': post.author,
                           'content': post.content,
-                          'date': post.date,
+                          'date': post.date_create,
                           } for post in posts]
                }
 
@@ -161,7 +161,7 @@ def profile(request, id: int):
                                      'link': f'/profile/{post.author.id}',
                                      },
                           'content': post.content,
-                          'date': post.date,
+                          'date': post.date_create,
                           } for post in posts]
                }
 
@@ -184,11 +184,11 @@ def post(request, id: int):
                                    'link': f'/profile/{post.author.id}',
                                    },
                         'content': post.content,
-                        'date': post.date,
+                        'date': post.date_create,
                         },
                'comments': [{'author': comment.author,
                              'content': comment.content,
-                             'date': comment.date
+                             'date': comment.date_create
                              } for comment in comments]
                }
 
