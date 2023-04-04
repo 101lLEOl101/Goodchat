@@ -236,15 +236,15 @@ li{
     color: #8270F2;
     width: 100%;
     font-size: 20px;
-    transition: all 0.5s;
+    transition: all 0.7s;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .btn_add:hover{
-    background-color: transparent;
+    background: linear-gradient(to top left, #9f49ff, #19087d);
     border-radius: 12px;
-    border: #000000 solid 3px;
-    color: black;
+    color: white;
     font-weight: bold;
 
 
@@ -765,22 +765,27 @@ textarea:focus, input:focus
 }
 
 .auth_reg_btn{
-    background-color:black;
+    background: transparent;
     color:white;
-    border-radius: 10px;
-    border:none;
-    padding: 20px;
+    border: 2px solid black;
     text-align:center;
     font-family: 'Inter', sans-serif;
+    margin-right:20px;
+    transition: all 0.3s;
 }
-
+.auth_btn:hover{
+    border-bottom: 2px solid #8270F2;
+}
+.auth_reg_btn:hover{
+    border-bottom: 2px solid #8270F2;
+}
 .auth_btn{
-    background-color: black;
+    background: transparent;
     color: #8270F2;
     font-family: 'Inter', sans-serif;
-    border-radius: 20px;
-    border:none;
+    border: 2px solid black;
     margin-right:50px;
+    transition: all 0.3s;
 }
 
 .auth_box{
