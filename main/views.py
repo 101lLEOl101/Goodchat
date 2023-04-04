@@ -52,12 +52,7 @@ def find_friend_page(request):
 
 @login_required
 def bookmarks_page(request):
-    context = {
-        'profile': {
-            'id': request.user.id
-        }
-    }
-    return render(request, "bookmarks_page.html", context)
+    return render(request, "bookmarks_page.html")
 
 # Заглушка для проверки чужого профиля
 
@@ -93,12 +88,7 @@ def diff_profile_page(request, id: int):
 
 @login_required
 def settings_page(request):
-    context = {
-        'profile': {
-            'id': request.user.id
-        }
-    }
-    return render(request, 'settings.html', context)
+    return render(request, 'settings.html')
 
 
 @login_required
