@@ -314,8 +314,9 @@ li{
 
 .post-header {
 width: 100%;
-display: inline-flex;
+display: flex;
 justify-content: space-between;
+align-items:center;
 background: rgba(0, 0, 0, 0.75);
 border-bottom: solid 3px #8270F2;
 border-radius: 37px 37px 0px 0px;
@@ -927,3 +928,87 @@ textarea:focus, input:focus
     border-radius: 12px;
     border: #362982 solid 2px;
     color:#4131a1;
+}
+
+/* POSTS */
+.comment-box{
+    color:white;
+    width:90%;
+    margin-left:20px;
+}
+
+.round{
+    width:22px;
+    height:22px;
+    border-radius:100%;
+    margin-right:10px;
+    margin-left:10px;
+
+}
+
+.heart{
+    background-color: #FD5754;
+}
+
+.zakladka{
+    background-color: #36C849;
+}
+
+.open{
+    background-color: #FEBB40;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition: all 0.5s;
+}
+.heart:hover{
+    background-color: #FD5754;
+    background-image: url("/media/images/heart.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-size: 14px 14px;
+}
+
+.zakladka:hover{
+    background-color: #36C849;
+}
+
+.open:hover .arrow_diff{
+    background-color: #FEBB40;
+    display: block;
+}
+.open:hover .arrow{
+    background-color: #FEBB40;
+    display: block;
+}
+
+
+
+.btn_box_post{
+    display:flex;
+    width:130px;
+    margin-left:2%;
+}
+.arrow {
+
+    display: none;
+    width: 4px;
+    height: 4px;
+    border-top: 4px solid black;
+    border-right: 4px solid black;
+    position: relative;
+    left: 6px;
+    bottom: 3px;
+}
+.arrow_diff {
+    display: none;
+    width: 4px;
+    height: 4px;
+    border-top: 4px solid black;
+    border-right: 4px solid black;
+    position: relative;
+    right: 6px;
+    top: 3px;
+    transform: rotate(180deg);
+}

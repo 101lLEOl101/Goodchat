@@ -54,3 +54,9 @@ class PostForm(forms.Form):
         'class': 'text-of-new-post',
         'placeholder': 'Ваш текст'
     }))
+
+class CommentForm(forms.Form):
+    content = forms.CharField(widget=forms.Textarea(attrs={
+        'class': 'message_area',
+        'placeholder': 'Оставьте Ваш комментарий'
+    }))
