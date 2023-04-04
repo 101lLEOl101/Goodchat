@@ -28,9 +28,12 @@
             </div>
     {% endfor %}
 </div>
-    <div class="input-area-mess">
-        <textarea placeholder="Введите сообщение" class="message_area"></textarea>
+    <form class="input-area-mess" method="POST">
+        {% csrf_token %}
+        {% for field in message_form %}
+        {{ field }}
+        {% endfor %}
         <button class="btn_message">Отправить</button>
-    </div>
+    </form>
 </div>
 {% endblock %}

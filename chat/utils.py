@@ -73,3 +73,11 @@ def get_chat_messages(chat:Chat, current_user:User):
         messages.append(message)
         
     return messages
+
+
+def send_message(chat, author, content):
+    message = Message(chat=chat,
+                      author=author,
+                      content=content,
+                      is_read=False)
+    message.save()
