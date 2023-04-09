@@ -13,6 +13,11 @@ from .forms import MessageForm
 
 @login_required
 def chat_list(request):
+    def clear(chats):
+        for chat in chats:
+            if chat is not None:
+                yield chat
+    
     context = {}
 
     chats_objects = [access.chat
@@ -22,6 +27,8 @@ def chat_list(request):
     chats = [generate_chat(chat, request.user)
              for chat
              in chats_objects]
+    
+    chats = clear(chats)
 
     context['chats'] = chats
 

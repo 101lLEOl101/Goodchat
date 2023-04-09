@@ -10,6 +10,10 @@ def generate_chat(chat:Chat, current_user:User) -> dict:
                 'name': get_chat_name(chat, current_user),
                 'avatar': get_chat_avatar(chat, current_user),
                 'last_message': get_last_message(chat),}
+    
+    if response['last_message'] is None:
+        return None
+    
     return response
 
 def get_last_message(chat:Chat) -> Message:
@@ -81,3 +85,9 @@ def send_message(chat, author, content):
                       content=content,
                       is_read=False)
     message.save()
+    
+def create_dialog(user1, user2):
+    pass
+
+def get_dialog(user1, user2):
+    pass
