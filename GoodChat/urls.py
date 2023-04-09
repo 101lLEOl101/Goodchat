@@ -37,7 +37,8 @@ urlpatterns = [
     path('findfriend', main_views.find_friend_page, name = 'findfriend'),
     path('messenger', main_views.messenger_page, name='messenger'),
     path('chatlist', chat_views.chat_list, name='chat-list'),
-    path('chat/<int:id>', chat_views.chat_page),
+    path('chat/<int:id>', chat_views.chat_page, name='chat'),
+    path('dialog/<int:interlocutor_id>', chat_views.open_dialog)
 ]
 
 if settings.DEBUG:
