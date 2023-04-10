@@ -174,6 +174,7 @@ def post(request, id: int):
                                    'link': f'/profile/{post.author.id}',
                                    },
                         'content': post.content,
+                        'photo': post.photo,
                         'date': post.date_create,
                         },
                'comments': [{'author': comment.author,
