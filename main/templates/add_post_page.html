@@ -9,17 +9,19 @@
 		</div>
 		<div class = "new-post-text-img">
 			<form method="POST" id="new-post-form" class="form-add-post">
-				{% csrf_token %} 
-				{{ form }}
-					<div class="input-file-row">
-						<label class="input-file">
+				{% csrf_token %}
+                {% for f in form %}
+				{{f}}
+				{% endfor %}
+				<div class="input-file-row" id = "box-img">
+						<label class="input-file" id = "add_btn">
 						<input type="file" name="file[]" multiple accept="image/*">
-						<span>Выберите файл</span>
+						<span>Выберите Изображение</span>
 						</label>
-						<div class="input-file-list"></div>
+					<div class="input-file-list">
+					</div>
 				</div>
 			</form>
-
 		</div>
 	</div>
 <script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
@@ -29,7 +31,6 @@ var dt = new DataTransfer();
 $('.input-file input[type=file]').on('change', function(){
 	let $files_list = $(this).closest('.input-file').next();
 	$files_list.empty();
-
 	for(var i = 0; i < this.files.length; i++){
 		let file = this.files.item(i);
 		dt.items.add(file);
@@ -46,6 +47,12 @@ $('.input-file input[type=file]').on('change', function(){
 		}
 	};
 	this.files = dt.files;
+	let btn = document.getElementById("add_btn");
+	btn.style.visibility = "hidden";
+	btn.style.width = '0';
+	btn.style.height = '0';
+	btn.style.margin = '0';
+	document.getElementById("box-img").style.height = "auto";
 });
 
 function removeFilesItem(target){
@@ -58,6 +65,8 @@ function removeFilesItem(target){
 		}
 	}
 	input[0].files = dt.files;
+	document.getElementById('add_btn').removeAttribute("style");
+	document.getElementById("box-img").removeAttribute("style");
 }
 </script>
 {% endblock %}
