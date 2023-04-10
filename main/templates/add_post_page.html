@@ -31,7 +31,7 @@ var dt = new DataTransfer();
 $('.input-file input[type=file]').on('change', function(){
 	let $files_list = $(this).closest('.input-file').next();
 	$files_list.empty();
-	for(var i = 0; i < this.files.length; i++){
+	for(var i = 0; i < 1; i++){
 		let file = this.files.item(i);
 		dt.items.add(file);
 
