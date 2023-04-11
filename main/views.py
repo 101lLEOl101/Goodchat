@@ -17,6 +17,7 @@ def main_page(request):
     posts = Post.objects.all()
     context = {'posts': [{'id': post.id,
                           'author': post.author,
+                          'photo': post.photo,
                           'content': post.content,
                           'date': post.date_create,
                           } for post in posts]
