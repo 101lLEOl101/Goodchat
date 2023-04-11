@@ -17,7 +17,9 @@
                     <i class="fa-regular fa-bookmark post-bookmark"></i>
                 </div>
 
-                <img src="{{ post.photo.url }}" class="post-image">
+                {% if post.photo %}
+                    <img src="{{ post.photo.url }}" class="post-image">
+                {% endif %}
             </div>
         </div>
         {% endfor %}
