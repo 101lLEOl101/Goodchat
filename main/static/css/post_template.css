@@ -1,37 +1,11 @@
-
-.post-box {
-    background: rgba(0, 0, 0, 0.75);
-    border-radius: 37px;
-    overflow: hidden;
-    width: 65%;
-    margin-top: 2%;
-    margin-right: auto;
-    margin-left: auto;
-    box-shadow: 0px 10px 10px #8270f2;
-}
-
 .post-header {
-width: 98%;
-padding: 1%;
+width: 100%;
 display: flex;
 justify-content: space-between;
 align-items:center;
 background: rgba(0, 0, 0, 0.75);
 border-bottom: solid 3px #8270F2;
 border-radius: 37px 37px 0px 0px;
-}
-
-.post-name {
-color: white;
-margin-left:5%;
-}
-
-.post-author {
-color: white;
-margin-right: 4%;
-margin-top: 3%;
-cursor: pointer;
-text-decoration: none;
 }
 
 .text-wrap {
@@ -41,13 +15,6 @@ margin-top: 2%;
 width: 100%;
 margin-bottom: 2%;
 }
-
-.post-bookmark {
-color: white;
-font-size: 40px;
-margin: 5px;
-}
-
 
 .post-text {
     background: black;
@@ -80,21 +47,6 @@ margin: 5px;
     margin-right: auto;
     margin-left: auto;
     box-shadow: 0px 10px 10px #8270f2;
-}
-
-.post-header {
-width: 100%;
-display: flex;
-justify-content: space-between;
-align-items:center;
-background: rgba(0, 0, 0, 0.75);
-border-bottom: solid 3px #8270F2;
-border-radius: 37px 37px 0px 0px;
-}
-
-.post-name {
-color: white;
-margin-left:5%;
 }
 
 .post-author {

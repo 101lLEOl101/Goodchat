@@ -1,48 +1,3 @@
-/* Content */
-.content{
-    width: 90%;
-    display:inline-block;
-    margin-left: 10%;
-    margin-top: 100px;
-}
-/* Огромный жирный блок для профилей */
-.profile_box{
-    position: fixed;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    top: 50%;
-    width: 15%;
-    background: rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 4px 4px #8270F2;
-    border-radius: 50px;
-    padding: 50px 0;
-}
-/* main end*/
-
-/* MAIN_PAGE (HOME)*/
-.main_page{
-    width: 90%;
-    border-radius: 5px;
-    margin: 0 auto;
-    margin-top:7vh;
-    margin-bottom:7vh;
-}
-
-/* Специально для профиля */
-.main_page_for_prf{
-    display: flex;
-    width: 813px;
-    justify-content: center;
-    height: 1119px;
-    border-radius: 5px;
-    margin-bottom: 100px;
-    padding-top: 1px;
-}
-
-
-/*main page END*/
-
-/* Profile-card */
 .profile-card {
     position: fixed;
     right: 1%;
@@ -84,18 +39,6 @@
     border-radius: 12px;
 }
 
-.btn {
-    width: 328px;
-    height: 32px;
-    background: #fff;
-    border-radius: 12px;
-    border: 1px solid #fff;
-    text-align: center;
-    margin-left: 36px;
-    margin-top: 20px;
-    padding-top: 5px;
-}
-
 .btn:hover ~ .profile-card-more{
     display:block;
 }
@@ -123,9 +66,29 @@
     flex-wrap: wrap;
 }
 
-/* POSTS */
-.comment-box{
-    color:white;
-    width:90%;
-    margin-left:20px;
+.btn_profile{
+    background-color: #000000;
+    border-radius: 12px;
+    border: #8270F2 solid 2px;
+    padding: 15px;
+    color: #8270F2;
+    width: 50%;
+    font-size: 20px;
+    transition: all 0.5s;
+    margin: 10px 25%;
+}
+
+.btn_profile:hover{
+    background-color: #000000;
+    border-radius: 12px;
+    border: #000000 solid 3px;
+    box-shadow: 0px 0px 33px #8270F2;
+}
+
+.main_page{
+    width: 90%;
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-top:7vh;
+    margin-bottom:7vh;
 }

@@ -64,25 +64,6 @@
     font-weight: bold;
 }
 
-.btn_profile{
-    background-color: #000000;
-    border-radius: 12px;
-    border: #8270F2 solid 2px;
-    padding: 15px;
-    color: #8270F2;
-    width: 50%;
-    font-size: 20px;
-    transition: all 0.5s;
-    margin: 10px 25%;
-}
-
-.btn_profile:hover{
-    background-color: #000000;
-    border-radius: 12px;
-    border: #000000 solid 3px;
-    box-shadow: 0px 0px 33px #8270F2;
-}
-
 .auth-link{
     text-decoration: none;
     color: #8270F2;

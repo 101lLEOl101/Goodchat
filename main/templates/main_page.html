@@ -2,7 +2,7 @@
 {% load static %}
 {% block style %}
     <link rel="stylesheet" href="{% static '/css/main_page.css' %}">
-    <link rel="stylesheet" href="{% static '/css/post.css' %}">
+    <link rel="stylesheet" href="{% static '/css/post_template.css' %}">
 {% endblock %}
 {% block title %}Главная страница{% endblock %}
 
@@ -17,6 +17,7 @@
                     <a class="round open" href="/post/{{post.id}}" title="Открыть полностью"><div class="arrow"></div><div class="arrow_diff"></div></a>
                     <a class="round zakladka" href="#" title="В закладки"></a>
                     </div>
+                    <div class = "post-author">{{post.author}}</div>
                 </div>
 
                 <div class="text-wrap">
