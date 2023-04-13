@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% block style %}<link rel="stylesheet" href="{% static '/css/find_friends.css' %}">{% endblock %}
 {% block title %}Новый пост{% endblock %}
 
 {% block content %}

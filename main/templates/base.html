@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static '/css/style.css' %}">
-    <link rel="stylesheet" href="{% static '/css/find_friends.css' %}">
+    <link rel="stylesheet" href="{% static '/css/base.css' %}">
+    {% block style %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
     <link rel="shortcut icon" type="image/x-icon" href="..\static\images\kvlogo.png" />
 </head>
@@ -16,8 +16,6 @@
         <a href = "{% url 'home' %}" class = "logo_h">
             <img src = "..\static\images\logo.png" class = "logo_h" alt = "Home Page">
         </a>
-
-
     </div>
     {% if user.is_authenticated %}
         <div class="auth_box">
@@ -26,8 +24,8 @@
         </div>
     {% else %}
         <div class="auth_box">
-        <a href="{% url 'registration' %}" class="auth_reg_btn">Регистрация</a>
-        <a href="{% url 'login' %}" class="auth_btn">Вход</a>
+            <a href="{% url 'registration' %}" class="auth_reg_btn">Регистрация</a>
+            <a href="{% url 'login' %}" class="auth_btn">Вход</a>
         </div>
      {% endif %}
 </header>
