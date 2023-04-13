@@ -11,7 +11,7 @@
                 <div class="post-header">
                     <div class="btn_box_post">
                     <a class="round heart" href="#" title="Понравилось"></a>
-                    <a class="round open" href="#" title="Открыть полностью"><div class="arrow"></div><div class="arrow_diff"></div></a>
+                    <a class="round open" href="/post/{{post.id}}" title="Открыть полностью"><div class="arrow"></div><div class="arrow_diff"></div></a>
                     <a class="round zakladka" href="#" title="В закладки"></a>
                     </div>
                 </div>
@@ -21,7 +21,6 @@
                 </div>
 
                 <div class="post-image"></div>
-                <a href="/post/{{post.id}}">Посмотреть</a>
             </div>
         </div>
         {% endfor %}

@@ -10,13 +10,15 @@
         <div class = "main_page_post">
             <div class="post-box">
                 <div class="post-header">
-                    <h2 class="post-name"></h2>
-                    <p class="post-author">{{ post.author }}</p>
+                    <div class="btn_box_post">
+                    <a class="round heart" href="#" title="Понравилось"></a>
+                    <a class="round open" href="/post/{{post.id}}" title="Открыть полностью"><div class="arrow"></div><div class="arrow_diff"></div></a>
+                    <a class="round zakladka" href="#" title="В закладки"></a>
+                    </div>
                 </div>
 
                 <div class="text-wrap">
                     <div class="post-text">{{ post.content }}</div>
-                    <i class="fa-regular fa-bookmark post-bookmark"></i>
                 </div>
 
                 <div class="post-image"></div>

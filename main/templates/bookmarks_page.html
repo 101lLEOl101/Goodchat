@@ -4,12 +4,12 @@
 {% block title %}Закладки{% endblock %}
 
 {% block content %}
-<div class = "main_page_post">
+        <div class = "main_page_post">
             <div class="post-box">
                 <div class="post-header">
                     <div class="btn_box_post">
                     <a class="round heart" href="#" title="Понравилось"></a>
-                    <a class="round open" href="#" title="Открыть полностью"><div class="arrow"></div><div class="arrow_diff"></div></a>
+                    <a class="round open" href="/post/{{post.id}}" title="Открыть полностью"><div class="arrow"></div><div class="arrow_diff"></div></a>
                     <a class="round zakladka" href="#" title="В закладки"></a>
                     </div>
                 </div>
