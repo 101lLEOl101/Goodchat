@@ -157,3 +157,18 @@ transition: 0.3s;
     box-shadow: 0px 0px 20px #8270F2;
     border: 1px solid #8270F2;
 }
+
+a{
+text-decoration: none;
+}
+
+textarea:focus, input:focus
+{
+  outline: none;
+}
+
+
+li{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}

@@ -75,6 +75,7 @@ $('.input-file input[type=file]').on('change', function(){
 	btn.style.height = '0';
 	btn.style.margin = '0';
 	document.getElementById("box-img").style.height = "auto";
+	document.getElementById("input-list").style.margin = "0 auto";
 });
 
 function removeFilesItem(target){
@@ -89,6 +90,7 @@ function removeFilesItem(target){
 	input[0].files = dt.files;
 	document.getElementById('add_btn').removeAttribute("style");
 	document.getElementById("box-img").removeAttribute("style");
+	document.getElementById("input-list").removeAttribute("style");
 }
 
 

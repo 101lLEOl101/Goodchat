@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block style %}<link rel="stylesheet" href="{% static '/css/find_friends.css' %}">{% endblock %}
+{% block style %}<link rel="stylesheet" href="{% static '/css/new_post.css' %}">{% endblock %}
 {% block title %}Новый пост{% endblock %}
 
 {% block content %}
@@ -19,7 +19,7 @@
 						<input type="file" name="file[]" multiple accept="image/*">
 						<span>Выберите Изображение</span>
 						</label>
-					<div class="input-file-list">
+					<div id = "input-list" class="input-file-list">
 					</div>
 				</div>
 			</form>
