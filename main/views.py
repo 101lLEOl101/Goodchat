@@ -3,9 +3,10 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from users.models import Profile
 from users.models import User
-from main.models import Post
+from main.models import Post, Bookmark
 from main.models import Comment
 from .forms import PostForm, CommentForm
+from .utils import get_bookmarks
 
 
 @login_required
@@ -44,6 +45,7 @@ def add_post_page(request):
 
     return render(request, 'add_post_page.html', context)
 
+
 @login_required
 def add_comment(request, id : int):
     context = [
@@ -68,6 +70,7 @@ def add_comment(request, id : int):
 
     return render(request, 'add_post_page.html', context)
 
+
 @login_required
 def find_friend_page(request):
     return render(request, 'find_friend_page.html')
@@ -75,10 +78,12 @@ def find_friend_page(request):
 
 @login_required
 def bookmarks_page(request):
+    posts = get_bookmarks(request.user)
     context = {
-        'profile': {
-            'id': request.user.id
-        }
+            'posts': [{   'author': post.post.author,
+                          'content': post.post.content,
+                          'date': post.post.date,
+                          } for post in posts]
     }
     return render(request, "bookmarks_page.html", context)
 

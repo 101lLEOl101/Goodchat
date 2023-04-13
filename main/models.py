@@ -31,3 +31,9 @@ class Comment(models.Model):
     class Meta:
         verbose_name = _('comment')
         verbose_name_plural = _('comments')
+
+
+class Bookmark(models.Model):
+    post = models.ForeignKey(to=Post, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now=True)
