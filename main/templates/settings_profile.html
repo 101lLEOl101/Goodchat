@@ -4,14 +4,21 @@
 
 {% block content %}
     <div class="profile_box">
-        <img src="{{ profile.avatar.url }}" class="profile-pic" />
-        <h3 class="user-nickname">Имя: {{ profile.name }} </h3>
-        <p class="user-nickname">Фамилия: {{ profile.surname }}</p>
-        <p class="user-info">About user <br> {{ profile.about }} </p>
-        <p class="user-nickname">Мне нравится: {{ profile.hobby }}</p>
-        <p class="user-nickname">Город: {{ profile.city }}</p>
-        <p class="user-nickname">Образование: {{ profile.education }}</p>
-        <p class="user-nickname">Компания: {{ profile.company }}}</p>
-        <button class="btn_profile">Изменить</button>
+        <div class = "side_menu_settings">
+            <h1 class = "settings_tittle">Настройки</h1>
+            <a href = "#profile_avatar" class = "settings_link">Аватар Профиля</a>
+            <a href = "#profile_name" class = "settings_link">Имя Профиля</a>
+            <a href = "#profile_information" class = "settings_link">О себе</a>
+            <a href = "#profile_data" class = "settings_link">Приватные данные</a>
+        </div>
+        <div class = "settings_settings_devider">
+            <h3 class = "settings_block_tittle">Аватар Профиля</h3>
+            <div class = "settings_change_menu">
+                <img src="{{ profile.avatar.url }}" class="profile-pic_settings" />
+                <div class = "settings_info_box">
+                    <p class ="displayed_info">{{ profile.avatar.url }}</p>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
