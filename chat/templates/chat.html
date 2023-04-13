@@ -1,5 +1,9 @@
-{% extends 'base.html' %} 
-{% block title %}Авторизация{% endblock %} 
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}<link rel="stylesheet" href="{% static '/css/reg-log.css' %}">{% endblock %}
+{% block title %}Авторизация{% endblock %}
+
 {% block content %}
 
 <div class="messenger_box" id="messenger_box">
