@@ -1,6 +1,17 @@
 {% extends 'base.html' %}
 
-{% block title %}Поиск Пользоваетелей{% endblock %}
+{% block title %}Поиск пользователей{% endblock %}
 
 {% block content %}
+	<div class = "search-wrapper">
+		<input type = "text" placeholder="Введите id" class = "search-id-input">
+		<p class = "ur-id-search">Твой id</p>
+		<p class = "search-user-id-input">1234567890</p>
+
+		<div class = "user-card-search">
+			<div class = "profile-pic-search"></div> <br>
+			<p class = "nickname-search"> Nickname</p>
+			<p class = "info-search">Info</p>
+		</div>
+	</div>
 {% endblock %}
