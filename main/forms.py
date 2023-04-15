@@ -54,10 +54,8 @@ class PostForm(forms.Form):
         'class': 'text-of-new-post',
         'placeholder': 'Ваш текст'
     }))
-    image=forms.ImageField(widget=forms.ClearableFileInput(attrs={
-        'class': 'add-img-post',
-        'style': 'background-color: #8270F2; width: 100%',
-        'placeholder': 'Ваше изображение'
+    photo=forms.ImageField(widget=forms.ClearableFileInput(attrs={
+        'accept':'image/*'
     }))
 
 class CommentForm(forms.Form):

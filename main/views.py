@@ -31,17 +31,22 @@ def add_post_page(request):
 
     if request.method == 'POST':
         post_form = PostForm(request.POST)
+        print(post_form)
         if post_form.is_valid():
             post_author = request.user
             post_content = post_form.data['content']
-            post = Post(author=post_author, content=post_content)
+            post_photo = post_form.data['photo']
+            post = Post(author=post_author, content=post_content, photo=post_photo)
             post.save()
+            print('ok')
             return redirect('self-profile')
 
-        context['form'] = post_form()
+        context['form'] = post_form
+        print('Incorrect form, try again')
         context['message'] = 'Incorrect form, try again'
     else:
         context['form'] = PostForm()
+        print('method ne post')
 
     return render(request, 'add_post_page.html', context)
 
