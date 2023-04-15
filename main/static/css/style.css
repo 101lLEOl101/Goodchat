@@ -156,6 +156,10 @@ transition: 0.3s;
     overflow-y: auto;
 
 }
+.settings_input{
+    color: #000000;
+
+}
 .settings_tittle{
     color: #ffffff;
     width: 100%;

@@ -11,12 +11,60 @@
             <a href = "#profile_information" class = "settings_link">О себе</a>
             <a href = "#profile_data" class = "settings_link">Приватные данные</a>
         </div>
-        <div class = "settings_settings_devider">
-            <h3 class = "settings_block_tittle">Аватар Профиля</h3>
-            <div class = "settings_change_menu">
-                <img src="{{ profile.avatar.url }}" class="profile-pic_settings" />
-                <div class = "settings_info_box">
-                    <p class ="displayed_info">{{ profile.avatar.url }}</p>
+        <div class = "content_settings">
+
+            <div id = "profile_avatar" class = "settings_settings_devider">
+                <h3 class = "settings_block_tittle">Аватар Профиля</h3>
+                <div class = "settings_change_menu">
+                    <img src="{{ profile.avatar.url }}" class="profile-pic_settings" />
+                    <div class = "settings_info_box">
+                        <p class ="displayed_info">{{ profile.avatar.url }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id = "profile_name" class = "settings_settings_devider">
+                <h3 class = "settings_block_tittle">Имя Профиля</h3>
+                <div class = "settings_change_menu">
+                    <div class = "settings_info_box">
+                        <p class ="displayed_info">{{ profile.name }}</p>
+                        <input type="text" class = "settings_input" required minlength="4" maxlength="8" size="10">
+                    </div>
+                </div>
+            </div>
+
+            <div id = "profile_information" class = "settings_settings_devider">
+                <h3 class = "settings_block_tittle">О себе</h3>
+                <div class = "settings_change_menu">
+                    <div class = "settings_info_box">
+                        <textarea id="story" name="story" rows="5" cols="33">{{ profile.about }}</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div id = "profile_data" class = "settings_settings_devider">
+                <h3 class = "settings_block_tittle">Приватные данные</h3>
+                <div class = "settings_change_menu">
+                    <div class = "settings_info_box">
+
+                    </div>
+                </div>
+            </div>
+            <div class = "settings_settings_devider">
+                <h3 class = "settings_block_tittle">Аватар Профиля</h3>
+                <div class = "settings_change_menu">
+                    <div class = "settings_info_box">
+                        <p class ="displayed_info">{{ profile.avatar.url }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class = "settings_settings_devider">
+                <h3 class = "settings_block_tittle">Аватар Профиля</h3>
+                <div class = "settings_change_menu">
+                    <img src="{{ profile.avatar.url }}" class="profile-pic_settings" />
+                    <div class = "settings_info_box">
+                        <p class ="displayed_info">{{ profile.avatar.url }}</p>
+                    </div>
                 </div>
             </div>
         </div>
