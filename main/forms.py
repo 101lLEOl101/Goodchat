@@ -54,9 +54,7 @@ class PostForm(forms.Form):
         'class': 'text-of-new-post',
         'placeholder': 'Ваш текст'
     }))
-    photo=forms.ImageField(widget=forms.ClearableFileInput(attrs={
-        'accept':'image/*'
-    }))
+    photo=forms.ImageField(widget=forms.ClearableFileInput(), required=False)
 
 class CommentForm(forms.Form):
     content = forms.CharField(widget=forms.Textarea(attrs={
