@@ -111,7 +111,8 @@ class ProfileEditForm(forms.Form):
                 'class': 'form-input',
                 'placeholder': 'Name'
             }
-        )
+        ),
+        required=False
     )
     surname = forms.CharField(
         max_length=50,
@@ -120,11 +121,8 @@ class ProfileEditForm(forms.Form):
                 'class': 'form-input',
                 'placeholder': 'Surname'
             }
-        )
-    )
-    avatar = forms.ImageField(
-        upload_to="images/profile_avatars/",
-        default="images/DEFAULT_AVATAR.png"
+        ),
+        required=False
     )
     about = forms.CharField(
         max_length=500,
@@ -133,7 +131,8 @@ class ProfileEditForm(forms.Form):
                 'class': 'form-input',
                 'placeholder': 'About'
             }
-        )
+        ),
+        required=False
     )
     country = forms.CharField(
         max_length=50,
@@ -142,7 +141,8 @@ class ProfileEditForm(forms.Form):
                 'class': 'form-input',
                 'placeholder': 'Country'
             }
-        )
+        ),
+        required=False
     )
     city = forms.CharField(
         max_length=50,
@@ -151,7 +151,8 @@ class ProfileEditForm(forms.Form):
                 'class': 'form-input',
                 'placeholder': 'City'
             }
-        )
+        ),
+        required=False
     )
     education = forms.CharField(
         max_length=150,
@@ -160,7 +161,8 @@ class ProfileEditForm(forms.Form):
                 'class': 'form-input',
                 'placeholder': 'Education'
             }
-        )
+        ),
+        required=False
     )
     company = forms.CharField(
         max_length=150,
@@ -169,7 +171,8 @@ class ProfileEditForm(forms.Form):
                 'class': 'form-input',
                 'placeholder': 'Company'
             }
-        )
+        ),
+        required=False
     )
     hobby = forms.CharField(
         max_length=150,
@@ -178,5 +181,6 @@ class ProfileEditForm(forms.Form):
                 'class': 'form-input',
                 'placeholder': 'Hobby'
             }
-        )
+        ),
+        required=False
     )

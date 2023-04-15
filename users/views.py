@@ -81,7 +81,7 @@ def registration_page(request):
 
         else:
             context['form'] = form
-            
+
     else:
         context['form'] = RegistrationForm()
 
@@ -95,7 +95,7 @@ def login_page(request):
     """
     if request.user.is_authenticated:
         return redirect('self-profile')
-    
+
     context = {}
 
     if request.method == 'POST':
@@ -131,33 +131,25 @@ def profile_edit_page(request):
         form = ProfileEditForm(request.POST)
         if form.is_valid():
             context['form'] = form
-
-            p_name = form.data['name']
-            p_surname = form.data['surname']
-            p_about = form.data['about']
-            p_country = form.data['country']
-            p_city = form.data['city']
-            p_education = form.data['education']
-            p_company = form.data['company']
-            p_hobby = form.data['hobby']
+            update_dict = dict(name=form.data['name'],
+                               surname=form.data['surname'],
+                               about=form.data['about'],
+                               country=form.data['country'],
+                               city=form.data['city'],
+                               education=form.data['education'],
+                               company=form.data['company'],
+                               hobby=form.data['hobby'])
+            for k in update_dict.keys():
+                if not update_dict[k]:
+                    update_dict.pop(k)
 
             try:
-                user = Profile.objects.filter(user=request.user).update(
-                    name=p_name,
-                    surname=p_surname,
-                    about=p_about,
-                    country=p_country,
-                    city=p_city,
-                    education=p_education,
-                    company=p_company,
-                    hobby=p_hobby
-                )
+                user = Profile.objects.filter(user=User.objects.filter(id=request.user.id)).update(**update_dict)
 
                 user.save()
-
-                return redirect('profile_edit')
+                return redirect('login')
             except IntegrityError as error:
-                return redirect('profile_edit')
+                return redirect('login')
 
         else:
             context['form'] = form
@@ -165,7 +157,7 @@ def profile_edit_page(request):
     else:
         context['form'] = ProfileEditForm()
 
-    return render(request, 'registration.html', context=context)
+    return render(request, 'profile_edit.html', context=context)
 
 
 @login_required
