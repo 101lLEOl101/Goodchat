@@ -5,7 +5,8 @@ from users.models import Profile
 from users.models import User
 from main.models import Post
 from main.models import Comment
-from .forms import PostForm, CommentForm
+from .forms import PostForm
+from .forms import CommentForm
 
 
 @login_required
@@ -50,29 +51,6 @@ def add_post_page(request):
 
     return render(request, 'add_post_page.html', context)
 
-@login_required
-def add_comment(request, id : int):
-    context = [
-
-    ]
-    ctx = {
-        'id': post.id,
-    }
-    if request.method == 'POST':
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            comment_author = request.user
-            comment_content = comment_form.data['content']
-            comment = Comment(author=comment_author, content=comment_content)
-            comment.save()
-            return redirect('self-profile')
-
-        context['form'] = comment_form()
-        context['message'] = 'Incorrect form, try again'
-    else:
-        context['form'] = CommentForm()
-
-    return render(request, 'add_post_page.html', context)
 
 @login_required
 def find_friend_page(request):
@@ -211,5 +189,19 @@ def post(request, id: int):
                              'date': comment.date_create
                              } for comment in comments]
                }
+    
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment_author = request.user
+            comment_content = comment_form.data['content']
+            comment = Comment(author=comment_author, post=post, content=comment_content)
+            comment.save()
+            return redirect('self-profile')
+
+        context['form'] = comment_form()
+        context['message'] = 'Incorrect form, try again'
+    else:
+        context['form'] = CommentForm()
 
     return render(request, 'post_template.html', context=context)

@@ -16,11 +16,13 @@
 	</div>
 
 	<div class = "post-image"></div>
-	<form class="input-area-mess" method="POST">
-		{% csrf_token %}
-		{{ form }}
-        <button class="btn_message" type="submit">Отправить</button>
-    </form>
+	{% if user.is_authenticated %}
+		<form class="input-area-mess" method="POST">
+			{% csrf_token %}
+			{{ form.content }}
+			<button class="btn_message" type="submit">Отправить</button>
+		</form>
+	{% endif %}
 	<h1 style="text-align:center; color:white;"> Комментарии </h1>
 	{% for comment in comments %}
 
