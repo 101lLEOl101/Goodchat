@@ -7,7 +7,9 @@ from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from .forms import LoginForm
 from .forms import RegistrationForm
+from .forms import ProfileEditForm
 from .models import User
+from .models import Profile
 from .signals import user_created
 
 
@@ -120,6 +122,50 @@ def login_page(request):
         context['form'] = LoginForm()
 
     return render(request, 'login.html', context=context)
+
+
+def profile_edit_page(request):
+    context = {}
+
+    if request.method == 'POST':
+        form = ProfileEditForm(request.POST)
+        if form.is_valid():
+            context['form'] = form
+
+            p_name = form.data['name']
+            p_surname = form.data['surname']
+            p_about = form.data['about']
+            p_country = form.data['country']
+            p_city = form.data['city']
+            p_education = form.data['education']
+            p_company = form.data['company']
+            p_hobby = form.data['hobby']
+
+            try:
+                user = Profile.objects.filter(user=request.user).update(
+                    name=p_name,
+                    surname=p_surname,
+                    about=p_about,
+                    country=p_country,
+                    city=p_city,
+                    education=p_education,
+                    company=p_company,
+                    hobby=p_hobby
+                )
+
+                user.save()
+
+                return redirect('profile_edit')
+            except IntegrityError as error:
+                return redirect('profile_edit')
+
+        else:
+            context['form'] = form
+
+    else:
+        context['form'] = ProfileEditForm()
+
+    return render(request, 'registration.html', context=context)
 
 
 @login_required

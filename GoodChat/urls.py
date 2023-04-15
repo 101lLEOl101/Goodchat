@@ -29,6 +29,7 @@ urlpatterns = [
     path('/settingsprofile/<int:id>', main_views.settings_profile_page, name = 'settingsprofile'),
     path('login/', users_views.login_page, name='login'),
     path('register/', users_views.registration_page, name='registration'),
+    path('edit/', users_views.profile_edit_page, name='profile_edit'),
     path('logout/', users_views.logout_page, name='logout'),
     path('profile/<int:id>', main_views.profile),
     path('profile', main_views.self_profile, name='self-profile'),

@@ -1,5 +1,6 @@
 from django import forms
 
+
 class LoginForm(forms.Form):
     username = forms.CharField(
         max_length=30,
@@ -93,10 +94,89 @@ class RegistrationForm(forms.Form):
     #     re_password = cleaned_data.get('re_password')
     #     if password != re_password:
     #         raise forms.ValidationError('Passwords are not equal')
-        
+
     def clean_re_password(self):
         password = self.cleaned_data['password']
         re_password = self.cleaned_data['re_password']
         if password != re_password:
             raise forms.ValidationError('Passwords are not equal!')
         return re_password
+
+
+class ProfileEditForm(forms.Form):
+    name = forms.CharField(
+        max_length=50,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-input',
+                'placeholder': 'Name'
+            }
+        )
+    )
+    surname = forms.CharField(
+        max_length=50,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-input',
+                'placeholder': 'Surname'
+            }
+        )
+    )
+    avatar = forms.ImageField(
+        upload_to="images/profile_avatars/",
+        default="images/DEFAULT_AVATAR.png"
+    )
+    about = forms.CharField(
+        max_length=500,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-input',
+                'placeholder': 'About'
+            }
+        )
+    )
+    country = forms.CharField(
+        max_length=50,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-input',
+                'placeholder': 'Country'
+            }
+        )
+    )
+    city = forms.CharField(
+        max_length=50,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-input',
+                'placeholder': 'City'
+            }
+        )
+    )
+    education = forms.CharField(
+        max_length=150,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-input',
+                'placeholder': 'Education'
+            }
+        )
+    )
+    company = forms.CharField(
+        max_length=150,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-input',
+                'placeholder': 'Company'
+            }
+        )
+    )
+    hobby = forms.CharField(
+        max_length=150,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-input',
+                'placeholder': 'Hobby'
+            }
+        )
+    )
