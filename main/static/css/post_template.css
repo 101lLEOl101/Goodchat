@@ -27,7 +27,7 @@ margin-bottom: 2%;
 }
 
 .post-image {
-    width: 90%;
+    max-width: 90%;
     margin-left: 5%;
     background: url(https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png);
     background-size: cover;

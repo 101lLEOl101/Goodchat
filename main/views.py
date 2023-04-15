@@ -81,6 +81,7 @@ def diff_profile_page(request, id: int):
                            },
                'posts': [{'id': post.id,
                           'author': post.author,
+                          'photo': post.photo,
                           'content': post.content,
                           'date': post.date_create,
                           } for post in posts]
@@ -153,6 +154,7 @@ def profile(request, id: int):
                           'author': {'name': post.author,
                                      'link': f'/profile/{post.author.id}',
                                      },
+                          'photo': post.photo,
                           'content': post.content,
                           'date': post.date_create,
                           } for post in posts]
