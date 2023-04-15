@@ -10,7 +10,12 @@
             <a href = "#profile_avatar" class = "settings_link">Аватар Профиля</a>
             <a href = "#profile_name" class = "settings_link">Имя Профиля</a>
             <a href = "#profile_information" class = "settings_link">О себе</a>
-            <a href = "#profile_data" class = "settings_link">Приватные данные</a>
+            <a href = "#profile_data" class = "settings_link">Личные данные</a>
+
+            <div class = "settings_buttons">
+                <button class="settings_btn">Отменить</button>
+                <button class="settings_btn settings_save">Сохранить</button>
+            </div>
         </div>
         <div class = "content_settings">
 
@@ -48,13 +53,13 @@
                 <div class = "settings_change_menu">
                     <div class = "settings_info_box">
                         <label for = "settings_hobby">Мне нравится: </label>
-                        <input id = "settings_hobby" type="text" class = "settings_input" required minlength="2" maxlength="100" size="100">{{ profile.hobby }}</input>
+                        <input id = "settings_hobby" type="text" class = "settings_input" required minlength="2" maxlength="100" size="100" placeholder="{{ profile.hobby }}"></input>
                         <label for = "settings_hobby">Город: </label>
-                        <input id = "settings_city" type="text" class = "settings_input" required minlength="2" maxlength="20" size="100">{{ profile.city }}</input>
+                        <input id = "settings_city" type="text" class = "settings_input" required minlength="2" maxlength="20" size="100" placeholder="{{ profile.city }}"></input>
                         <label for = "settings_hobby">Образование: </label>
-                        <input id = "settings_edu" type="text" class = "settings_input" required minlength="2" maxlength="40" size="100">{{ profile.education }}</input>
+                        <input id = "settings_edu" type="text" class = "settings_input" required minlength="2" maxlength="40" size="100" placeholder="{{ profile.education }}"></input>
                         <label for = "settings_hobby">Компания: </label>
-                        <input id = "settings_company" type="text" class = "settings_input" required minlength="2" maxlength="40" size="100">{{ profile.company }}</input>
+                        <input id = "settings_company" type="text" class = "settings_input" required minlength="2" maxlength="40" size="100"placeholder="{{ profile.company }}"></input>
                     </div>
                 </div>
             </div>
