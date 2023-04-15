@@ -17,8 +17,9 @@ def main_page(request):
     posts = Post.objects.all()
     context = {'posts': [{'id': post.id,
                           'author': post.author,
+                          'photo': post.photo,
                           'content': post.content,
-                          'date': post.date,
+                          'date': post.date_create,
                           } for post in posts]
                }
     return render(request, 'main_page.html', context)
@@ -75,12 +76,7 @@ def find_friend_page(request):
 
 @login_required
 def bookmarks_page(request):
-    context = {
-        'profile': {
-            'id': request.user.id
-        }
-    }
-    return render(request, "bookmarks_page.html", context)
+    return render(request, "bookmarks_page.html")
 
 # Заглушка для проверки чужого профиля
 
@@ -107,7 +103,7 @@ def diff_profile_page(request, id: int):
                'posts': [{'id': post.id,
                           'author': post.author,
                           'content': post.content,
-                          'date': post.date,
+                          'date': post.date_create,
                           } for post in posts]
                }
 
@@ -116,12 +112,7 @@ def diff_profile_page(request, id: int):
 
 @login_required
 def settings_page(request):
-    context = {
-        'profile': {
-            'id': request.user.id
-        }
-    }
-    return render(request, 'settings.html', context)
+    return render(request, 'settings.html')
 
 
 @login_required
@@ -184,7 +175,7 @@ def profile(request, id: int):
                                      'link': f'/profile/{post.author.id}',
                                      },
                           'content': post.content,
-                          'date': post.date,
+                          'date': post.date_create,
                           } for post in posts]
                }
 
@@ -207,11 +198,12 @@ def post(request, id: int):
                                    'link': f'/profile/{post.author.id}',
                                    },
                         'content': post.content,
-                        'date': post.date,
+                        'photo': post.photo,
+                        'date': post.date_create,
                         },
                'comments': [{'author': comment.author,
                              'content': comment.content,
-                             'date': comment.date
+                             'date': comment.date_create
                              } for comment in comments]
                }
 
