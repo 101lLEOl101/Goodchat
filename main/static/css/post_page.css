@@ -179,7 +179,6 @@ cursor: pointer;
 
 .post-image {
     width: 90%;
-    height: 400px;
     margin-left: 5%;
     background: url(https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png);
     background-size: cover;

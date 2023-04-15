@@ -56,7 +56,6 @@ $('.input-file input[type=file]').on('change', function(){
 	for(var i = 0; i < 1; i++){
 		let file = this.files.item(i);
 		dt.items.add(file);
-
 		let reader = new FileReader();
 		reader.readAsDataURL(file);
 		reader.onloadend = function(){
