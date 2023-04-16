@@ -4,7 +4,7 @@
 {% block title %}Посты{% endblock %}
 
 {% block content %}
-<div class = "post-box">
+<div class = "post-box" style="margin-top:10vh;">
 	<div class = "post-header">
      	<h2 class = "post-name"></h2>
 		<a href="{{ post.author.link }}" class = "post-author">{{ post.author.name }}</a>
@@ -14,8 +14,9 @@
 		<p class = "post-text"> {{ post.content }} </p>
 		<div class = "img-marks"></div>
 	</div>
-
-	<div class = "post-image"></div>
+	{% if post.photo %}
+		<img src="{{ post.photo.url }}" class="post-image">
+	{% endif %}
 	{% if user.is_authenticated %}
 		<form class="input-area-mess" method="POST">
 			{% csrf_token %}
@@ -36,9 +37,6 @@
 	</div>
 
 {% endfor %}
-</div>
-
-
 </div>
 {% endblock %}
 
