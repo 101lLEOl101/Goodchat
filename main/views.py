@@ -24,7 +24,7 @@ def main_page(request):
                           'photo': post.photo,
                           'content': post.content,
                           'date': post.date_create,
-                          } for post in posts]
+                          } for post in reversed(posts)]
                }
     return render(request, 'main_page.html', context)
 
@@ -198,7 +198,7 @@ def profile(request, id: int):
                           'photo': post.photo,
                           'content': post.content,
                           'date': post.date_create,
-                          } for post in posts]
+                          } for post in reversed(posts)]
                }
 
     return render(request, 'profile.html',  context=context)
@@ -226,7 +226,7 @@ def post(request, id: int):
                'comments': [{'author': comment.author,
                              'content': comment.content,
                              'date': comment.date_create
-                             } for comment in comments]
+                             } for comment in reversed(comments)]
                }
     
     if request.method == 'POST':
