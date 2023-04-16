@@ -5,6 +5,7 @@ from .models import Chat
 from .models import Access
 from django.db.models.fields.files import ImageFieldFile
 from users.models import User
+from main.models import Bookmark
 from users.utils import get_profile
 
 
@@ -100,7 +101,7 @@ def send_message(chat, author, content):
 
 
 def create_dialog(user1: User, user2: User) -> Chat:
-    dialog = Chat(is_multy = False)
+    dialog = Chat(is_multy=False)
     dialog.save()
     access1 = Access(chat=dialog, user=user1, mode=4)
     access2 = Access(chat=dialog, user=user2, mode=4)
@@ -128,4 +129,5 @@ def get_dialog(user1, user2) -> None:
         return dialog
     else:
         return create_dialog(user1, user2)
+
         

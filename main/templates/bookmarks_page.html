@@ -6,7 +6,9 @@
 {% endblock %}
 {% block title %}Закладки{% endblock %}
 {% block content %}
+
     <div class="main_page">
+        {% for post in posts %}
         <div class = "main_page_post">
             <div class="post-box">
                 <div class="post-header">
@@ -27,5 +29,6 @@
                 {% endif %}
             </div>
         </div>
+        {% endfor %}
     </div>
 {% endblock %}

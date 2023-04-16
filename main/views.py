@@ -4,10 +4,11 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from users.models import Profile
 from users.models import User
-from main.models import Post
+from main.models import Post, Bookmark
 from main.models import Comment
 from .forms import PostForm
 from .forms import CommentForm
+from .utils import get_bookmarks
 from .forms import FrindSearchRequestForm
 from itertools import groupby
 
@@ -49,6 +50,7 @@ def add_post_page(request):
         context['form'] = PostForm()
 
     return render(request, 'add_post_page.html', context)
+
 
 
 @login_required
@@ -96,7 +98,14 @@ def find_friend_page(request):
 
 @login_required
 def bookmarks_page(request):
-    return render(request, "bookmarks_page.html")
+    posts = get_bookmarks(request.user)
+    context = {
+            'posts': [{   'author': post.post.author,
+                          'content': post.post.content,
+                          'date': post.post.date,
+                          } for post in posts]
+    }
+    return render(request, "bookmarks_page.html", context)
 
 # Заглушка для проверки чужого профиля
 
