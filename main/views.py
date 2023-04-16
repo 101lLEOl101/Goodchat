@@ -183,7 +183,23 @@ def post(request, id: int):
         comments = Comment.objects.filter(post=post)
     except Post.DoesNotExist:
         return redirect('home')
-
+    
+    context = {}
+    
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment_author = request.user
+            comment_content = comment_form.data['content']
+            comment = Comment(author=comment_author, post=post, content=comment_content)
+            comment.save()
+            context['form'] = CommentForm()
+        else:
+            context['form'] = comment_form
+            context['message'] = 'Incorrect form, try again'
+    else:
+        context['form'] = CommentForm()
+        
     context = {'post': {'id': post.id,
                         'author': {'name': post.author,
                                    'link': f'/profile/{post.author.id}',
@@ -195,19 +211,8 @@ def post(request, id: int):
                'comments': [{'author': comment.author,
                              'content': comment.content,
                              'date': comment.date_create
-                             } for comment in reversed(comments)]
+                             } for comment in reversed(comments)],
+               'form': context['form']
                }
-    
-    if request.method == 'POST':
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            comment_author = request.user
-            comment_content = comment_form.data['content']
-            comment = Comment(author=comment_author, post=post, content=comment_content)
-            comment.save()
-        context['form'] = comment_form
-        context['message'] = 'Incorrect form, try again'
-    else:
-        context['form'] = CommentForm()
 
     return render(request, 'post_template.html', context=context)
