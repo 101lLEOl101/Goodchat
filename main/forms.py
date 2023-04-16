@@ -48,16 +48,25 @@ class LogForm(forms.Form):
         'class': 'form-input',
         'placeholder': 'Пароль'
     }))
-    
+
+
 class PostForm(forms.Form):
     content = forms.CharField(widget=forms.Textarea(attrs={
         'class': 'text-of-new-post',
         'placeholder': 'Ваш текст'
     }))
-    photo=forms.ImageField(widget=forms.ClearableFileInput(), required=False)
+    photo = forms.ImageField(widget=forms.ClearableFileInput(), required=False)
+
 
 class CommentForm(forms.Form):
     content = forms.CharField(widget=forms.Textarea(attrs={
         'class': 'message_area',
         'placeholder': 'Оставьте Ваш комментарий'
+    }))
+
+
+class FrindSearchRequestForm(forms.Form):
+    querry = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'search-id-input',
+        'placeholder': 'Введите id или имя'
     }))
