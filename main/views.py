@@ -195,9 +195,7 @@ def post(request, id: int):
             comment_content = comment_form.data['content']
             comment = Comment(author=comment_author, post=post, content=comment_content)
             comment.save()
-            return redirect('self-profile')
-
-        context['form'] = comment_form()
+        context['form'] = comment_form
         context['message'] = 'Incorrect form, try again'
     else:
         context['form'] = CommentForm()
