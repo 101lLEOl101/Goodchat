@@ -10,6 +10,7 @@ from .forms import RegistrationForm
 from .forms import ProfileEditForm
 from .models import User
 from .models import Profile
+from .utils import get_profile
 from .signals import user_created
 
 
@@ -123,7 +124,7 @@ def login_page(request):
 
     return render(request, 'login.html', context=context)
 
-
+@login_required
 def profile_edit_page(request):
     context = {}
 
@@ -131,31 +132,33 @@ def profile_edit_page(request):
         form = ProfileEditForm(request.POST)
         if form.is_valid():
             context['form'] = form
-            update_dict = dict(name=form.data['name'],
-                               surname=form.data['surname'],
-                               about=form.data['about'],
-                               country=form.data['country'],
-                               city=form.data['city'],
-                               education=form.data['education'],
-                               company=form.data['company'],
-                               hobby=form.data['hobby'])
-            for k in update_dict.keys():
-                if not update_dict[k]:
-                    update_dict.pop(k)
+            profile = get_profile(request.user)
+            
+            profile.name = form.cleaned_data['name']
+            profile.surname = form.cleaned_data['surname']
+            profile.about = form.cleaned_data['about']
+            profile.country = form.cleaned_data['country']
+            profile.city = form.cleaned_data['city']
+            profile.education = form.cleaned_data['education']
+            profile.company = form.cleaned_data['company']
+            profile.hobby = form.cleaned_data['hobby']
 
-            try:
-                user = Profile.objects.filter(user=User.objects.filter(id=request.user.id)).update(**update_dict)
-
-                user.save()
-                return redirect('login')
-            except IntegrityError as error:
-                return redirect('login')
-
+            profile.save()
+            return redirect('self-profile')
         else:
             context['form'] = form
 
     else:
-        context['form'] = ProfileEditForm()
+        profile = get_profile(request.user)
+        form_init = {'name': profile.name,
+                     'surname': profile.surname,
+                     'about': profile.about,
+                     'country': profile.country,
+                     'city': profile.city,
+                     'education': profile.education,
+                     'company': profile.company,
+                     'hobby': profile.hobby}
+        context['form'] = ProfileEditForm(initial=form_init)
 
     return render(request, 'profile_edit.html', context=context)
 
