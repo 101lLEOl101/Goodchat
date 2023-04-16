@@ -123,6 +123,11 @@ cursor: pointer;
 
 .zakladka:hover{
     background-color: #36C849;
+    background-image: url("/media/images/bookmark.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-size: 14px 14px;
 }
 
 .open:hover .arrow_diff{
