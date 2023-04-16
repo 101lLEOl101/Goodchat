@@ -13,12 +13,22 @@
 		<p class = "ur-id-search">Твой id</p>
 		<p class = "search-user-id-input">{{ user.id }}</p>
 
+
+
+
+
 		{% if response %}
+
 			{% for profile_ in response %}
+			 <a href="{% url 'profile' profile_.id %}">
 				<div class = "user-card-search">
-					<div class = "profile-pic-search"></div> <br>
+					 <img class ="profile-pic-search"src="{{profile_.avatar.url}}"> <br>
 					<p class = "nickname-search">{{ profile_.name }} {{profile_.surname}}</p>
 					<p class = "info-search">{{ profile_.about }}</p>
+					
+
+
+        </a>
 				</div>
 			{% endfor %}
 		{% else %}
