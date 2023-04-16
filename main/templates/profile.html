@@ -40,11 +40,11 @@
     <p class="user-info">About user <br> {{ profile.about }} </p>
     <p class="user-nickname">Мне нравится: {{ profile.hobby }}</p>
     {% if profile.id == self_profile.id %}
-    <button class="btn_profile">Подробнее</button>
+    <a class="btn_profile">Подробнее</a>
     {% else %}
-    <button class="btn_profile">Написать</button>
-    <button class="btn_profile">Добавить в друзья</button>
-    <button class="btn_profile">Подробнее</button>
+    <a class="btn_profile" href="{% url 'open-dialog' profile.id %}">Написать</a>
+    <a class="btn_profile">Добавить в друзья</a>
+    <a class="btn_profile">Подробнее</a>
     {% endif %}
   </div>
   <div class="profile-card-more">

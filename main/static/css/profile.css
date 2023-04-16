@@ -75,7 +75,9 @@
     width: 50%;
     font-size: 20px;
     transition: all 0.5s;
-    margin: 10px 25%;
+    margin: 10px 20%;
+    display: inline-block;
+    text-align: center;
 }
 
 .btn_profile:hover{
