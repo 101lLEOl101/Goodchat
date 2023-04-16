@@ -108,8 +108,7 @@ class ProfileEditForm(forms.Form):
         max_length=50,
         widget=forms.TextInput(
             attrs={
-                'class': 'form-input',
-                'placeholder': 'Name'
+                'class': 'settings_input',
             }
         ),
         required=False
@@ -118,8 +117,7 @@ class ProfileEditForm(forms.Form):
         max_length=50,
         widget=forms.TextInput(
             attrs={
-                'class': 'form-input',
-                'placeholder': 'Surname'
+                'class': 'settings_input',
             }
         ),
         required=False
@@ -128,8 +126,7 @@ class ProfileEditForm(forms.Form):
         max_length=500,
         widget=forms.TextInput(
             attrs={
-                'class': 'form-input',
-                'placeholder': 'About'
+                'class': 'settings_input',
             }
         ),
         required=False
@@ -138,8 +135,7 @@ class ProfileEditForm(forms.Form):
         max_length=50,
         widget=forms.TextInput(
             attrs={
-                'class': 'form-input',
-                'placeholder': 'Country'
+                'class': 'settings_input',
             }
         ),
         required=False
@@ -148,8 +144,7 @@ class ProfileEditForm(forms.Form):
         max_length=50,
         widget=forms.TextInput(
             attrs={
-                'class': 'form-input',
-                'placeholder': 'City'
+                'class': 'settings_input',
             }
         ),
         required=False
@@ -158,8 +153,7 @@ class ProfileEditForm(forms.Form):
         max_length=150,
         widget=forms.TextInput(
             attrs={
-                'class': 'form-input',
-                'placeholder': 'Education'
+                'class': 'settings_input',
             }
         ),
         required=False
@@ -168,8 +162,7 @@ class ProfileEditForm(forms.Form):
         max_length=150,
         widget=forms.TextInput(
             attrs={
-                'class': 'form-input',
-                'placeholder': 'Company'
+                'class': 'settings_input',
             }
         ),
         required=False
@@ -178,8 +171,7 @@ class ProfileEditForm(forms.Form):
         max_length=150,
         widget=forms.TextInput(
             attrs={
-                'class': 'form-input',
-                'placeholder': 'Hobby'
+                'class': 'settings_input',
             }
         ),
         required=False

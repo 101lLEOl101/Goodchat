@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}<link rel="stylesheet" href="{% static '/css/settings_profile.css' %}">{% endblock %}
+{% block title %}Настройки{% endblock %}
+
+{% block content %}
+    <div class="profile_box">
+        <div class = "side_menu_settings">
+            <h1 class = "settings_tittle">Настройки</h1>
+            <a href = "#profile_avatar" class = "settings_link">Аватар Профиля</a>
+            <a href = "#profile_name" class = "settings_link">Имя Профиля</a>
+            <a href = "#profile_information" class = "settings_link">О себе</a>
+            <a href = "#profile_data" class = "settings_link">Личные данные</a>
+
+            <div class = "settings_buttons">
+                <button class="settings_btn settings_btn1">Отменить</button>
+                <button class="settings_btn settings_btn2 settings_save" form="edit_form">Сохранить</button>
+            </div>
+        </div>
+        <div class = "content_settings">
+            <form method="POST" id="edit_form">
+                {% csrf_token %}
+                <div id = "profile_avatar" class = "settings_settings_devider">
+                    <h3 class = "settings_block_tittle">Аватар Профиля</h3>
+                    <div class = "settings_change_menu">
+                        <img src="{{ profile.avatar.url }}" class="profile-pic_settings" />
+                        <div class = "settings_info_box">
+                            <p class ="displayed_info">{{ profile.avatar.url }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id = "profile_name" class = "settings_settings_devider">
+                    <h3 class = "settings_block_tittle">Имя Профиля</h3>
+                    <div class = "settings_change_menu">
+                        <div class = "settings_info_box">
+                            <!-- <input placeholder="{{ profile.name }}" id = "name_input" type="text" class = "settings_input" required minlength="2" maxlength="14" size="100">
+                            <input placeholder="{{ profile.surname }}" id = "surname_input" type="text" class = "settings_input" required minlength="7" maxlength="14" size="100"> -->
+                            {{ form.name }}
+                            {{ form.surname }}
+                        </div>
+                    </div>
+                </div>
+
+                <div id = "profile_information" class = "settings_settings_devider">
+                    <h3 class = "settings_block_tittle">О себе</h3>
+                    <div class = "settings_change_menu">
+                        <div class = "settings_info_box">
+                            <!-- <textarea class = "settings_input" rows="5" cols="33">{{ profile.about }}</textarea> -->
+                            {{ form.about }}
+                        </div>
+                    </div>
+                </div>
+
+                <div id = "profile_data" class = "settings_settings_devider">
+                    <h3 class = "settings_block_tittle">Приватные данные</h3>
+                    <div class = "settings_change_menu">
+                        <div class = "settings_info_box">
+                            <label for = "id_hobby">Мне нравится: </label>
+                            <!-- <input id = "settings_hobby" type="text" class = "settings_input" required minlength="2" maxlength="100" size="100" placeholder="{{ profile.hobby }}"></input> -->
+                            {{ form.hobby }}
+                            <label for = "id_hobby">Город: </label>
+                            <!-- <input id = "settings_city" type="text" class = "settings_input" required minlength="2" maxlength="20" size="100" placeholder="{{ profile.city }}"></input> -->
+                            {{ form.city }}
+                            <label for = "id_hobby">Образование: </label>
+                            <!-- <input id = "settings_edu" type="text" class = "settings_input" required minlength="2" maxlength="40" size="100" placeholder="{{ profile.education }}"></input> -->
+                            {{ form.education }}
+                            <label for = "id_hobby">Компания: </label>
+                            <!-- <input id = "settings_company" type="text" class = "settings_input" required minlength="2" maxlength="40" size="100"placeholder="{{ profile.company }}"></input> -->
+                            {{ form.company }}
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

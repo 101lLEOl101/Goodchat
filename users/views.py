@@ -125,7 +125,7 @@ def login_page(request):
     return render(request, 'login.html', context=context)
 
 @login_required
-def profile_edit_page(request):
+def settings_profile(request):
     context = {}
 
     if request.method == 'POST':
@@ -160,7 +160,7 @@ def profile_edit_page(request):
                      'hobby': profile.hobby}
         context['form'] = ProfileEditForm(initial=form_init)
 
-    return render(request, 'profile_edit.html', context=context)
+    return render(request, 'settings_profile.html', context=context)
 
 
 @login_required
