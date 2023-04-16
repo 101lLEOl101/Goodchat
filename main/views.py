@@ -59,37 +59,6 @@ def bookmarks_page(request):
 
 # Заглушка для проверки чужого профиля
 
-
-def diff_profile_page(request, id: int):
-    try:
-        profile = Profile.objects.get(id=id)
-        user = User.objects.get(id=id)
-        posts = Post.objects.filter(author=user)
-    except Profile.DoesNotExist:
-        return redirect('home')
-
-    context = {'profile': {'id': profile.id,
-                           'name': profile.name,
-                           'surname': profile.surname,
-                           'avatar': profile.avatar,
-                           'about': profile.about,
-                           'country': profile.country,
-                           'city': profile.city,
-                           'education': profile.education,
-                           'company': profile.company,
-                           'hobby': profile.hobby,
-                           },
-               'posts': [{'id': post.id,
-                          'author': post.author,
-                          'photo': post.photo,
-                          'content': post.content,
-                          'date': post.date_create,
-                          } for post in posts]
-               }
-
-    return render(request, 'profile_diffrent.html', context=context)
-
-
 @login_required
 def settings_page(request):
     return render(request, 'settings.html')

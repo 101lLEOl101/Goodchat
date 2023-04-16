@@ -39,9 +39,13 @@
     <p class="user-nickname">Фамилия: {{ profile.surname }}</p>
     <p class="user-info">About user <br> {{ profile.about }} </p>
     <p class="user-nickname">Мне нравится: {{ profile.hobby }}</p>
-    <button class="btn_profile">
-      Подробнее
-    </button>
+    {% if profile.id == self_profile.id %}
+    <button class="btn_profile">Подробнее</button>
+    {% else %}
+    <button class="btn_profile">Написать</button>
+    <button class="btn_profile">Добавить в друзья</button>
+    <button class="btn_profile">Подробнее</button>
+    {% endif %}
   </div>
   <div class="profile-card-more">
     <p class="user-nickname">Город: {{ profile.city }}</p>
