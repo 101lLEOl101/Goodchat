@@ -7,7 +7,10 @@ from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from .forms import LoginForm
 from .forms import RegistrationForm
+from .forms import ProfileEditForm
 from .models import User
+from .models import Profile
+from .utils import get_profile
 from .signals import user_created
 
 
@@ -79,7 +82,7 @@ def registration_page(request):
 
         else:
             context['form'] = form
-            
+
     else:
         context['form'] = RegistrationForm()
 
@@ -93,7 +96,7 @@ def login_page(request):
     """
     if request.user.is_authenticated:
         return redirect('self-profile')
-    
+
     context = {}
 
     if request.method == 'POST':
@@ -120,6 +123,44 @@ def login_page(request):
         context['form'] = LoginForm()
 
     return render(request, 'login.html', context=context)
+
+@login_required
+def settings_profile(request):
+    context = {}
+
+    if request.method == 'POST':
+        form = ProfileEditForm(request.POST)
+        if form.is_valid():
+            context['form'] = form
+            profile = get_profile(request.user)
+            
+            profile.name = form.cleaned_data['name']
+            profile.surname = form.cleaned_data['surname']
+            profile.about = form.cleaned_data['about']
+            profile.country = form.cleaned_data['country']
+            profile.city = form.cleaned_data['city']
+            profile.education = form.cleaned_data['education']
+            profile.company = form.cleaned_data['company']
+            profile.hobby = form.cleaned_data['hobby']
+
+            profile.save()
+            return redirect('self-profile')
+        else:
+            context['form'] = form
+
+    else:
+        profile = get_profile(request.user)
+        form_init = {'name': profile.name,
+                     'surname': profile.surname,
+                     'about': profile.about,
+                     'country': profile.country,
+                     'city': profile.city,
+                     'education': profile.education,
+                     'company': profile.company,
+                     'hobby': profile.hobby}
+        context['form'] = ProfileEditForm(initial=form_init)
+
+    return render(request, 'settings_profile.html', context=context)
 
 
 @login_required

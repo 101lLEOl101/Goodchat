@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from .models import Message
 from .models import Chat
 from .models import Access

@@ -1,5 +1,6 @@
 from django import forms
 
+
 class LoginForm(forms.Form):
     username = forms.CharField(
         max_length=30,
@@ -93,10 +94,85 @@ class RegistrationForm(forms.Form):
     #     re_password = cleaned_data.get('re_password')
     #     if password != re_password:
     #         raise forms.ValidationError('Passwords are not equal')
-        
+
     def clean_re_password(self):
         password = self.cleaned_data['password']
         re_password = self.cleaned_data['re_password']
         if password != re_password:
             raise forms.ValidationError('Passwords are not equal!')
         return re_password
+
+
+class ProfileEditForm(forms.Form):
+    name = forms.CharField(
+        max_length=50,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'settings_input',
+            }
+        ),
+        required=False
+    )
+    surname = forms.CharField(
+        max_length=50,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'settings_input',
+            }
+        ),
+        required=False
+    )
+    about = forms.CharField(
+        max_length=500,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'settings_input',
+            }
+        ),
+        required=False
+    )
+    country = forms.CharField(
+        max_length=50,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'settings_input',
+            }
+        ),
+        required=False
+    )
+    city = forms.CharField(
+        max_length=50,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'settings_input',
+            }
+        ),
+        required=False
+    )
+    education = forms.CharField(
+        max_length=150,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'settings_input',
+            }
+        ),
+        required=False
+    )
+    company = forms.CharField(
+        max_length=150,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'settings_input',
+            }
+        ),
+        required=False
+    )
+    hobby = forms.CharField(
+        max_length=150,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'settings_input',
+            }
+        ),
+        required=False
+    )
