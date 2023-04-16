@@ -34,10 +34,10 @@
                 {% csrf_token %}
                 {% for field in form %}
                 <p>{{ field }}</p>
-                <div style="color:white;" class="form-error">{{ field.errors }}</div>
+                <div class="form-error">{{ field.errors }}</div>
                 {% endfor %}
                 {% if message %}
-                <p>{{ message }}</p>
+                <p class="form-error">{{ message }}</p>
                 {% endif %}
 
                 <button type="submit" class="btn_add">Войти</button>

@@ -64,6 +64,11 @@
     font-weight: bold;
 }
 
+.form-error{
+    color:white;
+    width: 284px;
+}
+
 .auth-link{
     text-decoration: none;
     color: #8270F2;
