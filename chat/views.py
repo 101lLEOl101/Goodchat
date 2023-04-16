@@ -60,7 +60,6 @@ def chat_page(request, id):
             context['message_form'] = message_form
     else:
         context['message_form'] = MessageForm()
-
     messages = get_chat_messages(chat, request.user)
     chat = generate_chat(chat, request.user)
     context['chat'] = chat
