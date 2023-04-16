@@ -8,27 +8,31 @@
 {% block content %}
 
     <div class="main_page">
-        {% for post in posts %}
-        <div class = "main_page_post">
-            <div class="post-box">
-                <div class="post-header">
-                    <div class="btn_box_post">
-                    <a class="round heart" disabled href="#" title="Понравилось"></a>
-                    <a class="round open" href="/post/{{post.id}}" title="Открыть полностью"><div class="arrow"></div><div class="arrow_diff"></div></a>
-                    <a class="round zakladka" disabled href="#" title="В закладки"></a>
+        {% if posts %}
+            {% for post in posts %}
+            <div class = "main_page_post">
+                <div class="post-box">
+                    <div class="post-header">
+                        <div class="btn_box_post">
+                        <a class="round heart" disabled href="#" title="Понравилось"></a>
+                        <a class="round open" href="/post/{{post.id}}" title="Открыть полностью"><div class="arrow"></div><div class="arrow_diff"></div></a>
+                        <a class="round zakladka" disabled href="#" title="В закладки"></a>
+                        </div>
+                        <a class = "post-author" href="/profile/{{post.author.id}}">{{post.author}}</a>
                     </div>
-                    <a class = "post-author" href="/profile/{{post.author.id}}">{{post.author}}</a>
-                </div>
 
-                <div class="text-wrap">
-                    <div class="post-text">{{ post.content }}</div>
-                </div>
+                    <div class="text-wrap">
+                        <div class="post-text">{{ post.content }}</div>
+                    </div>
 
-                {% if post.photo %}
-                    <img src="{{ post.photo.url }}" class="post-image">
-                {% endif %}
+                    {% if post.photo %}
+                        <img src="{{ post.photo.url }}" class="post-image">
+                    {% endif %}
+                </div>
             </div>
-        </div>
-        {% endfor %}
+            {% endfor %}
+        {% else %}
+            <p style="color: #fff;">У вас еще нет закладок</p>
+        {% endif %}
     </div>
 {% endblock %}

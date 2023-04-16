@@ -99,12 +99,14 @@ def find_friend_page(request):
 @login_required
 def bookmarks_page(request):
     posts = get_bookmarks(request.user)
-    context = {
-            'posts': [{   'author': post.post.author,
-                          'content': post.post.content,
-                          'date': post.post.date,
-                          } for post in posts]
-    }
+    context = {}
+    if posts:
+        context = {
+                'posts': [{   'author': post.author,
+                            'content': post.content,
+                            'photo': post.photo,
+                            } for post in posts]
+        }
     return render(request, "bookmarks_page.html", context)
 
 # Заглушка для проверки чужого профиля
