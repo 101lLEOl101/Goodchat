@@ -52,14 +52,24 @@
     bottom: 0;
     height: fit-content;
     width: 100%;
+    justify-content: space-between;
 }
 
 .settings_btn{
-    color: #000000;
+    color: #ffffff;
+    width: 44%;
+    padding: 4%;
+    margin: 2%;
+    background-color: #1F1F1F;
+    border: 0px;
+    border-radius: 16px;
+    font-size: 100%;
+    font-weight: bolder;
 }
 
+
 .settings_save{
-    color: #000000;
+    background-color: #8270F2;
 }
 .settings_change_menu{
     margin-top:2%;
