@@ -5,14 +5,24 @@
 
 {% block content %}
 	<div class = "search-wrapper">
-		<input type = "text" placeholder="Введите id" class = "search-id-input">
+		<form method="POST">
+			{% csrf_token %}
+			{{ form.querry }}
+			<button type="submit">Искать!</button>
+		</form>
 		<p class = "ur-id-search">Твой id</p>
-		<p class = "search-user-id-input">1234567890</p>
+		<p class = "search-user-id-input">{{ user.id }}</p>
 
-		<div class = "user-card-search">
-			<div class = "profile-pic-search"></div> <br>
-			<p class = "nickname-search"> Nickname</p>
-			<p class = "info-search">Info</p>
-		</div>
+		{% if response %}
+			{% for profile_ in response %}
+				<div class = "user-card-search">
+					<div class = "profile-pic-search"></div> <br>
+					<p class = "nickname-search">{{ profile_.name }} {{profile_.surname}}</p>
+					<p class = "info-search">{{ profile_.about }}</p>
+				</div>
+			{% endfor %}
+		{% else %}
+			<p>Пользователя с такими данными не найдено</p>
+		{% endif %}
 	</div>
 {% endblock %}

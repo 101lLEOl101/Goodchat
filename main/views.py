@@ -1,12 +1,15 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from users.models import Profile
 from users.models import User
 from main.models import Post
 from main.models import Comment
 from .forms import PostForm
 from .forms import CommentForm
+from .forms import FrindSearchRequestForm
+from itertools import groupby
 
 
 @login_required
@@ -50,7 +53,45 @@ def add_post_page(request):
 
 @login_required
 def find_friend_page(request):
-    return render(request, 'find_friend_page.html')
+    context = {}
+    
+    if request.method == 'POST':
+        form = FrindSearchRequestForm(request.POST)
+        if form.is_valid():
+            response = []
+            querry = form.data['querry']
+            try:
+                id = int(querry)
+                response.extend(Profile.objects.filter(id=id))
+            except ValueError:
+                fullname = querry
+                
+                try:
+                    name, surname = list(fullname.split())
+                    response.extend(Profile.objects.filter(name=name, surname=surname))
+                    response.extend(Profile.objects.filter(name=surname, surname=name))
+                except ValueError:
+                    name = fullname
+                    surname = fullname
+                
+                response.extend([profile
+                                 for profile 
+                                 in Profile.objects.filter(name=name)
+                                 if profile not in response])
+                response.extend([profile 
+                                 for profile 
+                                 in Profile.objects.filter(surname=surname)
+                                 if profile not in response])
+                
+            context['form'] = form                
+            context['response'] = [profile for profile, _ in groupby(response)]
+        else:
+            context['form'] = form
+            context['message'] = 'Incorrect request!'
+    else:
+        context['form'] = FrindSearchRequestForm()
+
+    return render(request, 'find_friend_page.html', context)
 
 
 @login_required
