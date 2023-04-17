@@ -134,7 +134,7 @@
 }
 
 .messenger_contener{
-    height:100%;
+    min-height:100%;
 }
 
 .message-text{
