@@ -9,35 +9,42 @@
 {% block content %}
 <!--<div class="content_for_profile"> -->
 <div class = "main_page">
-        {% for post in posts %}
-        <div class = "main_page_post">
-            <div class="post-box">
-                <div class="post-header">
-                    <div class="btn_box_post">
-                    <a class="round heart" disabled href="#" title="Понравилось"></a>
-                    <a class="round open" href="/post/{{post.id}}" title="Открыть полностью"><div class="arrow"></div><div class="arrow_diff"></div></a>
-                    <a class="round zakladka" disabled href="#" title="В закладки"></a>
+
+    {% if posts %}
+            {% for post in posts %}
+            <div class = "main_page_post">
+                <div class="post-box">
+                    <div class="post-header">
+                        <div class="btn_box_post">
+                        <a class="round heart" disabled href="#" title="Понравилось"></a>
+                        <a class="round open" href="/post/{{post.id}}" title="Открыть полностью"><div class="arrow"></div><div class="arrow_diff"></div></a>
+                        <a class="round zakladka" disabled href="#" title="В закладки"></a>
+                        </div>
+                        <a class = "post-author" href="{{post.author.link}}">{{post.author.name}}</a>
                     </div>
-                    <div class = "post-author">{{post.author.name}}</div>
-                </div>
 
-                <div class="text-wrap">
-                    <div class="post-text">{{ post.content }}</div>
-                </div>
+                    <div class="text-wrap">
+                        <div class="post-text">{{ post.content }}</div>
+                    </div>
 
-                {% if post.photo %}
-                    <img src="{{ post.photo.url }}" class="post-image">
-                {% endif %}
+                    {% if post.photo %}
+                        <img src="{{ post.photo.url }}" class="post-image">
+                    {% endif %}
+                </div>
             </div>
-        </div>
-        {% endfor %}
+            {% endfor %}
+        {% else %}
+            <div class="zero_bookmarks">
+            <p class="alarm_posts">У Вас еще нет постов :c </p>
+            <a class="btn_add" href="{% url 'addpost' %}">Написать пост</a>
+            </div>
+        {% endif %}
 	</div>
   <div class="profile-card">
     <img src="{{ profile.avatar.url }}" class="profile-pic" />
 
-    <h3 class="user-nickname">Имя: {{ profile.name }} </h3>
-    <p class="user-nickname">Фамилия: {{ profile.surname }}</p>
-    <p class="user-info">About user <br> {{ profile.about }} </p>
+    <h3 class="user-nickname">{{ profile.name }} {{ profile.surname }}</h3>
+    <p class="user-info">О себе: <br> {{ profile.about }} </p>
     <p class="user-nickname">Мне нравится: {{ profile.hobby }}</p>
     {% if profile.id == self_profile.id %}
     <a class="btn_profile">Подробнее</a>
