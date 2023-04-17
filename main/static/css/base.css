@@ -122,15 +122,17 @@ transition: 0.3s;
     border: 2px solid black;
     text-align:center;
     font-family: 'Inter', sans-serif;
-    margin-right:20px;
+    margin-right: 20px;
     transition: all 0.3s;
 }
 .auth_btn:hover{
     border-bottom: 2px solid #8270F2;
 }
+
 .auth_reg_btn:hover{
     border-bottom: 2px solid #8270F2;
 }
+
 .auth_btn{
     background: transparent;
     color: #8270F2;

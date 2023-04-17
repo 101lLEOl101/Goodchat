@@ -190,3 +190,7 @@ cursor: pointer;
 .main{
     display: flex;
 }
+
+.comment-text{
+    white-space: pre-wrap;
+}
