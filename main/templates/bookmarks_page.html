@@ -32,7 +32,10 @@
             </div>
             {% endfor %}
         {% else %}
-            <p style="color: #fff;">У вас еще нет закладок</p>
+            <div class="zero_bookmarks">
+            <p class="alarm_posts">У Вас еще нет закладок :c </p>
+            <a class="btn_add" href="{% url 'addpost' %}">Вернуться на главную</a>
+            </div>
         {% endif %}
     </div>
 {% endblock %}
