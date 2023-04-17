@@ -109,13 +109,11 @@ transition: 0.3s;
     border-bottom-right-radius: calc((24px + 11 * (200vw / 1280)) / 2);
     position: fixed;
     border: solid 1px #8270F2;
-    /* width: fit-content; */
-    /* height: fit-content; */
     box-shadow: 0px 10px 10px #8270F2;
-    /* margin-top: calc(100px + 16 * (200vw / 1280)); */
     transform: translateY(-50%);
     top: 50%;
     max-height: 80%;
+    left:-1px;
 }
 
 .auth_reg_btn{
