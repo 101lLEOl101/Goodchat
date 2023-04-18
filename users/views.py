@@ -11,6 +11,7 @@ from .forms import ProfileEditForm
 from .models import User
 from .models import Profile
 from .utils import get_profile
+from .utils import get_friends
 from .signals import user_created
 
 
@@ -161,6 +162,16 @@ def settings_profile(request):
         context['form'] = ProfileEditForm(initial=form_init)
 
     return render(request, 'settings_profile.html', context=context)
+
+@login_required
+def friend_list(request, id):
+    try:    
+        current_user = User.objects.get(id=id)
+    except User.DoesNotExist:
+        return redirect('home')
+    
+    get_friends(current_user)
+    return redirect('self-profile')
 
 
 @login_required

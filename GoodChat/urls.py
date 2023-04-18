@@ -38,7 +38,8 @@ urlpatterns = [
     path('messenger', main_views.messenger_page, name='messenger'),
     path('chatlist', chat_views.chat_list, name='chat-list'),
     path('chat/<int:id>', chat_views.chat_page, name='chat'),
-    path('dialog/<int:interlocutor_id>', chat_views.open_dialog, name="open-dialog")
+    path('dialog/<int:interlocutor_id>', chat_views.open_dialog, name='open-dialog'),
+    path('friendlist/<int:id>', users_views.friend_list, name='friend-list'),
 ]
 
 if settings.DEBUG:
