@@ -12,6 +12,7 @@ from .models import User
 from .models import Profile
 from .utils import get_profile
 from .utils import get_friends
+from .utils import convert_profile_to_dict
 from .signals import user_created
 
 
@@ -169,9 +170,14 @@ def friend_list(request, id):
         current_user = User.objects.get(id=id)
     except User.DoesNotExist:
         return redirect('home')
+    context = {}
     
-    get_friends(current_user)
-    return redirect('self-profile')
+    friends = get_friends(current_user)
+    friends = [convert_profile_to_dict(get_profile(friend))
+               for friend in friends]
+    
+    context['friends'] = friends
+    return render(request, 'friendlist.html', context)
 
 
 @login_required

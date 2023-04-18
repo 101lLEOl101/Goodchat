@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}<link rel="stylesheet" href="{% static '/css/reg-log.css' %}">{% endblock %}
+{% block title %}Друзья{% endblock %}
+
+{% block content %}
+<div style="margin-top: 10rem; margin-left: 10rem;">
+    <ul>
+        {% for friend in friends %}
+        <li>
+            <a href="{% url 'profile' friend.id %}" style="color: #fff;">
+                {{ friend.full_name }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
