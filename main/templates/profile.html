@@ -43,7 +43,7 @@
     <a class="btn_profile">Подробнее</a>
     {% else %}
     <a class="btn_profile" href="{% url 'open-dialog' profile.id %}">Написать</a>
-    <a class="btn_profile">Добавить в друзья</a>
+    <a class="btn_profile" href="{% url 'add-friend' profile.id%}">Добавить в друзья</a>
     <a class="btn_profile">Подробнее</a>
     {% endif %}
   </div>

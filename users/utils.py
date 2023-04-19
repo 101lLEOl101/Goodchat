@@ -1,6 +1,7 @@
 from .models import User
 from .models import Profile
 from .models import Friend
+from .models import FriendRequest
 
 
 def get_profile(user: User) -> Profile:
@@ -41,3 +42,30 @@ def get_friends(user: User):
                for friendship in user.friend_with.all()]
 
     return friends
+
+def are_friends(user1: User, user2: User):
+    user1_friends = get_friends(user1)
+    return user2 in user1_friends
+
+def friend_able_to_invite(inviter, recipient) -> bool:
+    if inviter == recipient:
+        return False
+    
+    if are_friends(inviter, recipient):
+        return False
+    
+    try:
+        invitation = FriendRequest.objects.get(inviter=inviter, recipient=recipient)
+    except FriendRequest.DoesNotExist:
+        pass
+    else:
+        return False
+    
+    try:
+        invitation = FriendRequest.objects.get(inviter=recipient, recipient=inviter)
+    except FriendRequest.DoesNotExist:
+        pass
+    else:
+        return False
+    
+    return True

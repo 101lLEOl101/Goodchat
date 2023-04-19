@@ -82,7 +82,9 @@ class FriendRequest(models.Model):
                                   related_name=_('invited_by'))
 
     message = models.CharField(verbose_name=_('inviter\'s message'),
-                               max_length=150)
+                               max_length=150,
+                               blank=True,
+                               null=True)
 
     class Meta:
         verbose_name = _('friend request')
