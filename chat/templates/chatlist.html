@@ -11,13 +11,11 @@
         {% for chat in chats %}
         <a href="{% url 'chat' chat.id %}">
             <div class="chat_item">
-
                 <img class="chat-user-pic" src="{{chat.avatar.url}}">
                 <div class="chat_texts">
                 <h2>{{ chat.name }}</h2>
-                <h3>{{ chat.last_message.content }}</h3>
+                <h3 id="last_message">{{ chat.last_message.content }}</h3>
                 </div>
-
             </div>
         </a>
         {% endfor %}
