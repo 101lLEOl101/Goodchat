@@ -9,8 +9,11 @@ from .forms import LoginForm
 from .forms import RegistrationForm
 from .forms import ProfileEditForm
 from .models import User
-from .models import Profile
+from .models import FriendRequest
 from .utils import get_profile
+from .utils import get_friends
+from .utils import convert_profile_to_dict
+from .utils import friend_able_to_invite
 from .signals import user_created
 
 
@@ -165,6 +168,39 @@ def settings_profile(request):
 
     return render(request, 'settings_profile.html', context=context)
 
+@login_required
+def friend_list(request, id):
+    try:    
+        current_user = User.objects.get(id=id)
+    except User.DoesNotExist:
+        return redirect('home')
+    context = {}
+    
+    friends = get_friends(current_user)
+    friends = [convert_profile_to_dict(get_profile(friend))
+               for friend in friends]
+    
+    context['friends'] = friends
+    return render(request, 'friendlist.html', context)
+
+@login_required
+def invite_friend(request, recipient_id):
+    try:
+        recipient = User.objects.get(id=recipient_id)
+    except User.DoesNotExist:
+        print('UNKNOWN PERSON')
+        return redirect('self-profile')
+    
+    inviter = request.user
+    
+    if friend_able_to_invite(inviter, recipient):
+        invitation = FriendRequest(inviter=inviter, recipient=recipient)
+        invitation.save()
+        print('REQUEST SENDED')
+        return redirect('home')
+    else:
+        print('REQUEST DENIED')
+        return redirect('self-profile')
 
 @login_required
 def logout_page(request):

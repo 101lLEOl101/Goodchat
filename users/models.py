@@ -53,3 +53,39 @@ class Profile(models.Model):
     class Meta:
         verbose_name = _('profile')
         verbose_name_plural = _('profiles')
+
+
+class Friend(models.Model):
+    """
+    The model that determines the status of friends between two users
+    """
+    friends = models.ManyToManyField(User,
+                                     related_name=_('friend_with'),
+                                     verbose_name=_('pair of frineds'))
+
+    class Meta:
+        verbose_name = _('friendship')
+        verbose_name_plural = _('friendships')
+
+
+class FriendRequest(models.Model):
+    """
+    The model describing a friend request
+    """
+    inviter = models.ForeignKey(User,
+                                on_delete=models.CASCADE,
+                                verbose_name=_('inviter'),
+                                related_name=_('invite_friends'))
+    recipient = models.ForeignKey(User,
+                                  on_delete=models.CASCADE,
+                                  verbose_name=_('recipient'),
+                                  related_name=_('invited_by'))
+
+    message = models.CharField(verbose_name=_('inviter\'s message'),
+                               max_length=150,
+                               blank=True,
+                               null=True)
+
+    class Meta:
+        verbose_name = _('friend request')
+        verbose_name_plural = _('friend requests')

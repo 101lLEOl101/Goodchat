@@ -41,7 +41,9 @@ urlpatterns = [
     path('chatlist', chat_views.chat_list, name='chat-list'),
     path('chat/<int:id>', chat_views.chat_page, name='chat'),
     path('dialog/<int:interlocutor_id>', chat_views.open_dialog, 
-         name="open-dialog"),
+         name='open-dialog'),
+    path('friendlist/<int:id>', users_views.friend_list, name='friend-list'),
+    path('addfriend/<int:recipient_id>', users_views.invite_friend, name='add-friend'),
 ]
 
 if settings.DEBUG:
