@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.urls import reverse
 from users.models import Profile
 from users.models import User
 from main.models import Post, Bookmark
@@ -102,12 +103,30 @@ def bookmarks_page(request):
     context = {}
     if posts:
         context = {
-                'posts': [{   'author': post.author,
+                'posts': [{ 'id': post.id,
+                           
+                            'author': post.author,
                             'content': post.content,
                             'photo': post.photo,
-                            } for post in posts]
+                            } for post in reversed(posts)]
         }
-    return render(request, "bookmarks_page.html", context)
+    return render(request, 'bookmarks_page.html', context)
+
+@login_required
+def add_or_delete_bookmark(request, post_id):
+    try:
+        post = Post.objects.get(id=post_id)
+    except Post.DoesNotExist:
+        return redirect('home')
+    
+    try:
+        bookmark = Bookmark.objects.get(post=post, user=request.user)
+        bookmark.delete()
+    except Bookmark.DoesNotExist:
+        bookmark = Bookmark(post=post, user=request.user)
+        bookmark.save()
+
+    return redirect(reverse('post', args=[post.id]))     
 
 # Заглушка для проверки чужого профиля
 

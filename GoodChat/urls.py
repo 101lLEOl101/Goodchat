@@ -25,6 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main_views.main_page, name='home'),
     path('bookmarks', main_views.bookmarks_page, name='bookmarks'),
+    path('add-bookmark/<int:post_id>', main_views.add_or_delete_bookmark, 
+         name='add-delete-bookmark'),
     path('settings/', main_views.settings_page, name='setting'),
     path('edit/', users_views.settings_profile, name = 'edit'),
     path('login/', users_views.login_page, name='login'),
@@ -32,13 +34,14 @@ urlpatterns = [
     path('logout/', users_views.logout_page, name='logout'),
     path('profile/<int:id>', main_views.profile, name = 'profile'),
     path('profile', main_views.self_profile, name='self-profile'),
-    path('post/<int:id>', main_views.post),
+    path('post/<int:id>', main_views.post, name='post'),
     path('addpost', main_views.add_post_page, name = 'addpost'),
     path('findfriend', main_views.find_friend_page, name = 'findfriend'),
     path('messenger', main_views.messenger_page, name='messenger'),
     path('chatlist', chat_views.chat_list, name='chat-list'),
     path('chat/<int:id>', chat_views.chat_page, name='chat'),
-    path('dialog/<int:interlocutor_id>', chat_views.open_dialog, name="open-dialog")
+    path('dialog/<int:interlocutor_id>', chat_views.open_dialog, 
+         name="open-dialog"),
 ]
 
 if settings.DEBUG:
