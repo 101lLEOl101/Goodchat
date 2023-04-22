@@ -8,6 +8,8 @@
     padding: 50px 0;
     transform: translateY(-50%);
     top: 55%;
+    transition: all 1s;
+    height : 600px;
 }
 
 .profile-pic {
@@ -16,20 +18,20 @@
     background: url("https://i.pinimg.com/236x/66/1e/ce/661ece4c9340138ac3a170db0d86f25f.jpg");
     border-radius: 100%;
     box-shadow: 0px 0px 30px #8270f2;
+    transition: all 1s;
 }
 
 .user-nickname {
-    display: box;
     width: 70%;
     margin: 10px 15%;
-    text-align:center;
+    text-align: center;
     background: #fff;
     border-radius: 16px;
     padding: 15px 0;
+    transition: all 1s;
 }
 
 .user-info {
-    display: box;
     width: 70%;
     margin: 10px 15%;
     height: 154px;
@@ -37,6 +39,7 @@
     text-align:center;
     background: #fff;
     border-radius: 12px;
+    transition: all 1s;
 }
 
 .btn:hover ~ .profile-card-more{
@@ -78,6 +81,7 @@
     margin: 10px 20%;
     display: inline-block;
     text-align: center;
+    transition: all 1s;
 }
 
 .btn_profile:hover{
@@ -88,9 +92,37 @@
 }
 
 .main_page{
-    width: 90%;
+    width: 85%;
     border-radius: 5px;
-    margin: 0 auto;
     margin-top:7vh;
     margin-bottom:7vh;
+    margin-left : 0;
+    transition: all 1s;
+}
+
+#toggle{
+	appearance : none;
+}
+
+#toggle:checked ~ .profile-card{
+    transition: all 1s;
+	width : 35%;
+}
+
+#toggle:checked ~ .main_page{
+    transition: all 1s;
+	width : 70%;
+}
+
+#toggle:checked ~ .profile-card > .user-nickname{
+    transition: all 1s;
+    width : 30%;
+}
+
+#toggle:checked ~ .profile-card > .user-info{
+    transition: all 1s;
+    width : 35%;
+    right : 0;
+    top : 55%;
+    position : absolute;
 }

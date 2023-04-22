@@ -8,7 +8,8 @@
 
 {% block content %}
 <!--<div class="content_for_profile"> -->
-<div class = "main_page">
+	<input type="checkbox" id="toggle">
+    <div class = "main_page">
         {% for post in posts %}
         <div class = "main_page_post">
             <div class="post-box">
@@ -32,26 +33,26 @@
         </div>
         {% endfor %}
 	</div>
-  <div class="profile-card">
-    <img src="{{ profile.avatar.url }}" class="profile-pic" />
+    <div class="profile-card">
+        <img src="{{ profile.avatar.url }}" class="profile-pic" />
 
-    <h3 class="user-nickname">Имя: {{ profile.name }} </h3>
-    <p class="user-nickname">Фамилия: {{ profile.surname }}</p>
-    <p class="user-info">About user <br> {{ profile.about }} </p>
-    <p class="user-nickname">Мне нравится: {{ profile.hobby }}</p>
+        <div class="user-nickname" id="usernick">Имя: {{ profile.name }} </div>
+        <div class="user-nickname" id="usersurname">Фамилия: {{ profile.surname }}</div>
+        <div class="user-info">About user <br> {{ profile.about }} </div>
+        <div class="user-nickname" id="userlike">Мне нравится: {{ profile.hobby }}</div>
     {% if profile.id == self_profile.id %}
-    <a class="btn_profile">Подробнее</a>
+        <label for="toggle" class="btn_profile">Подробнее</label>
     {% else %}
-    <a class="btn_profile" href="{% url 'open-dialog' profile.id %}">Написать</a>
-    <a class="btn_profile">Добавить в друзья</a>
-    <a class="btn_profile">Подробнее</a>
+        <a class="btn_profile" href="{% url 'open-dialog' profile.id %}">Написать</a>
+        <a class="btn_profile">Добавить в друзья</a>
+        <label for="toggle" class="btn_profile">Подробнее</label>
     {% endif %}
-  </div>
-  <div class="profile-card-more">
-    <p class="user-nickname">Город: {{ profile.city }}</p>
-    <p class="user-nickname">Образование: {{ profile.education }}</p>
-    <p class="user-nickname">Компания: {{ profile.company }}}</p>
-  </div>
+    </div>
+    <div class="profile-card-more">
+        <p class="user-nickname">Город: {{ profile.city }}</p>
+        <p class="user-nickname">Образование: {{ profile.education }}</p>
+        <p class="user-nickname">Компания: {{ profile.company }}}</p>
+    </div>
 </div>
 {% endblock %}
 {% block js %}
