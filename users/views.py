@@ -48,7 +48,10 @@ def registration_page(request):
                                   name=u_name,
                                   surname=u_surname)
 
-                return redirect('login')
+                user = authenticate(request, username=u_login, password=u_password)
+                login(request, user)
+                
+                return redirect('self-profile')
             except IntegrityError as error:
                 context['form'] = form
                 is_login_unique = False
