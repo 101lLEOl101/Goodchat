@@ -8,14 +8,13 @@
     transform: translateY(-50%);
     padding-top: 1%;
     padding-bottom: 1%;
-    top: 40%;
+    top: 55%;
     transition: all 1s;
 }
 
 .profile-pic {
     width: 50%;
     margin: 0 25%;
-    background: url("https://i.pinimg.com/236x/66/1e/ce/661ece4c9340138ac3a170db0d86f25f.jpg");
     border-radius: 100%;
     box-shadow: 0px 0px 30px #8270f2;
     transition: all 1s;
@@ -165,6 +164,14 @@
     right : 0;
     top : 55%;
     position : absolute;
+}
+
+#toggle:checked ~ .profile-card > .profile-pic {
+    width: 30%;
+    margin: 0 40%;
+    border-radius: 100%;
+    box-shadow: 0px 0px 30px #8270f2;
+    transition: all 1s;
 }
 
 .hiddenunckecked{
