@@ -8,7 +8,7 @@ class LoginForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-input',
-                'placeholder': 'Username',
+                'placeholder': 'Логин',
             }
         )
     )
@@ -18,7 +18,7 @@ class LoginForm(forms.Form):
         widget=forms.PasswordInput(
             attrs={
                 'class': 'form-input',
-                'placeholder': 'Password',
+                'placeholder': 'Пароль',
             }
         )
     )
@@ -31,7 +31,7 @@ class RegistrationForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-input',
-                'placeholder': 'Name'
+                'placeholder': 'Имя'
             }
         ),
         # help_text='Enter First Name',
@@ -42,7 +42,7 @@ class RegistrationForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-input',
-                'placeholder': 'Surname'
+                'placeholder': 'Фамилия'
             }
         ),
         # help_text='Enter Last Name',
@@ -53,7 +53,7 @@ class RegistrationForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-input',
-                'placeholder': 'Login'
+                'placeholder': 'Логин'
             }
         ),
         # help_text='Enter Username',
@@ -64,7 +64,7 @@ class RegistrationForm(forms.Form):
         widget=forms.EmailInput(
             attrs={
                 'class': 'form-input',
-                'placeholder': 'Email'
+                'placeholder': 'E-mail'
             }
         ),
         # help_text='Enter Email Address',
@@ -74,7 +74,7 @@ class RegistrationForm(forms.Form):
         widget=forms.PasswordInput(
             attrs={
                 'class': 'form-input',
-                'placeholder': 'Password'
+                'placeholder': 'Пароль'
             }
         ),
     )
@@ -83,7 +83,7 @@ class RegistrationForm(forms.Form):
         widget=forms.PasswordInput(
             attrs={
                 'class': 'form-input',
-                'placeholder': 'Repeat password'
+                'placeholder': 'Повторите пароль'
             }
         ),
     )
@@ -99,7 +99,7 @@ class RegistrationForm(forms.Form):
         password = self.cleaned_data['password']
         re_password = self.cleaned_data['re_password']
         if password != re_password:
-            raise forms.ValidationError('Passwords are not equal!')
+            raise forms.ValidationError('Пароли не совпадают!')
         return re_password
 
 
