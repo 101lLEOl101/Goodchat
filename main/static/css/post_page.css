@@ -175,10 +175,12 @@ cursor: pointer;
     border-radius: 14px;
     margin-left: 3%;
     padding: 2%;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .post-image {
-    width: 90%;
+    max-width: 90%;
     margin-left: 5%;
     background: url(https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png);
     background-size: cover;
