@@ -8,28 +8,31 @@
 
 {% block content %}
 <!--<div class="content_for_profile"> -->
+<input type="checkbox" id="toggle">
 <div class = "main_page">
     {% if posts %}
-            {% for post in posts %}
-            <div class = "main_page_post">
-                <div class="post-box">
-                    <div class="post-header">
-                        <div class="btn_box_post">
-                        <a class="round heart" disabled href="#" title="Понравилось"></a>
-                        <a class="round open" href="/post/{{post.id}}" title="Открыть полностью"><div class="arrow"></div><div class="arrow_diff"></div></a>
-                        <a class="round zakladka" href="{% url 'add-delete-bookmark' post.id %}" title="В закладки"></a>
-                        </div>
-                        <a class = "post-author" href="{{post.author.link}}">{{post.author.name}}</a>
+        {% for post in posts %}
+        <div class = "main_page_post">
+            <div class="post-box">
+                <div class="post-header">
+                    <div class="btn_box_post">
+                    <a class="round heart" disabled href="#" title="Понравилось"></a>
+                    <a class="round open" href="/post/{{post.id}}" title="Открыть полностью"><div class="arrow"></div><div class="arrow_diff"></div></a>
+                    <a class="round zakladka" href="{% url 'add-delete-bookmark' post.id %}" title="В закладки"></a>
                     </div>
-                    <div class="text-wrap">
-                        <div class="post-text">{{ post.content }}</div>
-                    </div>
-                    {% if post.photo %}
-                        <img src="{{ post.photo.url }}" class="post-image">
-                    {% endif %}
+                    <a class = "post-author" href="{{post.author.link}}">{{post.author.name}}</a>
                 </div>
+
+                <div class="text-wrap">
+                    <div class="post-text">{{ post.content }}</div>
+                </div>
+
+                {% if post.photo %}
+                    <img src="{{ post.photo.url }}" class="post-image">
+                {% endif %}
             </div>
-            {% endfor %}
+        </div>
+        {% endfor %}
         {% elif profile.id != self_profile.id %}
             <div class="zero_bookmarks">
             <p class="alarm_posts">У этого пользователя нет постов :c </p>
@@ -41,25 +44,29 @@
             </div>
         {% endif %}
 	</div>
-  <div class="profile-card">
-    <img src="{{ profile.avatar.url }}" class="profile-pic" />
+    <div class="profile-card">
+        <img src="{{ profile.avatar.url }}" class="profile-pic" />
 
-    <h3 class="user-nickname">{{ profile.name }} {{ profile.surname }}</h3>
-    <p class="user-info">О себе: <br> {{ profile.about }} </p>
-    <p class="user-nickname">Мне нравится: {{ profile.hobby }}</p>
+        <div class="user-nickname" id="usernick">Имя: {{ profile.name }} </div>
+        <div class="user-nickname" id="usersurname">Фамилия: {{ profile.surname }}</div>
+        <div class="user-info">О себе: <br> {{ profile.about }} </div>
+        <div class="user-nickname" id="userlike">Мне нравится: {{ profile.hobby }}</div>
+        <div class="user-nickname hiddenunckecked">Город: {{ profile.city }}</div>
+        <div class="user-nickname hiddenunckecked">Образование: {{ profile.education }}</div>
+        <div class="user-nickname hiddenunckecked">Компания: {{ profile.company }}}</div>
     {% if profile.id == self_profile.id %}
-    <a class="btn_profile">Подробнее</a>
+        <label for="toggle" class="btn_profile">Подробнее</label>
     {% else %}
     <a class="btn_profile" href="{% url 'open-dialog' profile.id %}">Написать</a>
     <a class="btn_profile" href="{% url 'add-friend' profile.id%}">Добавить в друзья</a>
-    <a class="btn_profile">Подробнее</a>
+    <label for="toggle" class="btn_profile">Подробнее</label>
     {% endif %}
-  </div>
-  <div class="profile-card-more">
-    <p class="user-nickname">Город: {{ profile.city }}</p>
-    <p class="user-nickname">Образование: {{ profile.education }}</p>
-    <p class="user-nickname">Компания: {{ profile.company }}}</p>
-  </div>
+    </div>
+    <div class="profile-card-more">
+        <p class="user-nickname">Город: {{ profile.city }}</p>
+        <p class="user-nickname">Образование: {{ profile.education }}</p>
+        <p class="user-nickname">Компания: {{ profile.company }}}</p>
+    </div>
 </div>
 {% endblock %}
 {% block js %}
