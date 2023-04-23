@@ -68,5 +68,5 @@ class CommentForm(forms.Form):
 class FrindSearchRequestForm(forms.Form):
     querry = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'search-id-input',
-        'placeholder': 'Введите id или имя'
+        'placeholder': 'Поиск ( ID или Имя )'
     }))

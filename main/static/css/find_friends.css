@@ -1,28 +1,36 @@
     .search-wrapper {
-        box-sizing: border-box;
-        position: absolute;
-        width: 1035px;
 
-        left: 516px;
-        top: 139px;
+        position: relative;
+        width: 1035px;
+        top: 20vh;
+        margin: 0 auto;
         background: rgba(0, 0, 0, 0.85);
         border: 5px solid #000000;
-        box-shadow: 0px 4px 4px #8270F2;
+        box-shadow: 0px 4px 20px #8270F2;
         border-radius: 14px;
+    }
+    .other_users_search{
+        display: flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        align-items: center;
+
+
+
     }
 
     .search-id-input {
+        margin-top: 2%;
         box-sizing: border-box;
         background-color: black;
         color: white;
         font-size: 40px;
         padding: 30px;
-        width: 643px;
+        width: 650px;
         height: 73px;
-        margin-left: 19%;
-        margin-top: 5%;
         border: 2px solid #FFFFFF;
-        border-radius: 36.5px;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
     }
 
     .search-id-input::placeholder {
@@ -30,52 +38,42 @@
     }
 
     .search-user-id-input {
-        box-sizing: border-box;
-        background-color: black;
+        margin-left:5%;
         color: white;
         font-size: 40px;
-        padding: 30px;
-        width: 643px;
-        height: 73px;
-        margin-left: 19%;
-        border: 2px solid #FFFFFF;
-        border-radius: 36.5px;
-        padding: 10px;
-        padding-left: 20px;
+
     }
 
     .ur-id-search {
         color: white;
-        margin-left: 20%;
         font-size: 30px;
     }
 
     .user-card-search {
+        margin-top: 5%;
+        margin-right:2%;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-wrap: wrap;
         width: 400px;
         height: 419px;
-        margin-left: 30%;
-        margin-top: 16px;
         background: #000000;
         border: 1px solid #FFFFFF;
         border-radius: 50px;
     }
 
     .profile-pic-search {
+        margin-top: 2%;
         width: 119px;
         height: 119px;
-        margin-left: 140px;
-        margin-top: 20px;
-        margin-bottom: -20px;
-        background: url(image.png);
         border-radius: 360px;
         border-color: white;
-        border-width: 1px;
         border-style: solid;
     }
 
     .nickname-search {
         box-sizing: border-box;
-        margin-left: 60px;
         width: 278px;
         height: 49px;
         text-align: center;
@@ -87,7 +85,6 @@
 
     .info-search {
         box-sizing: border-box;
-        margin-left: 60px;
         padding-top: 20px;
         width: 278px;
         text-align: center;
@@ -118,8 +115,6 @@
         transition: all 0.5s;
         border-radius: 20px;
         border: 2px solid #8270F2;
-        margin-top: 10px;
-        margin-bottom: 10px;
         color: white;
     }
     .find_item:hover{
@@ -128,7 +123,10 @@
         box-shadow: 0px 0px 33px #8270F2;
     }
 
-
+.friend_error{
+    color: red;
+    text-align:center;
+}
 
     .chat-user-pic {
         width: 100px;
@@ -138,3 +136,27 @@
         border: 2px solid #000;
         border-radius: 100%;
     }
+
+.btn_message{
+    background-color: #000000;
+    border: #8270F2 solid 2px;
+    padding: 15px;
+    color: #8270F2;
+    width: 100%;
+    font-size: 20px;
+    transition: all 0.5s;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.btn_message:hover{
+    background-color: rgba(0,100,0,60%);
+}
+
+.input_friend{
+    margin: 0 auto;
+}
+
+.form_friend{
+    width: 650px;
+}
