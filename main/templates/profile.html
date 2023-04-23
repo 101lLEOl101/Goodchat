@@ -30,9 +30,13 @@
                 </div>
             </div>
             {% endfor %}
+        {% elif profile.id != self_profile.id %}
+            <div class="zero_bookmarks">
+            <p class="alarm_posts">У этого пользователя нет постов :c </p>
+            </div>
         {% else %}
             <div class="zero_bookmarks">
-            <p class="alarm_posts">У Вас еще нет постов :c </p>
+            <p class="alarm_posts">У вас еще нет постов :c </p>
             <a class="btn_add" href="{% url 'addpost' %}">Написать пост</a>
             </div>
         {% endif %}
