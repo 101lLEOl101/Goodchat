@@ -126,7 +126,7 @@ def add_or_delete_bookmark(request, post_id):
         bookmark = Bookmark(post=post, user=request.user)
         bookmark.save()
 
-    return redirect(reverse('post', args=[post.id]))     
+    return redirect('bookmarks')
 
 # Заглушка для проверки чужого профиля
 
