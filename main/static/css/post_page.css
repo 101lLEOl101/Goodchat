@@ -175,6 +175,8 @@ cursor: pointer;
     border-radius: 14px;
     margin-left: 3%;
     padding: 2%;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .post-image {
