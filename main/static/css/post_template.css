@@ -14,6 +14,10 @@ justify-content: space-between;
 margin-top: 2%;
 width: 100%;
 margin-bottom: 2%;
+word-wrap: break-word;
+-webkit-hyphens: auto;
+-moz-hyphens: auto;
+-ms-hyphens: auto;
 }
 
 .post-text {
@@ -30,7 +34,6 @@ margin-bottom: 2%;
 .post-image {
     max-width: 90%;
     margin-left: 5%;
-    background-size: cover;
     border: solid 1px white;
     border-radius: 27px;
     margin-bottom: 4%;
