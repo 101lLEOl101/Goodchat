@@ -72,8 +72,8 @@ def registration_page(request):
                     not_unique_fields = 'email'
 
                 message = f"""
-                User with this data is already registered, 
-                check this fields: {not_unique_fields}.
+                Пользователь с таким именем уже существует
+                Посмотрите это поле: {not_unique_fields}.
                 """
 
                 context['message'] = message
@@ -112,7 +112,7 @@ def login_page(request):
                 return redirect('self-profile')
 
             context['message'] = """
-            Incorrect login or password - there is no user with such data
+            Неправильный логин или пароль
             """
             context['form'] = auth_form
 
