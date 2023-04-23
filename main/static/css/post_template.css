@@ -15,7 +15,9 @@ margin-top: 2%;
 width: 100%;
 margin-bottom: 2%;
 word-wrap: break-word;
-word-break: break-all;
+-webkit-hyphens: auto;
+-moz-hyphens: auto;
+-ms-hyphens: auto;
 }
 
 .post-text {
