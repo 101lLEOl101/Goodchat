@@ -31,6 +31,8 @@
 
 .chat_texts{
     text-decoration: none;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .chat-user-pic {
