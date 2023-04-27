@@ -1,19 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block style %}<link rel="stylesheet" href="{% static '/css/reg-log.css' %}">{% endblock %}
+{% block style %}<link rel="stylesheet" href="{% static '/css/friendlist.css' %}">{% endblock %}
 {% block title %}Друзья{% endblock %}
 
 {% block content %}
-<div style="margin-top: 10rem; margin-left: 10rem;">
-    <ul>
+
+<div class="friend_box">
+<h1 style="color:white; text-align: center;">Список Друзей</h1>
         {% for friend in friends %}
-        <li>
-            <a href="{% url 'profile' friend.id %}" style="color: #fff;">
-                {{ friend.full_name }}
-            </a>
-        </li>
+
+            <div  class="friendlist_item">
+                <a class="friend_name" href="{% url 'profile' friend.id %}">{{ friend.full_name }}</a>
+                <a class="button_write" href="#">Написать сообщение</a>
+            </div>
+
         {% endfor %}
-    </ul>
+
 </div>
 {% endblock %}
