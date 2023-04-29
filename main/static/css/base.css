@@ -150,6 +150,10 @@ transition: 0.3s;
     align-items:center;
 }
 
+.fa-user-group{
+    font-size: calc(17px + 8 * (130vw / 1280));
+}
+
 .img_header{
     width: 40px;
     border-radius: 100%;
