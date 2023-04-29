@@ -46,14 +46,20 @@
 	</div>
     <div class="profile-card">
         <img src="{{ profile.avatar.url }}" class="profile-pic" />
-
-        <div class="user-nickname" id="usernick">Имя: {{ profile.name }} </div>
-        <div class="user-nickname" id="usersurname">Фамилия: {{ profile.surname }}</div>
-        <div class="user-info">О себе: <br> {{ profile.about }} </div>
-        <div class="user-nickname" id="userlike">Мне нравится: {{ profile.hobby }}</div>
-        <div class="user-nickname hiddenunckecked">Город: {{ profile.city }}</div>
-        <div class="user-nickname hiddenunckecked">Образование: {{ profile.education }}</div>
-        <div class="user-nickname hiddenunckecked">Компания: {{ profile.company }}}</div>
+        <div class="row">
+            <div class = "left">
+                <div class="user-nickname" id="usernick">Имя: {{ profile.name }} </div>
+                <div class="user-nickname top" id="usersurname">Фамилия: {{ profile.surname }}</div>
+                <div class="user-info unhidden">О себе: <br> {{ profile.about }} </div>
+                <div class="user-nickname bottom" id="userlike">Мне нравится: {{ profile.hobby }}</div>
+                <div class="user-nickname hiddenunckecked">Город: {{ profile.city }}</div>
+                <div class="user-nickname hiddenunckecked">Образование: {{ profile.education }}</div>
+                <div class="user-nickname hiddenunckecked">Компания: {{ profile.company }}}</div>
+            </div>
+            <div class = "right">
+                <div class="user-info">О себе: <br> {{ profile.about }} </div>
+            </div>
+        </div>
     {% if profile.id == self_profile.id %}
         <label for="toggle" class="btn_profile">Подробнее</label>
     {% else %}
