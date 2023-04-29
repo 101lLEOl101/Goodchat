@@ -9,7 +9,7 @@
 <div class="messenger_box" id="messenger_box">
     <h2 style="text-align:center;"> Личные сообщения </h2>
     <div class="ur_friend" >
-        <a href = "{% url 'profile' 1 %}"><img src="{{chat.avatar.url}}" class="friend-user-pic"></a>
+        <a class = "chat-avatar-div" href = "{% url 'profile' 1 %}"><img src="{{chat.avatar.url}}" class="friend-user-pic"></a>
         <p>{{chat.name}}</p>
     </div>
 <div class="messenger_contener">
