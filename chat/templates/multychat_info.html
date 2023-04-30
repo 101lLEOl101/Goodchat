@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static '/css/chat.css' %}">
+<link rel="stylesheet" href="{% static '/css/friendlist.css' %}">
+{% endblock %}
+{% block title %}Информация о чате{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="chat-info-title">Chat information</h1>
+    <h2 class="chat-name">{{ chat_name }}</h2>
+    <div class="members" id="members">
+        <label for="members">Members ({{ members_count }}):</label>
+        {% for member in members %}
+            <div  class="friendlist_item">
+                <img src="{{ member.avatar.url }}" class="friend-avatar">
+                <a class="friend_name" href="{% url 'profile' member.id %}">{{ member.full_name }}</a>
+                <span class="friend_name">{{ member.access_description }}</span>
+            </div>
+        {% endfor %}
+    </div>
+    <br>
+    <a class="add-members" href="{% url 'multychat-settings' chat_id%}">Edit</a>
+    <a class="btn-leave" href="{% url 'leave-chat' chat_id %}">Leave</a>
+</div>
+<style>
+    .container {
+        display: block;
+        height: 80%;
+        width: 80%;
+        color: white;
+        background-color: black;
+        border: solid 2px #8270F2;
+        border-radius: 20px;
+        padding: 3rem;
+        margin: auto;
+        margin-top: 5%;
+    }
+    .chat-info-title{
+        text-align: center;
+        color: #8270F2;
+    }
+    .add-members {
+        color: white;
+        background-color: black;
+        border: solid 2px #8270F2;
+        border-radius: 20px;
+        padding: 0.8rem;
+        margin: 1rem;
+    }
+    .btn-leave {
+        color: red;
+        background-color: black;
+        border: solid 2px #8270F2;
+        border-radius: 20px;
+        padding: 0.8rem;
+        margin: 1rem;
+    }
+</style>
+{% endblock %}
+
+{% block js %}
+<script src="{% static '/js/chat.js' %}"></script>
+{% endblock %}

@@ -44,6 +44,9 @@ urlpatterns = [
          name='open-dialog'),
     path('friendlist/<int:id>', users_views.friend_list, name='friend-list'),
     path('addfriend/<int:recipient_id>', users_views.invite_friend, name='add-friend'),
+    path('chat/info/<int:chat_id>', chat_views.multichat_info, name='multychat-info'),   
+    path('chat/settings/<int:chat_id>', chat_views.multichat_settings, name='multychat-settings'),   
+    path('chat/leave/<int:chat_id>', chat_views.leave_chat, name='leave-chat'),   
 ]
 
 if settings.DEBUG:
