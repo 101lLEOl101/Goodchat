@@ -6,6 +6,18 @@
 
 }
 
+.content_settings::-webkit-scrollbar {
+  width: 12px;               /* ширина scrollbar */
+}
+.content_settings::-webkit-scrollbar-track {
+  background: black;        /* цвет дорожки */
+}
+.content_settings::-webkit-scrollbar-thumb {
+  background-color: #8270F2;    /* цвет плашки */
+  border-radius: 100px;       /* закругления плашки */
+  border: 0px 10px 33px #8270F2;  /* padding вокруг плашки */
+}
+
 .displayed_info{
     color: #ffffff;
     padding: 0.5%;
