@@ -43,29 +43,76 @@ def get_friends(user: User):
 
     return friends
 
-def are_friends(user1: User, user2: User):
+
+def are_friends(user1: User, user2: User) -> bool:
     user1_friends = get_friends(user1)
     return user2 in user1_friends
+
 
 def friend_able_to_invite(inviter, recipient) -> bool:
     if inviter == recipient:
         return False
-    
+
     if are_friends(inviter, recipient):
         return False
-    
+
+    try:
+        invitation = FriendRequest.objects.get(
+            inviter=inviter, recipient=recipient)
+    except FriendRequest.DoesNotExist:
+        pass
+    else:
+        return False
+
+    try:
+        invitation = FriendRequest.objects.get(
+            inviter=recipient, recipient=inviter)
+    except FriendRequest.DoesNotExist:
+        pass
+    else:
+        return False
+
+    return True
+
+def friend_invited(inviter: User, recipient: User) -> bool:
+    try: 
+        invitation = FriendRequest.objects.get(inviter=inviter, recipient=recipient)
+    except FriendRequest.DoesNotExist:
+        return False
+    else:
+        return True
+
+def accept_friend_request(inviter: User, recipient: User):
     try:
         invitation = FriendRequest.objects.get(inviter=inviter, recipient=recipient)
     except FriendRequest.DoesNotExist:
-        pass
+        raise ValueError('Null request can\'t be accepted')
     else:
-        return False
+        friendship = Friend()
+        friendship.save()
+        friendship.friends.set([inviter, recipient])
+        friendship.save()
+        invitation.delete()
+        
+def get_friend_add_button_state(user_id: User, opponent_id: User):
+    user = User.objects.get(id=user_id)
+    opponent = User.objects.get(id=opponent_id)
+    state = False
+    if friend_invited(opponent, user):
+        state = 'Принять дружбу'
+    elif friend_invited(user, opponent):
+        state = 'Отменить запрос дружбы'
+    elif friend_able_to_invite(user, opponent):
+        state = 'Предложить дружбу'
+    elif are_friends(user, opponent):
+        state = 'Прекратить дружить'
     
-    try:
-        invitation = FriendRequest.objects.get(inviter=recipient, recipient=inviter)
-    except FriendRequest.DoesNotExist:
-        pass
-    else:
-        return False
-    
-    return True
+    return state 
+
+def refuse_friendship(user1: User, user2: User):
+    print('Пока нельзя удалять из друзей, дружи со всеми !!!!')
+    pass
+
+def deny_friend_request(inviter: User, recipient: User):
+    invitation = FriendRequest.objects.get(inviter=inviter, recipient=recipient)
+    invitation.delete()
