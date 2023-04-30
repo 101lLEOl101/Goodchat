@@ -5,15 +5,22 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
+from django.urls import reverse
 from .forms import LoginForm
 from .forms import RegistrationForm
 from .forms import ProfileEditForm
 from .models import User
+from .models import Friend
 from .models import FriendRequest
 from .utils import get_profile
 from .utils import get_friends
 from .utils import convert_profile_to_dict
 from .utils import friend_able_to_invite
+from .utils import accept_friend_request
+from .utils import are_friends
+from .utils import refuse_friendship
+from .utils import friend_invited
+from .utils import deny_friend_request
 from .signals import user_created
 
 
@@ -174,13 +181,15 @@ def friend_list(request, id):
         current_user = User.objects.get(id=id)
     except User.DoesNotExist:
         return redirect('home')
-    context = {'profile': {'id': id}}
+    context = {}
     
     friends = get_friends(current_user)
+    print(friends)
     friends = [convert_profile_to_dict(get_profile(friend))
                for friend in friends]
     
     context['friends'] = friends
+    print(friends)
     return render(request, 'friendlist.html', context)
 
 @login_required
@@ -197,10 +206,22 @@ def invite_friend(request, recipient_id):
         invitation = FriendRequest(inviter=inviter, recipient=recipient)
         invitation.save()
         print('REQUEST SENDED')
-        return redirect('home')
+        return redirect(reverse('profile', args=[recipient.id]))
+    elif are_friends(inviter, recipient):
+        refuse_friendship(inviter, recipient)
+        return redirect(reverse('profile', args=[recipient.id]))
+    elif friend_invited(inviter, recipient):
+        deny_friend_request(inviter, recipient)
+        return redirect(reverse('profile', args=[recipient.id]))
     else:
-        print('REQUEST DENIED')
-        return redirect('self-profile')
+        try:
+            accept_friend_request(recipient, inviter)
+        except ValueError:
+            print('REQUEST DENIED')
+            return redirect(reverse('profile', args=[recipient.id]))
+        else:
+            return redirect(reverse('profile', args=[recipient.id]))
+            
 
 @login_required
 def logout_page(request):

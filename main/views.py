@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.urls import reverse
 from users.models import Profile
 from users.models import User
+from users.utils import get_friend_add_button_state
 from main.models import Post, Bookmark
 from main.models import Comment
 from .forms import PostForm
@@ -197,7 +198,8 @@ def profile(request, id: int):
                           'photo': post.photo,
                           'content': post.content,
                           'date': post.date_create,
-                          } for post in reversed(posts)]
+                          } for post in reversed(posts)],
+               'add_friend_button': get_friend_add_button_state(request.user.id, id)
                }
 
     return render(request, 'profile.html',  context=context)

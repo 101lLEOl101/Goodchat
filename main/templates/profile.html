@@ -64,7 +64,9 @@
         <label for="toggle" class="btn_profile">Подробнее</label>
     {% else %}
     <a class="btn_profile" href="{% url 'open-dialog' profile.id %}">Написать</a>
-    <a class="btn_profile" href="{% url 'add-friend' profile.id%}">Добавить в друзья</a>
+    {% if add_friend_button %}
+        <a class="btn_profile" href="{% url 'add-friend' profile.id%}">{{ add_friend_button }}</a>
+    {% endif %}
     <label for="toggle" class="btn_profile">Подробнее</label>
     {% endif %}
     </div>
