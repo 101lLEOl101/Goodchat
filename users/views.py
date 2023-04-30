@@ -174,7 +174,7 @@ def friend_list(request, id):
         current_user = User.objects.get(id=id)
     except User.DoesNotExist:
         return redirect('home')
-    context = {}
+    context = {'profile': {'id': id}}
     
     friends = get_friends(current_user)
     friends = [convert_profile_to_dict(get_profile(friend))
