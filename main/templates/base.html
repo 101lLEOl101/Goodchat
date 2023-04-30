@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="{% static '/css/base.css' %}">
     {% block style %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
-    <link rel="shortcut icon" type="image/x-icon" href="..\static\images\kvlogo.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="{% static '/images/kvlogo.png' %}" />
 </head>
 <body>
 <header>
     <div class = "header_menu">
         <a href = "{% url 'home' %}" class = "logo_h">
-            <img src = "..\static\images\logo.png" class = "logo_h" alt = "Home Page">
+            <img src = "{% static '/images/logo.png' %}" class = "logo_h" alt = "Home Page">
         </a>
     </div>
     {% if user.is_authenticated %}
