@@ -170,10 +170,10 @@ def multichat_settings(request, chat_id):
         return redirect(reverse('multychat-info', args=[chat_id]))
     if request.method == 'GET':
 
-        context['members'] = [normalize_chat_member(access)
+        context['members'] = [get_profile(access.user)
                               for access
                               in Access.objects.filter(chat=chat, mode__in=[1, 2, 3, 4])]
-        context['banned'] = [normalize_chat_member(access)
+        context['banned'] = [get_profile(access.user)
                              for access
                              in Access.objects.filter(chat=chat, mode=0)]
 
