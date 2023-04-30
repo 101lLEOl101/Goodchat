@@ -80,11 +80,11 @@ def find_friend_page(request):
                 
                 response.extend([profile
                                  for profile 
-                                 in Profile.objects.filter(name=name)
+                                 in Profile.objects.filter(name__icontains=name)
                                  if profile not in response])
                 response.extend([profile 
                                  for profile 
-                                 in Profile.objects.filter(surname=surname)
+                                 in Profile.objects.filter(surname__icontains=surname)
                                  if profile not in response])
                 
             context['form'] = form                
