@@ -1,0 +1,98 @@
+a{
+    text-decoration: none;
+}
+.friend_name{
+    color: white;
+    width: 20%;
+    text-align: center;
+}
+.friend_box{
+    width:110vh;
+    background-color: rgba(0,0,0,50%);
+    box-shadow: 0px 0px 10px #8270F2;
+    border: black solid 5px;
+    border-radius: 14px;
+    margin: 0 auto;
+    position: relative;
+    top: 15vh;
+    padding: 20px;
+}
+
+.friendlist_item{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 98%;
+    background-color: black;
+    border: 1px solid #8270F2;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 5px #8270F2;
+}
+
+.button_write{
+    display:block;
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: black;
+    border: solid 1px #8270F2;
+    color: #8270F2;
+    text-align: center;
+    box-shadow: 0px 0px 10px #8270F2;
+    transition: all 0.3s;
+    position: relative;
+    left: 40%;
+}
+.button_write:hover{
+    box-shadow: 0px 0px 40px #8270F2;
+}
+.friend-avatar{
+    margin-left: 2%;
+    width: 10%;
+    border-radius: 100%;
+}
+
+.zero_bookmarks{
+    position: relative;
+    top: 5vh;
+    background-color:black;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0px 0px 25px #8270F2;
+
+}
+.alarm_posts{
+    color: white;
+}
+
+.btn_posts{
+    color:white;
+}
+.btn_add{
+    background-color: #000000;
+    border-radius: 12px;
+    border: #8270F2 solid 2px;
+    padding: 15px;
+    color: #8270F2;
+    width: 100%;
+    font-size: 20px;
+    transition: all 0.7s;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btn_add:hover{
+    background: linear-gradient(to top left, #9f49ff, #19087d);
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+}

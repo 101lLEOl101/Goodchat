@@ -1,19 +1,37 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block style %}<link rel="stylesheet" href="{% static '/css/reg-log.css' %}">{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{% static '/css/friendlist.css' %}">
+{% endblock %}
 {% block title %}Друзья{% endblock %}
 
 {% block content %}
-<div style="margin-top: 10rem; margin-left: 10rem;">
-    <ul>
+{% if friends %}
+<div class="friend_box">
+<h1 style="color:white; text-align: center;">Список Друзей</h1>
         {% for friend in friends %}
-        <li>
-            <a href="{% url 'profile' friend.id %}" style="color: #fff;">
-                {{ friend.full_name }}
-            </a>
-        </li>
+
+            <div  class="friendlist_item">
+                <img src="{{ friend.avatar.url }}" class="friend-avatar">
+                <a class="friend_name" href="{% url 'profile' friend.id %}">{{ friend.full_name }}</a>
+                <a class="button_write" href="{% url 'open-dialog' friend.id %}">Написать сообщение</a>
+            </div>
+
         {% endfor %}
-    </ul>
+
 </div>
+{% elif profile.id != self_profile.id %}
+            <div class="zero_bookmarks">
+            <p class="alarm_posts">У этого пользователя нет друзей :c </p>
+            </div>
+{% else %}
+            <div class="zero_bookmarks">
+            <p class="alarm_posts">У Вас еще нет друзей :c </p>
+            <a class="btn_add" href="{% url 'home' %}">Вернуться на главную</a>
+            </div>
+{% endif %}
+{% endblock %}
+{% block js %}
+<script src="{% static '/js/friendlist.js' %}"></script>
 {% endblock %}
