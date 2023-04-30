@@ -21,7 +21,7 @@
             {% for member in members %}
                 <div  class="friendlist_item">
                     <img src="{{ member.avatar.url }}" class="friend-avatar">
-                    <a class="friend_name" href="{% url 'profile' member.id %}">{{ member.full_name }}</a>
+                    <a class="friend_name" href="{% url 'profile' member.id %}">{{ member.name }} {{ member.surname }}</a>
                     <span class="friend_name">{{ member.access_description }}</span>
                     <input type="checkbox" name="members-checkbox-form" checked value="{{ member.id }}">
                 </div>
@@ -34,7 +34,7 @@
                     <div  class="friendlist_item">
                         <img src="{{ member.avatar.url }}" class="friend-avatar">
                         <a class="friend_name" href="{% url 'profile' member.id %}">{{ member.name }} {{ member.surname }}</a>
-                        <span class="friend_name">{{ member.access_description }}</span>
+                        <!-- <span class="friend_name">{{ member.access_description }}</span> -->
                         <input type="checkbox" name="members-checkbox-form" value="{{ member.id }}">
                     </div>
                 {% endfor %}

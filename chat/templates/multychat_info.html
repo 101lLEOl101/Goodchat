@@ -16,7 +16,17 @@
         {% for member in members %}
             <div  class="friendlist_item">
                 <img src="{{ member.avatar.url }}" class="friend-avatar">
-                <a class="friend_name" href="{% url 'profile' member.id %}">{{ member.full_name }}</a>
+                <a class="friend_name" href="{% url 'profile' member.id %}">{{ member.name }} {{member.surname}}</a>
+                <span class="friend_name">{{ member.access_description }}</span>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="members" id="banned">
+        <label for="banned">Banned ({{ banned_count }}):</label>
+        {% for member in banned %}
+            <div  class="friendlist_item">
+                <img src="{{ member.avatar.url }}" class="friend-avatar">
+                <a class="friend_name" href="{% url 'profile' member.id %}">{{ member.name }} {{member.surname}}</a>
                 <span class="friend_name">{{ member.access_description }}</span>
             </div>
         {% endfor %}

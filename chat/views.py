@@ -15,6 +15,7 @@ from .utils import get_chat_members
 from .utils import give_or_save_access
 from .utils import ignore_or_refuse_access
 from .utils import leave_chat as leave_chat_util
+from .utils import normalize_chat_member
 from .forms import MessageForm
 from users.utils import get_user
 from users.utils import get_profile
@@ -52,7 +53,7 @@ def chat_page(request, id):
         chat = Chat.objects.get(id=id)
     except Chat.DoesNotExist:
         return redirect('chatlist')
-    
+
     try:
         access = Access.objects.get(user=request.user, chat=chat)
         if access.mode == 0:
@@ -109,8 +110,16 @@ def multichat_info(request, chat_id):
     context = {}
     context['chat_id'] = chat_id
     context['chat_name'] = chat.name
-    context['members'] = get_chat_members(chat)
+
+    context['members'] = [normalize_chat_member(access)
+                          for access
+                          in Access.objects.filter(chat=chat, mode__in=[1, 2, 3, 4])]
+    context['banned'] = [normalize_chat_member(access)
+                         for access
+                         in Access.objects.filter(chat=chat, mode=0)]
+
     context['members_count'] = len(context['members'])
+    context['banned_count'] = len(context['banned'])
 
     return render(request, 'multychat_info.html', context)
 
@@ -150,23 +159,23 @@ def multichat_settings(request, chat_id):
                 give_or_save_access(member, chat)
             else:
                 ignore_or_refuse_access(member, chat)
-                
+
         new_chat_name = dict(request.POST)['chat-name-form'][0]
         if new_chat_name:
             chat.name = new_chat_name
             chat.save()
         return redirect(reverse('multychat-info', args=[chat_id]))
     if request.method == 'PUT':
-        print(request.PUT) 
+        print(request.PUT)
         return redirect(reverse('multychat-info', args=[chat_id]))
     if request.method == 'GET':
 
-        context['members'] = [get_profile(access.user)
+        context['members'] = [normalize_chat_member(access)
                               for access
                               in Access.objects.filter(chat=chat, mode__in=[1, 2, 3, 4])]
-        context['banned'] = [get_profile(access.user)
-                            for access
-                            in Access.objects.filter(chat=chat, mode=0)]
+        context['banned'] = [normalize_chat_member(access)
+                             for access
+                             in Access.objects.filter(chat=chat, mode=0)]
 
         context['invitable'] = [get_profile(friend)
                                 for friend
@@ -176,7 +185,8 @@ def multichat_settings(request, chat_id):
 
         context['chat_name'] = chat.name
         return render(request, 'multychat_settings.html', context)
-    
+
+
 @login_required
 def leave_chat(request, chat_id):
     access = chat_access(request.user.id, chat_id)
@@ -184,13 +194,14 @@ def leave_chat(request, chat_id):
     if access:
         leave_chat_util(access.user, access.chat)
     return redirect('chat-list')
-    
+
+
 def new_multychat(request):
     chat = Chat(is_multy=True, name="Untitled")
     chat.save()
     access = Access(user=request.user, chat=chat, mode=4)
     access.save()
-    message = Message(chat=chat, author=request.user, 
+    message = Message(chat=chat, author=request.user,
                       content="У меня право на первое сообщение на уровне сервера хахаха")
     message.save()
     return redirect('chat-list')
