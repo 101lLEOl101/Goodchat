@@ -6,7 +6,9 @@
 {% block content %}
 <div class = "post-box" style="margin-top:10vh;">
 	<div class = "post-header">
-     	<h2 class = "post-name"></h2>
+     	<div class="btn_box_post">
+			<a class="round edit" href="{% url 'postedit' post.id %}" title="В закладки"></a>
+		</div>
 		<a href="{{ post.author.link }}" class = "post-author">{{ post.author.name }}</a>
 	</div>
 

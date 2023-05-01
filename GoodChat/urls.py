@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from main import views as main_views
+from main import views as edit_post
 from users import views as users_views
 from chat import views as chat_views
 from django.conf.urls.static import static
@@ -35,6 +36,7 @@ urlpatterns = [
     path('profile/<int:id>', main_views.profile, name = 'profile'),
     path('profile', main_views.self_profile, name='self-profile'),
     path('post/<int:id>', main_views.post, name='post'),
+    path('postedit/<int:id>', main_views.edit_post, name='postedit'),
     path('addpost', main_views.add_post_page, name = 'addpost'),
     path('findfriend', main_views.find_friend_page, name = 'findfriend'),
     path('messenger', main_views.messenger_page, name='messenger'),

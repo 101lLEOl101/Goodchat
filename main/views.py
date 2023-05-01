@@ -8,7 +8,7 @@ from users.models import User
 from users.utils import get_friend_add_button_state
 from main.models import Post, Bookmark
 from main.models import Comment
-from .forms import PostForm
+from .forms import PostForm, EditPostForm
 from .forms import CommentForm
 from .utils import get_bookmarks
 from .forms import FrindSearchRequestForm
@@ -52,6 +52,38 @@ def add_post_page(request):
         context['form'] = PostForm()
 
     return render(request, 'add_post_page.html', context)
+
+@login_required
+def edit_post(request, id: int):
+    context = {}
+    post = Post.objects.get(id=id)
+    if request.method == 'POST':
+        post_form = PostForm(request.POST, request.FILES)
+        if post_form.is_valid():
+            post_author = request.user
+            post_content = post_form.cleaned_data.get('content')
+            post_photo = post_form.cleaned_data.get('photo')
+            post = Post(author=post_author, content=post_content, photo=post_photo)
+            post.save()
+            return redirect('self-profile')
+
+        context['form'] = post_form
+        context['message'] = 'Incorrect form, try again'
+    else:
+        form_init = {
+                    'content': post.content,
+                    'photo': post.photo,
+                     }
+        context = {
+            'post': {
+                'content': post.content,
+                'photo': post.photo,
+            }
+        }
+        request.FILES['photo'] = post.photo
+        context['form'] = EditPostForm(initial=form_init)
+        print(EditPostForm(form_init))
+    return render(request, 'edit_post_page.html', context)
 
 
 

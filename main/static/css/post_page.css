@@ -196,3 +196,30 @@ cursor: pointer;
 .comment-text{
     white-space: pre-wrap;
 }
+
+.round{
+    width:22px;
+    height:22px;
+    border-radius:100%;
+    margin-right:10px;
+    margin-left:10px;
+}
+
+.edit{
+    background-color: #36C849;
+}
+
+.edit:hover{
+    background-color: #36C849;
+    background-image: url("/media/images/pencil.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-size: 28px 28px;
+}
+
+.btn_box_post{
+    display:flex;
+    width:130px;
+    margin-left:2%;
+}

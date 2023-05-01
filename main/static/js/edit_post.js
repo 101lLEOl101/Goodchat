@@ -1,11 +1,5 @@
 let dt = new DataTransfer();
 
-add.classList.add("now-side_icon");
-add.classList.remove("side_icon");
-i = add.querySelector('.hr').querySelector('.icona');
-i.classList.add("now-icona");
-i.classList.remove("icona");
-
 $('.input-file input[type=file]').on('change', function(){
 	let $files_list = $(this).closest('.input-file').next();
 	$files_list.empty();
@@ -31,6 +25,7 @@ $('.input-file input[type=file]').on('change', function(){
 	btn.style.margin = '0';
 	document.getElementById("box-img").style.height = "auto";
 	document.getElementById("input-list").style.margin = "0 auto";
+	console.log(id_photo.files)
 });
 
 function removeFilesItem(target){
