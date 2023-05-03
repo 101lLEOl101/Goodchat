@@ -29,7 +29,7 @@
             <div  class="friendrequest_item">
                 <img src="{{ inviter.avatar.url }}" class="friend-avatar">
                 <a class="friend_name" href="{% url 'profile' inviter.id %}">{{ inviter.full_name }}</a>
-                <a class="button_write" href="{% url 'add-friend' inviter.id%}">{{ add_friend_button }}</a>
+                <a class="button_write" href="{% url 'add-friend' inviter.id%}">Принять</a>
             </div>
 
         {% endfor %}
