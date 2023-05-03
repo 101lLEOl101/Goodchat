@@ -22,6 +22,7 @@ from .utils import refuse_friendship
 from .utils import friend_invited
 from .utils import deny_friend_request
 from .signals import user_created
+from users.utils import get_friend_add_button_state
 
 
 def registration_page(request):
@@ -187,10 +188,19 @@ def friend_list(request, id):
     print(friends)
     friends = [convert_profile_to_dict(get_profile(friend))
                for friend in friends]
-    
+    if current_user == request.user:
+        friend_requests = FriendRequest.objects.filter(recipient=request.user)
+        inviters = [get_profile(friend_request.inviter)
+                    for friend_request in friend_requests]
+        context['friend_inviters'] = [convert_profile_to_dict(inviter)
+                                      for inviter in inviters]
+        context['add_friend_button'] = get_friend_add_button_state(request.user.id, id)
     context['friends'] = friends
     print(friends)
     return render(request, 'friendlist.html', context)
+
+
+
 
 @login_required
 def invite_friend(request, recipient_id):

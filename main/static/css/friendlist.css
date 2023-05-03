@@ -7,6 +7,10 @@ a{
     text-align: center;
 }
 .friend_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     width:110vh;
     background-color: rgba(0,0,0,50%);
     box-shadow: 0px 0px 10px #8270F2;
@@ -19,6 +23,20 @@ a{
 }
 
 .friendlist_item{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 98%;
+    background-color: black;
+    border: 1px solid #8270F2;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 5px #8270F2;
+}
+
+.friendrequest_item{
     display: flex;
     justify-content: start;
     align-items: center;
@@ -95,4 +113,37 @@ a{
     border-radius: 12px;
     color: white;
     font-weight: bold;
+}
+
+.requests_h2{
+    display: none;
+    color: rgba(131, 113, 242, 0.70);
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.requests_h1{
+    display: block;
+    cursor: default;
+    color: white;
+    text-align: center;
+}
+
+.title_h{
+    display:flex;
+    align-items: center;
+}
+
+.btn_request_h1{
+    display:none;
+}
+
+.btn_request_h2{
+    margin-left: 10px;
+    padding: 5px;
+    background-color: rgba(131, 113, 242, 0.70);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #8270F2;
+    cursor: pointer;
 }

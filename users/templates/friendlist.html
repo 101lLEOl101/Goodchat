@@ -9,7 +9,12 @@
 {% block content %}
 {% if friends %}
 <div class="friend_box">
-<h1 style="color:white; text-align: center;">Список Друзей</h1>
+    <div class="title_h">
+        <h2 class="requests_h1" id="req_h1">Список Друзей</h2>
+        <button class="btn_request_h1" id="btn_h1">Список Друзей</button>
+        <button class="btn_request_h2" id="btn_h2">Запросы в друзья </button>
+        <h2 class="requests_h2" id="req_h2">Запросы в друзья</h2>
+    </div>
         {% for friend in friends %}
 
             <div  class="friendlist_item">
@@ -19,7 +24,15 @@
             </div>
 
         {% endfor %}
+        {% for inviter in friend_inviters %}
 
+            <div  class="friendrequest_item">
+                <img src="{{ inviter.avatar.url }}" class="friend-avatar">
+                <a class="friend_name" href="{% url 'profile' inviter.id %}">{{ inviter.full_name }}</a>
+                <a class="button_write" href="{% url 'add-friend' inviter.id%}">{{ add_friend_button }}</a>
+            </div>
+
+        {% endfor %}
 </div>
 {% elif profile.id != self_profile.id %}
             <div class="zero_bookmarks">
