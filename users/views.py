@@ -11,6 +11,7 @@ from .forms import RegistrationForm
 from .forms import ProfileEditForm
 from .models import User
 from .models import Friend
+from .models import Profile
 from .models import FriendRequest
 from .utils import get_profile
 from .utils import get_friends
@@ -182,7 +183,11 @@ def friend_list(request, id):
         current_user = User.objects.get(id=id)
     except User.DoesNotExist:
         return redirect('home')
-    context = {}
+    profile = Profile.objects.get(id=id)
+    context = {'profile': {'id': profile.id,
+                           'name': profile.name
+                           }
+               }
     
     friends = get_friends(current_user)
     print(friends)

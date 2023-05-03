@@ -10,10 +10,12 @@
 {% if friends %}
 <div class="friend_box">
     <div class="title_h">
-        <h2 class="requests_h1" id="req_h1">Список Друзей</h2>
-        <button class="btn_request_h1" id="btn_h1">Список Друзей</button>
-        <button class="btn_request_h2" id="btn_h2">Запросы в друзья </button>
-        <h2 class="requests_h2" id="req_h2">Запросы в друзья</h2>
+        {% if profile.id == self_profile.id %}
+        <h2 class="requests_h1" id = "title">Список Друзей</h2>
+        <button class="btn_request_h2" id="btn">Запросы в друзья</button>
+        {% else %}
+        <h2 class="requests_h1" id = "title">Список Друзей {{profile.name}}</h2>
+        {% endif %}
     </div>
         {% for friend in friends %}
 
