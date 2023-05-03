@@ -17,20 +17,22 @@
     </div>
         {% for friend in friends %}
 
-            <div  class="friendlist_item">
+            <div  class="friendlist_item" id="friend_item">
                 <img src="{{ friend.avatar.url }}" class="friend-avatar">
                 <a class="friend_name" href="{% url 'profile' friend.id %}">{{ friend.full_name }}</a>
                 <a class="button_write" href="{% url 'open-dialog' friend.id %}">Написать сообщение</a>
+
             </div>
 
         {% endfor %}
         {% for inviter in friend_inviters %}
 
-            <div  class="friendrequest_item">
+            <div  class="friendrequest_item" id="request_item">
                 <img src="{{ inviter.avatar.url }}" class="friend-avatar">
                 <a class="friend_name" href="{% url 'profile' inviter.id %}">{{ inviter.full_name }}</a>
                 <a class="button_write" href="{% url 'add-friend' inviter.id%}">Принять</a>
             </div>
+
 
         {% endfor %}
 </div>
