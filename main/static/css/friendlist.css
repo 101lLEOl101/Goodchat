@@ -156,11 +156,9 @@ a{
 }
 
 .accept{
-    position:absolute;
-    left:54%;
+    left:24%;
 }
 
 .reject{
-    position:absolute;
-    left:75%;
+    left:25%;
 }
