@@ -154,3 +154,13 @@ a{
     box-shadow: 0px 0px 10px #8270F2;
     cursor: pointer;
 }
+
+.accept{
+    position:absolute;
+    left:54%;
+}
+
+.reject{
+    position:absolute;
+    left:75%;
+}
