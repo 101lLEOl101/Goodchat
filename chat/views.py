@@ -195,18 +195,7 @@ def leave_chat(request, chat_id):
         leave_chat_util(access.user, access.chat)
     return redirect('chat-list')
 
-
 def new_multychat(request):
-    chat = Chat(is_multy=True, name="Untitled")
-    chat.save()
-    access = Access(user=request.user, chat=chat, mode=4)
-    access.save()
-    message = Message(chat=chat, author=request.user,
-                      content="У меня право на первое сообщение на уровне сервера хахаха")
-    message.save()
-    return redirect('chat-list')
-
-def re_new_multychat(request):
     context = {}
     if request.method == 'POST':
         print(request.POST)
