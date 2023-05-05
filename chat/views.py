@@ -205,3 +205,28 @@ def new_multychat(request):
                       content="У меня право на первое сообщение на уровне сервера хахаха")
     message.save()
     return redirect('chat-list')
+
+def re_new_multychat(request):
+    context = {}
+    if request.method == 'POST':
+        print(request.POST)
+        print('POST request for create multychat')
+
+        accepted_members = dict(request.POST)['members-checkbox-form']
+        accepted_members = list(map(int, accepted_members))
+        chat = Chat(is_multy=True, name=dict(request.POST)['chat-name-form'][0])
+        chat.save()
+        access = Access(user=request.user, chat=chat, mode=4)
+        access.save()
+        for member in accepted_members:
+            user = User.objects.get(id=member)
+            access = Access(user=user, chat=chat, mode=1)
+            access.save()
+        message = Message(chat=chat, author=request.user,
+                          content="Chat create!!!!")
+        message.save()
+        return redirect('chat-list')
+    if request.method == 'GET':
+
+        context['friends'] = [get_profile(friend) for friend in get_friends(request.user)]
+        return render(request, 'create_multychat.html', context)
