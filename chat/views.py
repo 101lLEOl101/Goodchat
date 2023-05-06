@@ -190,7 +190,6 @@ def multichat_settings(request, chat_id):
         context['chat_avatar_url'] = chat.avatar.url
         context['chat_avatar_value'] = chat.avatar
         context['chat_avatar_name'] = chat.avatar.name.split('/')[-1]
-        print(chat.avatar.read())
         return render(request, 'multychat_settings.html', context)
 
 
