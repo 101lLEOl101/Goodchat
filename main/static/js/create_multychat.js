@@ -1,5 +1,11 @@
 let dt = new DataTransfer();
 
+mes.classList.add("now-side_icon");
+mes.classList.remove("side_icon");
+i = mes.querySelector('.hr').querySelector('.icona');
+i.classList.add("now-icona");
+i.classList.remove("icona");
+
 $('.input-file input[type=file]').on('change', function(){
 	let $files_list = $(this).closest('.input-file').next();
 	$files_list.empty();
@@ -25,6 +31,7 @@ $('.input-file input[type=file]').on('change', function(){
 	btn.style.margin = '0';
 	document.getElementById("box-img").style.height = "auto";
 	document.getElementById("input-list").style.margin = "0 auto";
+    console.log(id_photo.files)
 });
 
 function removeFilesItem(target){
@@ -40,4 +47,5 @@ function removeFilesItem(target){
 	document.getElementById('add_btn').removeAttribute("style");
 	document.getElementById("box-img").removeAttribute("style");
 	document.getElementById("input-list").removeAttribute("style");
+    console.log(id_photo.files)
 }

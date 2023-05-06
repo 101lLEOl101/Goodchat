@@ -9,7 +9,24 @@
 {% block content %}
 <div class="container">
     <h1 class="chat-info-title">Chat settings</h1>
-    <form id="members-form" method="POST">
+    <form id="members-form" method="POST" enctype="multipart/form-data">
+        {% if chat_avatar_name %}
+        <div class="input-file-row" id="box-img" style="height: auto;">
+						<label class="input-file" id="add_btn" style="visibility: hidden; width: 0px; height: 0px; margin: 0px;">
+						<input type="file" name="chat-photo-form" accept="image/*" id="id_photo" value="{{chat_avatar_value}}">
+						<span>Выберите Изображение</span>
+						</label>
+					<div id="input-list" class="input-file-list" style="margin: 0px auto;"><div class="input-file-list-item"><img class="input-file-list-img" src="{{chat_avatar_url}}"><span class="input-file-list-name"></span><a href="#" onclick="removeFilesItem(this); return false;" class="input-file-list-remove">x</a></div></div>
+				</div>
+        {% else %}
+        <div class="input-file-row" id="box-img">
+						<label class="input-file" id="add_btn">
+						<input type="file" name="chat-photo-form" accept="image/*" id="id_photo" >
+						<span>Выберите Изображение</span>
+						</label>
+					<div id="input-list" class="input-file-list"></div>
+        </div>
+        {% endif %}
         {% csrf_token %}
         <div class="members" id="members">
             <div>
@@ -56,33 +73,9 @@
     <button class="btn-save" type="submit" form="members-form">Save</button>
     <a class="btn-discard" href="{% url 'multychat-info' chat_id%}">Discard</a>
 </div>
-<style>
-    .container {
-        display: block;
-        height: 80%;
-        width: 80%;
-        color: white;
-        background-color: black;
-        border: solid 2px #8270F2;
-        border-radius: 20px;
-        padding: 3rem;
-        margin: auto;
-        margin-top: 5%;
-    }
-    .chat-info-title{
-        text-align: center;
-        color: #8270F2;
-    }
-    .btn-save, .btn-discard {
-        color: white;
-        background-color: black;
-        border: solid 2px #8270F2;
-        border-radius: 20px;
-        padding: 0.8rem;
-    }
-</style>
 {% endblock %}
 
 {% block js %}
-<script src="{% static '/js/chat.js' %}"></script>
+<script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
+<script src="{% static '/js/create_multychat.js' %}"></script>
 {% endblock %}

@@ -22,7 +22,7 @@ from users.utils import get_profile
 from users.utils import get_friends
 from users.models import User
 # Create your views here.
-
+from PIL import Image
 
 @login_required
 def chat_list(request):
@@ -142,7 +142,10 @@ def multichat_settings(request, chat_id):
 
         accepted_members = dict(request.POST)['members-checkbox-form']
         accepted_members = list(map(int, accepted_members))
-
+        if 'chat-photo-form' in request.FILES:
+            photo = request.FILES['chat-photo-form']
+            chat.avatar = photo
+            chat.save()
         members = [access.user
                    for access
                    in Access.objects.filter(chat=chat)]
@@ -169,7 +172,7 @@ def multichat_settings(request, chat_id):
         print(request.PUT)
         return redirect(reverse('multychat-info', args=[chat_id]))
     if request.method == 'GET':
-
+        print('GET request for chat settings')
         context['members'] = [get_profile(access.user)
                               for access
                               in Access.objects.filter(chat=chat, mode__in=[1, 2, 3, 4])]
@@ -184,6 +187,10 @@ def multichat_settings(request, chat_id):
                                 and get_profile(friend) not in context['banned']]
 
         context['chat_name'] = chat.name
+        context['chat_avatar_url'] = chat.avatar.url
+        context['chat_avatar_value'] = chat.avatar
+        context['chat_avatar_name'] = chat.avatar.name.split('/')[-1]
+        print(chat.avatar.read())
         return render(request, 'multychat_settings.html', context)
 
 
