@@ -9,12 +9,12 @@
 {% block content %}
 <div class="container">
     <h1 class="chat-info-title">Chat settings</h1>
-    <form id="members-form" method="POST">
+    <form id="members-form" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="members" id="members">
             <div class="input-file-row" id="box-img">
 						<label class="input-file" id="add_btn">
-						<input type="file" name="chat-photo-form" accept="image/*" id="id_photo">
+						<input type="file" name="chat-photo-form" accept="image/*" id="id_photo" >
 						<span>Выберите Изображение</span>
 						</label>
 					<div id="input-list" class="input-file-list"></div>

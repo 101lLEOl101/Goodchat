@@ -203,7 +203,7 @@ def new_multychat(request):
 
         accepted_members = dict(request.POST)['members-checkbox-form']
         accepted_members = list(map(int, accepted_members))
-        photo = dict(request.POST)['chat-photo-form'][0]
+        photo = request.FILES['chat-photo-form']
         chat = Chat(is_multy=True, name=dict(request.POST)['chat-name-form'][0], avatar = photo)
         chat.save()
         access = Access(user=request.user, chat=chat, mode=4)
