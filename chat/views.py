@@ -28,7 +28,6 @@ from PIL import Image
 def chat_list(request):
     def clear(chats):
         for chat in chats:
-            print(chat)
             if chat['last_message'] is not None:
                 yield chat
 
@@ -64,9 +63,6 @@ def chat_page(request, id):
     if request.method == 'POST':
         message_form = MessageForm(request.POST)
         if message_form.is_valid():
-            print(chat)
-            print(request.user)
-            print(message_form.data['content'])
             send_message(chat, request.user, message_form.data['content'])
 
             context['message_form'] = MessageForm()
@@ -137,7 +133,6 @@ def multichat_settings(request, chat_id):
     context['chat_id'] = chat_id
 
     if request.method == 'POST':
-        print(request.POST)
         print('POST request for chat settings')
 
         accepted_members = dict(request.POST)['members-checkbox-form']
@@ -145,7 +140,6 @@ def multichat_settings(request, chat_id):
         if 'chat-photo-form' in request.FILES:
             photo = request.FILES['chat-photo-form']
             chat.avatar = photo
-            print(photo, 1)
             chat.save()
         elif dict(request.POST)['is_del'][0] == "1":
             chat.avatar = "images/DEFAULT_CHAT_AVATAR.jpg"
@@ -173,7 +167,6 @@ def multichat_settings(request, chat_id):
             chat.save()
         return redirect(reverse('multychat-info', args=[chat_id]))
     if request.method == 'PUT':
-        print(request.PUT)
         return redirect(reverse('multychat-info', args=[chat_id]))
     if request.method == 'GET':
         print('GET request for chat settings')
@@ -200,7 +193,6 @@ def multichat_settings(request, chat_id):
 @login_required
 def leave_chat(request, chat_id):
     access = chat_access(request.user.id, chat_id)
-    print(access.chat)
     if access:
         leave_chat_util(access.user, access.chat)
     return redirect('chat-list')
@@ -209,7 +201,6 @@ def new_multychat(request):
     context = {}
     if request.method == 'POST':
         print('POST request for create multychat')
-        print(dict(request.POST))
         if 'chat-photo-form' in  request.FILES:
             photo = request.FILES['chat-photo-form']
             chat = Chat(is_multy=True, name=dict(request.POST)['chat-name-form'][0], avatar = photo)
