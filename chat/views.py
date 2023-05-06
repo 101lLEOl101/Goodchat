@@ -198,20 +198,23 @@ def leave_chat(request, chat_id):
 def new_multychat(request):
     context = {}
     if request.method == 'POST':
-        print(request.POST)
         print('POST request for create multychat')
-
-        accepted_members = dict(request.POST)['members-checkbox-form']
-        accepted_members = list(map(int, accepted_members))
-        photo = request.FILES['chat-photo-form']
-        chat = Chat(is_multy=True, name=dict(request.POST)['chat-name-form'][0], avatar = photo)
+        print(dict(request.POST))
+        if 'chat-photo-form' in  request.FILES:
+            photo = request.FILES['chat-photo-form']
+            chat = Chat(is_multy=True, name=dict(request.POST)['chat-name-form'][0], avatar = photo)
+        else:
+            chat = Chat(is_multy=True, name=dict(request.POST)['chat-name-form'][0])
         chat.save()
         access = Access(user=request.user, chat=chat, mode=4)
         access.save()
-        for member in accepted_members:
-            user = User.objects.get(id=member)
-            access = Access(user=user, chat=chat, mode=1)
-            access.save()
+        if 'members-checkbox-form' in request.POST:
+            accepted_members = dict(request.POST)['members-checkbox-form']
+            accepted_members = list(map(int, accepted_members))
+            for member in accepted_members:
+                user = User.objects.get(id=member)
+                access = Access(user=user, chat=chat, mode=1)
+                access.save()
         message = Message(chat=chat, author=request.user,
                           content="Chat create!!!!")
         message.save()
