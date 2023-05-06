@@ -12,6 +12,13 @@
     <form id="members-form" method="POST">
         {% csrf_token %}
         <div class="members" id="members">
+            <div class="input-file-row" id="box-img">
+						<label class="input-file" id="add_btn">
+						<input type="file" name="chat-photo-form" accept="image/*" id="id_photo">
+						<span>Выберите Изображение</span>
+						</label>
+					<div id="input-list" class="input-file-list"></div>
+            </div>
             <div>
                 <input type="text" id="chat-name-input" name="chat-name-form" placeholder="Add name multychat">
             </div>
@@ -33,4 +40,6 @@
 
 {% block js %}
 <script src="{% static '/js/chat.js' %}"></script>
+<script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
+<script src="{% static '/js/add_posts.js' %}"></script>
 {% endblock %}
