@@ -11,6 +11,7 @@ from .forms import RegistrationForm
 from .forms import ProfileEditForm
 from .models import User
 from .models import Friend
+from .models import Profile
 from .models import FriendRequest
 from .utils import get_profile
 from .utils import get_friends
@@ -22,6 +23,7 @@ from .utils import refuse_friendship
 from .utils import friend_invited
 from .utils import deny_friend_request
 from .signals import user_created
+from users.utils import get_friend_add_button_state
 
 
 def registration_page(request):
@@ -181,16 +183,29 @@ def friend_list(request, id):
         current_user = User.objects.get(id=id)
     except User.DoesNotExist:
         return redirect('home')
-    context = {}
+    profile = Profile.objects.get(id=id)
+    context = {'profile': {'id': profile.id,
+                           'name': profile.name
+                           }
+               }
     
     friends = get_friends(current_user)
     print(friends)
     friends = [convert_profile_to_dict(get_profile(friend))
                for friend in friends]
-    
+    if current_user == request.user:
+        friend_requests = FriendRequest.objects.filter(recipient=request.user)
+        inviters = [get_profile(friend_request.inviter)
+                    for friend_request in friend_requests]
+        context['friend_inviters'] = [convert_profile_to_dict(inviter)
+                                      for inviter in inviters]
+        context['add_friend_button'] = get_friend_add_button_state(request.user.id, id)
     context['friends'] = friends
     print(friends)
     return render(request, 'friendlist.html', context)
+
+
+
 
 @login_required
 def invite_friend(request, recipient_id):
@@ -206,22 +221,52 @@ def invite_friend(request, recipient_id):
         invitation = FriendRequest(inviter=inviter, recipient=recipient)
         invitation.save()
         print('REQUEST SENDED')
-        return redirect(reverse('profile', args=[recipient.id]))
+        return redirect(reverse('friend-list', args=[request.user.id]))
     elif are_friends(inviter, recipient):
         refuse_friendship(inviter, recipient)
-        return redirect(reverse('profile', args=[recipient.id]))
+        return redirect(reverse('friend-list', args=[request.user.id]))
     elif friend_invited(inviter, recipient):
         deny_friend_request(inviter, recipient)
-        return redirect(reverse('profile', args=[recipient.id]))
+        return redirect(reverse('friend-list', args=[request.user.id]))
     else:
         try:
             accept_friend_request(recipient, inviter)
         except ValueError:
             print('REQUEST DENIED')
-            return redirect(reverse('profile', args=[recipient.id]))
+            return redirect(reverse('friend-list', args=[request.user.id]))
         else:
-            return redirect(reverse('profile', args=[recipient.id]))
-            
+            return redirect(reverse('friend-list', args=[request.user.id]))
+
+
+@login_required
+def reject_request_friend(request, recipient_id):
+    try:
+        recipient = User.objects.get(id=recipient_id)
+    except User.DoesNotExist:
+        print('UNKNOWN PERSON')
+        return redirect('self-profile')
+
+    inviter = request.user
+
+    if friend_able_to_invite(inviter, recipient):
+        invitation = FriendRequest(inviter=inviter, recipient=recipient)
+        invitation.save()
+        print('REQUEST SENDED')
+        return redirect(reverse('friend-list', args=[request.user.id]))
+    elif are_friends(inviter, recipient):
+        refuse_friendship(inviter, recipient)
+        return redirect(reverse('friend-list', args=[request.user.id]))
+    elif friend_invited(inviter, recipient):
+        deny_friend_request(inviter, recipient)
+        return redirect(reverse('friend-list', args=[request.user.id]))
+    else:
+        try:
+            deny_friend_request(recipient, inviter)
+        except ValueError:
+            print('REQUEST DENIED')
+            return redirect(reverse('friend-list', args=[request.user.id]))
+        else:
+            return redirect(reverse('friend-list', args=[request.user.id]))
 
 @login_required
 def logout_page(request):

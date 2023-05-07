@@ -7,6 +7,10 @@ a{
     text-align: center;
 }
 .friend_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     width:110vh;
     background-color: rgba(0,0,0,50%);
     box-shadow: 0px 0px 10px #8270F2;
@@ -32,9 +36,22 @@ a{
     box-shadow: 0px 0px 5px #8270F2;
 }
 
+.friendrequest_item{
+    display: none;
+    justify-content: start;
+    align-items: center;
+    width: 98%;
+    background-color: black;
+    border: 1px solid #8270F2;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 5px #8270F2;
+}
+
 .button_write{
     display:block;
-    width: 200px;
     padding: 10px;
     border-radius: 5px;
     background-color: black;
@@ -95,4 +112,53 @@ a{
     border-radius: 12px;
     color: white;
     font-weight: bold;
+}
+
+.requests_h2{
+    display: none;
+    cursor: default;
+    color: white;
+    text-align: center;
+}
+
+.requests_h1{
+    display: block;
+    cursor: default;
+    color: white;
+    text-align: center;
+}
+
+.title_h{
+    display:flex;
+    align-items: center;
+}
+
+.btn_request_h1{
+    display:none;
+    margin-left: 10px;
+    padding: 5px;
+    background-color: rgba(131, 113, 242, 0.70);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #8270F2;
+    cursor: pointer;
+}
+
+.btn_request_h2{
+    margin-left: 10px;
+    font-weight: bold;
+    padding: 10px;
+    background-color: rgba(131, 113, 242, 0.70);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #8270F2;
+    cursor: pointer;
+}
+
+.accept{
+    left:44%;
+}
+
+.reject{
+    left:45%;
 }
