@@ -148,7 +148,6 @@ def settings_profile(request):
         if form.is_valid():
             context['form'] = form
             profile = get_profile(request.user)
-            
             profile.name = form.cleaned_data['name']
             profile.surname = form.cleaned_data['surname']
             profile.about = form.cleaned_data['about']
@@ -157,7 +156,12 @@ def settings_profile(request):
             profile.education = form.cleaned_data['education']
             profile.company = form.cleaned_data['company']
             profile.hobby = form.cleaned_data['hobby']
-
+            print(dict(request.FILES))
+            if 'avatar-profile-form' in dict(request.FILES):
+                photo = dict(request.FILES)['avatar-profile-form']
+                profile.avatar = photo[0]
+            elif dict(request.POST)['is_del'][0] == "1":
+                profile.avatar = "images/DEFAULT_AVATAR.png"
             profile.save()
             return redirect('self-profile')
         else:
@@ -174,7 +178,9 @@ def settings_profile(request):
                      'company': profile.company,
                      'hobby': profile.hobby}
         context['form'] = ProfileEditForm(initial=form_init)
-
+        context['avatar_name'] = profile.avatar.name.split('/')[-1]
+        context['avatar_url'] = profile.avatar.url
+        context['avatar_value'] = profile.avatar
     return render(request, 'settings_profile.html', context=context)
 
 @login_required
@@ -190,7 +196,6 @@ def friend_list(request, id):
                }
     
     friends = get_friends(current_user)
-    print(friends)
     friends = [convert_profile_to_dict(get_profile(friend))
                for friend in friends]
     if current_user == request.user:
@@ -201,7 +206,6 @@ def friend_list(request, id):
                                       for inviter in inviters]
         context['add_friend_button'] = get_friend_add_button_state(request.user.id, id)
     context['friends'] = friends
-    print(friends)
     return render(request, 'friendlist.html', context)
 
 

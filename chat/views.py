@@ -139,6 +139,7 @@ def multichat_settings(request, chat_id):
         accepted_members = list(map(int, accepted_members))
         if 'chat-photo-form' in request.FILES:
             photo = request.FILES['chat-photo-form']
+            print(photo)
             chat.avatar = photo
             chat.save()
         elif dict(request.POST)['is_del'][0] == "1":
