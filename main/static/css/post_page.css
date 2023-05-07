@@ -209,8 +209,19 @@ cursor: pointer;
     background-color: #36C849;
 }
 
+.delete{
+    background-color: #FD5754;
+}
+
+.delete:hover{
+    background-image: url("/media/images/trash.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-size: 14px 14px;
+}
+
 .edit:hover{
-    background-color: #36C849;
     background-image: url("/media/images/pencil.png");
     background-repeat: no-repeat;
     background-position: center;

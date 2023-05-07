@@ -49,6 +49,7 @@ urlpatterns = [
     path('chat/settings/<int:chat_id>', chat_views.multichat_settings, name='multychat-settings'),   
     path('chat/leave/<int:chat_id>', chat_views.leave_chat, name='leave-chat'),   
     path('chat/new/multy', chat_views.new_multychat, name='new-multychat'),
+    path('postdelete/<int:id>', main_views.post_delete, name = 'postdelete')
 ]
 
 if settings.DEBUG:

@@ -292,3 +292,8 @@ def post(request, id: int):
                }
 
     return render(request, 'post_template.html', context=context)
+
+def post_delete(request, id: int):
+    post = Post.objects.get(id=id)
+    post.delete()
+    return redirect('self-profile')

@@ -9,6 +9,7 @@
      	<div class="btn_box_post">
 			{% if post.author.id == self_profile.id %}
 			<a class="round edit" href="{% url 'postedit' post.id %}" title="Edit"></a>
+			<a class="round delete" href="{% url 'postdelete' post.id %}" title="Delete"></a>
 			{% endif %}
 		</div>
 		<a href="{{ post.author.link }}" class = "post-author">{{ post.author.name }}</a>
