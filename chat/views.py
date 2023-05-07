@@ -22,13 +22,12 @@ from users.utils import get_profile
 from users.utils import get_friends
 from users.models import User
 # Create your views here.
-
+from PIL import Image
 
 @login_required
 def chat_list(request):
     def clear(chats):
         for chat in chats:
-            print(chat)
             if chat['last_message'] is not None:
                 yield chat
 
@@ -64,9 +63,6 @@ def chat_page(request, id):
     if request.method == 'POST':
         message_form = MessageForm(request.POST)
         if message_form.is_valid():
-            print(chat)
-            print(request.user)
-            print(message_form.data['content'])
             send_message(chat, request.user, message_form.data['content'])
 
             context['message_form'] = MessageForm()
@@ -137,12 +133,17 @@ def multichat_settings(request, chat_id):
     context['chat_id'] = chat_id
 
     if request.method == 'POST':
-        print(request.POST)
         print('POST request for chat settings')
 
         accepted_members = dict(request.POST)['members-checkbox-form']
         accepted_members = list(map(int, accepted_members))
-
+        if 'chat-photo-form' in request.FILES:
+            photo = request.FILES['chat-photo-form']
+            chat.avatar = photo
+            chat.save()
+        elif dict(request.POST)['is_del'][0] == "1":
+            chat.avatar = "images/DEFAULT_CHAT_AVATAR.jpg"
+            chat.save()
         members = [access.user
                    for access
                    in Access.objects.filter(chat=chat)]
@@ -166,10 +167,9 @@ def multichat_settings(request, chat_id):
             chat.save()
         return redirect(reverse('multychat-info', args=[chat_id]))
     if request.method == 'PUT':
-        print(request.PUT)
         return redirect(reverse('multychat-info', args=[chat_id]))
     if request.method == 'GET':
-
+        print('GET request for chat settings')
         context['members'] = [get_profile(access.user)
                               for access
                               in Access.objects.filter(chat=chat, mode__in=[1, 2, 3, 4])]
@@ -184,24 +184,43 @@ def multichat_settings(request, chat_id):
                                 and get_profile(friend) not in context['banned']]
 
         context['chat_name'] = chat.name
+        context['chat_avatar_url'] = chat.avatar.url
+        context['chat_avatar_value'] = chat.avatar
+        context['chat_avatar_name'] = chat.avatar.name.split('/')[-1]
         return render(request, 'multychat_settings.html', context)
 
 
 @login_required
 def leave_chat(request, chat_id):
     access = chat_access(request.user.id, chat_id)
-    print(access.chat)
     if access:
         leave_chat_util(access.user, access.chat)
     return redirect('chat-list')
 
-
 def new_multychat(request):
-    chat = Chat(is_multy=True, name="Untitled")
-    chat.save()
-    access = Access(user=request.user, chat=chat, mode=4)
-    access.save()
-    message = Message(chat=chat, author=request.user,
-                      content="У меня право на первое сообщение на уровне сервера хахаха")
-    message.save()
-    return redirect('chat-list')
+    context = {}
+    if request.method == 'POST':
+        print('POST request for create multychat')
+        if 'chat-photo-form' in  request.FILES:
+            photo = request.FILES['chat-photo-form']
+            chat = Chat(is_multy=True, name=dict(request.POST)['chat-name-form'][0], avatar = photo)
+        else:
+            chat = Chat(is_multy=True, name=dict(request.POST)['chat-name-form'][0])
+        chat.save()
+        access = Access(user=request.user, chat=chat, mode=4)
+        access.save()
+        if 'members-checkbox-form' in request.POST:
+            accepted_members = dict(request.POST)['members-checkbox-form']
+            accepted_members = list(map(int, accepted_members))
+            for member in accepted_members:
+                user = User.objects.get(id=member)
+                access = Access(user=user, chat=chat, mode=1)
+                access.save()
+        message = Message(chat=chat, author=request.user,
+                          content="Chat create!!!!")
+        message.save()
+        return redirect('chat-list')
+    if request.method == 'GET':
+
+        context['friends'] = [get_profile(friend) for friend in get_friends(request.user)]
+        return render(request, 'create_multychat.html', context)

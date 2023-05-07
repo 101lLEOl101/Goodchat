@@ -6,4 +6,3 @@ class MessageForm(forms.Form):
         attrs={'class': 'message_area',
                'placeholder': 'Введите сообщение'}
     ))
-    

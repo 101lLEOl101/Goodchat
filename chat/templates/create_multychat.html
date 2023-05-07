@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static '/css/create_multychat.css' %}">
+{% endblock %}
+{% block title %}Создание чата{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="chat-info-title">Chat settings</h1>
+    <form id="members-form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="members" id="members">
+            <div class="input-file-row" id="box-img">
+						<label class="input-file" id="add_btn">
+						<input type="file" name="chat-photo-form" accept="image/*" id="id_photo" >
+						<span>Выберите Изображение</span>
+						</label>
+					<div id="input-list" class="input-file-list"></div>
+            </div>
+            <div>
+                <input type="text" id="chat-name-input" name="chat-name-form" placeholder="Add name multychat">
+            </div>
+            <label for="members">Friends:</label>
+            {% for friend in friends %}
+                <div  class="friendlist_item">
+                    <img src="{{ friend.avatar.url }}" class="friend-avatar">
+                    <a class="friend_name" href="{% url 'profile' friend.id %}">{{ friend.name }} {{ friend.surname }}</a>
+                    <span class="friend_name">{{ friend.access_description }}</span>
+                    <input type="checkbox" name="members-checkbox-form" checked value="{{ friend.id }}">
+                </div>
+            {% endfor %}
+        </div>
+    </form>
+    <button class="btn-save" type="submit" form="members-form">Save</button>
+    <a class="btn-discard" href="{% url 'new-multychat' %}">Discard</a>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
+<script src="{% static '/js/create_multychat.js' %}"></script>
+{% endblock %}

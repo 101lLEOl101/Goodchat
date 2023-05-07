@@ -1,0 +1,145 @@
+.container {
+    display: block;
+    height: 80%;
+    width: 80%;
+    color: white;
+    background-color: black;
+    border: solid 2px #8270F2;
+    border-radius: 20px;
+    padding: 3rem;
+    margin: auto;
+    margin-top: 5%;
+}
+.chat-info-title{
+    text-align: center;
+    color: #8270F2;
+}
+.btn-save, .btn-discard {
+    color: white;
+    background-color: black;
+    border: solid 2px #8270F2;
+    border-radius: 20px;
+    padding: 0.8rem;
+}
+.friendlist_item{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 98%;
+    background-color: black;
+    border: 1px solid #8270F2;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 5px #8270F2;
+}
+
+.friend-avatar{
+    margin-left: 2%;
+    width: 10%;
+    border-radius: 100%;
+}
+
+.friend_name{
+    color: white;
+    width: 20%;
+    text-align: center;
+}
+
+
+.input-file-row {
+	display: flex;
+	margin: 10px;
+	border: 4px dashed #362982;
+	border-radius: 14px;
+	height: 30vh;
+}
+.input-file {
+	position: relative;
+	display: inline-block;
+	margin: auto;
+}
+.input-file span {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	outline: none;
+	text-decoration: none;
+	font-size: 14px;
+	vertical-align: middle;
+	color: black;
+	text-align: center;
+	border-radius: 4px;
+	background-color: #8270f2;
+	line-height: 22px;
+	height: 40px;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	border: none;
+	margin: 0;
+	transition: background-color 0.2s;
+}
+.input-file input[type=file] {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+	display: block;
+	width: 0;
+	height: 0;
+}
+
+/* Focus */
+.input-file input[type=file]:focus + span {
+	box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+/* Hover/active */
+.input-file:hover span {
+	background-color: #5b4bbe;
+}
+.input-file:active span {
+	background-color: #362982;
+}
+
+/* Disabled */
+.input-file input[type=file]:disabled + span {
+	background-color: #eee;
+}
+
+/* Список c превью */
+
+.input-file-list-item {
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+}
+.input-file-list-item img {
+	width: 50%;
+	margin: 100px 25%;
+	border-radius: 14px;
+}
+.input-file-list-name {
+	text-align: center;
+	display: block;
+	font-size: 12px;
+	color: white;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.input-file-list-remove {
+	color: #fff;
+	text-decoration: none;
+	display: inline-block;
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	top: 5px;
+	right: 5px;
+	background: #ff0202;
+	width: 16px;
+	height: 16px;
+	text-align: center;
+	line-height: 16px;
+	border-radius: 50%;
+}
