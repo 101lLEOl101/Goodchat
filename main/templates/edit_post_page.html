@@ -6,7 +6,7 @@
 {% block content %}
 	<div class = "post-workspace">
 		<div class = "new-post-header">
-			<button class = "btn_post" form="new-post-form">Добавить запись</button>
+			<button class = "btn_post" form="new-post-form">Edit Post</button>
 		</div>
 		<div class = "new-post-text-img">
 			<form method="POST" id="new-post-form" class="form-add-post" enctype="multipart/form-data">
@@ -17,7 +17,7 @@
 				<div class="input-file-row" id = "box-img" style="height: auto;">
 						<label class="input-file" id = "add_btn" style="visibility: hidden; width: 0px; height: 0px; margin: 0px;">
 						{{ form.photo }}
-						<span>Выберите Изображение</span>
+						<span>Choose Image</span>
 						</label>
 						<div class="input-file-list-item">
 							<img class="input-file-list-img" src="{{ post.photo.url }}">
@@ -30,7 +30,7 @@
 				<div class="input-file-row" id = "box-img">
 						<label class="input-file" id = "add_btn">
 						{{ form.photo }}
-						<span>Выберите Изображение</span>
+						<span>Choose Image</span>
 						</label>
 					<div id = "input-list" class="input-file-list">
 					</div>
