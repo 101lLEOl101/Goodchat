@@ -78,14 +78,21 @@ def edit_post(request, id: int):
                     'content': post.content,
                     'photo': post.photo,
                      }
-        context = {
-            'post': {
-                'content': post.content,
-                'photo': post.photo,
-                'photo_name': post.photo.name.split('/')[-1]
+        if post.photo:
+            context = {
+                'post': {
+                    'content': post.content,
+                    'photo': post.photo,
+                    'photo_name': post.photo.name.split('/')[-1]
+                }
             }
-        }
-        request.FILES['photo'] = post.photo
+            request.FILES['photo'] = post.photo
+        else:
+            context = {
+                'post': {
+                    'content': post.content,
+                }
+            }
         context['form'] = EditPostForm(form_init)
     return render(request, 'edit_post_page.html', context)
 
@@ -270,6 +277,7 @@ def post(request, id: int):
         
     context = {'post': {'id': post.id,
                         'author': {'name': post.author,
+                                   'id':post.author.id,
                                    'link': f'/profile/{post.author.id}',
                                    },
                         'content': post.content,
