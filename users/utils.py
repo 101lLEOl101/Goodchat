@@ -2,6 +2,7 @@ from .models import User
 from .models import Profile
 from .models import Friend
 from .models import FriendRequest
+from .models import FriendRequest
 
 
 def get_profile(user: User) -> Profile:
@@ -110,8 +111,13 @@ def get_friend_add_button_state(user_id: User, opponent_id: User):
     return state 
 
 def refuse_friendship(user1: User, user2: User):
-    print('Пока нельзя удалять из друзей, дружи со всеми !!!!')
-    pass
+    friendship1 = Friend.objects.filter(friends__in=[user1])
+    friendship2 = Friend.objects.filter(friends__in=[user2])
+    for i in friendship1:
+        for j in friendship2:
+            if i == j:
+                i.delete()
+                break
 
 def deny_friend_request(inviter: User, recipient: User):
     invitation = FriendRequest.objects.get(inviter=inviter, recipient=recipient)

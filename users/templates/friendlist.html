@@ -22,7 +22,8 @@
             <div  class="friendlist_item" id="friend_item">
                 <img src="{{ friend.avatar.url }}" class="friend-avatar">
                 <a class="friend_name" href="{% url 'profile' friend.id %}">{{ friend.full_name }}</a>
-                <a class="button_write" href="{% url 'open-dialog' friend.id %}">Написать сообщение</a>
+                <a class="button_write accept" href="{% url 'add-friend' friend.id %}">Delete</a>
+                <a class="button_write reject" href="{% url 'open-dialog' friend.id %}">Message</a>
             </div>
 
         {% endfor %}
