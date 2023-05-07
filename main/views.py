@@ -58,12 +58,16 @@ def edit_post(request, id: int):
     context = {}
     post = Post.objects.get(id=id)
     if request.method == 'POST':
-        post_form = PostForm(request.POST, request.FILES)
+        post_form = EditPostForm(request.POST, request.FILES)
         if post_form.is_valid():
             post_author = request.user
             post_content = post_form.cleaned_data.get('content')
             post_photo = post_form.cleaned_data.get('photo')
-            post = Post(author=post_author, content=post_content, photo=post_photo)
+            post.author = post_author
+            post.content = post_content
+            is_del = post_form.cleaned_data.get('is_del')
+            if post_photo or is_del == "1":
+                post.photo = post_photo
             post.save()
             return redirect('self-profile')
 
@@ -81,8 +85,7 @@ def edit_post(request, id: int):
             }
         }
         request.FILES['photo'] = post.photo
-        context['form'] = EditPostForm(initial=form_init)
-        print(EditPostForm(form_init))
+        context['form'] = EditPostForm(form_init)
     return render(request, 'edit_post_page.html', context)
 
 

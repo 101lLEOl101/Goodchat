@@ -11,6 +11,7 @@
 		<div class = "new-post-text-img">
 			<form method="POST" id="new-post-form" class="form-add-post" enctype="multipart/form-data">
 				{% csrf_token %}
+				{{ form.is_del }}
                 {{ form.content }}
 				{% if post.photo %}
 				<div class="input-file-row" id = "box-img" style="height: auto;">

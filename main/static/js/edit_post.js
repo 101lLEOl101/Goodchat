@@ -41,5 +41,7 @@ function removeFilesItem(target){
 	document.getElementById('add_btn').removeAttribute("style");
 	document.getElementById("box-img").removeAttribute("style");
 	document.getElementById("input-list").removeAttribute("style");
+	console.log(is_del.value)
+	is_del.value = "1"
+	console.log(is_del.value)
 }
-console.log(id_photo.files)

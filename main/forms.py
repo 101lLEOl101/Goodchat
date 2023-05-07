@@ -58,6 +58,11 @@ class PostForm(forms.Form):
     photo = forms.ImageField(widget=forms.ClearableFileInput(), required=False)
 
 class EditPostForm(forms.Form):
+    is_del = forms.CharField(widget=forms.TextInput(attrs={
+        'id': 'is_del',
+        'value': '0',
+        'style': 'display: none;'
+    }), required=False)
     content = forms.CharField(widget=forms.Textarea(attrs={
         'class': 'text-of-new-post',
         'placeholder': 'Ваш текст'
