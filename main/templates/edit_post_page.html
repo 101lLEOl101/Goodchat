@@ -19,9 +19,9 @@
 						{{ form.photo }}
 						<span>Choose Image</span>
 						</label>
-						<div class="input-file-list-item">
+						<div class="input-file-list-item" style="margin: 0px auto;">
 							<img class="input-file-list-img" src="{{ post.photo.url }}">
-							<span class="input-file-list-name"></span>
+							<span class="input-file-list-name">{{post.photo_name}}</span>
 							<a href="#" onclick="removeFilesItem(this); return false;" class="input-file-list-remove">x</a>
 						</div>
 					<div id = "input-list" class="input-file-list"></div>

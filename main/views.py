@@ -82,6 +82,7 @@ def edit_post(request, id: int):
             'post': {
                 'content': post.content,
                 'photo': post.photo,
+                'photo_name': post.photo.name.split('/')[-1]
             }
         }
         request.FILES['photo'] = post.photo
