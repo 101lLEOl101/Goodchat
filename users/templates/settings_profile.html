@@ -23,15 +23,15 @@
                 <div id = "profile_avatar" class = "settings_settings_devider">
                     <h3 class = "settings_block_tittle">Аватар Профиля</h3>
                     <div class = "settings_change_menu">
-                        <div class="input-file-row" id="box-img" style="height: auto;">
+                        <div class="input-file-row" id="box-img">
 						    <label class="input-file" id="add_btn" style="visibility: hidden; width: 0px; height: 0px; margin: 0px;">
 						    <input type="file" name="avatar-profile-form" accept="image/*" id="id_photo" value="{{chat_avatar_value}}">
 						    <span>Выберите Изображение</span>
 						    </label>
 					        <div id="input-list" class="input-file-list" style="margin: 0px auto;">
                                 <div class="input-file-list-item">
-                                    <img class="input-file-list-img" src="{{avatar_url}}">
                                     <a href="#" onclick="removeFilesItem(this); return false;" class="input-file-list-remove">x</a>
+                                    <img class="input-file-list-img" src="{{avatar_url}}">
                                 </div>
                             </div>
 				        </div>
