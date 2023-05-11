@@ -5,13 +5,13 @@
 
 {% block content %}
 	<div class = "search-wrapper">
-		<p class = "search-user-id-input">Ваш id: {{ user.id }}</p>
+		<p class = "search-user-id-input">Your ID: {{ user.id }}</p>
 		<div class="other_users_search">
 		<div class="input_friend">
 		<form method="POST" class="form_friend">
 			{% csrf_token %}
 			{{ form.querry }}
-			<button type="submit" class="btn_message">Искать!</button>
+			<button type="submit" class="btn_message">Search</button>
 		</form>
 
 		</div>

@@ -7,7 +7,7 @@
 {% block content %}
 
 <div class="messenger_box" id="messenger_box">
-    <h2 style="text-align:center;"> Личные сообщения </h2>
+    <h2 style="text-align:center;"> Chats </h2>
     <div class="ur_friend" >
         <a class = "chat-avatar-div" href = "{{ chat.info_link }}"><img src="{{chat.avatar.url}}" class="friend-user-pic"></a>
         <p>{{chat.name}}</p>
@@ -37,7 +37,7 @@
         {% for field in message_form %}
         {{ field }}
         {% endfor %}
-        <button class="btn_message">Отправить</button>
+        <button class="btn_message">Send</button>
     </form>
 </div>
 {% endblock %}

@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,12 +20,12 @@
     {% if user.is_authenticated %}
         <div class="auth_box">
             <img class="img_header" src = "{{self_profile.avatar.url}}">
-            <a href="{% url 'logout' %}" class="auth_btn ">Выход</a>
+            <a href="{% url 'logout' %}" class="auth_btn ">Log Out</a>
         </div>
     {% else %}
         <div class="auth_box">
-            <a href="{% url 'registration' %}" class="auth_reg_btn">Регистрация</a>
-            <a href="{% url 'login' %}" class="auth_btn">Вход</a>
+            <a href="{% url 'registration' %}" class="auth_reg_btn">Registration</a>
+            <a href="{% url 'login' %}" class="auth_btn">Log In</a>
         </div>
      {% endif %}
 </header>

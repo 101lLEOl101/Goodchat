@@ -26,10 +26,10 @@
 		<form class="input-area-mess" method="POST">
 			{% csrf_token %}
 			{{ form.content }}
-			<button class="btn_message" type="submit">Отправить</button>
+			<button class="btn_message" type="submit">Send</button>
 		</form>
 	{% endif %}
-	<h1 style="text-align:center; color:white;"> Комментарии </h1>
+	<h1 style="text-align:center; color:white;"> Comments </h1>
 	{% for comment in comments %}
 
 	<div class="comment-box">

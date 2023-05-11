@@ -9,23 +9,25 @@
     <div class="reg_box">
 
     <div class="text_box_rules">
-    <h2 class="rules_head">Правила программистического клуба</h2>
+    <h2 class="rules_head">Rules of the programming club</h2>
     <p class="rules">
     <ul>
-        <li>Первое правило программистического клуба - никогда не упоминать об программистическом клубе</li>
-        <li>Второе правило программистического клуба - ни за что не упоминать об программистическом клубе</li>
-        <li>Третье правило программистического клуба - если девелопер крикнул "КОММИТ", выдохся или сделал пуш, проект закончен.</li>
-        <li>Четвертое правило программистического клуба - в программирование участвуют лишь двое.</li>
-        <li>Пятое правило программистического  клуба - комиты идут одни за другим, а не одновременно.</li>
-        <li>Шестое правило программистического   клуба - не писать больше 1 строчки кода.</li>
-        <li>Седьмое правило программистического  клуба - прогать надо столько, сколько нужно.</li>
-        <li>Восьмое и последнее правило программистического  клуба - тот, кто нашел баг, должен дебагать весь код.</li>
-    </ul>
+                <li>First rule of the programming club - Never talk about programming club.</li>
+                <li>Second  rule of the programming club - Never EVER talk about programming club.</li>
+                <li>Thierd rule of the programming club - If (developer.said() == “COMMIT” or  developer.exhaled() or developer.pushed(commit) == True): Project.Fineshed()</li>
+                <li>Forth rule of the programming club - Only two and I half men work on a project.</li>
+                <li>Fifth rule of the programming club - Commits should go one after another. Not all at once.</li>
+                <li>Sixth rule of the programming club - DO NOT write more than one line of code (time period not included).</li>
+                <li>Seventh rule of the programming club - You should programm as far as you need to not less and absolutely not more.</li>
+                <li>Eighth rule of the programming club - The one who found a bug in the code no metter his specialization back or front is now obliged to debug the whole code.</li>
+            </ul>
+
+
 
     </p>
     </div>
     <div class="input_form">
-        <h1 class="reg-header">Регистрация</h1><br>
+        <h1 class="reg-header">Registration</h1><br>
         <form method="post" class="form-reg">
 
 
@@ -38,10 +40,10 @@
             {% if message %}    
             <div class="form-error"> WARNING {{ message }}</div>
             {% endif %}
-            <button type="submit" class="btn_add">Зарегистрироваться</button>
+            <button type="submit" class="btn_add">Register</button>
             
         </form>
-        <a class="auth-link" href="{% url 'login' %}">Есть аккаунт?</a>
+        <a class="auth-link" href="{% url 'login' %}">Already a gogorik?</a>
     </div>
     </div>
 

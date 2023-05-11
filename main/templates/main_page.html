@@ -13,9 +13,9 @@
             <div class="post-box">
                 <div class="post-header">
                     <div class="btn_box_post">
-                    <a class="round heart" disabled href="#" title="Понравилось"></a>
-                    <a class="round open" href="/post/{{post.id}}" title="Открыть полностью"><div class="arrow"></div><div class="arrow_diff"></div></a>
-                    <a class="round zakladka" href="{% url 'add-delete-bookmark' post.id %}" title="В закладки"></a>
+                    <a class="round heart" disabled href="#" title="Like"></a>
+                    <a class="round open" href="/post/{{post.id}}" title="Open Full"><div class="arrow"></div><div class="arrow_diff"></div></a>
+                    <a class="round zakladka" href="{% url 'add-delete-bookmark' post.id %}" title="Bookmark"></a>
                     </div>
                     <a class = "post-author" href="/profile/{{post.author.id}}">{{post.author}}</a>
                 </div>

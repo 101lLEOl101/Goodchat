@@ -35,12 +35,12 @@
         {% endfor %}
         {% elif profile.id != self_profile.id %}
             <div class="zero_bookmarks">
-            <p class="alarm_posts">У этого пользователя нет постов :c </p>
+            <p class="alarm_posts">This user yet has no posts :c </p>
             </div>
         {% else %}
             <div class="zero_bookmarks">
-            <p class="alarm_posts">У вас еще нет постов :c </p>
-            <a class="btn_add" href="{% url 'addpost' %}">Написать пост</a>
+            <p class="alarm_posts">You do yet have no posts :c </p>
+            <a class="btn_add" href="{% url 'addpost' %}">Create post</a>
             </div>
         {% endif %}
 	</div>
@@ -48,32 +48,32 @@
         <img src="{{ profile.avatar.url }}" class="profile-pic" />
         <div class="row">
             <div class = "left">
-                <div class="user-nickname" id="usernick">Имя: {{ profile.name }} </div>
-                <div class="user-nickname top" id="usersurname">Фамилия: {{ profile.surname }}</div>
-                <div class="user-info unhidden">О себе: <br> {{ profile.about }} </div>
-                <div class="user-nickname bottom" id="userlike">Мне нравится: {{ profile.hobby }}</div>
-                <div class="user-nickname hiddenunckecked">Город: {{ profile.city }}</div>
-                <div class="user-nickname hiddenunckecked">Образование: {{ profile.education }}</div>
-                <div class="user-nickname hiddenunckecked">Компания: {{ profile.company }}</div>
+                <div class="user-nickname" id="usernick">Name: {{ profile.name }} </div>
+                <div class="user-nickname top" id="usersurname">Lastname: {{ profile.surname }}</div>
+                <div class="user-info unhidden">About: <br> {{ profile.about }} </div>
+                <div class="user-nickname bottom" id="userlike">Hobbies: {{ profile.hobby }}</div>
+                <div class="user-nickname hiddenunckecked">City/Town: {{ profile.city }}</div>
+                <div class="user-nickname hiddenunckecked">Education: {{ profile.education }}</div>
+                <div class="user-nickname hiddenunckecked">Company: {{ profile.company }}</div>
             </div>
             <div class = "right">
-                <div class="user-info">О себе: <br> {{ profile.about }} </div>
+                <div class="user-info">About: <br> {{ profile.about }} </div>
             </div>
         </div>
     {% if profile.id == self_profile.id %}
-        <label for="toggle" class="btn_profile">Подробнее</label>
+        <label for="toggle" class="btn_profile">Extend</label>
     {% else %}
-    <a class="btn_profile" href="{% url 'open-dialog' profile.id %}">Написать</a>
+    <a class="btn_profile" href="{% url 'open-dialog' profile.id %}">Send a Message</a>
     {% if add_friend_button %}
         <a class="btn_profile" href="{% url 'add-friend' profile.id%}">{{ add_friend_button }}</a>
     {% endif %}
-    <label for="toggle" class="btn_profile">Подробнее</label>
+    <label for="toggle" class="btn_profile">Extend</label>
     {% endif %}
     </div>
     <div class="profile-card-more">
-        <p class="user-nickname">Город: {{ profile.city }}</p>
-        <p class="user-nickname">Образование: {{ profile.education }}</p>
-        <p class="user-nickname">Компания: {{ profile.company }}}</p>
+        <p class="user-nickname">City/Town: {{ profile.city }}</p>
+        <p class="user-nickname">Education: {{ profile.education }}</p>
+        <p class="user-nickname">Company: {{ profile.company }}}</p>
     </div>
 </div>
 {% endblock %}
