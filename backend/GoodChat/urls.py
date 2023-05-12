@@ -21,8 +21,18 @@ from users import views as users_views
 from chat import views as chat_views
 from django.conf.urls.static import static
 from django.conf import settings
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.views import TokenRefreshView
+from rest_framework_simplejwt.views import TokenVerifyView
 
 urlpatterns = [
+    path('api/token', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/verify', TokenVerifyView.as_view(), name='token_verify'),
+    
+    path('api/register', users_views.Register.as_view()),
+    path('api/profile/self', users_views.SelfProfile.as_view()),
+    
     path('admin/', admin.site.urls),
     path('', main_views.main_page, name='home'),
     path('bookmarks', main_views.bookmarks_page, name='bookmarks'),

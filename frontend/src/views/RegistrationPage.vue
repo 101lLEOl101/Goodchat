@@ -1,0 +1,97 @@
+<template>
+  <div class="reg_box">
+    <club-rules/>
+    <div class="input_form">
+      <h1 class="reg-header">Регистрация</h1><br>
+      <registration-form @register="register"/>
+      <p v-if="message" :class="`message ${message.type}`">{{ message.content }}</p>
+      <a class="auth-link" href="login">Есть аккаунт?</a>
+    </div>
+  </div>
+</template>
+
+<script>
+import RegistrationForm from '@/components/login_register/RegistrationForm.vue';
+import ClubRules from '@/components/login_register/ClubRules.vue';
+
+export default {
+  components: {
+    RegistrationForm,
+    ClubRules
+  },
+  data() {
+    return {
+      user: {
+        name: '',
+        surname: '',
+        email: '',
+        password: '',
+        rePassword: ''
+      },
+      message: {}
+    }
+  },
+  methods: {
+    register(user) {
+      this.$store.dispatch('auth/register', user)
+        .catch(error => {
+          if (error.code === 900){
+            this.message = {
+              type: 'error',
+              content: 'Пользователь с такими данными уже зарегестрирован',
+            }
+          }
+        })
+        .then(response => {
+          this.$router.push('/login');
+        })
+    }
+  },
+  created() {
+    this.$store.dispatch('auth/logout');
+  }
+}
+</script>
+
+<style>
+.reg-header {
+  color: white;
+  text-align: center;
+
+}
+
+.reg_box {
+  display: flex;
+  margin-top: 50px;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+
+.auth-link {
+  text-decoration: none;
+  color: #8270F2;
+  margin-top: 10px;
+  font-size: 13px;
+  text-shadow:
+    -0 -1px 6px #000000,
+    0 -1px 6px #000000,
+    -0 1px 6px #000000,
+    0 1px 6px #000000,
+    -1px -0 6px #000000,
+    1px -0 6px #000000,
+    -1px 0 6px #000000,
+    1px 0 6px #000000,
+    -1px -1px 6px #000000,
+    1px -1px 6px #000000,
+    -1px 1px 6px #000000,
+    1px 1px 6px #000000,
+    -1px -1px 6px #000000,
+    1px -1px 6px #000000,
+    -1px 1px 6px #000000,
+    1px 1px 6px #000000;
+}
+</style>
