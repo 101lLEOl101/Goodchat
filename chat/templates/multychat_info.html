@@ -9,10 +9,10 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="chat-info-title">Chat information</h1>
-    <h2 class="chat-name">{{ chat_name }}</h2>
+    <h1 class="chat-info-title">Инфо</h1>
+    <h2 class="chat-name">Название: {{ chat_name }}</h2>
     <div class="members" id="members">
-        <label for="members">Members ({{ members_count }}):</label>
+        <label for="members">Участники ({{ members_count }}):</label>
         {% for member in members %}
             <div  class="friendlist_item">
                 <img src="{{ member.avatar.url }}" class="friend-avatar">
@@ -22,7 +22,7 @@
         {% endfor %}
     </div>
     <div class="members" id="banned">
-        <label for="banned">Banned ({{ banned_count }}):</label>
+        <label for="banned">Заблокированы ({{ banned_count }}):</label>
         {% for member in banned %}
             <div  class="friendlist_item">
                 <img src="{{ member.avatar.url }}" class="friend-avatar">
