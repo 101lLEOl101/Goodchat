@@ -1,3 +1,5 @@
+from typing import Optional
+
 from .models import User
 from .models import Profile
 from .models import Friend
@@ -19,7 +21,7 @@ def convert_profile_to_dict(profile: Profile):
     return profile_dict
 
 
-def get_user(id: id) -> User | None:
+def get_user(id:id) -> Optional[User]:
     try:
         user = User.objects.get(id=id)
         return user
