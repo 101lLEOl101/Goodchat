@@ -17,6 +17,7 @@ $('.input-file input[type=file]').on('change', function(){
 		}
 		let name_avatar = document.getElementsByClassName("displayed_info");
         name_avatar[0].innerText = file.name;
+	    console.log(dt.files)
 	};
 	this.files = dt.files;
 	let btn = document.getElementById("add_btn");
@@ -42,4 +43,6 @@ function removeFilesItem(target){
 	document.getElementById('add_btn').removeAttribute("style");
 	document.getElementById("input-list").removeAttribute("style");
 	is_del.value = "1"
+	dt = new DataTransfer();
+	console.log(dt.files)
 }

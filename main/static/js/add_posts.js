@@ -46,4 +46,5 @@ function removeFilesItem(target){
 	document.getElementById('add_btn').removeAttribute("style");
 	document.getElementById("box-img").removeAttribute("style");
 	document.getElementById("input-list").removeAttribute("style");
+	dt = new DataTransfer();
 }

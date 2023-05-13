@@ -50,4 +50,5 @@ function removeFilesItem(target){
     if(document.getElementById("is_del")){
         is_del.value = "1"
     }
+	dt = new DataTransfer();
 }

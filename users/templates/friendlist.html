@@ -7,7 +7,7 @@
 {% block title %}Друзья{% endblock %}
 
 {% block content %}
-{% if friends %}
+{% if friends or friend_inviters %}
 <div class="friend_box">
     <div class="title_h">
         {% if profile.id == self_profile.id %}
@@ -17,6 +17,13 @@
         <h2 class="requests_h1" id = "title">{{profile.name}} Friends List</h2>
         {% endif %}
     </div>
+        <div class="message_none"
+             {% if friends %}
+             style="display:none;"
+             {% else %}
+             style="display:flex;"
+             {% endif %}
+        >Пока у вас нет друзей</div>
         {% for friend in friends %}
 
             <div  class="friendlist_item" id="friend_item">
@@ -35,7 +42,7 @@
             <div  class="friendrequest_item" id="request_item">
                 <div class="friend-avatar">
                     <div class="block_inner_avatar">
-                        <img src="{{ friend.avatar.url }}" class="image_avatar">
+                        <img src="{{ inviter.avatar.url }}" class="image_avatar">
                     </div>
                 </div>
                 <a class="friend_name" href="{% url 'profile' inviter.id %}">{{ inviter.full_name }}</a>
@@ -43,6 +50,7 @@
                 <a class="button_write reject" href="{% url 'reject_request_friend' inviter.id%}">Deny</a>
             </div>
         {% endfor %}
+
 </div>
 {% elif profile.id != self_profile.id %}
             <div class="zero_bookmarks">
