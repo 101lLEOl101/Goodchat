@@ -45,7 +45,11 @@
         {% endif %}
 	</div>
     <div class="profile-card">
-        <img src="{{ profile.avatar.url }}" class="profile-pic" />
+        <div class="profile-pic">
+            <div class="block_inner_avatar">
+                <img src="{{ profile.avatar.url }}" class="image_avatar">
+            </div>
+        </div>
         <div class="row">
             <div class = "left">
                 <div class="user-nickname" id="usernick">Name: {{ profile.name }} </div>
