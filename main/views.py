@@ -10,7 +10,7 @@ from main.models import Post, Bookmark
 from main.models import Comment
 from .forms import PostForm, EditPostForm
 from .forms import CommentForm
-from .utils import get_bookmarks
+from .utils import get_bookmarks, is_in_bookmark
 from .forms import FrindSearchRequestForm
 from itertools import groupby
 
@@ -27,6 +27,7 @@ def main_page(request):
                           'photo': post.photo,
                           'content': post.content,
                           'date': post.date_create,
+                          'in_bookmarks': is_in_bookmark(request.user, post)
                           } for post in reversed(posts)]
                }
     return render(request, 'main_page.html', context)
@@ -152,6 +153,7 @@ def bookmarks_page(request):
                             'author': post.author,
                             'content': post.content,
                             'photo': post.photo,
+                            'in_bookmarks': is_in_bookmark(request.user, post)
                             } for post in reversed(posts)]
         }
     return render(request, 'bookmarks_page.html', context)
@@ -241,6 +243,7 @@ def profile(request, id: int):
                           'photo': post.photo,
                           'content': post.content,
                           'date': post.date_create,
+                          'in_bookmarks': is_in_bookmark(request.user, post)
                           } for post in reversed(posts)],
                'add_friend_button': get_friend_add_button_state(request.user.id, id)
                }

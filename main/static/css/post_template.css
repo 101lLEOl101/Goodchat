@@ -109,6 +109,20 @@ cursor: pointer;
     background-color: #36C849;
 }
 
+.in_zakladka{
+    background-color: #36C849;
+    background-image: url("/media/images/bookmark.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-size: 14px 14px;
+}
+
+
+.in_zakladka:hover{
+    background-image: none;
+}
+
 .open{
     background-color: #FEBB40;
     display:flex;
