@@ -12,7 +12,11 @@
         {% for chat in chats %}
         <a href="{% url 'chat' chat.id %}">
             <div class="chat_item">
-                <img class="chat-user-pic" src="{{chat.avatar.url}}">
+                <div class="chat-user-pic">
+                    <div class="block_inner_avatar">
+                        <img src="{{chat.avatar.url}}" class="image_avatar">
+                    </div>
+                </div>
                 <div class="chat_texts">
                 <h2>{{ chat.name }}</h2>
                 {% if chat.last_message %}

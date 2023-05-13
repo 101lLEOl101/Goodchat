@@ -42,4 +42,5 @@ function removeFilesItem(target){
 	document.getElementById("box-img").removeAttribute("style");
 	document.getElementById("input-list").removeAttribute("style");
 	is_del.value = "1"
+	dt = new DataTransfer();
 }

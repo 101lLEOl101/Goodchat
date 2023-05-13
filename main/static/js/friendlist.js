@@ -6,24 +6,34 @@ i.classList.remove("icona");
 let requests = document.getElementsByClassName("friendrequest_item");
 let friends = document.getElementsByClassName("friendlist_item");
 btn.addEventListener('click', function() {
-if (btn.innerHTML == 'Запросы в друзья'){
+if (btn.innerHTML == 'Friend Request'){
+    document.getElementsByClassName("message_none")[0].style.display = "none";
     for(let i = 0; i < requests.length; i++){
         requests[i].style.display = "flex";
     }
     for(let i = 0; i < friends.length; i++){
         friends[i].style.display = "none";
     }
-    btn.innerHTML = 'Список Друзей'
-    title.innerHTML = 'Запросы в друзья'
+    btn.innerHTML = 'Friends List'
+    title.innerHTML = 'Friend Request'
+    if (requests.length == 0){
+        document.getElementsByClassName("message_none")[0].style.display = "flex";
+        document.getElementsByClassName("message_none")[0].innerHTML = "Пока что нет запросов в друзья";
+    }
 }
-else if (btn.innerHTML == 'Список Друзей'){
+else if (btn.innerHTML == 'Friends List'){
+    document.getElementsByClassName("message_none")[0].style.display = "none";
     for(let i = 0; i < requests.length; i++){
         requests[i].style.display = "none";
     }
     for(let i = 0; i < friends.length; i++){
         friends[i].style.display = "flex";
     }
-    btn.innerHTML = 'Запросы в друзья'
-    title.innerHTML = 'Список Друзей'
+    btn.innerHTML = 'Friend Request'
+    title.innerHTML = 'Friends List'
+    if (friends.length == 0){
+        document.getElementsByClassName("message_none")[0].style.display = "flex";
+        document.getElementsByClassName("message_none")[0].innerHTML = "Пока у вас нет друзей";
+    }
 }
 });
