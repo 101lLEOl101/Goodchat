@@ -5,7 +5,6 @@ from .models import Post
 def get_bookmarks(user: User):
     posts = [bookmark.post 
              for bookmark in Bookmark.objects.filter(user=user)]
-    
     return posts
 
 def is_in_bookmark(user: User, post: Post):

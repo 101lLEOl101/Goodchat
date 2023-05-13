@@ -22,14 +22,24 @@ def self_profile(request):
 
 def main_page(request):
     posts = Post.objects.all()
-    context = {'posts': [{'id': post.id,
-                          'author': post.author,
-                          'photo': post.photo,
-                          'content': post.content,
-                          'date': post.date_create,
-                          'in_bookmarks': is_in_bookmark(request.user, post)
-                          } for post in reversed(posts)]
-               }
+    if request.user.id != None:
+        context = {'posts': [{'id': post.id,
+                              'author': post.author,
+                              'photo': post.photo,
+                              'content': post.content,
+                              'date': post.date_create,
+                              'in_bookmarks': is_in_bookmark(request.user, post)
+                              } for post in reversed(posts)]
+                   }
+    else:
+        context = {'posts': [{'id': post.id,
+                              'author': post.author,
+                              'photo': post.photo,
+                              'content': post.content,
+                              'date': post.date_create,
+                              'in_bookmarks': 0
+                              } for post in reversed(posts)]
+                   }
     return render(request, 'main_page.html', context)
 
 
@@ -148,13 +158,13 @@ def bookmarks_page(request):
     context = {}
     if posts:
         context = {
-                'posts': [{ 'id': post.id,
-                           
-                            'author': post.author,
-                            'content': post.content,
-                            'photo': post.photo,
-                            'in_bookmarks': is_in_bookmark(request.user, post)
-                            } for post in reversed(posts)]
+            'posts': [{'id': post.id,
+
+                       'author': post.author,
+                       'content': post.content,
+                       'photo': post.photo,
+                       'in_bookmarks': is_in_bookmark(request.user, post)
+                       } for post in reversed(posts)]
         }
     return render(request, 'bookmarks_page.html', context)
 
