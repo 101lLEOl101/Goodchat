@@ -202,7 +202,7 @@ text-align: center;
 
 .chat-avatar-info{
     margin-left: 2%;
-    width: 40%;
+    width: 200px;
     border: solid 2px #8270F2;
     border-radius: 100%;
     object-fit: cover;
