@@ -4,7 +4,7 @@
 {% block style %}
 <link rel="stylesheet" href="{% static '/css/friendlist.css' %}">
 {% endblock %}
-{% block title %}Друзья{% endblock %}
+{% block title %}Friends{% endblock %}
 
 {% block content %}
 {% if friends or friend_inviters %}
@@ -23,7 +23,7 @@
              {% else %}
              style="display:flex;"
              {% endif %}
-        >Пока у вас нет друзей</div>
+        >No friends yet</div>
         {% for friend in friends %}
 
             <div  class="friendlist_item" id="friend_item">
