@@ -13,15 +13,18 @@
         {% csrf_token %}
         <div class="members" id="members">
             <div class="input-chat">
-                <input type="text" id="chat-name-input" name="chat-name-form" placeholder="Название чата">
+                <input type="text" id="chat-name-input" name="chat-name-form" placeholder="Name chat">
             </div>
             <div class="input-img">
-            <div class="input-file-row" id="box-img">
-					 	<label class="input-file" id="add_btn">
-						<input type="file" name="chat-photo-form" accept="image/*" id="id_photo" >
-						<span>Выберите Изображение</span>
-						</label>
-					<div id="input-list" class="input-file-list"></div>
+           <div class="input-file-row" id="box-img">
+						    <label class="input-file" id="add_btn">
+						    <input type="file" name="chat-photo-form" accept="image/*" id="id_photo" value="images/chat_avatars/kvlogo.png">
+						    <span>Select an Image</span>
+                            </label>
+               <div id="input-list" class="input-file-list"></div>
+           </div>
+            <div class = "settings_info_box">
+                <p class ="displayed_info">{{chat_avatar_name}}</p>
             </div>
             </div>
             <label for="members">Добавить в чат:</label>

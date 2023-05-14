@@ -137,10 +137,9 @@ def multichat_settings(request, chat_id):
 
         accepted_members = dict(request.POST)['members-checkbox-form']
         accepted_members = list(map(int, accepted_members))
-        if 'chat-photo-form' in request.FILES:
-            photo = request.FILES['chat-photo-form']
-            print(photo)
-            chat.avatar = photo
+        if 'chat-photo-form' in dict(request.FILES):
+            photo = dict(request.FILES)['chat-photo-form']
+            chat.avatar = photo[0]
             chat.save()
         elif dict(request.POST)['is_del'][0] == "1":
             chat.avatar = "images/DEFAULT_CHAT_AVATAR.jpg"
@@ -166,9 +165,9 @@ def multichat_settings(request, chat_id):
         if new_chat_name:
             chat.name = new_chat_name
             chat.save()
-        return redirect(reverse('multychat-info', args=[chat_id]))
+        return redirect('chat-list')
     if request.method == 'PUT':
-        return redirect(reverse('multychat-info', args=[chat_id]))
+        return redirect('chat-list')
     if request.method == 'GET':
         print('GET request for chat settings')
         context['members'] = [get_profile(access.user)
@@ -202,9 +201,10 @@ def new_multychat(request):
     context = {}
     if request.method == 'POST':
         print('POST request for create multychat')
-        if 'chat-photo-form' in  request.FILES:
-            photo = request.FILES['chat-photo-form']
-            chat = Chat(is_multy=True, name=dict(request.POST)['chat-name-form'][0], avatar = photo)
+        print(dict(request.FILES))
+        if 'chat-photo-form' in dict(request.FILES):
+            photo = dict(request.FILES)['chat-photo-form']
+            chat = Chat(is_multy=True, name=dict(request.POST)['chat-name-form'][0], avatar = photo[0])
         else:
             chat = Chat(is_multy=True, name=dict(request.POST)['chat-name-form'][0])
         chat.save()

@@ -12,13 +12,18 @@
     <form id="members-form" method="POST" enctype="multipart/form-data">
         <div class="input-img">
         {% if chat_avatar_name %}
-        <div class="input-file-row" id="box-img" style="background-image: url({{chat_avatar_url}});">
-						<label class="input-file" id="add_btn" style="visibility: hidden; width: 0px; height: 0px; margin: 0px;">
-						<input type="file" name="chat-photo-form" accept="image/*" id="id_photo" value="{{chat_avatar_value}}">
-						<span>Выберите Изображение</span>
-						</label>
-					<div id="input-≠list" class="input-file-list" style="margin: 0px auto;"><div class="input-file-list-item"><span class="input-file-list-name">{{chat_avatar_name}}</span><a href="#" onclick="removeFilesItem(this); return false;" class="input-file-list-remove">x</a></div></div>
-				</div>
+            <div class="input-file-row" id="box-img">
+						    <label class="input-file" id="add_btn" style="visibility: hidden; width: 0px; height: 0px; margin: 0px;">
+						    <input type="file" name="chat-photo-form" accept="image/*" id="id_photo" value="{{chat_avatar_value}}">
+						    <span>Select an Image</span>
+						    </label>
+					        <div id="input-list" class="input-file-list" style="margin: 0px auto;">
+                                <div class="input-file-list-item">
+                                    <a href="#" onclick="removeFilesItem(this); return false;" class="input-file-list-remove">x</a>
+                                    <img class="input-file-list-img" src="{{chat_avatar_url}}">
+                                </div>
+                            </div>
+				        </div>
         <input id = 'is_del' name="is_del" type="text" style="display: none;" value="0">
         {% else %}
         <div class="input-file-row" id="box-img">
@@ -30,12 +35,15 @@
         </div>
         
         {% endif %}
+        <div class = "settings_info_box">
+            <p class ="displayed_info">{{chat_avatar_name}}</p>
+        </div>
          </div>
         {% csrf_token %}
         <div class="members" id="members">
             <div class="input-chat">
                
-                <input type="text" id="chat-name-input" name="chat-name-form" value="Имя: {{ chat_name }}">
+                <input type="text" id="chat-name-input" name="chat-name-form" value="{{ chat_name }}" placeholder="Name">
             </div>
             <label for="members">Участники:</label>
             {% for member in members %}
