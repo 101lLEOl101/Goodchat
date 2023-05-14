@@ -50,6 +50,8 @@
 
 .friend-avatar{
     margin-left: 2%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
     width: 10%;
     border-radius: 100%;
 }

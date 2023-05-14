@@ -153,3 +153,41 @@
     word-wrap: break-word;
     word-break: break-all;
 }
+
+
+.container {
+        display: block;
+        height: 80%;
+        width: 80%;
+        color: white;
+        background-color: black;
+        border: solid 2px #8270F2;
+        border-radius: 20px;
+        padding: 3rem;
+        margin: auto;
+        margin-top: 5%;
+}
+.chat-info-title{
+        text-align: center;
+        color: #8270F2;
+}
+.btn-save {
+    color: white;
+    background-color: black;
+    border: solid 2px #8270F2;
+    border-radius: 20px;
+    padding: 1rem;
+	width: 10em;
+	font-size: large;
+	cursor: pointer;
+}
+.btn-discard{
+	color: black;
+    background-color: #8270F2;
+    border: solid 2px #5a4daf;
+    border-radius: 20px;
+    padding: 1rem;
+	width: 10em;
+	font-size: large;
+	cursor: pointer;
+}
