@@ -32,8 +32,8 @@
         {% endfor %}
     </div>
     <br>
-    <a class="add-members" href="{% url 'multychat-settings' chat_id%}">Edit</a>
-    <a class="btn-leave" href="{% url 'leave-chat' chat_id %}">Leave</a>
+    <a class="btn-save" href="{% url 'multychat-settings' chat_id%}">Изменить</a>
+    <a class="btn-discard" href="{% url 'leave-chat' chat_id %}">Покинуть чат</a>
 </div>
 <style>
     .container {
@@ -52,22 +52,26 @@
         text-align: center;
         color: #8270F2;
     }
-    .add-members {
-        color: white;
-        background-color: black;
-        border: solid 2px #8270F2;
-        border-radius: 20px;
-        padding: 0.8rem;
-        margin: 1rem;
-    }
-    .btn-leave {
-        color: red;
-        background-color: black;
-        border: solid 2px #8270F2;
-        border-radius: 20px;
-        padding: 0.8rem;
-        margin: 1rem;
-    }
+    .btn-save {
+    color: white;
+    background-color: black;
+    border: solid 2px #8270F2;
+    border-radius: 20px;
+    padding: 1rem;
+	width: 10em;
+	font-size: large;
+	cursor: pointer;
+}
+.btn-discard{
+	color: black;
+    background-color: #8270F2;
+    border: solid 2px #5a4daf;
+    border-radius: 20px;
+    padding: 1rem;
+	width: 10em;
+	font-size: large;
+	cursor: pointer;
+}
 </style>
 {% endblock %}
 
