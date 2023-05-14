@@ -116,7 +116,7 @@ def multichat_info(request, chat_id):
 
     context['members_count'] = len(context['members'])
     context['banned_count'] = len(context['banned'])
-
+    context['chat_avatar_url'] = chat.avatar.url
     return render(request, 'multychat_info.html', context)
 
 

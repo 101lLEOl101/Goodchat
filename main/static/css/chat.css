@@ -190,3 +190,22 @@
 	font-size: large;
 	cursor: pointer;
 }
+
+.input-img{
+	display: grid;
+	justify-content: center;
+	margin-top: 2em;
+  }
+.chat-name{
+text-align: center;
+}
+
+.chat-avatar-info{
+    margin-left: 2%;
+    width: 40%;
+    border: solid 2px #8270F2;
+    border-radius: 100%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    margin: 0 auto;
+}
