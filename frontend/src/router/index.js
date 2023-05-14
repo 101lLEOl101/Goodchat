@@ -1,22 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import UserManager from '@/managers/UserManager'
 import RegistrationPage from '@/views/RegistrationPage'
 import LoginPage from '@/views/LoginPage'
+import ProfilePage from '@/views/ProfilePage'
+import NotFoundPage from '@/views/NotFoundPage'
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  },
   {
     path: '/registration',
     name: 'registration',
@@ -26,7 +15,18 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginPage
-  }
+  },
+  {
+    path: '/profile/:id',
+    props: true,
+    name: 'profile',
+    component: ProfilePage
+  },
+  { 
+    path: '/:pathMatch(.*)*', 
+    name: 'NotFound', 
+    component: NotFoundPage 
+  },
 ]
 
 const router = createRouter({
@@ -34,4 +34,17 @@ const router = createRouter({
   routes
 })
 
-export default router
+router.beforeEach((to, from, next) => {
+  // redirect to login page if not logged in and trying to access a restricted page
+  const publicPages = ['/login'];
+  const authRequired = !publicPages.includes(to.path);
+  const loggedIn = UserManager.getUser();
+
+  if (authRequired && !loggedIn) {
+    return next('/login');
+  }
+
+  next();
+})
+
+export default router;

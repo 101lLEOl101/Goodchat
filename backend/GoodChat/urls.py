@@ -32,6 +32,7 @@ urlpatterns = [
     
     path('api/register', users_views.Register.as_view()),
     path('api/profile/self', users_views.SelfProfile.as_view()),
+    path('api/profile/<int:id>', users_views.GetProfile.as_view()),
     
     path('admin/', admin.site.urls),
     path('', main_views.main_page, name='home'),

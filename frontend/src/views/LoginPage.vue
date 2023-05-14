@@ -30,7 +30,7 @@ export default {
       this.$store.dispatch('auth/login', user)
         .then(
           response => {
-            this.$router.push('/profile');
+            this.$router.push(`/profile/${this.$store.state.auth.user.id}`);
           },
           error => {
             this.message = {

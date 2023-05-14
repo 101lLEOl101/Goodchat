@@ -35,7 +35,12 @@ class UserSerializer:
             'login': user.username,
             'email': user.email,
             'avatar': profile.avatar.url,
-            'bio': profile.about,
+            'about': profile.about,
+            'country': profile.country,
+            'city': profile.city,
+            'education': profile.education,
+            'company': profile.company,
+            'hobby': profile.hobby,
         }
         
         return response

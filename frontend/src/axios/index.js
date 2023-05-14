@@ -4,7 +4,7 @@ import TokenManager from "@/managers/TokenManager";
 import UserManager from "@/managers/UserManager";
 
 const $axios = axios.create({
-  baseURL: "http://127.0.0.1:8000/",
+  baseURL: "http://127.0.0.1:8000/api/",
   timeout: 1000,
 });
 
@@ -32,7 +32,7 @@ $axios.interceptors.response.use(
       if (result.access) {
         config.headers = {
           ...config.headers,
-          ...authHeader(),
+          Authorization: `Bearer ${result.access}`,
         };
       } else {
         TokenManager.removeToken();

@@ -17,7 +17,7 @@ class UserManager {
     localStorage.removeItem('user');
   }
   loadUser() {
-    return $axios.get('api/profile/self')
+    return $axios.get('profile/self')
       .then(response => {
         if (response.data)
           this.setUser(response.data.user);

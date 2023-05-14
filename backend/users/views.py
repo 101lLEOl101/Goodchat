@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth import authenticate
 from django.contrib.auth import logout
@@ -69,6 +70,15 @@ class SelfProfile(APIView):
     def get(self, request, format=None):
         user = UserSerializer.toFullProfileDict(request.user)
         response = {'user': user}
+        return Response(response)
+    
+class GetProfile(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get(self, request, id, format=None):
+        user = get_object_or_404(User, id=id)
+        response = {'user': UserSerializer.toFullProfileDict(user)}
         return Response(response)
     
 
