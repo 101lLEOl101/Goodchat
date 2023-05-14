@@ -42,7 +42,6 @@ header{
 
 .logo_h{
     height: 100%;
-    width: min-content;
     display: flex;
 }
 

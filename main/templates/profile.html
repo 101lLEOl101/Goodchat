@@ -16,7 +16,7 @@
             <div class="post-box">
                 <div class="post-header">
                     <div class="btn_box_post">
-                    <a class="round heart" disabled href="#" title="Like"></a>
+                    <!-- <a class="round heart" disabled href="#" title="Like"></a> -->
                     <a class="round open" href="/post/{{post.id}}" title="Open Full"><div class="arrow"></div><div class="arrow_diff"></div></a>
                     {% if post.in_bookmarks %}
                     <a class="round in_zakladka" href="{% url 'add-delete-bookmark' post.id %}" title="Bookmark"></a>

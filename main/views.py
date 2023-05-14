@@ -24,7 +24,7 @@ def main_page(request):
     posts = Post.objects.all()
     if request.user.id != None:
         context = {'posts': [{'id': post.id,
-                              'author': post.author,
+                              'author': get_profile(post.author),
                               'author_photo': get_profile(post.author).avatar,
                               'photo': post.photo,
                               'content': post.content,
@@ -34,7 +34,7 @@ def main_page(request):
                    }
     else:
         context = {'posts': [{'id': post.id,
-                              'author': post.author,
+                              'author': get_profile(post.author),
                               'author_photo': get_profile(post.author).avatar,
                               'photo': post.photo,
                               'content': post.content,
@@ -161,7 +161,7 @@ def bookmarks_page(request):
     if posts:
         context = {
             'posts': [{'id': post.id,
-                       'author': post.author,
+                       'author': get_profile(post.author),
                        'author_photo': get_profile(post.author).avatar,
                        'content': post.content,
                        'photo': post.photo,
@@ -249,7 +249,7 @@ def profile(request, id: int):
                            'hobby': profile.hobby,
                            },
                'posts': [{'id': post.id,
-                          'author': {'name': post.author,
+                          'author': {'name': get_profile(post.author).name + ' ' + get_profile(post.author).surname,
                                      'link': f'/profile/{post.author.id}',
                                      },
                           'author_photo': get_profile(post.author).avatar,
@@ -292,7 +292,7 @@ def post(request, id: int):
         context['form'] = CommentForm()
         
     context = {'post': {'id': post.id,
-                        'author': {'name': post.author,
+                        'author': {'name': get_profile(post.author).name + ' ' + get_profile(post.author).surname,
                                    'id':post.author.id,
                                    'link': f'/profile/{post.author.id}',
                                    },
@@ -300,7 +300,7 @@ def post(request, id: int):
                         'photo': post.photo,
                         'date': post.date_create,
                         },
-               'comments': [{'author': comment.author,
+               'comments': [{'author': get_profile(comment.author),
                              'content': comment.content,
                              'date': comment.date_create
                              } for comment in reversed(comments)],
