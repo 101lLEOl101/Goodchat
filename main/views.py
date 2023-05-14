@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.urls import reverse
 from users.models import Profile
 from users.models import User
-from users.utils import get_friend_add_button_state
+from users.utils import get_friend_add_button_state, get_profile
 from main.models import Post, Bookmark
 from main.models import Comment
 from .forms import PostForm, EditPostForm
@@ -25,6 +25,7 @@ def main_page(request):
     if request.user.id != None:
         context = {'posts': [{'id': post.id,
                               'author': post.author,
+                              'author_photo': get_profile(post.author).avatar,
                               'photo': post.photo,
                               'content': post.content,
                               'date': post.date_create,
@@ -34,6 +35,7 @@ def main_page(request):
     else:
         context = {'posts': [{'id': post.id,
                               'author': post.author,
+                              'author_photo': get_profile(post.author).avatar,
                               'photo': post.photo,
                               'content': post.content,
                               'date': post.date_create,
@@ -159,8 +161,8 @@ def bookmarks_page(request):
     if posts:
         context = {
             'posts': [{'id': post.id,
-
                        'author': post.author,
+                       'author_photo': get_profile(post.author).avatar,
                        'content': post.content,
                        'photo': post.photo,
                        'in_bookmarks': is_in_bookmark(request.user, post)
@@ -250,6 +252,7 @@ def profile(request, id: int):
                           'author': {'name': post.author,
                                      'link': f'/profile/{post.author.id}',
                                      },
+                          'author_photo': get_profile(post.author).avatar,
                           'photo': post.photo,
                           'content': post.content,
                           'date': post.date_create,

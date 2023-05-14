@@ -24,6 +24,7 @@
                     <a class="round zakladka" href="{% url 'add-delete-bookmark' post.id %}" title="Bookmark"></a>
                     {% endif %}
                     </div>
+                    <img class = "author_avatar" src = "{{ profile.avatar.url }}">
                     <a class = "post-author" href="{{post.author.link}}">{{post.author.name}}</a>
                 </div>
 
