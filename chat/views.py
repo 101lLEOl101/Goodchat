@@ -218,7 +218,7 @@ def new_multychat(request):
                 access = Access(user=user, chat=chat, mode=1)
                 access.save()
         message = Message(chat=chat, author=request.user,
-                          content="Добро пожаловать в мой чат!")
+                          content="Welcome to chat!")
         message.save()
         return redirect('chat-list')
     if request.method == 'GET':

@@ -9,10 +9,10 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="chat-info-title">Инфо</h1>
-    <h2 class="chat-name">Название: {{ chat_name }}</h2>
+    <h1 class="chat-info-title">Info</h1>
+    <h2 class="chat-name">Name: {{ chat_name }}</h2>
     <div class="members" id="members">
-        <label for="members">Участники ({{ members_count }}):</label>
+        <label for="members">Members ({{ members_count }}):</label>
         {% for member in members %}
             <div  class="friendlist_item">
                 <img src="{{ member.avatar.url }}" class="friend-avatar">
@@ -22,7 +22,8 @@
         {% endfor %}
     </div>
     <div class="members" id="banned">
-        <label for="banned">Заблокированы ({{ banned_count }}):</label>
+        {% if banned %}
+        <label for="banned">Banned ({{ banned_count }}):</label>
         {% for member in banned %}
             <div  class="friendlist_item">
                 <img src="{{ member.avatar.url }}" class="friend-avatar">
@@ -30,14 +31,15 @@
                 <span class="friend_name">{{ member.access_description }}</span>
             </div>
         {% endfor %}
+        {% endif %}
     </div>
     <br>
     {% for member in members %}
-        {% if member.access_description == "Создатель" and member.id == self_profile.id %}
-        <a class="btn-save" href="{% url 'multychat-settings' chat_id%}">Изменить</a>
+        {% if member.access_description == "Creator" and member.id == self_profile.id %}
+        <a class="btn-save" href="{% url 'multychat-settings' chat_id%}">Edit</a>
         {% endif %}
     {% endfor %}
-    <a class="btn-discard" href="{% url 'leave-chat' chat_id %}">Покинуть чат</a>
+    <a class="btn-discard" href="{% url 'leave-chat' chat_id %}">Exit Chat</a>
 </div>
 {% endblock %}
 
