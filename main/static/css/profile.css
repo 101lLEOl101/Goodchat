@@ -35,7 +35,18 @@
 .user-info {
     width: 70%;
     margin: 10px 15%;
-    height: 154px;
+    max-height: 154px;
+    padding: 20px 0;
+    text-align:center;
+    background: #fff;
+    border-radius: 12px;
+    transition: all 1s;
+}
+
+.user-info-dif {
+    width: 70%;
+    margin: 10px 15%;
+    max-height: 154px;
     padding: 20px 0;
     text-align:center;
     background: #fff;
@@ -184,6 +195,14 @@
     transition: all 1s;
 }
 
+.hiddenunckecked{
+    overflow: hidden;
+    margin: 0 20%;
+    padding: 0;
+    font-size: 0;
+    transition: all 1s;
+}
+
 .unhidden{
     transition: all 1s;
     overflow: hidden;
@@ -196,8 +215,40 @@
     font-size: 100%;
 }
 
+#toggle:checked ~ .profile-card .user-info-dif{
+	height: 58%;
+	max-height: 58%;
+}
+
+.hiddenbtn{
+    height: 0;
+    padding: 0;
+    margin: 0 20%;
+    font-size: 0;
+    border: 0;
+    transition: all 1s;
+    overflow: hidden;
+}
+
 #toggle:checked ~ .profile-card .user-info{
 	height: 85%;
+	max-height: 85%;
+}
+
+#toggle:checked ~ .profile-card .hiddenbtn{
+    background-color: #000000;
+    border-radius: 12px;
+    border: #8270F2 solid 2px;
+    padding: 15px;
+    color: #8270F2;
+    width: 50%;
+    font-size: 20px;
+    transition: all 0.5s;
+    margin: 10px 20%;
+    display: inline-block;
+    height: 24px;
+    text-align: center;
+    transition: all 1s;
 }
 
 #toggle:checked ~ .profile-card .top{

@@ -33,7 +33,9 @@
                     </div>
                 </div>
                 <a class="friend_name" href="{% url 'profile' friend.id %}">{{ friend.full_name }}</a>
+                {% if profile.id == self_profile.id %}
                 <a class="button_write accept" href="{% url 'add-friend' friend.id %}">Delete</a>
+                {% endif %}
                 <a class="button_write reject" href="{% url 'open-dialog' friend.id %}">Message</a>
             </div>
 
