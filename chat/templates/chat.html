@@ -10,11 +10,7 @@
     <h2 style="text-align:center;"> Chats </h2>
     <div class="ur_friend" >
         <a class = "chat-avatar-div" href = "{{ chat.info_link }}">
-            <div class="friend-user-pic">
-                <div class="block_inner_avatar">
-                        <img src="{{chat.avatar.url}}" class="image_avatar">
-                </div>
-            </div>
+            <img class="friend-user-pic image_avatar" src="{{chat.avatar.url}}">
         </a>
         <p>{{chat.name}}</p>
     </div>

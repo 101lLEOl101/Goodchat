@@ -27,11 +27,7 @@
         {% for friend in friends %}
 
             <div  class="friendlist_item" id="friend_item">
-                <div class="friend-avatar">
-                    <div class="block_inner_avatar">
-                        <img src="{{ friend.avatar.url }}" class="image_avatar">
-                    </div>
-                </div>
+                <img src="{{ friend.avatar.url }}" class="friend-avatar image_avatar">
                 <a class="friend_name" href="{% url 'profile' friend.id %}">{{ friend.full_name }}</a>
                 {% if profile.id == self_profile.id %}
                 <a class="button_write accept" href="{% url 'add-friend' friend.id %}">Delete</a>

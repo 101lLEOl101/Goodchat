@@ -19,7 +19,7 @@
     </div>
     {% if user.is_authenticated %}
         <div class="auth_box">
-            <img class="image_avatar" src="{{self_profile.avatar.url}}" alt="">
+            <img class="image_avatar header_avatar" src="{{self_profile.avatar.url}}" alt="">
             <a href="{% url 'logout' %}" class="auth_btn ">Log Out</a>
         </div>
     {% else %}
