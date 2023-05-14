@@ -18,7 +18,7 @@ if (btn.innerHTML == 'Friend Request'){
     title.innerHTML = 'Friend Request'
     if (requests.length == 0){
         document.getElementsByClassName("message_none")[0].style.display = "flex";
-        document.getElementsByClassName("message_none")[0].innerHTML = "Пока что нет запросов в друзья";
+        document.getElementsByClassName("message_none")[0].innerHTML = "No friend requests yet";
     }
 }
 else if (btn.innerHTML == 'Friends List'){
@@ -33,7 +33,7 @@ else if (btn.innerHTML == 'Friends List'){
     title.innerHTML = 'Friends List'
     if (friends.length == 0){
         document.getElementsByClassName("message_none")[0].style.display = "flex";
-        document.getElementsByClassName("message_none")[0].innerHTML = "Пока у вас нет друзей";
+        document.getElementsByClassName("message_none")[0].innerHTML = "No friends yet";
     }
 }
 });

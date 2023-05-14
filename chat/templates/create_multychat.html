@@ -33,12 +33,12 @@
                     <img src="{{ friend.avatar.url }}" class="friend-avatar">
                     <a class="friend_name" href="{% url 'profile' friend.id %}">{{ friend.name }} {{ friend.surname }}</a>
                     <span class="friend_name">{{ friend.access_description }}</span>
-                    <input type="checkbox" name="members-checkbox-form" checked value="{{ friend.id }}"  class="custom-checkbox" id="check"><label for="check">Add</label>
+                    <input type="checkbox" name="members-checkbox-form" value="{{ friend.id }}"  class="custom-checkbox" id="check"><label for="check">Add</label>
                 </div>
             {% endfor %}
         </div>
     </form>
-    <button class="btn-save" type="submit" form="members-form">Save</button>
+    <button class="btn-save" type="submit" form="members-form">Create</button>
     <a class="btn-discard" href="{% url 'chat-list' %}">Discard</a>
 </div>
 {% endblock %}

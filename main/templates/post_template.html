@@ -29,6 +29,7 @@
 			<button class="btn_message" type="submit">Send</button>
 		</form>
 	{% endif %}
+	{% if comments %}
 	<h1 style="text-align:center; color:white;"> Comments </h1>
 	{% for comment in comments %}
 
@@ -41,7 +42,8 @@
 	<p class="comment-text">{{ comment.content }}</p>
 	</div>
 
-{% endfor %}
+	{% endfor %}
+	{% endif %}
 </div>
 {% endblock %}
 
