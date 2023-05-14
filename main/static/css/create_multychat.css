@@ -14,12 +14,25 @@
     text-align: center;
     color: #8270F2;
 }
-.btn-save, .btn-discard {
+.btn-save {
     color: white;
     background-color: black;
     border: solid 2px #8270F2;
     border-radius: 20px;
-    padding: 0.8rem;
+    padding: 1rem;
+	width: 10em;
+	font-size: large;
+	cursor: pointer;
+}
+.btn-discard{
+	color: black;
+    background-color: #8270F2;
+    border: solid 2px #5a4daf;
+    border-radius: 20px;
+    padding: 1rem;
+	width: 10em;
+	font-size: large;
+	cursor: pointer;
 }
 .friendlist_item{
     display: flex;
@@ -37,12 +50,14 @@
 
 .friend-avatar{
     margin-left: 2%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
     width: 10%;
     border-radius: 100%;
 }
 
 .friend_name{
-    color: white;
+    color: #8270F2;
     width: 20%;
     text-align: center;
 }
@@ -50,10 +65,11 @@
 
 .input-file-row {
 	display: flex;
-	margin: 10px;
-	border: 4px dashed #362982;
-	border-radius: 14px;
-	height: 30vh;
+	margin: 10px auto;
+	border: 2px dashed #8270F2;
+	border-radius: 100%;
+	width: fit-content;
+	height: 10vw;
 }
 .input-file {
 	position: relative;
@@ -62,23 +78,23 @@
 }
 .input-file span {
 	position: relative;
-	display: inline-block;
 	cursor: pointer;
 	outline: none;
 	text-decoration: none;
 	font-size: 14px;
-	vertical-align: middle;
-	color: black;
+    display: table-cell;
+    vertical-align: middle;
+	color: #8270F2;
 	text-align: center;
-	border-radius: 4px;
-	background-color: #8270f2;
+	border-radius: 100%;
+	background-color: black;
 	line-height: 22px;
-	height: 40px;
-	padding: 10px 20px;
+	height: 10vw;
 	box-sizing: border-box;
 	border: none;
 	margin: 0;
 	transition: background-color 0.2s;
+	width:10vw;
 }
 .input-file input[type=file] {
 	position: absolute;
@@ -96,10 +112,10 @@
 
 /* Hover/active */
 .input-file:hover span {
-	background-color: #5b4bbe;
+	background-color: #1F1F1F;
 }
 .input-file:active span {
-	background-color: #362982;
+	background-color: #0F0F0F;
 }
 
 /* Disabled */
@@ -115,9 +131,10 @@
 	position: relative;
 }
 .input-file-list-item img {
-	width: 50%;
-	margin: 100px 25%;
-	border-radius: 14px;
+	height: 10vw;
+	border-radius: 100%;
+	aspect-ratio: 1/1;
+	object-fit: cover;
 }
 .input-file-list-name {
 	text-align: center;
@@ -142,4 +159,41 @@
 	text-align: center;
 	line-height: 16px;
 	border-radius: 50%;
+}
+
+input[type="text"]{
+	background-color: #000000;
+    border-radius: 12px;
+    border: #8270F2 solid 2px;
+    padding: 15px;
+    color: #797979;
+    width: 250px;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+/* .custom-checkbox {
+	position: absolute;
+	opacity: 0;
+  } */
+
+  
+  .input-chat{
+	display: flex;
+	justify-content: center;
+  }
+  .input-img{
+	display: grid;
+	justify-content: center;
+	margin-top: 2em;
+  }
+
+.settings_info_box{
+    margin-left: 2%;
+    display: block;
+    margin-top: 0%;
+    vertical-align: top;
+}
+.displayed_info{
+    text-align: center;
 }

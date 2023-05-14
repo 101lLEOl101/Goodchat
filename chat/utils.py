@@ -155,11 +155,11 @@ def chat_access(user_id, chat_id) -> bool | Access:
 
 def normalize_chat_member(member_access: Access) -> dict:
     ACCESS_DESCRIPTION = {
-        0: 'BANNED',
-        1: 'MEMBER',
-        2: 'MODERATOR',
-        3: 'ADMIN',
-        4: 'CREATOR',
+        0: 'Забанен',
+        1: 'Участник',
+        2: 'Модератор',
+        3: 'Администратор',
+        4: 'Создатель',
     }
     
     member_profile = get_profile(member_access.user)

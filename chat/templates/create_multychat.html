@@ -4,20 +4,27 @@
 {% block style %}
 <link rel="stylesheet" href="{% static '/css/create_multychat.css' %}">
 {% endblock %}
-{% block title %}Chat Create{% endblock %}
+{% block title %}Multychat Create{% endblock %}
 
 {% block content %}
 <div class="container">
-    <h1 class="chat-info-title">Chat settings</h1>
+    <h1 class="chat-info-title">New Multychat</h1>
     <form id="members-form" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="members" id="members">
-            <div class="input-file-row" id="box-img">
-						<label class="input-file" id="add_btn">
-						<input type="file" name="chat-photo-form" accept="image/*" id="id_photo" >
-						<span>Choose an Image</span>
-						</label>
-					<div id="input-list" class="input-file-list"></div>
+            <div class="input-chat">
+                <input type="text" id="chat-name-input" name="chat-name-form" placeholder="Name chat">
+            </div>
+            <div class="input-img">
+           <div class="input-file-row" id="box-img">
+						    <label class="input-file" id="add_btn">
+						    <input type="file" name="chat-photo-form" accept="image/*" id="id_photo" value="images/chat_avatars/kvlogo.png">
+						    <span>Select an Image</span>
+                            </label>
+               <div id="input-list" class="input-file-list"></div>
+           </div>
+            <div class = "settings_info_box">
+                <p class ="displayed_info">{{chat_avatar_name}}</p>
             </div>
             <div>
                 <input type="text" id="chat-name-input" name="chat-name-form" placeholder="Add name multychat">
@@ -28,13 +35,13 @@
                     <img src="{{ friend.avatar.url }}" class="friend-avatar">
                     <a class="friend_name" href="{% url 'profile' friend.id %}">{{ friend.name }} {{ friend.surname }}</a>
                     <span class="friend_name">{{ friend.access_description }}</span>
-                    <input type="checkbox" name="members-checkbox-form" checked value="{{ friend.id }}">
+                    <input type="checkbox" name="members-checkbox-form" checked value="{{ friend.id }}"  class="custom-checkbox" id="check"><label for="check">Добавить</label>
                 </div>
             {% endfor %}
         </div>
     </form>
     <button class="btn-save" type="submit" form="members-form">Save</button>
-    <a class="btn-discard" href="{% url 'new-multychat' %}">Discard</a>
+    <a class="btn-discard" href="{% url 'chatlist' %}">Discard</a>
 </div>
 {% endblock %}
 

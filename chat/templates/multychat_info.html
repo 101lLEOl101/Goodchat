@@ -9,10 +9,10 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="chat-info-title">Chat information</h1>
-    <h2 class="chat-name">{{ chat_name }}</h2>
+    <h1 class="chat-info-title">Инфо</h1>
+    <h2 class="chat-name">Название: {{ chat_name }}</h2>
     <div class="members" id="members">
-        <label for="members">Members ({{ members_count }}):</label>
+        <label for="members">Участники ({{ members_count }}):</label>
         {% for member in members %}
             <div  class="friendlist_item">
                 <img src="{{ member.avatar.url }}" class="friend-avatar">
@@ -22,7 +22,7 @@
         {% endfor %}
     </div>
     <div class="members" id="banned">
-        <label for="banned">Banned ({{ banned_count }}):</label>
+        <label for="banned">Заблокированы ({{ banned_count }}):</label>
         {% for member in banned %}
             <div  class="friendlist_item">
                 <img src="{{ member.avatar.url }}" class="friend-avatar">
@@ -32,43 +32,13 @@
         {% endfor %}
     </div>
     <br>
-    <a class="add-members" href="{% url 'multychat-settings' chat_id%}">Edit</a>
-    <a class="btn-leave" href="{% url 'leave-chat' chat_id %}">Leave</a>
+    {% for member in members %}
+        {% if member.access_description == "Создатель" and member.id == self_profile.id %}
+        <a class="btn-save" href="{% url 'multychat-settings' chat_id%}">Изменить</a>
+        {% endif %}
+    {% endfor %}
+    <a class="btn-discard" href="{% url 'leave-chat' chat_id %}">Покинуть чат</a>
 </div>
-<style>
-    .container {
-        display: block;
-        height: 80%;
-        width: 80%;
-        color: white;
-        background-color: black;
-        border: solid 2px #8270F2;
-        border-radius: 20px;
-        padding: 3rem;
-        margin: auto;
-        margin-top: 5%;
-    }
-    .chat-info-title{
-        text-align: center;
-        color: #8270F2;
-    }
-    .add-members {
-        color: white;
-        background-color: black;
-        border: solid 2px #8270F2;
-        border-radius: 20px;
-        padding: 0.8rem;
-        margin: 1rem;
-    }
-    .btn-leave {
-        color: red;
-        background-color: black;
-        border: solid 2px #8270F2;
-        border-radius: 20px;
-        padding: 0.8rem;
-        margin: 1rem;
-    }
-</style>
 {% endblock %}
 
 {% block js %}
