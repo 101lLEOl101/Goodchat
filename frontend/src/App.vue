@@ -55,7 +55,7 @@
         </div>
         <div  id = "add" class = "side_icon">
             <a class = "hr" href = "{% url 'addpost' %}">
-                <i class="fa-sharp fa-solid fa-plus icona"></i>
+                <i class="fa-solid fa-plus icona"></i>
             </a>
         </div>
         <div  id = "f" class = "side_icon">
