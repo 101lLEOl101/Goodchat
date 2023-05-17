@@ -5,6 +5,7 @@ import LoginPage from '@/views/LoginPage'
 import ProfilePage from '@/views/ProfilePage'
 import NotFoundPage from '@/views/NotFoundPage'
 import SettingsPage from '@/views/SettingsPage'
+import MainPage from '@/views/MainPage'
 
 const routes = [
   {
@@ -21,6 +22,11 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginPage
+  },
+  {
+    path: '/',
+    name: 'home',
+    component: MainPage
   },
   {
     path: '/profile/:id',
