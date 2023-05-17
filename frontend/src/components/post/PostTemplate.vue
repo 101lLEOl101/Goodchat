@@ -6,8 +6,7 @@
                 <router-link to="/home" v-if="post.in_bookmarks" class="round in_zakladka" title="Bookmark"></router-link>
                 <router-link to="/home" v-else class="round zakladka" title="Bookmark"></router-link>
             </div>
-            <img class = "author_avatar" src = "{{post.author_photo.url}}">
-            <router-link to="/profile/{{ post.author.id }}" class = "post-author">{{post.author.name}} {{ post.author.surname}}</router-link>
+            
         </div>
         <div class="text-wrap">
             <div class="post-text">{{ post.content }}</div>
@@ -70,12 +69,7 @@ export default {
 
 
 
-.post-author {
-    color: white;
-    margin-right: 4%;
-    cursor: pointer;
-    text-decoration: none;
-}
+
 
 .text-wrap {
     display: inline-flex;
@@ -242,13 +236,5 @@ export default {
     font-weight: bold;
 }
 
-.author_avatar{
-    margin: 5.125px 30px;
-	aspect-ratio: 1/1;
-	object-fit: cover;
-	height: 40px;
-	width: 40px;
-	border-radius: 100%;
-	margin-left: auto;
-}
+
 </style>
