@@ -26,17 +26,16 @@
           </div>
     </div> -->
     <!-- END POSTS -->
-
+    
     <!-- Blank 1 -->
 
-    <div class="zero_bookmarks">
+    <div v-if="userIsMe" class="zero_bookmarks">
       <p class="alarm_posts">У этого пользователя нет постов :c </p>
     </div>
-    <!-- Blank 2 -->
-    <!-- <div class="zero_bookmarks">
+    <div v-else class="zero_bookmarks">
       <p class="alarm_posts">У вас еще нет постов :c </p>
       <a class="btn_add" href="addpost">Написать пост</a>
-    </div> -->
+    </div>
 
   </div>
 
@@ -51,11 +50,12 @@
 
 <script>
 import ProfileCard from '@/components/cards/ProfileCard.vue';
-
+import PostTemplate from '@/components/post/PostTemplate.vue';
 
 export default {
   components: {
     ProfileCard,
+    PostTemplate,
   },
   props: ['id'],
   data() {
