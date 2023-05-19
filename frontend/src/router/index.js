@@ -6,6 +6,7 @@ import ProfilePage from '@/views/ProfilePage'
 import NotFoundPage from '@/views/NotFoundPage'
 import SettingsPage from '@/views/SettingsPage'
 import MainPage from '@/views/MainPage'
+import ChatPage from '@/views/ChatPage'
 
 const routes = [
   {
@@ -39,6 +40,11 @@ const routes = [
     name: 'NotFound', 
     component: NotFoundPage 
   },
+  {
+    path: '/chat',
+    name: 'chat',
+    component: ChatPage,
+  }
 ]
 
 const router = createRouter({
