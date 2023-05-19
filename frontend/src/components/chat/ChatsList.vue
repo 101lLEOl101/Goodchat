@@ -1,8 +1,15 @@
 <template>
-     <div class="chat_box">
-        <a href="{% url 'new-multychat' %}" class = "create_chat"><i class="fa-solid fa-comment-medical create"></i></a>
-        <h2 style="text-align:center;"> Личные сообщения </h2>
-    </div>
+    <a href="{% url 'chat' chat.id %}">
+            <div class="chat_item">
+                <img class="chat-user-pic" src="{{chat.avatar.url}}">
+                <div class="chat_texts">
+                <h2>{{ chat.name }}</h2>
+                {% if chat.last_message %}
+                <h3 id="last_message">{{ chat.last_message.content }}</h3>
+                {% endif %}
+                </div>
+            </div>
+    </a>
   </template>
   
   <script>
@@ -10,24 +17,39 @@
   </script>
   
   <style>
-  .chat_box{
-    background-color: rgba(0,0,0,60%);
-    width: 800px;
-    min-height: 100vh;
-    margin: 0 auto;
+  .chat_item{
+    display:flex;
+    align-items:center;
+    justify-content: start;
+    width: 99%;
+    height: 120px;
+    transform: scale(0.8,0.8);
+    transition: all 0.5s;
+    border-radius: 20px;
+    border: 2px solid #8270F2;
+    margin-top: 10px;
+    margin-bottom: 10px;
     color: white;
-    padding-top: calc(7vh + 5px);
-    border-radius: 50px;
+}
+.chat_item:hover{
+    border-radius: 12px;
+    border: #000000 solid 2px;
     box-shadow: 0px 0px 33px #8270F2;
 }
-.create_chat{
-    position: relative;
-    left: 90%;
+
+.chat_texts{
+    text-decoration: none;
+    word-wrap: break-word;
+    word-break: break-all;
 }
-.create:hover{
-    color:black;
-    background-color:white;
-    transition:0.5s;
+
+.chat-user-pic {
+    width: 100px;
+    height: 100px;
+    margin-left:5%;
+    margin-right:30px;
+    border: 2px solid #000;
+    border-radius: 100%;
 }
   </style>
   
