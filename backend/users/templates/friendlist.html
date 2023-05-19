@@ -39,11 +39,7 @@
         {% for inviter in friend_inviters %}
             <div  class="friendrequest_item" id="request_item">
                 {% if profile.id == self_profile.id %}
-                <div class="friend-avatar">
-                    <div class="block_inner_avatar">
-                        <img src="{{ inviter.avatar.url }}" class="image_avatar">
-                    </div>
-                </div>
+                <img src="{{ inviter.avatar.url }}" class="friend-avatar image_avatar">
                 <a class="friend_name" href="{% url 'profile' inviter.id %}">{{ inviter.full_name }}</a>
                 <a class="button_write accept" href="{% url 'add-friend' inviter.id%}">Accept</a>
                 <a class="button_write reject" href="{% url 'reject_request_friend' inviter.id%}">Deny</a>
