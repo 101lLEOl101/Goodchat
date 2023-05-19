@@ -1,5 +1,6 @@
 <template>
     <form class="input-area-mess" method="POST">
+        <!-- Тут я не уверен что сделал все правильно имеено форму перенес -->
         <input class="message_area" placeholder="Введите сообщение">
         <button class="btn_message">Отправить</button>
     </form>
