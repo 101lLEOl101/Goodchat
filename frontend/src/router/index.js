@@ -4,6 +4,8 @@ import RegistrationPage from '@/views/RegistrationPage'
 import LoginPage from '@/views/LoginPage'
 import ProfilePage from '@/views/ProfilePage'
 import NotFoundPage from '@/views/NotFoundPage'
+import SettingsPage from '@/views/SettingsPage'
+import MainPage from '@/views/MainPage'
 
 const routes = [
   {
@@ -12,9 +14,19 @@ const routes = [
     component: RegistrationPage
   },
   {
+    path: '/settings',
+    name: 'settings-page',
+    component: SettingsPage
+  },
+  {
     path: '/login',
     name: 'login',
     component: LoginPage
+  },
+  {
+    path: '/global',
+    name: 'home',
+    component: MainPage
   },
   {
     path: '/profile/:id',
