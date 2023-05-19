@@ -8,11 +8,11 @@
 
     <div v-if="$store.state.auth.status.loggedIn" class="auth_box">
       <img class="img_header" src="@/assets/logo.png">
-      <a disabled class="auth_btn" @click="logout">Выход</a>
+      <a disabled class="auth_btn" @click="logout">Exit</a>
     </div>
     <div v-else class="auth_box">
-      <router-link to="/registration" class="auth_reg_btn">Регистрация</router-link>
-      <router-link to="/login" class="auth_btn">Вход</router-link>
+      <router-link to="/registration" class="auth_reg_btn">Registration</router-link>
+      <router-link to="/login" class="auth_btn">Login</router-link>
     </div>
   </header>
 

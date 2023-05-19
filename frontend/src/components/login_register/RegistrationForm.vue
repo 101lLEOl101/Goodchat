@@ -7,7 +7,7 @@
     <input type="password" class="form-input" placeholder="Password" v-model="user.password">
     <input type="password" class="form-input" placeholder="Repeat password" v-model="user.rePassword">
     <p v-if="message" :class="`form-error ${message.type}`">{{ message.content }}</p>
-    <button type="button" class="btn_add" @click="register">Зарегистрироваться</button>
+    <button type="button" class="btn_add" @click="register">Register</button>
   </form>
 </template>
 
@@ -39,7 +39,7 @@ export default {
       }
       else{
         this.message = {
-          content: 'В форму введены некоректные данные',
+          content: 'Incorrect data entered in the form',
           type: 'error',
         }
       }

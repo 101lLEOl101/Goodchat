@@ -3,23 +3,23 @@
     <img src="user.avatar.url" class="profile-pic" />
     <div class="row">
       <div class="left">
-        <div class="user-nickname" id="usernick">Имя: {{ user.name }} </div>
-        <div class="user-nickname top" id="usersurname">Фамилия: {{ user.surname }}</div>
-        <div class="user-info unhidden">О себе: <br> {{ user.about }} </div>
-        <div class="user-nickname bottom" id="userlike">Мне нравится: {{ user.hobby }}</div>
-        <div class="user-nickname hiddenunckecked">Город: {{ user.city }}</div>
-        <div class="user-nickname hiddenunckecked">Образование: {{ user.education }}</div>
-        <div class="user-nickname hiddenunckecked">Компания: {{ user.company }}</div>
+        <div class="user-nickname" id="usernick">Name: {{ user.name }} </div>
+        <div class="user-nickname top" id="usersurname">Lastname: {{ user.surname }}</div>
+        <div class="user-info unhidden">About: <br> {{ user.about }} </div>
+        <div class="user-nickname bottom" id="userlike">Hobbies: {{ user.hobby }}</div>
+        <div class="user-nickname hiddenunckecked">City: {{ user.city }}</div>
+        <div class="user-nickname hiddenunckecked">Education: {{ user.education }}</div>
+        <div class="user-nickname hiddenunckecked">Company: {{ user.company }}</div>
       </div>
       <div class="right">
         <div class="user-info">О себе: <br> {{ user.about }} </div>
       </div>
     </div>
 
-    <a v-if="!userIsMe" class="btn_profile" href="{% url 'open-dialog' user.id %}">Написать</a>
-    <a v-if="!userIsMe" class="btn_profile" href="{% url 'add-friend' user.id%}">Добавить в друзья</a>
+    <a v-if="!userIsMe" class="btn_profile" href="{% url 'open-dialog' user.id %}">Send a Message</a>
+    <a v-if="!userIsMe" class="btn_profile" href="{% url 'add-friend' user.id%}">Add as Friend</a>
 
-    <label for="toggle" class="btn_profile">Подробнее</label>
+    <label for="toggle" class="btn_profile">More</label>
   </div>
 </template>
 

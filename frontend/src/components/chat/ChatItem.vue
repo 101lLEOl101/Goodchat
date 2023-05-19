@@ -1,7 +1,7 @@
 <template>
     <div class="chat_box">
        <a href="{% url 'new-multychat' %}" class = "create_chat"><i class="fa-solid fa-comment-medical create"></i></a>
-       <h2 style="text-align:center;"> Личные сообщения </h2>
+       <h2 style="text-align:center;"> Personal Chats </h2>
    </div>
  </template>
  

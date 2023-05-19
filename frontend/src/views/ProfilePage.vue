@@ -30,11 +30,11 @@
     <!-- Blank 1 -->
 
     <div v-if="userIsMe" class="zero_bookmarks">
-      <p class="alarm_posts">У этого пользователя нет постов :c </p>
+      <p class="alarm_posts">You do yet have no posts :c</p>
+      <a class="btn_add" href="#">Create post</a>
     </div>
     <div v-else class="zero_bookmarks">
-      <p class="alarm_posts">У вас еще нет постов :c </p>
-      <a class="btn_add" href="addpost">Написать пост</a>
+      <p class="alarm_posts">This user yet has no posts :c</p>
     </div>
 
   </div>
