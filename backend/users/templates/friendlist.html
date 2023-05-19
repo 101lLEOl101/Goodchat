@@ -4,46 +4,62 @@
 {% block style %}
 <link rel="stylesheet" href="{% static '/css/friendlist.css' %}">
 {% endblock %}
-{% block title %}Друзья{% endblock %}
+{% block title %}Friends{% endblock %}
 
 {% block content %}
-{% if friends %}
+{% if friends or friend_inviters %}
 <div class="friend_box">
     <div class="title_h">
         {% if profile.id == self_profile.id %}
-        <h2 class="requests_h1" id = "title">Список Друзей</h2>
-        <button class="btn_request_h2" id="btn">Запросы в друзья</button>
+        <h2 class="requests_h1" id = "title">Friends List</h2>
+        <button class="btn_request_h2" id="btn">Friend Request</button>
         {% else %}
-        <h2 class="requests_h1" id = "title">Список Друзей {{profile.name}}</h2>
+        <h2 class="requests_h1" id = "title">{{profile.name}} Friends List</h2>
         {% endif %}
     </div>
+        <div class="message_none"
+             {% if friends %}
+             style="display:none;"
+             {% else %}
+             style="display:flex;"
+             {% endif %}
+        >No friends yet</div>
         {% for friend in friends %}
 
             <div  class="friendlist_item" id="friend_item">
-                <img src="{{ friend.avatar.url }}" class="friend-avatar">
+                <img src="{{ friend.avatar.url }}" class="friend-avatar image_avatar">
                 <a class="friend_name" href="{% url 'profile' friend.id %}">{{ friend.full_name }}</a>
+                {% if profile.id == self_profile.id %}
                 <a class="button_write accept" href="{% url 'add-friend' friend.id %}">Delete</a>
                 <a class="button_write reject" href="{% url 'open-dialog' friend.id %}">Message</a>
+                {% endif %}
             </div>
 
         {% endfor %}
         {% for inviter in friend_inviters %}
             <div  class="friendrequest_item" id="request_item">
-                <img src="{{ inviter.avatar.url }}" class="friend-avatar">
+                {% if profile.id == self_profile.id %}
+                <div class="friend-avatar">
+                    <div class="block_inner_avatar">
+                        <img src="{{ inviter.avatar.url }}" class="image_avatar">
+                    </div>
+                </div>
                 <a class="friend_name" href="{% url 'profile' inviter.id %}">{{ inviter.full_name }}</a>
-                <a class="button_write accept" href="{% url 'add-friend' inviter.id%}">Принять</a>
-                <a class="button_write reject" href="{% url 'reject_request_friend' inviter.id%}">Отклонить</a>
+                <a class="button_write accept" href="{% url 'add-friend' inviter.id%}">Accept</a>
+                <a class="button_write reject" href="{% url 'reject_request_friend' inviter.id%}">Deny</a>
+                {% endif %}
             </div>
         {% endfor %}
+
 </div>
 {% elif profile.id != self_profile.id %}
             <div class="zero_bookmarks">
-            <p class="alarm_posts">У этого пользователя нет друзей :c </p>
+            <p class="alarm_posts">This user has yet no friends :c </p>
             </div>
 {% else %}
             <div class="zero_bookmarks">
-            <p class="alarm_posts">У Вас еще нет друзей :c </p>
-            <a class="btn_add" href="{% url 'home' %}">Вернуться на главную</a>
+            <p class="alarm_posts">Yo do not yet have friends :c </p>
+            <a class="btn_add" href="{% url 'home' %}">Go back</a>
             </div>
 {% endif %}
 {% endblock %}

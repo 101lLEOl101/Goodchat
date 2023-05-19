@@ -1,3 +1,5 @@
+from typing import Optional
+
 from .models import User
 from .models import Profile
 from .models import Friend
@@ -19,7 +21,7 @@ def convert_profile_to_dict(profile: Profile):
     return profile_dict
 
 
-def get_user(id: id) -> User | None:
+def get_user(id:id) -> Optional[User]:
     try:
         user = User.objects.get(id=id)
         return user
@@ -100,13 +102,13 @@ def get_friend_add_button_state(user_id: User, opponent_id: User):
     opponent = User.objects.get(id=opponent_id)
     state = False
     if friend_invited(opponent, user):
-        state = 'Принять дружбу'
+        state = 'Accept friendship'
     elif friend_invited(user, opponent):
-        state = 'Отменить запрос дружбы'
+        state = 'Cancel friend request'
     elif friend_able_to_invite(user, opponent):
-        state = 'Предложить дружбу'
+        state = 'Offer friendship'
     elif are_friends(user, opponent):
-        state = 'Прекратить дружить'
+        state = 'Stop being friends'
     
     return state 
 

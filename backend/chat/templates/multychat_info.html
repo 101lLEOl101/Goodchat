@@ -5,12 +5,15 @@
 <link rel="stylesheet" href="{% static '/css/chat.css' %}">
 <link rel="stylesheet" href="{% static '/css/friendlist.css' %}">
 {% endblock %}
-{% block title %}Информация о чате{% endblock %}
+{% block title %}Info | {{ chat_name }}{% endblock %}
 
 {% block content %}
 <div class="container">
-    <h1 class="chat-info-title">Chat information</h1>
-    <h2 class="chat-name">{{ chat_name }}</h2>
+    <h1 class="chat-info-title">Info</h1>
+    <div class="input-img">
+    <h2 class="chat-name">Name: {{ chat_name }}</h2>
+    <img src="{{ chat_avatar_url }}" class="chat-avatar-info">
+    </div>
     <div class="members" id="members">
         <label for="members">Members ({{ members_count }}):</label>
         {% for member in members %}
@@ -22,6 +25,7 @@
         {% endfor %}
     </div>
     <div class="members" id="banned">
+        {% if banned %}
         <label for="banned">Banned ({{ banned_count }}):</label>
         {% for member in banned %}
             <div  class="friendlist_item">
@@ -30,45 +34,16 @@
                 <span class="friend_name">{{ member.access_description }}</span>
             </div>
         {% endfor %}
+        {% endif %}
     </div>
     <br>
-    <a class="add-members" href="{% url 'multychat-settings' chat_id%}">Edit</a>
-    <a class="btn-leave" href="{% url 'leave-chat' chat_id %}">Leave</a>
+    {% for member in members %}
+        {% if member.access_description == "Creator" and member.id == self_profile.id %}
+        <a class="btn-save" href="{% url 'multychat-settings' chat_id%}">Edit</a>
+        {% endif %}
+    {% endfor %}
+    <a class="btn-discard" href="{% url 'leave-chat' chat_id %}">Exit Chat</a>
 </div>
-<style>
-    .container {
-        display: block;
-        height: 80%;
-        width: 80%;
-        color: white;
-        background-color: black;
-        border: solid 2px #8270F2;
-        border-radius: 20px;
-        padding: 3rem;
-        margin: auto;
-        margin-top: 5%;
-    }
-    .chat-info-title{
-        text-align: center;
-        color: #8270F2;
-    }
-    .add-members {
-        color: white;
-        background-color: black;
-        border: solid 2px #8270F2;
-        border-radius: 20px;
-        padding: 0.8rem;
-        margin: 1rem;
-    }
-    .btn-leave {
-        color: red;
-        background-color: black;
-        border: solid 2px #8270F2;
-        border-radius: 20px;
-        padding: 0.8rem;
-        margin: 1rem;
-    }
-</style>
 {% endblock %}
 
 {% block js %}

@@ -8,7 +8,7 @@ class LoginForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-input',
-                'placeholder': 'Логин',
+                'placeholder': 'Log In',
             }
         )
     )
@@ -18,7 +18,7 @@ class LoginForm(forms.Form):
         widget=forms.PasswordInput(
             attrs={
                 'class': 'form-input',
-                'placeholder': 'Пароль',
+                'placeholder': 'Password',
             }
         )
     )
@@ -31,7 +31,7 @@ class RegistrationForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-input',
-                'placeholder': 'Имя'
+                'placeholder': 'Name'
             }
         ),
         # help_text='Enter First Name',
@@ -42,7 +42,7 @@ class RegistrationForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-input',
-                'placeholder': 'Фамилия'
+                'placeholder': 'Lastname'
             }
         ),
         # help_text='Enter Last Name',
@@ -53,7 +53,7 @@ class RegistrationForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-input',
-                'placeholder': 'Логин'
+                'placeholder': 'Log In'
             }
         ),
         # help_text='Enter Username',
@@ -74,7 +74,7 @@ class RegistrationForm(forms.Form):
         widget=forms.PasswordInput(
             attrs={
                 'class': 'form-input',
-                'placeholder': 'Пароль'
+                'placeholder': 'Password'
             }
         ),
     )
@@ -83,7 +83,7 @@ class RegistrationForm(forms.Form):
         widget=forms.PasswordInput(
             attrs={
                 'class': 'form-input',
-                'placeholder': 'Повторите пароль'
+                'placeholder': 'Reenter Password'
             }
         ),
     )
@@ -99,7 +99,7 @@ class RegistrationForm(forms.Form):
         password = self.cleaned_data['password']
         re_password = self.cleaned_data['re_password']
         if password != re_password:
-            raise forms.ValidationError('Пароли не совпадают!')
+            raise forms.ValidationError('Passwords are not same')
         return re_password
 
 

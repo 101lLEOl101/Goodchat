@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{% static '/css/profile.css' %}">
     <link rel="stylesheet" href="{% static '/css/post_template.css' %}">
 {% endblock %}
-{% block title %}Страница профиля{% endblock %}
+{% block title %}GC | {{ profile.name }} {{ profile.surname }} Profile{% endblock %}
 
 {% block content %}
 <!--<div class="content_for_profile"> -->
@@ -16,10 +16,15 @@
             <div class="post-box">
                 <div class="post-header">
                     <div class="btn_box_post">
-                    <a class="round heart" disabled href="#" title="Понравилось"></a>
-                    <a class="round open" href="/post/{{post.id}}" title="Открыть полностью"><div class="arrow"></div><div class="arrow_diff"></div></a>
-                    <a class="round zakladka" href="{% url 'add-delete-bookmark' post.id %}" title="В закладки"></a>
+                    <!-- <a class="round heart" disabled href="#" title="Like"></a> -->
+                    <a class="round open" href="/post/{{post.id}}" title="Open Full"><div class="arrow"></div><div class="arrow_diff"></div></a>
+                    {% if post.in_bookmarks %}
+                    <a class="round in_zakladka" href="{% url 'add-delete-bookmark' post.id %}" title="Bookmark"></a>
+                    {% else %}
+                    <a class="round zakladka" href="{% url 'add-delete-bookmark' post.id %}" title="Bookmark"></a>
+                    {% endif %}
                     </div>
+                    <img class = "author_avatar" src = "{{ profile.avatar.url }}">
                     <a class = "post-author" href="{{post.author.link}}">{{post.author.name}}</a>
                 </div>
 
@@ -35,45 +40,46 @@
         {% endfor %}
         {% elif profile.id != self_profile.id %}
             <div class="zero_bookmarks">
-            <p class="alarm_posts">У этого пользователя нет постов :c </p>
+            <p class="alarm_posts">This user yet has no posts :c </p>
             </div>
         {% else %}
             <div class="zero_bookmarks">
-            <p class="alarm_posts">У вас еще нет постов :c </p>
-            <a class="btn_add" href="{% url 'addpost' %}">Написать пост</a>
+            <p class="alarm_posts">You do yet have no posts :c </p>
+            <a class="btn_add" href="{% url 'addpost' %}">Create post</a>
             </div>
         {% endif %}
 	</div>
     <div class="profile-card">
-        <img src="{{ profile.avatar.url }}" class="profile-pic" />
+        <img src="{{ profile.avatar.url }}" class="profile-pic">
         <div class="row">
             <div class = "left">
-                <div class="user-nickname" id="usernick">Имя: {{ profile.name }} </div>
-                <div class="user-nickname top" id="usersurname">Фамилия: {{ profile.surname }}</div>
-                <div class="user-info unhidden">О себе: <br> {{ profile.about }} </div>
-                <div class="user-nickname bottom" id="userlike">Мне нравится: {{ profile.hobby }}</div>
-                <div class="user-nickname hiddenunckecked">Город: {{ profile.city }}</div>
-                <div class="user-nickname hiddenunckecked">Образование: {{ profile.education }}</div>
-                <div class="user-nickname hiddenunckecked">Компания: {{ profile.company }}</div>
+                <div class="user-nickname" id="usernick">Name: {{ profile.name }} </div>
+                <div class="user-nickname top" id="usersurname">Lastname: {{ profile.surname }}</div>
+                <div class="user-info unhidden">About: <br> {{ profile.about }} </div>
+                <div class="user-nickname bottom" id="userlike">Hobbies: {{ profile.hobby }}</div>
+                <div class="user-nickname hiddenunckecked">City/Town: {{ profile.city }}</div>
+                <div class="user-nickname hiddenunckecked">Education: {{ profile.education }}</div>
+                <div class="user-nickname hiddenunckecked">Company: {{ profile.company }}</div>
+                {% if profile.id != self_profile.id %}
+                <a class="btn_profile hiddenbtn" href="{% url 'friend-list' profile.id %}">Friendlist</a>
+                <label for="toggle" class="btn_profile">Extend</label>
+                {% endif %}
             </div>
             <div class = "right">
-                <div class="user-info">О себе: <br> {{ profile.about }} </div>
+                {% if profile.id != self_profile.id %}
+                <div class="user-info-dif">About: <br> {{ profile.about }} </div>
+                <a class="btn_profile hiddenunckeckedbtn" href="{% url 'open-dialog' profile.id %}">Send a Message</a>
+                {% if add_friend_button %}
+                <a class="btn_profile hiddenunckeckedbtn" href="{% url 'add-friend' profile.id%}">{{ add_friend_button }}</a>
+                {% endif %}
+                {% else %}
+                <div class="user-info">About: <br> {{ profile.about }} </div>
+                {% endif %}
             </div>
         </div>
-    {% if profile.id == self_profile.id %}
-        <label for="toggle" class="btn_profile">Подробнее</label>
-    {% else %}
-    <a class="btn_profile" href="{% url 'open-dialog' profile.id %}">Написать</a>
-    {% if add_friend_button %}
-        <a class="btn_profile" href="{% url 'add-friend' profile.id%}">{{ add_friend_button }}</a>
-    {% endif %}
-    <label for="toggle" class="btn_profile">Подробнее</label>
-    {% endif %}
-    </div>
-    <div class="profile-card-more">
-        <p class="user-nickname">Город: {{ profile.city }}</p>
-        <p class="user-nickname">Образование: {{ profile.education }}</p>
-        <p class="user-nickname">Компания: {{ profile.company }}}</p>
+        {% if profile.id == self_profile.id %}
+            <label for="toggle" class="btn_profile">Extend</label>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

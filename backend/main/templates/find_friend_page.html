@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block style %}<link rel="stylesheet" href="{% static '/css/find_friends.css' %}">{% endblock %}
-{% block title %}Поиск пользователей{% endblock %}
+{% block title %}Friends search{% endblock %}
 
 {% block content %}
 	<div class = "search-wrapper">
-		<p class = "search-user-id-input">Ваш id: {{ user.id }}</p>
+		<p class = "search-user-id-input">Your ID: {{ user.id }}</p>
 		<div class="other_users_search">
 		<div class="input_friend">
 		<form method="POST" class="form_friend">
 			{% csrf_token %}
 			{{ form.querry }}
-			<button type="submit" class="btn_message">Искать!</button>
+			<button type="submit" class="btn_message">Search</button>
 		</form>
 
 		</div>
@@ -38,7 +38,7 @@
 	</div>
 		</div>
 		{% else %}
-			<p class="friend_error">Упс! Пользователя не существует!</p>
+			<p class="friend_error">Oops! The user does not exist!</p>
 		{% endif %}
 
 	</div>

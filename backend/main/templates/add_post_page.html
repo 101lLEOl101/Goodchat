@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block style %}<link rel="stylesheet" href="{% static '/css/new_post.css' %}">{% endblock %}
-{% block title %}Новый пост{% endblock %}
+{% block title %}Create Post{% endblock %}
 
 {% block content %}
 	<div class = "post-workspace">
 		<div class = "new-post-header">
-			<button class = "btn_post" form="new-post-form">Добавить запись</button>
+			<button class = "btn_post" form="new-post-form">Create Post</button>
 		</div>
 		<div class = "new-post-text-img">
 			<form method="POST" id="new-post-form" class="form-add-post" enctype="multipart/form-data">
@@ -15,7 +15,7 @@
 				<div class="input-file-row" id = "box-img">
 						<label class="input-file" id = "add_btn">
 						{{ form.photo }}
-						<span>Выберите Изображение</span>
+						<span>Add an Image</span>
 						</label>
 					<div id = "input-list" class="input-file-list">
 					</div>

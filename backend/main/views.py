@@ -5,12 +5,12 @@ from django.db.models import Q
 from django.urls import reverse
 from users.models import Profile
 from users.models import User
-from users.utils import get_friend_add_button_state
+from users.utils import get_friend_add_button_state, get_profile
 from main.models import Post, Bookmark
 from main.models import Comment
 from .forms import PostForm, EditPostForm
 from .forms import CommentForm
-from .utils import get_bookmarks
+from .utils import get_bookmarks, is_in_bookmark
 from .forms import FrindSearchRequestForm
 from itertools import groupby
 
@@ -22,13 +22,26 @@ def self_profile(request):
 
 def main_page(request):
     posts = Post.objects.all()
-    context = {'posts': [{'id': post.id,
-                          'author': post.author,
-                          'photo': post.photo,
-                          'content': post.content,
-                          'date': post.date_create,
-                          } for post in reversed(posts)]
-               }
+    if request.user.id != None:
+        context = {'posts': [{'id': post.id,
+                              'author': get_profile(post.author),
+                              'author_photo': get_profile(post.author).avatar,
+                              'photo': post.photo,
+                              'content': post.content,
+                              'date': post.date_create,
+                              'in_bookmarks': is_in_bookmark(request.user, post)
+                              } for post in reversed(posts)]
+                   }
+    else:
+        context = {'posts': [{'id': post.id,
+                              'author': get_profile(post.author),
+                              'author_photo': get_profile(post.author).avatar,
+                              'photo': post.photo,
+                              'content': post.content,
+                              'date': post.date_create,
+                              'in_bookmarks': 0
+                              } for post in reversed(posts)]
+                   }
     return render(request, 'main_page.html', context)
 
 
@@ -147,12 +160,13 @@ def bookmarks_page(request):
     context = {}
     if posts:
         context = {
-                'posts': [{ 'id': post.id,
-                           
-                            'author': post.author,
-                            'content': post.content,
-                            'photo': post.photo,
-                            } for post in reversed(posts)]
+            'posts': [{'id': post.id,
+                       'author': get_profile(post.author),
+                       'author_photo': get_profile(post.author).avatar,
+                       'content': post.content,
+                       'photo': post.photo,
+                       'in_bookmarks': is_in_bookmark(request.user, post)
+                       } for post in reversed(posts)]
         }
     return render(request, 'bookmarks_page.html', context)
 
@@ -235,12 +249,14 @@ def profile(request, id: int):
                            'hobby': profile.hobby,
                            },
                'posts': [{'id': post.id,
-                          'author': {'name': post.author,
+                          'author': {'name': get_profile(post.author).name + ' ' + get_profile(post.author).surname,
                                      'link': f'/profile/{post.author.id}',
                                      },
+                          'author_photo': get_profile(post.author).avatar,
                           'photo': post.photo,
                           'content': post.content,
                           'date': post.date_create,
+                          'in_bookmarks': is_in_bookmark(request.user, post)
                           } for post in reversed(posts)],
                'add_friend_button': get_friend_add_button_state(request.user.id, id)
                }
@@ -276,7 +292,7 @@ def post(request, id: int):
         context['form'] = CommentForm()
         
     context = {'post': {'id': post.id,
-                        'author': {'name': post.author,
+                        'author': {'name': get_profile(post.author).name + ' ' + get_profile(post.author).surname,
                                    'id':post.author.id,
                                    'link': f'/profile/{post.author.id}',
                                    },
@@ -284,7 +300,7 @@ def post(request, id: int):
                         'photo': post.photo,
                         'date': post.date_create,
                         },
-               'comments': [{'author': comment.author,
+               'comments': [{'author': get_profile(comment.author),
                              'content': comment.content,
                              'date': comment.date_create
                              } for comment in reversed(comments)],

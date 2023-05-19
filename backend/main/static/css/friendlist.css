@@ -36,6 +36,21 @@ a{
     box-shadow: 0px 0px 5px #8270F2;
 }
 
+.message_none{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+    color: white;
+    width: 98%;
+    padding: 50px;
+    background-color: black;
+    border: 1px solid #8270F2;
+    border-radius: 10px;
+    margin: 10px auto;
+    box-shadow: 0px 0px 5px #8270F2;
+}
+
 .friendrequest_item{
     display: none;
     justify-content: start;
@@ -70,6 +85,8 @@ a{
     margin-left: 2%;
     width: 10%;
     border-radius: 100%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
 }
 
 .zero_bookmarks{
