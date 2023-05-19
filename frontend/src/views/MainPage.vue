@@ -1,17 +1,17 @@
 <template>
     <div class = "main_page">
         <div class = "main_page_post">
-            <PostTemplate />
+            <!-- <PostTemplate /> -->
         </div>
 </div>
   </template>
   
   <script>
-  import PostTemplate from '@/components/post/PostTemplate.vue';
+  // import PostTemplate from '@/components/post/PostTemplate.vue';
   
   export default {
     components: {
-      PostTemplate
+      // PostTemplate
     },
     data() {
       return {

@@ -50,12 +50,12 @@
 
 <script>
 import ProfileCard from '@/components/cards/ProfileCard.vue';
-import PostTemplate from '@/components/post/PostTemplate.vue';
+// import PostTemplate from '@/components/post/PostTemplate.vue';
 
 export default {
   components: {
     ProfileCard,
-    PostTemplate,
+    // PostTemplate,
   },
   props: ['id'],
   data() {

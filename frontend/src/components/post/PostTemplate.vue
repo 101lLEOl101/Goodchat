@@ -20,7 +20,7 @@ export default {
         return {}
     },
     props() {
-        post: Object
+        // post: Object
     }
 }
 </script>

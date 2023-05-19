@@ -19,49 +19,44 @@
   <div class = "navigation">
     <div  class = "side_menu">
         <div id = "prof" class = "side_icon">
-            <a class = "hr" href = "{% url 'self-profile' %}">
+            <router-link to="/settings" class = "hr" >
                 <i class="fa-regular fa-user icona"></i>
-            </a>
+            </router-link>
         </div>
         <div  id = "mes" class = "side_icon">
-            <a class = "hr" href = "{% url 'chat-list' %}">
+            <router-link to="/settings" class = "hr" >
                 <i class="fa-regular fa-comment-dots icona"></i>
-            </a>
+            </router-link>
         </div>
         <div  id = "friend" class = "side_icon">
-            <a class = "hr" href = "{% url 'friend-list' self_profile.id %}">
+            <router-link to="/settings" class = "hr" >
                 <i class="fa-solid fa-user-group icona"></i>
-            </a>
-        </div>
-        <div  id = "friend" class = "side_icon">
-            <a class = "hr" href = "{% url 'chat-list' %}">
-                <i class="fa-solid fa-user-group icona"></i>
-            </a>
+            </router-link>
         </div>
         <div  id = "set" class = "side_icon">
-            <a class = "hr" href = "{% url 'setting' %}">
+            <router-link to="/settings" class = "hr" >
                 <i class="fa-solid fa-gear icona"></i>
-            </a>
+            </router-link>
         </div>
         <div id = "glob" class = "side_icon">
-            <a class = "hr" href = "{% url 'home' %}">
+            <router-link to="/global" class = "hr" >
                 <i class="fa-solid fa-globe icona"></i>
-            </a>
+            </router-link>
         </div>
         <div  id = "book" class = "side_icon">
-            <a class = "hr" href = "{% url 'bookmarks' %}">
+            <router-link to="/settings" class = "hr" >
                 <i class="fa-regular fa-bookmark icona"></i>
-            </a>
+            </router-link>
         </div>
         <div  id = "add" class = "side_icon">
-            <a class = "hr" href = "{% url 'addpost' %}">
+            <router-link to="/settings" class = "hr" >
                 <i class="fa-solid fa-plus icona"></i>
-            </a>
+            </router-link>
         </div>
         <div  id = "f" class = "side_icon">
-            <a class = "hr" href = "{% url 'findfriend' %}">
+            <router-link to="/settings" class = "hr" >
                 <i class="fa-solid fa-magnifying-glass icona"></i>
-            </a>
+            </router-link>
         </div>
     </div>
 </div>

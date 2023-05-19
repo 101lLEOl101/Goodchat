@@ -24,7 +24,7 @@ const routes = [
     component: LoginPage
   },
   {
-    path: '/',
+    path: '/global',
     name: 'home',
     component: MainPage
   },
