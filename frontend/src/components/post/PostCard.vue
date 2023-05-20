@@ -2,12 +2,9 @@
   <div class="post-box">
     <div class="post-header">
       <div class="btn_box_post">
-        <router-link :to="`/post/${post.id}`" class="round open" title="Open Full">
-          <div class="arrow"></div>
-          <div class="arrow_diff"></div>
-        </router-link>
+        <router-link :to="`/post/${post.id}`" class="round open" title="Open Full" />
         <router-link
-          to="/" 
+          to="/bookmarks" 
           class="round" 
           :class="{ in_zakladka: post.isBookmark, zakladka: !post.isBookmark }"
           title="Bookmark" 

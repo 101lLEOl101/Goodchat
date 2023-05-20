@@ -1,13 +1,13 @@
 <template>
-  <post-card :post="post"/>
+  <post-card-page :post="post"/>
 </template>
 
 <script>
-import PostCard from '@/components/post/PostCard';
+import PostCardPage from '@/components/post/PostCardPage';
 
 export default {
   components: {
-    PostCard,
+    PostCardPage,
   },
   props: ['id'],
   data() {
