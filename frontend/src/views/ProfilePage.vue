@@ -1,7 +1,7 @@
 <template>
   <input type="checkbox" id="toggle">
   <div class="profile_page"> 
-    <post-feed v-if="posts" :posts="posts"/>
+    <post-feed v-if="posts" :posts="posts" :isTemplate="true"/>
     <div v-else-if="userIsMe" class="zero_bookmarks">
       <p class="alarm_posts">У этого пользователя нет постов :c </p>
     </div>
