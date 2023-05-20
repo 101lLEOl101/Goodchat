@@ -7,6 +7,7 @@ import NotFoundPage from '@/views/NotFoundPage'
 import SettingsPage from '@/views/SettingsPage'
 import MainPage from '@/views/MainPage'
 import ChatPage from '@/views/ChatPage'
+import ChatList from '@/views/ChatList'
 
 const routes = [
   {
@@ -44,6 +45,11 @@ const routes = [
     path: '/chat',
     name: 'chat',
     component: ChatPage,
+  },
+  {
+    path: '/chatlist',
+    name: 'chatlist',
+    component: ChatList,
   }
 ]
 
