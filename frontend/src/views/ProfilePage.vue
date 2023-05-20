@@ -1,6 +1,6 @@
 <template>
   <input type="checkbox" id="toggle">
-  <div class="main_page"> 
+  <div class="profile_page"> 
     <post-feed v-if="posts" :posts="posts"/>
     <div v-else-if="userIsMe" class="zero_bookmarks">
       <p class="alarm_posts">У этого пользователя нет постов :c </p>
@@ -76,11 +76,11 @@ export default {
   box-shadow: 0px 0px 33px #8270F2;
 }
 
-.main_page {
+.profile_page {
   width: 85%;
   border-radius: 5px;
   margin-top: 7vh;
-  margin-bottom: 7vh;
+  margin-bottom: 50px;
   margin-left: 0;
   transition: all 1s;
 }
@@ -94,7 +94,7 @@ export default {
   width: 35%;
 }
 
-#toggle:checked~.main_page {
+#toggle:checked~.profile_page {
   transition: all 1s;
   width: 70%;
 }
