@@ -19,7 +19,16 @@
   <div class = "navigation">
     <div  class = "side_menu">
         <div id = "prof" class = "side_icon">
-            <router-link :to="`/profile/${$store.state.auth.user.id}`" class = "hr" >
+            <router-link 
+                v-if="$store.state.auth.status.loggedIn" 
+                :to="`/profile/${$store.state.auth.user.id}`" 
+                class = "hr" >
+                <i class="fa-regular fa-user icona"></i>
+            </router-link>
+            <router-link 
+                v-else
+                :to="`/login`" 
+                class = "hr" >
                 <i class="fa-regular fa-user icona"></i>
             </router-link>
         </div>
