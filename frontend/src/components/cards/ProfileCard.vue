@@ -12,7 +12,7 @@
         <div class="user-nickname hiddenunckecked">Company: {{ user.company }}</div>
       </div>
       <div class="right">
-        <div class="user-info">О себе: <br> {{ user.about }} </div>
+        <div class="user-info">About: <br> {{ user.about }} </div>
       </div>
     </div>
 
