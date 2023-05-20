@@ -28,35 +28,12 @@ export default {
     return {
       user: {},
       userIsMe: false,
-      posts: [
-        {
-          id: 1,
-          content: 'FFKFJFLJJDJLFJLSDF LD JScontent',
-          photo: '0000',
-          isBookmark: true,
-          author: {
-            name: 'Egor',
-            surname: 'Nazaikin',
-            photo: '9328535',
-          }
-        },
-        {
-          id: 2,
-          content: 'FFKFJFLJJDJLFJLSDF LD JScontent',
-          photo: '0000',
-          isBookmark: true,
-          author: {
-            name: 'Egor',
-            surname: 'Nazaikin',
-            photo: '9328535',
-          }
-        },
-      ],
+      posts: []
     }
   },
-  async created() {
+  created() {
     let userId = this.$route.params.id;
-    await this.$store.dispatch('user/getUser', { id: userId })
+    this.$store.dispatch('user/getUser', { id: userId })
       .then(
         response => {
           this.user = response
@@ -69,8 +46,9 @@ export default {
         }
       )
     //console.log(this.user)
-    this.$store.dispatch('user/isUserSelf', { id: this.user.id }).
-      then(response => this.userIsMe = response);
+    this.userIsMe = this.$store.dispatch('user/isUserSelf', {id: this.user.id});
+    this.$store.dispatch('post/getUserPosts', {id: this.id})
+      .then(response => this.posts = response);
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <img class="author_avatar" :src="user.photo">
+    <img class="author_avatar" :src="user.avatar">
     <router-link 
       :to="`/profile/${user.name}`" 
       class="post-author">

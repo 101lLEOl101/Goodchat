@@ -36,6 +36,11 @@ urlpatterns = [
     path('api/profile/self', users_api.SelfProfile.as_view()),
     path('api/profile/<int:id>', users_api.GetProfile.as_view()),
     
+    path('api/post/<int:id>', main_api.GetPost.as_view()),
+    path('api/post/getUserPosts/<int:id>', main_api.GetUserPosts.as_view()),
+    path('api/post/getFeed', main_api.GetFeed.as_view()),
+    path('api/bookmarks', main_api.GetBookmarks.as_view()),
+    
     path('admin/', admin.site.urls),
     path('', main_views.main_page, name='home'),
     path('bookmarks', main_views.bookmarks_page, name='bookmarks'),

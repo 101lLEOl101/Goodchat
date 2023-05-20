@@ -1,6 +1,6 @@
 <template>
   <div class="profile-card">
-    <img src="user.avatar.url" class="profile-pic" />
+    <img :src="user.avatar" class="profile-pic" />
     <div class="row">
       <div class="left">
         <div class="user-nickname" id="usernick">Name: {{ user.name }} </div>

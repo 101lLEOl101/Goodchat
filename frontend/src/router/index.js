@@ -5,9 +5,12 @@ import LoginPage from '@/views/LoginPage'
 import ProfilePage from '@/views/ProfilePage'
 import NotFoundPage from '@/views/NotFoundPage'
 import SettingsPage from '@/views/SettingsPage'
-import MainPage from '@/views/MainPage'
+import FeedPage from '@/views/FeedPage'
 import ChatPage from '@/views/ChatPage'
 import ChatListPage from '@/views/ChatListPage'
+import PostPage from '@/views/PostPage'
+import BookmarksPage from '@/views/BookmarksPage'
+
 
 const routes = [
   {
@@ -26,9 +29,9 @@ const routes = [
     component: LoginPage
   },
   {
-    path: '/global',
-    name: 'home',
-    component: MainPage
+    path: '/feed',
+    name: 'feed',
+    component: FeedPage
   },
   {
     path: '/profile/:id',
@@ -50,6 +53,17 @@ const routes = [
     path: '/chatlist',
     name: 'chatlist',
     component: ChatListPage,
+  },
+  {
+    path: '/post/:id',
+    props: true,
+    name: 'post',
+    component: PostPage,
+  },
+  {
+    path: '/bookmarks',
+    name: 'bookmarks',
+    component: BookmarksPage,
   }
 ]
 

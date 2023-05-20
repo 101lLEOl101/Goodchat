@@ -2,15 +2,16 @@
   <div class="post-box">
     <div class="post-header">
       <div class="btn_box_post">
-        <router-link to="/home" class="round open" title="Open Full">
+        <router-link :to="`/post/${post.id}`" class="round open" title="Open Full">
           <div class="arrow"></div>
           <div class="arrow_diff"></div>
         </router-link>
-        <router-link 
-          to="/home" 
+        <router-link
+          to="/" 
           class="round" 
           :class="{ in_zakladka: post.isBookmark, zakladka: !post.isBookmark }"
-          title="Bookmark" />
+          title="Bookmark" 
+        />
         
       </div>
       <mini-user-profile :user="post.author"/>
@@ -18,7 +19,7 @@
     <div class="text-wrap">
       <div class="post-text">{{ post.content }}</div>
     </div>
-    <img v-if="post.photo" src="{{ post.photo }}" class="post-image">
+    <img v-if="post.photo" :src="post.photo" class="post-image">
   </div>
 </template>
 <script>

@@ -1,13 +1,13 @@
 <template>
   <header>
     <div class="header_menu">
-      <router-link to="/home" class="logo_h">
-        <img src="@/assets/logo.png" class="logo_h" alt="Home Page">
+      <router-link to="/feed" class="logo_h">
+        <img src="@/assets/logo.png" class="logo_h" alt="Feed">
       </router-link>
     </div>
 
     <div v-if="$store.state.auth.status.loggedIn" class="auth_box">
-      <img class="image_avatar header_avatar" src="@/assets/logo.png">
+      <img class="image_avatar header_avatar" :src="$store.state.auth.user.avatar">
       <a disabled class="auth_btn" @click="logout">Exit</a>
     </div>
     <div v-else class="auth_box">
@@ -19,7 +19,7 @@
   <div class = "navigation">
     <div  class = "side_menu">
         <div id = "prof" class = "side_icon">
-            <router-link to="/settings" class = "hr" >
+            <router-link :to="`/profile/${$store.state.auth.user.id}`" class = "hr" >
                 <i class="fa-regular fa-user icona"></i>
             </router-link>
         </div>
@@ -39,7 +39,7 @@
             </router-link>
         </div>
         <div id = "glob" class = "side_icon">
-            <router-link to="/global" class = "hr" >
+            <router-link to="/feed" class = "hr" >
                 <i class="fa-solid fa-globe icona"></i>
             </router-link>
         </div>

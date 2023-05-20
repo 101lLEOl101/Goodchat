@@ -2,7 +2,10 @@ from .models import User
 from .models import Profile 
 from .utils import get_profile
 
-
+def imageToUrl(image):
+        if image:
+            return f'http://127.0.0.1:8000{image.url}'  
+        return image
 class UserSerializer:
     def toUserDict(user:User) -> dict:
         response = {
@@ -21,7 +24,7 @@ class UserSerializer:
             'surname': profile.surname,
             'login': user.username,
             'email': user.email,
-            'avatar': profile.avatar.url
+            'avatar': imageToUrl(profile.avatar),
         }
         
         return response
@@ -34,7 +37,7 @@ class UserSerializer:
             'surname': profile.surname,
             'login': user.username,
             'email': user.email,
-            'avatar': profile.avatar.url,
+            'avatar': imageToUrl(profile.avatar),
             'about': profile.about,
             'country': profile.country,
             'city': profile.city,

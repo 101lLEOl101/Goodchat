@@ -14,44 +14,14 @@ export default {
   data() {
     return {
       message: {},
-      posts: [
-        {
-          id: 1,
-          content: 'FFKFJFLJJDJLFJLSDF LD JScontent',
-          photo: '0000',
-          isBookmark: true,
-          author: {
-            name: 'Egor',
-            surname: 'Nazaikin',
-            photo: '9328535',
-          }
-        },
-        {
-          id: 2,
-          content: 'FFKFJFLJJDJLFJLSDF LD JScontent',
-          photo: '0000',
-          isBookmark: true,
-          author: {
-            name: 'Egor',
-            surname: 'Nazaikin',
-            photo: '9328535',
-          }
-        },
-        {
-          id: 3,
-          content: 'FFKFJFLJJDJLFJLSDF LD JScontent',
-          photo: '0000',
-          isBookmark: true,
-          author: {
-            name: 'Egor',
-            surname: 'Nazaikin',
-            photo: '9328535',
-          }
-        },
-      ]
+      posts: []
     }
   },
-
+  created() {
+    this.$store.dispatch('post/getBookmarks').then(
+      posts => this.posts = posts
+    )
+  }
 }
 </script>
   
