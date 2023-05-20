@@ -9,8 +9,8 @@
   
 <script>
 import ChatHeader from '@/components/chat/ChatHeader';
-import MessageContainer from '@/components/comments/MessageContainer';
-import MessageForm from '@/components/comments/MessageForm';
+import MessageContainer from '@/components/chat/MessageContainer';
+import MessageForm from '@/components/chat/MessageForm';
 
 export default {
   data() {
