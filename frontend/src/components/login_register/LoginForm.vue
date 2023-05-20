@@ -1,7 +1,7 @@
 <template>
   <form class="form-reg">
-    <input type="text" class="form-input" placeholder="Логин" v-model="username"/>
-    <input type="password" class="form-input" placeholder="Пароль" v-model="password"/>
+    <input type="text" class="form-input" placeholder="Login" v-model="username"/>
+    <input type="password" class="form-input" placeholder="Password" v-model="password"/>
     <p v-if="message" :class="`form-error ${message.type}`">{{ message.content }}</p>
     <button type="button" class="btn_add" @click="login">Log In</button>
   </form>

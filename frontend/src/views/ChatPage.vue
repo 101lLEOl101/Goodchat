@@ -1,6 +1,6 @@
 <template>
   <div class="messenger_box" id="messenger_box">
-    <h2 style="text-align:center;"> Личные сообщения </h2>
+    <h2 style="text-align:center;"> messages </h2>
     <chat-header :info="chat.info"/>
     <message-container :messages="chat.messages"/>
     <message-form />
@@ -28,7 +28,7 @@ export default {
             date_create: '11.09.2001'
           },
           {
-            if: 2,
+            id: 2,
             author: '2183124',
             content: 'as3124d',
             date_create: '11.09.2001'

@@ -1,7 +1,7 @@
 <template>
   <div class="chat_box">
     <a href="" class="create_chat"><i class="fa-solid fa-comment-medical create"></i></a>
-    <h2 style="text-align:center;"> Список чатов </h2>
+    <h2 style="text-align:center;"> Personal Chats </h2>
     <chat-list :chats="chats" />
   </div>
 </template>

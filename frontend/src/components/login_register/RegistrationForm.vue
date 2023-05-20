@@ -1,8 +1,8 @@
 <template>
   <form class="form-reg">
-    <input type="text" class="form-input" placeholder="Имя" v-model="user.name">
-    <input type="text" class="form-input" placeholder="Фамилия" v-model="user.surname">
-    <input type="text" class="form-input" placeholder="Логин" v-model="user.login">
+    <input type="text" class="form-input" placeholder="Name" v-model="user.name">
+    <input type="text" class="form-input" placeholder="Surname" v-model="user.surname">
+    <input type="text" class="form-input" placeholder="Login" v-model="user.login">
     <input type="email" class="form-input" placeholder="Email" v-model="user.email">
     <input type="password" class="form-input" placeholder="Password" v-model="user.password">
     <input type="password" class="form-input" placeholder="Repeat password" v-model="user.rePassword">
