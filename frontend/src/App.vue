@@ -77,6 +77,7 @@ export default{
   methods: {
     logout() {
       this.$store.dispatch('auth/logout');
+      location.reload(true);
     }
   }
 }

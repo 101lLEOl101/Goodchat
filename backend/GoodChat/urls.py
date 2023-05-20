@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from main import views as main_views
-from main import views as edit_post
+from main import api as main_api
 from users import views as users_views
+from users import api as users_api
 from chat import views as chat_views
+from chat import api as chat_api 
 from django.conf.urls.static import static
 from django.conf import settings
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -30,9 +32,9 @@ urlpatterns = [
     path('api/token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify', TokenVerifyView.as_view(), name='token_verify'),
     
-    path('api/register', users_views.Register.as_view()),
-    path('api/profile/self', users_views.SelfProfile.as_view()),
-    path('api/profile/<int:id>', users_views.GetProfile.as_view()),
+    path('api/register', users_api.Register.as_view()),
+    path('api/profile/self', users_api.SelfProfile.as_view()),
+    path('api/profile/<int:id>', users_api.GetProfile.as_view()),
     
     path('admin/', admin.site.urls),
     path('', main_views.main_page, name='home'),
