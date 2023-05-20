@@ -41,6 +41,9 @@ urlpatterns = [
     path('api/post/getFeed', main_api.GetFeed.as_view()),
     path('api/bookmarks', main_api.GetBookmarks.as_view()),
     
+    path('api/chat/<int:id>', chat_api.GetChat.as_view()),
+    path('api/chatlist', chat_api.GetChatlist.as_view()),
+    
     path('admin/', admin.site.urls),
     path('', main_views.main_page, name='home'),
     path('bookmarks', main_views.bookmarks_page, name='bookmarks'),

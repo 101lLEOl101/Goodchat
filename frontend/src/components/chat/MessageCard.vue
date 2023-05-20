@@ -1,8 +1,8 @@
 <template>
-  <div class="message">
+  <div :class="{message_own: message.isMyown, message: !message.isMyown}">
     <div class="chat_texts">
       <div class="timestamp">
-        <h2>{{ message.id }} {{ message.author }}</h2>
+        <h2>{{ message.author }}</h2>
         <p class="time">{{ message.date_create }}</p>
       </div>
       <h3 class="message-text">{{ message.content }}</h3>

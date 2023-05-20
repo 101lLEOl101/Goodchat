@@ -1,6 +1,6 @@
 <template>
   <div class="ur_friend">
-    <a class="chat-avatar-div" href=""><img :src="info.avatar" class="friend-user-pic"></a>
+    <router-link class="chat-avatar-div" :to="headerLink"><img :src="info.avatar" class="friend-user-pic"></router-link>
     <p>{{ info.name }}</p>
   </div>
 </template>
@@ -8,8 +8,18 @@
 <script>
 export default {
   props: {
-    info: Object
-  }
+    info: Object,
+  },
+  computed: {
+    headerLink() {
+      let link = '';
+      if (this.info.isMulty)
+        link = '/multy';
+      else 
+        link = `/profile/${this.info.interlocutorID}`;
+      return link; 
+    }
+  },
 }
 </script>
   
