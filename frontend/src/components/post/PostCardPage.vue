@@ -12,7 +12,7 @@
     </div>
     <img v-if="post.photo" :src="post.photo" class="post-image">
     <comment-form />
-    <comment-feed />
+    <comment-feed :comments="post.comments"/>
   </div>
 
 </template>
@@ -28,22 +28,7 @@ export default {
     CommentFeed,
   },
   data() {
-    return {
-        comments: [
-          {
-            id: 1,
-            author: 'asdsadsa',
-            content: 'asd',
-            date: '11.09.2001'
-          },
-          {
-            id: 2,
-            author: '2183124',
-            content: 'as3124d',
-            date: '11.09.2001'
-          }
-        ]
-    }
+    return {}
   },
   props: {
     post: Object
