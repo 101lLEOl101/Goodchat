@@ -7,7 +7,7 @@ import NotFoundPage from '@/views/NotFoundPage'
 import SettingsPage from '@/views/SettingsPage'
 import MainPage from '@/views/MainPage'
 import ChatPage from '@/views/ChatPage'
-import ChatList from '@/views/ChatList'
+import ChatListPage from '@/views/ChatListPage'
 
 const routes = [
   {
@@ -49,7 +49,7 @@ const routes = [
   {
     path: '/chatlist',
     name: 'chatlist',
-    component: ChatList,
+    component: ChatListPage,
   }
 ]
 
