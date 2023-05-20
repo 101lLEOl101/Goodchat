@@ -1,6 +1,6 @@
 <template>
   <div class="main_page">
-    <post-feed :posts="posts"/>
+    <post-feed :posts="posts" :isTemplate="true"/>
   </div>
 </template>
   

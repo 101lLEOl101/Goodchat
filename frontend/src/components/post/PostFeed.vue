@@ -4,6 +4,7 @@
       v-for="post in posts"
       :key="post.id" 
       :post="post"
+      :isTemplate="isTemplate"
     />
   </div>
 </template>
@@ -16,6 +17,7 @@ export default {
   },
   props: {
     posts: Array,
+    isTemplate: Boolean,
   }
 }
 </script>
