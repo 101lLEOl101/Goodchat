@@ -15,51 +15,14 @@ export default {
   },
   data() {
     return {
-      chats: [
-        {
-          name: 'Stepan Pupkin',
-          avatar: '@/images/ANONYMOUS_AVATAR.png',
-          last_message: 'охх зря я туда полез...',
-        },
-        {
-          name: 'Oleg Mongol',
-          avatar: '@/images/ANONYMOUS_AVATAR.png',
-          last_message: 'эээ а где йупи йо',
-        },
-        {
-          name: 'Stepan Jupa',
-          avatar: '@/images/ANONYMOUS_AVATAR.png',
-          last_message: 'Хочу колы',
-        },
-        {
-          name: 'Uder Nidar',
-          avatar: '@/images/ANONYMOUS_AVATAR.png',
-          last_message: 'Хочу банан',
-        },
-        {
-          name: 'Stepan Pupkin',
-          avatar: '@/images/ANONYMOUS_AVATAR.png',
-          last_message: 'охх зря я туда полез...',
-        },
-        {
-          name: 'Oleg Mongol',
-          avatar: '@/images/ANONYMOUS_AVATAR.png',
-          last_message: 'эээ а где йупи йо',
-        },
-        {
-          name: 'Stepan Jupa',
-          avatar: '@/images/ANONYMOUS_AVATAR.png',
-          last_message: 'Хочу колы',
-        },
-        {
-          name: 'Uder Nidar',
-          avatar: '@/images/ANONYMOUS_AVATAR.png',
-          last_message: 'Хочу банан',
-        },
-
-      ],
+      chats: [],
     }
   },
+  created() {
+    this.$store.dispatch('chat/getChatlist').then(
+      response => this.chats = response
+    );
+  }
 }
 </script>
  

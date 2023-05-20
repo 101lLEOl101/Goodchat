@@ -1,13 +1,15 @@
 <template>
-  <a href="">
+  <router-link :to="`chat/${chat.id}`">
     <div class="chat_item">
       <img class="chat-user-pic image_avatar" :src="chat.avatar">
       <div class="chat_texts">
         <h2>{{ chat.name }}</h2>
-        <h3 id="last_message">{{ chat.last_message }}</h3>
+        <h3 id="last_message">
+          <span class="author">{{ chat.lastMessage.author }}:</span> {{ chat.lastMessage.content }}
+        </h3>
       </div>
     </div>
-  </a>
+  </router-link>
 </template>
   
 <script>
@@ -51,6 +53,10 @@ export default {
     margin-right:30px;
     border: 2px solid #000;
     border-radius: 100%;
+}
+
+.author {
+  color: #8270F2;
 }
 </style>
   

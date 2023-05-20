@@ -10,7 +10,6 @@ from main.models import Bookmark
 from users.utils import get_profile
 from users.utils import convert_profile_to_dict
 
-
 def get_chats(user) -> list:
     chats = [access.chat
              for access
@@ -76,26 +75,7 @@ def get_chat_info_link(chat: Chat, current_user: User):
         return reverse('profile', args=[get_interlocutor(chat, current_user).id])
 
 def get_chat_messages(chat: Chat, current_user: User):
-    messages_objects = Message.objects.filter(chat=chat)
-    me = get_profile(current_user)
-
-    messages = []
-    for message_object in messages_objects:
-        author = get_profile(message_object.author)
-
-        if me == author:
-            is_myown = True
-        else:
-            is_myown = False
-
-        message = {
-            'author': author.name,
-            'content': message_object.content,
-            'date_create': message_object.date_create,
-            'is_myown': is_myown,
-        }
-
-        messages.append(message)
+    messages = Message.objects.filter(chat=chat)
 
     return messages
 

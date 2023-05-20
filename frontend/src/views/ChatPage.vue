@@ -13,34 +13,24 @@ import MessageContainer from '@/components/chat/MessageContainer';
 import MessageForm from '@/components/chat/MessageForm';
 
 export default {
+  components: {
+    ChatHeader,
+    MessageContainer,
+    MessageForm
+  },
   data() {
     return {
       chat: {
-        info: {
-          name: 'Some stepan',
-          avatar: '2398478328195832',
-        },
-        messages: [
-          {
-            id: 1,
-            author: 'asdsadsa',
-            content: 'asd',
-            date_create: '11.09.2001'
-          },
-          {
-            id: 2,
-            author: '2183124',
-            content: 'as3124d',
-            date_create: '11.09.2001'
-          }
-        ]
-      }
+        info: {},
+        messages: [],
+      },
     }
   },
-  components: {
-    ChatHeader,
-    MessageContainer  ,
-    MessageForm
+  props: ['id'],
+  created() {
+    this.$store.dispatch('chat/getChat', {id: this.id}).then(
+      response => this.chat = response
+    );
   }
 }
 </script>

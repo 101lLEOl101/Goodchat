@@ -17,6 +17,7 @@ from .utils import ignore_or_refuse_access
 from .utils import leave_chat as leave_chat_util
 from .utils import normalize_chat_member
 from .forms import MessageForm
+from .serializers import ChatSerializer
 from users.utils import get_user
 from users.utils import get_profile
 from users.utils import get_friends
@@ -73,7 +74,8 @@ def chat_page(request, id):
     messages = get_chat_messages(chat, request.user)
     chat = generate_chat(chat, request.user)
     context['chat'] = chat
-    context['messages'] = messages
+    context['messages'] = [ChatSerializer.messageToDict(message, request.user)
+                           for message in messages]
 
     return render(request, 'chat.html', context)
 

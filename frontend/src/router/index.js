@@ -45,7 +45,8 @@ const routes = [
     component: NotFoundPage 
   },
   {
-    path: '/chat',
+    path: '/chat/:id',
+    props: true,
     name: 'chat',
     component: ChatPage,
   },
