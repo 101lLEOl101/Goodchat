@@ -46,8 +46,10 @@
     "rules": {
       "no-unused-vars": "warn",
       "no-extra-semi": "off",
-      "vue/no-unused-components": "warn",
       "no-unused-labels": "warn"
+      "no-unused-labels": "warn",
+      "vue/no-unused-components": "warn",
+      "vue/no-unused-components": "warn",
     }
   },
   "browserslist": [
