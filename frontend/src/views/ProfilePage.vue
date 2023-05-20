@@ -1,67 +1,57 @@
 <template>
   <input type="checkbox" id="toggle">
-  <div class="main_page">
-    <!-- POSTS -->
-    <!-- <div class="main_page_post">
-          <div class="post-box">
-            <div class="post-header">
-              <div class="btn_box_post">
-                <a class="round heart" disabled href="#" title="Понравилось"></a>
-                <a class="round open" href="/post/{{post.id}}" title="Открыть полностью">
-                  <div class="arrow"></div>
-                  <div class="arrow_diff"></div>
-                </a>
-                <a class="round zakladka" href="add-delete-bookmark" title="В закладки"></a>
-              </div>
-              <a class="post-author" href="{{post.author.link}}">{{ post.author.name }}</a>
-            </div>
-
-            <div class="text-wrap">
-              <div class="post-text">{{ post.content }}</div>
-            </div>
-
-            {% if post.photo %}
-            <img src="{{ post.photo.url }}" class="post-image">
-            {% endif %}
-          </div>
-    </div> -->
-    <!-- END POSTS -->
-    
-    <!-- Blank 1 -->
-
-    <div v-if="userIsMe" class="zero_bookmarks">
+  <div class="main_page"> 
+    <post-feed v-if="posts" :posts="posts"/>
+    <div v-else-if="userIsMe" class="zero_bookmarks">
       <p class="alarm_posts">У этого пользователя нет постов :c </p>
     </div>
     <div v-else class="zero_bookmarks">
       <p class="alarm_posts">У вас еще нет постов :c </p>
       <a class="btn_add" href="addpost">Написать пост</a>
     </div>
-
   </div>
 
-  <!-- PROFILE CARD -->
   <profile-card :user="user" :userIsMe="userIsMe" />
-  <!-- <div class="profile-card-more">
-    <p class="user-nickname">Город: {{ profile.city }}</p>
-    <p class="user-nickname">Образование: {{ profile.education }}</p>
-    <p class="user-nickname">Компания: {{ profile.company }}}</p>
-  </div> -->
 </template>
 
 <script>
-import ProfileCard from '@/components/cards/ProfileCard.vue';
-import PostTemplate from '@/components/post/PostTemplate.vue';
+import ProfileCard from '@/components/cards/ProfileCard';
+import PostFeed from '@/components/post/PostFeed.vue';
 
 export default {
   components: {
     ProfileCard,
-    PostTemplate,
+    PostFeed,
   },
   props: ['id'],
   data() {
     return {
       user: {},
       userIsMe: false,
+      posts: [
+        {
+          id: 1,
+          content: 'FFKFJFLJJDJLFJLSDF LD JScontent',
+          photo: '0000',
+          isBookmark: true,
+          author: {
+            name: 'Egor',
+            surname: 'Nazaikin',
+            photo: '9328535',
+          }
+        },
+        {
+          id: 2,
+          content: 'FFKFJFLJJDJLFJLSDF LD JScontent',
+          photo: '0000',
+          isBookmark: true,
+          author: {
+            name: 'Egor',
+            surname: 'Nazaikin',
+            photo: '9328535',
+          }
+        },
+      ],
     }
   },
   async created() {

@@ -1,25 +1,24 @@
 <template>
-    <div class="post-box">
-        
-    </div>
+  <div class="post-feed">
+    <post-card 
+      v-for="post in posts"
+      :key="post.id" 
+      :post="post"
+    />
+  </div>
 </template>
 <script>
+import PostCard from '@/components/post/PostCard';
+
 export default {
-    data() {
-        return {}
-    }
-    
+  components: {
+    PostCard,
+  },
+  props: {
+    posts: Array,
+  }
 }
 </script>
 <style>
-.post-box {
-    background: rgba(0, 0, 0, 0.75);
-    border-radius: 37px;
-    overflow: hidden;
-    width: 65%;
-    margin-top: 2%;
-    margin-right: auto;
-    margin-left: auto;
-    box-shadow: 0px 10px 10px #8270f2;
-}
+
 </style>

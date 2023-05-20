@@ -1,35 +1,54 @@
 <template>
   <div class="main_page">
-    <div class="main_page_post">
-      <post-template :post="post"/>
-      <post-template :post="post"/>
-      <post-template :post="post"/>
-      <post-template :post="post"/>
-      <post-template :post="post"/>
-    </div>
+    <post-feed :posts="posts"/>
   </div>
 </template>
   
 <script>
-import PostTemplate from '@/components/post/PostTemplate.vue';
+import PostFeed from '@/components/post/PostFeed';
 
 export default {
   components: {
-    PostTemplate
+    PostFeed,
   },
   data() {
     return {
       message: {},
-      post: {
-        content: 'FFKFJFLJJDJLFJLSDF LD JScontent',
-        photo: '0000',
-        isBookmark: true,
-        author: {
-          name: 'Egor',
-          surname: 'Nazaikin',
-          photo: '9328535',
-        }
-      }
+      posts: [
+        {
+          id: 1,
+          content: 'FFKFJFLJJDJLFJLSDF LD JScontent',
+          photo: '0000',
+          isBookmark: true,
+          author: {
+            name: 'Egor',
+            surname: 'Nazaikin',
+            photo: '9328535',
+          }
+        },
+        {
+          id: 2,
+          content: 'FFKFJFLJJDJLFJLSDF LD JScontent',
+          photo: '0000',
+          isBookmark: true,
+          author: {
+            name: 'Egor',
+            surname: 'Nazaikin',
+            photo: '9328535',
+          }
+        },
+        {
+          id: 3,
+          content: 'FFKFJFLJJDJLFJLSDF LD JScontent',
+          photo: '0000',
+          isBookmark: true,
+          author: {
+            name: 'Egor',
+            surname: 'Nazaikin',
+            photo: '9328535',
+          }
+        },
+      ]
     }
   },
 
