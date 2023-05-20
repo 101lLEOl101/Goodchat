@@ -3,10 +3,10 @@
     <club-rules/>
 
     <div class="input_form">
-      <h1 class="reg-header">Авторизация</h1><br>
+      <h1 class="reg-header">Authorization</h1><br>
       <login-form @login="login"/>
       <p v-if="message" :class="`form-error ${message.type}`">{{ message.content }}</p>
-      <a class="auth-link" href="registration">Нет аккаунта?</a>
+      <a class="auth-link" href="registration">No Account?</a>
     </div>
   </div>
 </template>
@@ -35,7 +35,7 @@ export default {
           error => {
             this.message = {
               type: 'error',
-              content: 'Не удалось авторизовать пользователя с такими данными',
+              content: 'Failed to authorize user with such data',
             };
           }
         )

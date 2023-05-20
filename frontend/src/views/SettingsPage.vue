@@ -1,7 +1,7 @@
 <template>
     <div class = "setting_page">
-    <a href = "{% url 'edit' %}" class="setting-btn">Настройки профиля</a>
-    <a href = "{% url 'logout' %}" class="setting-btn">Выход</a>
+    <a href = "{% url 'edit' %}" class="setting-btn">Settings Profile</a>
+    <a href = "{% url 'logout' %}" class="setting-btn">Exit</a>
     </div>
   </template>
   

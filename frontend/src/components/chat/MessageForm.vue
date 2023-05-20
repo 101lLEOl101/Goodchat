@@ -1,8 +1,8 @@
 <template>
   <form class="input-area-mess" method="POST">
     <!-- Тут я не уверен что сделал все правильно имеено форму перенес -->
-    <textarea class="message_area" placeholder="Введите сообщение" v-model="content" />
-    <button class="btn_message" @click="send">Отправить</button>
+    <textarea class="message_area" placeholder="Enter message" v-model="content" />
+    <button class="btn_message" @click="send">Send</button>
   </form>
 </template>
   
@@ -52,6 +52,7 @@ export default {
   bottom: 0;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
+  margin-top: auto;
 }
 </style>
   

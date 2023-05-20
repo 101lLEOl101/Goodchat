@@ -2,10 +2,10 @@
   <div class="reg_box">
     <club-rules/>
     <div class="input_form">
-      <h1 class="reg-header">Регистрация</h1><br>
+      <h1 class="reg-header">Registration</h1><br>
       <registration-form @register="register"/>
       <p v-if="message" :class="`message ${message.type}`">{{ message.content }}</p>
-      <a class="auth-link" href="login">Есть аккаунт?</a>
+      <a class="auth-link" href="login">Already a gogorik?</a>
     </div>
   </div>
 </template>
@@ -38,7 +38,7 @@ export default {
           if (error.code === 900){
             this.message = {
               type: 'error',
-              content: 'Пользователь с такими данными уже зарегестрирован',
+              content: 'User with such data is already registered',
             }
           }
         })

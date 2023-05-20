@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style>
-.messenger_contener{
-    min-height:calc(80vh - 283px);
+.messager_container{
+    min-height:80vh;
 }
 </style>
