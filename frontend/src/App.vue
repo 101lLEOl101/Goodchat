@@ -16,65 +16,63 @@
     </div>
   </header>
 
-  <div class="navigation">
-    <div class="side_menu">
-      <div id="prof" class="side_icon">
-        <a class="hr" href="self-profile">
-          <i class="fa-regular fa-user icona"></i>
-        </a>
-      </div>
-      <div id="mes" class="side_icon">
-        <a class="hr" href="chat-list">
-          <i class="fa-regular fa-comment-dots icona"></i>
-        </a>
-      </div>
-      {% if user.is_authenticated %}
-      <div id="friend" class="side_icon">
-        <a class="hr" href="friend-list">
-          <i class="fa-solid fa-user-group icona"></i>
-        </a>
-      </div>
-      {% else %}
-      <div id="friend" class="side_icon">
-        <a class="hr" href="chat-list">
-          <i class="fa-solid fa-user-group icona"></i>
-        </a>
-      </div>
-      {% endif %}
-      <div id="set" class="side_icon">
-        <a class="hr" href="setting">
-          <i class="fa-solid fa-gear icona"></i>
-        </a>
-      </div>
-      <div id="glob" class="side_icon">
-        <a class="hr" href="home">
-          <i class="fa-solid fa-globe icona"></i>
-        </a>
-      </div>
-      <div id="book" class="side_icon">
-        <a class="hr" href="bookmarks">
-          <i class="fa-regular fa-bookmark icona"></i>
-        </a>
-      </div>
-      <div id="add" class="side_icon">
-        <a class="hr" href="addpost">
-          <i class="fa-sharp fa-solid fa-plus icona"></i>
-        </a>
-      </div>
-      <div id="f" class="side_icon">
-        <a class="hr" href="findfriend">
-          <i class="fa-solid fa-magnifying-glass icona"></i>
-        </a>
-      </div>
+  <div class = "navigation">
+    <div  class = "side_menu">
+        <div id = "prof" class = "side_icon">
+            <a class = "hr" href = "{% url 'self-profile' %}">
+                <i class="fa-regular fa-user icona"></i>
+            </a>
+        </div>
+        <div  id = "mes" class = "side_icon">
+            <a class = "hr" href = "{% url 'chat-list' %}">
+                <i class="fa-regular fa-comment-dots icona"></i>
+            </a>
+        </div>
+        <div  id = "friend" class = "side_icon">
+            <a class = "hr" href = "{% url 'friend-list' self_profile.id %}">
+                <i class="fa-solid fa-user-group icona"></i>
+            </a>
+        </div>
+        <div  id = "friend" class = "side_icon">
+            <a class = "hr" href = "{% url 'chat-list' %}">
+                <i class="fa-solid fa-user-group icona"></i>
+            </a>
+        </div>
+        <div  id = "set" class = "side_icon">
+            <a class = "hr" href = "{% url 'setting' %}">
+                <i class="fa-solid fa-gear icona"></i>
+            </a>
+        </div>
+        <div id = "glob" class = "side_icon">
+            <a class = "hr" href = "{% url 'home' %}">
+                <i class="fa-solid fa-globe icona"></i>
+            </a>
+        </div>
+        <div  id = "book" class = "side_icon">
+            <a class = "hr" href = "{% url 'bookmarks' %}">
+                <i class="fa-regular fa-bookmark icona"></i>
+            </a>
+        </div>
+        <div  id = "add" class = "side_icon">
+            <a class = "hr" href = "{% url 'addpost' %}">
+                <i class="fa-solid fa-plus icona"></i>
+            </a>
+        </div>
+        <div  id = "f" class = "side_icon">
+            <a class = "hr" href = "{% url 'findfriend' %}">
+                <i class="fa-solid fa-magnifying-glass icona"></i>
+            </a>
+        </div>
     </div>
-  </div>
+</div>
   <div class="main">
     <router-view />
   </div>
   <!-- <script src="https://kit.fontawesome.com/a5b3356b6d.js" crossorigin="anonymous"></script> -->
+  
 </template>
 
-<script>
+<script >
 export default{
   methods: {
     logout() {
@@ -82,6 +80,7 @@ export default{
     }
   }
 }
+
 </script>
 
 <style>
@@ -138,7 +137,6 @@ header {
 
 .logo_h {
   height: 100%;
-  width: min-content;
   display: flex;
 }
 
@@ -172,6 +170,9 @@ header {
   color: white;
   border: 2px solid #8270F2;
   transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .now-side_icon {
@@ -183,20 +184,19 @@ header {
   margin: 6px;
   border: 2px solid #8270F2;
   transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .icona {
   color: white;
-  margin-left: 20%;
-  margin-top: 18%;
   font-size: calc(17px + 11 * (130vw / 1280));
   transition: 0.3s;
 }
 
 .now-icona {
   color: black;
-  margin-left: 20%;
-  margin-top: 18%;
   font-size: calc(17px + 11 * (130vw / 1280));
   transition: 0.3s;
 }
@@ -250,9 +250,7 @@ header {
 }
 
 .fa-user-group {
-  font-size: calc(17px + 8 * (130vw / 1280));
-  margin-left: 15%;
-  margin-top: 18%;
+  font-size: calc(16px + 8 * (130vw / 1280));
 }
 
 .img_header {

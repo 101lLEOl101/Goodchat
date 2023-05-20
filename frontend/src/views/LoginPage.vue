@@ -60,7 +60,7 @@ export default {
   align-items: center;
   justify-content: center;
   position: fixed;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0.9);
   left: 50%;
   top: 50%;
 }

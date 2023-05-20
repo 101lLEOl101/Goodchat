@@ -4,6 +4,10 @@ import RegistrationPage from '@/views/RegistrationPage'
 import LoginPage from '@/views/LoginPage'
 import ProfilePage from '@/views/ProfilePage'
 import NotFoundPage from '@/views/NotFoundPage'
+import SettingsPage from '@/views/SettingsPage'
+import MainPage from '@/views/MainPage'
+import ChatPage from '@/views/ChatPage'
+import ChatListPage from '@/views/ChatListPage'
 
 const routes = [
   {
@@ -12,9 +16,19 @@ const routes = [
     component: RegistrationPage
   },
   {
+    path: '/settings',
+    name: 'settings-page',
+    component: SettingsPage
+  },
+  {
     path: '/login',
     name: 'login',
     component: LoginPage
+  },
+  {
+    path: '/',
+    name: 'home',
+    component: MainPage
   },
   {
     path: '/profile/:id',
@@ -27,6 +41,16 @@ const routes = [
     name: 'NotFound', 
     component: NotFoundPage 
   },
+  {
+    path: '/chat',
+    name: 'chat',
+    component: ChatPage,
+  },
+  {
+    path: '/chatlist',
+    name: 'chatlist',
+    component: ChatListPage,
+  }
 ]
 
 const router = createRouter({
