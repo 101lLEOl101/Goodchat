@@ -25,7 +25,6 @@ class TokenManager {
       .post(url, data)
       .then(response => {
         if (response.data){
-          console.log(response.data);
           token.access = response.data.access;
           this.setToken(token);
         }
