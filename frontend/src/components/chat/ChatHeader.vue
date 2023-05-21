@@ -1,6 +1,6 @@
 <template>
   <div class="ur_friend">
-    <router-link class="chat-avatar-div" :to="headerLink"><img :src="info.avatar" class="friend-user-pic"></router-link>
+    <router-link class="chat-avatar-div" :to="headerLink"><img :src="info.avatar" class="friend-user-pic image_avatar"></router-link>
     <p>{{ info.name }}</p>
   </div>
 </template>
@@ -24,6 +24,12 @@ export default {
 </script>
   
 <style>
+.image_avatar {
+	aspect-ratio: 1/1;
+	object-fit: cover;
+}
+
+
 .ur_friend {
   height: 7%;
   display: flex;
