@@ -3,6 +3,7 @@ import { auth } from '@/store/modules/AuthModule'
 import { user } from '@/store/modules/UserModule'
 import { post } from '@/store/modules/PostModule'
 import { chat } from '@/store/modules/ChatModule'
+import { comment } from '@/store/modules/CommentModule'
 
 export default createStore({
   modules: {
@@ -10,5 +11,6 @@ export default createStore({
     user,
     post,
     chat,
+    comment,
   }
 })

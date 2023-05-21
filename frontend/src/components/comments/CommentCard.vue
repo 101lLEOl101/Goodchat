@@ -1,8 +1,8 @@
 <template>
   <div class="comment-box">
     <div class="timestamp">
-      <p class="comment-author">{{ comment.id }} {{ comment.author }}</p>
-      <p class="time">{{ comment.date }}</p>
+      <p class="comment-author">{{ comment.author.name }} {{ comment.author.surname }}</p>
+      <p class="time">{{ comment.timestamp }}</p>
     </div>
     <p class="comment-text">{{ comment.content }}</p>
   </div>

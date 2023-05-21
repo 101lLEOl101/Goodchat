@@ -1,7 +1,7 @@
 <template>
     <img class="author_avatar" :src="user.avatar">
     <router-link 
-      :to="`/profile/${user.name}`" 
+      :to="`/profile/${user.id}`" 
       class="post-author">
       {{ user.name }} {{ user.surname }}
     </router-link>

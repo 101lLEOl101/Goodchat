@@ -37,6 +37,7 @@ urlpatterns = [
     path('api/profile/<int:id>', users_api.GetProfile.as_view()),
     
     path('api/post/<int:id>', main_api.GetPost.as_view()),
+    path('api/post/<int:id>/comments', main_api.GetComments.as_view()),
     path('api/post/getUserPosts/<int:id>', main_api.GetUserPosts.as_view()),
     path('api/post/getFeed', main_api.GetFeed.as_view()),
     path('api/bookmarks', main_api.GetBookmarks.as_view()),

@@ -19,19 +19,15 @@
       <div class="post-text">{{ post.content }}</div>
     </div>
     <img v-if="post.photo" :src="post.photo" class="post-image">
-    <comment-form v-if=!isTemplate />
-    <comment-feed :comments="post.comments" v-if=!isTemplate />
+    <slot name="comments"></slot>
   </div>
 </template>
 <script>
 import MiniUserProfile from '@/components/post/MiniUserProfile.vue';
-import CommentForm from '@/components/comments/CommentForm.vue';
-import CommentFeed from '@/components/comments/CommentFeed.vue';
+
 export default {
   components: {
     MiniUserProfile,
-    CommentForm,
-    CommentFeed,
   },
   data() {
     return {}

@@ -6,7 +6,9 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from .models import Post
 from users.models import User
 from .serializers import PostSerializer
+from .serializers import CommentSerializer
 from .utils import get_bookmarks
+from .utils import get_comments
 
 class GetPost(APIView):
     authentication_classes = [JWTAuthentication]
@@ -49,3 +51,15 @@ class GetBookmarks(APIView):
                  for post in posts]
         
         return Response({'posts': posts})
+    
+class GetComments(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get(self, request, id):
+        post = get_object_or_404(Post, id=id)
+        comments = get_comments(post)
+        comments = [CommentSerializer.toDict(comment)
+                    for comment in comments]
+        
+        return Response({'comments': comments})

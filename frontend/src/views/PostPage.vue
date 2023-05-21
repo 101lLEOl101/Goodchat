@@ -1,13 +1,22 @@
 <template>
-    <post-card :post="post" :isTemplate="false" />
+    <post-card :post="post" :isTemplate="false" > 
+      <template #comments>
+        <comment-form />
+        <comment-feed :comments="comments" />
+      </template>
+    </post-card>
 </template>
 
 <script>
 import PostCard from '@/components/post/PostCard';
+import CommentForm from '@/components/comments/CommentForm.vue';
+import CommentFeed from '@/components/comments/CommentFeed.vue';
 
 export default {
   components: {
     PostCard,
+    CommentForm,
+    CommentFeed,
   },
   props: ['id'],
   data() {
@@ -21,36 +30,20 @@ export default {
           surname: '',
         },
         photo: '',
-      }
+      },
+      comments: [],
     }
   },
-  mounted() {
-    this.$store.dispatch('post/getPost', {id: this.id})
+  async mounted() {
+    await this.$store.dispatch('post/getPost', {id: this.id})
       .then(
-        response => {
-          this.post = response;
-          this.post.comments = [
-          {
-            id: 1,
-            author: 'vafin',
-            content: 'foffofofoofof',
-            date: '2134325',
-          },
-          {
-            id: 2,
-            author: 'vafin',
-            content: 'fof325325fof',
-            date: '2134s325',
-          },
-          {
-            id: 3,
-            author: 'vafas23in',
-            content: '325090923jfksdkvnsdfofofoofof',
-            date: '213asd4325',
-          }
-        ]
-        }
+        response => this.post = response
       );
+
+    this.$store.dispatch('comment/getComments', {post_id: this.post.id})
+      .then(
+        response => this.comments = response
+      )
   }
 
 }
