@@ -10,6 +10,7 @@ import ChatPage from '@/views/ChatPage'
 import ChatListPage from '@/views/ChatListPage'
 import PostPage from '@/views/PostPage'
 import BookmarksPage from '@/views/BookmarksPage'
+import CreatePostPage from '@/views/CreatePostPage'
 
 
 const routes = [
@@ -65,6 +66,11 @@ const routes = [
     path: '/bookmarks',
     name: 'bookmarks',
     component: BookmarksPage,
+  },
+  {
+    path: '/addpost',
+    name: 'addpost',
+    component: CreatePostPage,
   }
 ]
 

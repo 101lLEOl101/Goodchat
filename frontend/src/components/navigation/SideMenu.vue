@@ -41,7 +41,7 @@
             </router-link>
         </div>
         <div  id = "add" class = "side_icon">
-            <router-link to="/settings" class = "hr" >
+            <router-link to="/addpost" class = "hr" >
                 <i class="fa-solid fa-plus icona"></i>
             </router-link>
         </div>
