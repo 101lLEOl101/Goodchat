@@ -1,7 +1,7 @@
 <template>
     <post-card :post="post" :isTemplate="false" > 
       <template #comments>
-        <comment-form />
+        <comment-form @send="sendComment"/>
         <comment-feed :comments="comments" />
       </template>
     </post-card>
@@ -32,6 +32,17 @@ export default {
         photo: '',
       },
       comments: [],
+    }
+  },
+  methods: {
+    sendComment(content){
+      let data = {
+        content: content,
+        post_id: this.post.id,
+      };
+      this.$store.dispatch('comment/sendComment', data).then(
+        response => this.comments.push(response)
+      )
     }
   },
   async mounted() {

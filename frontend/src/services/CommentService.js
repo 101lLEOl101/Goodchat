@@ -7,6 +7,13 @@ class CommentService {
       response => response.data
     );
   }
+
+  sendComment(data){
+    let url = 'comment/send';
+    return $axios.post(url, data).then(
+      response => response.data
+    );
+  }
 }
 
 export default new CommentService();

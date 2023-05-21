@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import permissions
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .models import Post
+from .models import Comment
 from users.models import User
 from .serializers import PostSerializer
 from .serializers import CommentSerializer
@@ -63,3 +64,17 @@ class GetComments(APIView):
                     for comment in comments]
         
         return Response({'comments': comments})
+
+class SendComment(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def post(self, request):
+        author = request.user
+        content = request.data['content']
+        post_id = request.data['post_id']
+        post = get_object_or_404(Post, id=post_id)
+        comment = Comment(post=post, author=author, content=content)
+        comment.save()
+        
+        return Response({'comment': CommentSerializer.toDict(comment)})
