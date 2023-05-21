@@ -46,7 +46,7 @@
             </router-link>
         </div>
         <div  id = "f" class = "side_icon">
-            <router-link to="/settings" class = "hr" >
+            <router-link to="/findfriend" class = "hr" >
                 <i class="fa-solid fa-magnifying-glass icona"></i>
             </router-link>
         </div>
