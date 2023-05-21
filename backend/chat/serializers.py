@@ -31,11 +31,17 @@ class ChatSerializer:
         return response
 
     def chatToItemDict(chat: Chat, user: User):
+        last_message = get_last_message(chat)
+        if last_message:
+            last_message = ChatSerializer.messageToDict(last_message, user)
+        else:
+            return False
+        
         response = {
             'id': chat.id,
             'name': get_chat_name(chat, user),
             'avatar': imageToUrl(get_chat_avatar(chat, user)),
-            'lastMessage': ChatSerializer.messageToDict(get_last_message(chat), user),
+            'lastMessage': last_message,
             'isMulty': chat.is_multy,
         }
 

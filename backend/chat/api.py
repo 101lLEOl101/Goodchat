@@ -30,10 +30,14 @@ class GetChatlist(APIView):
     
     def get(self, request):
         chats = get_chats(request.user)
-        chats = [ChatSerializer.chatToItemDict(chat, request.user)
-                 for chat in chats]
+        print(*chats)
+        normilized_chats = []
+        for chat in chats:
+            normilized_chat = ChatSerializer.chatToItemDict(chat, request.user)
+            if normilized_chat:
+                normilized_chats.append(normilized_chat)
         
-        return Response({'chats': chats})
+        return Response({'chats': normilized_chats})
     
 class SendMessage(APIView):
     authentication_classes = [JWTAuthentication]
