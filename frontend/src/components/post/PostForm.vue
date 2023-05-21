@@ -13,57 +13,7 @@
 </div>
 </template>
 <script>
-import $ from "jquery";
-export default {
-    data() {
-    },
-    mounted() {
-      let recaptchaScript = document.createElement('script');
-      recaptchaScript.setAttribute('src', 'https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js');
-      document.head.appendChild(recaptchaScript);
-      let dt = new DataTransfer();
-      $('.input-file input[type=file]').on('change', function(){
-        let $files_list = $(this).closest('.input-file').next();
-            $files_list.empty();
-            for(let i = 0; i < 1; i++){
-                let file = this.files.item(i);
-                dt.items.add(file);
-                let reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onloadend = function(){
-                    let new_file_input = '<div class="input-file-list-item">' +
-                        '<img class="input-file-list-img" src="' + reader.result + '">' +
-                        '<span class="input-file-list-name">' + file.name + '</span>' +
-                        '<a href="#" @click="show(this)" class="input-file-list-remove">x</a>' +
-                    '</div>';
-                    $files_list.append(new_file_input);
-                }
-            };
-            this.files = dt.files;
-            let btn = document.getElementById("add_btn");
-            btn.style.visibility = "hidden";
-            btn.style.width = '0';
-            btn.style.height = '0';
-            btn.style.margin = '0';
-            document.getElementById("box-img").style.height = "auto";
-            document.getElementById("input-list").style.margin = "0 auto";
-            console.log(dt.files)
-      });
-    },
-    methods: {
-      show: function (target){
-            let recaptchaScript = document.createElement('script');
-            recaptchaScript.setAttribute('src', 'https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js');
-            document.head.appendChild(recaptchaScript);
-            let input = $(target).closest('.input-file-row').find('input[type=file]');
-            input[0].files = dt.files;
-            document.getElementById('add_btn').removeAttribute("style");
-            document.getElementById("box-img").removeAttribute("style");
-            document.getElementById("input-list").removeAttribute("style");
-            let dt = new DataTransfer();
-      }
-    }
-}
+export default {}
 </script>
 <style>
 .text-of-new-post {

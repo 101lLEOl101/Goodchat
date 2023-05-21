@@ -3,23 +3,23 @@
 		<p class = "search-user-id-input">Your ID: </p>
 		<div class="other_users_search">
         <find-friend-form />
-        <friend-card 
+        <!-- <friend-card 
         v-for="profile in profiles"
         :key="profile.id" 
         :profile_="profile"
-        />
+        /> -->
 	</div>
     <p class="friend_error" v-if=!profiles>Oops! The user does not exist!</p>
 </div>
 </template>
 <script>
 import FindFriendForm from '@/components/find_friend/FindFriendForm.vue';
-import FriendCard from '@/components/find_friend/FriendCard.vue';
+// import FriendCard from '@/components/find_friend/FriendCard.vue';
 
 export default {
   components: {
     FindFriendForm,
-    FriendCard,
+    // FriendCard,
   },
   props: {
   },
