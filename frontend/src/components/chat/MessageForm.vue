@@ -1,8 +1,8 @@
 <template>
-  <form class="input-area-mess" method="POST">
+  <form class="input-area-mess">
     <!-- Тут я не уверен что сделал все правильно имеено форму перенес -->
     <textarea class="message_area" placeholder="Enter message" v-model="content" />
-    <button class="btn_message" @click="send">Send</button>
+    <button type="button" class="btn_message" @click="send">Send</button>
   </form>
 </template>
   
@@ -13,8 +13,12 @@ export default {
       content: ''
     }
   },
-  method: {
-    send() { }
+  methods: {
+    send() {
+      if (!this.content) return;
+      this.$emit('send', this.content);
+      this.content = ''
+    }
   }
 }
 </script>

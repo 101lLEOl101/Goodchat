@@ -43,6 +43,7 @@ urlpatterns = [
     
     path('api/chat/<int:id>', chat_api.GetChat.as_view()),
     path('api/chatlist', chat_api.GetChatlist.as_view()),
+    path('api/chat/sendMessage', chat_api.SendMessage.as_view()),
     
     path('admin/', admin.site.urls),
     path('', main_views.main_page, name='home'),

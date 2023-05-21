@@ -10,6 +10,15 @@ export const chat = {
       return ChatService.getChatlist().then(
         response => response.chats
       );
+    },
+    async sendMessage(_, payload) {
+      let data = {
+        chat_id: payload.chat_id,
+        content: payload.content,
+      };
+      return ChatService.sendMessage(data).then(
+        response => response.message
+      );
     }
   }
 }
