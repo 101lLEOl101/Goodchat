@@ -3,7 +3,7 @@
     <h2 style="text-align:center;"> messages </h2>
     <chat-header :info="chat.info"/>
     <message-container :messages="chat.messages"/>
-    <message-form />
+    <message-form @send="send"/>
   </div>  
 </template>
   
@@ -27,6 +27,16 @@ export default {
     }
   },
   props: ['id'],
+  methods: {
+    send(content) {
+      this.$store.dispatch('chat/sendMessage', {
+        chat_id: this.chat.info.id,
+        content: content,
+      }).then(
+        response => this.chat.messages.push(response)
+      )
+    }
+  },
   created() {
     this.$store.dispatch('chat/getChat', {id: this.id}).then(
       response => this.chat = response

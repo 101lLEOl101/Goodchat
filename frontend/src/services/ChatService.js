@@ -14,6 +14,13 @@ class ChatService {
       response => response.data
     );
   }
+
+  sendMessage(data) {
+    let url = 'chat/sendMessage';
+    return $axios.post(url, data).then(
+      response => response.data
+    );
+  }
 }
 
 export default new ChatService();
