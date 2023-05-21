@@ -3,11 +3,11 @@
   <div class="profile_page"> 
     <post-feed v-if="posts" :posts="posts" :isTemplate="true"/>
     <div v-else-if="userIsMe" class="zero_bookmarks">
-      <p class="alarm_posts">У этого пользователя нет постов :c </p>
+      <p class="alarm_posts">This user has no posts :c</p>
     </div>
     <div v-else class="zero_bookmarks">
-      <p class="alarm_posts">У вас еще нет постов :c </p>
-      <a class="btn_add" href="addpost">Написать пост</a>
+      <p class="alarm_posts">You don't have any posts yet :c</p>
+      <router-link to="/addpost" class="btn_add" >Add Post</router-link>
     </div>
   </div>
 
