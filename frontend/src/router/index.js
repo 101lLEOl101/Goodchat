@@ -11,6 +11,7 @@ import ChatListPage from '@/views/ChatListPage'
 import PostPage from '@/views/PostPage'
 import BookmarksPage from '@/views/BookmarksPage'
 import CreatePostPage from '@/views/CreatePostPage'
+import FindFriendPage from '@/views/FindFriendPage'
 
 
 const routes = [
@@ -71,6 +72,11 @@ const routes = [
     path: '/addpost',
     name: 'addpost',
     component: CreatePostPage,
+  },
+  {
+    path: '/findfriend',
+    name: 'findfriend',
+    component: FindFriendPage,
   }
 ]
 
