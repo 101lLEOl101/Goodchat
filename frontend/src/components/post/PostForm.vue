@@ -14,16 +14,19 @@
 	</div>
 </template>
 <script>
-import { addImageCodeFragment } from "@/utils/ImgAddPost.js"
+import { addImageCodeFragment } from "@/utils/ImgAdd.js"
 import jQuery from "jquery";
 const $ = jQuery;
 window.$ = $;
 let dt = new DataTransfer();
 export default {
 	mounted() {
-		const s = document.createElement("script");
-		s.innerHTML = addImageCodeFragment;
-		document.body.appendChild(s);
+		console.log(document.body.getElementsByTagName("script").length)
+		if (document.body.getElementsByTagName("script").length == 0){
+			const s = document.createElement("script");
+			s.innerHTML = addImageCodeFragment;
+			document.body.appendChild(s);
+		}
 	},
 	methods: {
 		open: function(event) {
