@@ -47,3 +47,14 @@ class UserSerializer:
         }
         
         return response
+    
+class FriendSerializer:
+    def toDict(friend: User):
+        friend_profile = get_profile(friend)
+        response = {
+            'id': friend.id,
+            'fullName': f'{friend_profile.name} {friend_profile.surname}',
+            'avatar': imageToUrl(friend_profile.avatar),
+        }
+        
+        return response
