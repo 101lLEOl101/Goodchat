@@ -13,6 +13,7 @@ import BookmarksPage from '@/views/BookmarksPage'
 import CreatePostPage from '@/views/CreatePostPage'
 import FindFriendPage from '@/views/FindFriendPage'
 import FriendListPage from '@/views/FriendListPage'
+import FriendRequestPage from '@/views/FriendRequestPage'
 
 
 const routes = [
@@ -84,6 +85,11 @@ const routes = [
     props: true,
     name: 'friendlist',
     component: FriendListPage,
+  },
+  {
+    path: '/friendrequest',
+    name: 'friendrequest',
+    component: FriendRequestPage,
   }
 ]
 
