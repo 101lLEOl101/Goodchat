@@ -4,7 +4,7 @@
 			<textarea name="content" cols="40" rows="10" class="text-of-new-post" placeholder="Your text" required=""
 				id="id_content"></textarea>
 			<div class="input-file-row" id="box-img">
-				<label class="input-file" id="add_btn">
+				<label class="input-file" id="add_btn" @change="open($event)">
 					<input type="file" name="photo" accept="image/*" id="id_photo">
 					<span>Add an Image</span>
 				</label>
@@ -14,12 +14,45 @@
 	</div>
 </template>
 <script>
-import ImgAddScript from "@/utils/ImgAddScript.js"
+import { addImageCodeFragment } from "@/utils/ImgAddPost.js"
+import jQuery from "jquery";
+const $ = jQuery;
+window.$ = $;
+let dt = new DataTransfer();
 export default {
 	mounted() {
-		let myscript = document.createElement('script');
-		myscript.setAttribute('src', ImgAddScript);
-		document.head.appendChild(myscript);
+		const s = document.createElement("script");
+		s.innerHTML = addImageCodeFragment;
+		document.body.appendChild(s);
+	},
+	methods: {
+		open: function(event) {
+			dt = new DataTransfer();
+			let $files_list = $(document.getElementById("id_photo")).closest('.input-file').next();
+			$files_list.empty();
+			for (let i = 0; i < 1; i++) {
+				let file = document.getElementById("id_photo").files.item(i);
+				dt.items.add(file);
+				let reader = new FileReader();
+				reader.readAsDataURL(file);
+				reader.onloadend = function () {
+					let new_file_input = '<div class="input-file-list-item">' +
+						'<img id="post-img" class="input-file-list-img" src="' + reader.result + '">' +
+						'<span class="input-file-list-name">' + file.name + '</span>' +
+						'<a href="#" onclick="removeFilesItem(this); return false;" class="input-file-list-remove">x</a>' +
+						'</div>';
+					$files_list.append(new_file_input);
+				}
+			};
+			document.getElementById("id_photo").files = dt.files;
+			let btn = document.getElementById("add_btn");
+			btn.style.visibility = "hidden";
+			btn.style.width = '0';
+			btn.style.height = '0';
+			btn.style.margin = '0';
+			document.getElementById("box-img").style.height = "auto";
+			document.getElementById("input-list").style.margin = "0 auto";
+		},
 	}
 }
 </script>
@@ -163,4 +196,5 @@ export default {
 	text-align: center;
 	line-height: 16px;
 	border-radius: 50%;
-}</style>
+}
+</style>
