@@ -6,11 +6,14 @@ export const user = {
   namespaced: true,
   state: initialState,
   mutations: {
-    loadSelfUser(state) {
-      state.user = UserManager.getUser();
+    setUser(state, user) {
+      state.user = user;
     }
   },
   actions: {
+    loadSelfUser({ commit }) {
+      commit('setUser', UserManager.getUser());
+    },
     getUser({ state }, payload) {
       return UserService.getUser(payload.id)
         .then(
