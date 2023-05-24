@@ -78,3 +78,18 @@ class SendComment(APIView):
         comment.save()
         
         return Response({'comment': CommentSerializer.toDict(comment)})
+    
+class AddPost(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def post(self, request):
+        content = request.data['content']    
+        photo = request.data['photo']
+        print(content, photo)
+        post = Post(author=request.user, 
+                    content=content, 
+                    photo=photo)
+        post.save()
+        
+        return Response({'id': post.id})

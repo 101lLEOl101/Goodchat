@@ -1,8 +1,11 @@
 <template>
+	<div class="new-post-header">
+      <button class="btn_post" @click="createPost">Create Post</button>
+  </div>
 	<div class="new-post-text-img">
-		<form method="POST" id="new-post-form" class="form-add-post" enctype="multipart/form-data">
+		<form id="new-post-form" class="form-add-post" enctype="multipart/form-data">
 			<textarea name="content" cols="40" rows="10" class="text-of-new-post" placeholder="Your text" required=""
-				id="id_content"></textarea>
+				id="id_content" v-model="content"></textarea>
 			<div class="input-file-row" id="box-img">
 				<label class="input-file" id="add_btn" @change="open($event)">
 					<input type="file" name="photo" accept="image/*" id="id_photo">
@@ -20,17 +23,24 @@ const $ = jQuery;
 window.$ = $;
 let dt = new DataTransfer();
 export default {
-	mounted() {
-		if (document.body.getElementsByTagName("script").length == 0) {
-			let tag = document.createElement("script");
-			tag.setAttribute("src", "https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js");
-			document.body.appendChild(tag);
-			const s = document.createElement("script");
-			s.innerHTML = addImageCodeFragment;
-			document.body.appendChild(s);
+	data() {
+		return {
+			content: null,
 		}
 	},
 	methods: {
+		createPost() {
+			let photo = document.getElementById("id_photo").files[0]
+			if (photo || this.content){
+				let data = {
+					photo: photo,
+					content: this.content,
+				};
+				this.$store.dispatch('post/addPost', data).then(
+					response => this.$router.push(`/post/${response}`)
+				);
+			}
+		},
 		open: function (event) {
 			dt = new DataTransfer();
 			let $files_list = $(document.getElementById("id_photo")).closest('.input-file').next();
@@ -58,7 +68,17 @@ export default {
 			document.getElementById("box-img").style.height = "auto";
 			document.getElementById("input-list").style.margin = "0 auto";
 		},
-	}
+	},
+	mounted() {
+		if (document.body.getElementsByTagName("script").length == 0) {
+			let tag = document.createElement("script");
+			tag.setAttribute("src", "https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js");
+			document.body.appendChild(tag);
+			const s = document.createElement("script");
+			s.innerHTML = addImageCodeFragment;
+			document.body.appendChild(s);
+		}
+	},
 }
 </script>
 <style>
