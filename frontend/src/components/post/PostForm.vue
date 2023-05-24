@@ -1,64 +1,117 @@
 <template>
-<div class="new-post-text-img">
-	<form method="POST" id="new-post-form" class="form-add-post" enctype="multipart/form-data">
-        <textarea name="content" cols="40" rows="10" class="text-of-new-post" placeholder="Your text" required="" id="id_content"></textarea>
-		<div class="input-file-row" id="box-img">
-			<label class="input-file" id="add_btn">
-				<input type="file" name="photo" accept="image/*" id="id_photo">
-				<span>Add an Image</span>
-			</label>
-			<div id="input-list" class="input-file-list"></div>
-		</div>
-	</form>
-</div>
+	<div class="new-post-text-img">
+		<form method="POST" id="new-post-form" class="form-add-post" enctype="multipart/form-data">
+			<textarea name="content" cols="40" rows="10" class="text-of-new-post" placeholder="Your text" required=""
+				id="id_content"></textarea>
+			<div class="input-file-row" id="box-img">
+				<label class="input-file" id="add_btn" @change="open($event)">
+					<input type="file" name="photo" accept="image/*" id="id_photo">
+					<span>Add an Image</span>
+				</label>
+				<div id="input-list" class="input-file-list"></div>
+			</div>
+		</form>
+	</div>
 </template>
 <script>
-export default {}
+import { addImageCodeFragment } from "@/utils/ImgAdd.js"
+import jQuery from "jquery";
+const $ = jQuery;
+window.$ = $;
+let dt = new DataTransfer();
+export default {
+	mounted() {
+		console.log(document.body.getElementsByTagName("script").length)
+		if (document.body.getElementsByTagName("script").length == 0){
+			const s = document.createElement("script");
+			s.innerHTML = addImageCodeFragment;
+			document.body.appendChild(s);
+		}
+	},
+	methods: {
+		open: function(event) {
+			dt = new DataTransfer();
+			let $files_list = $(document.getElementById("id_photo")).closest('.input-file').next();
+			$files_list.empty();
+			for (let i = 0; i < 1; i++) {
+				let file = document.getElementById("id_photo").files.item(i);
+				dt.items.add(file);
+				let reader = new FileReader();
+				reader.readAsDataURL(file);
+				reader.onloadend = function () {
+					let new_file_input = '<div class="input-file-list-item">' +
+						'<img id="post-img" class="input-file-list-img" src="' + reader.result + '">' +
+						'<span class="input-file-list-name">' + file.name + '</span>' +
+						'<a href="#" onclick="removeFilesItem(this); return false;" class="input-file-list-remove">x</a>' +
+						'</div>';
+					$files_list.append(new_file_input);
+				}
+			};
+			document.getElementById("id_photo").files = dt.files;
+			let btn = document.getElementById("add_btn");
+			btn.style.visibility = "hidden";
+			btn.style.width = '0';
+			btn.style.height = '0';
+			btn.style.margin = '0';
+			document.getElementById("box-img").style.height = "auto";
+			document.getElementById("input-list").style.margin = "0 auto";
+		},
+	}
+}
 </script>
 <style>
 .text-of-new-post {
-    width: 96%;
-    font-size: 16px;
-    margin: 1%;
-    padding: 1%;
-    background: #000;
-    color: white;
-    border-radius: 14px;
-    transition:all 0.5s;
-    resize: none;
-    border: 2px solid #362982;
+	width: 96%;
+	font-size: 16px;
+	margin: 1%;
+	padding: 1%;
+	background: #000;
+	color: white;
+	border-radius: 14px;
+	transition: all 0.5s;
+	resize: none;
+	border: 2px solid #362982;
 }
 
 .text-of-new-post::-webkit-scrollbar {
-  width: 12px;               /* ширина scrollbar */
-}
-.text-of-new-post::-webkit-scrollbar-track {
-  background: black;        /* цвет дорожки */
-}
-.text-of-new-post::-webkit-scrollbar-thumb {
-  background-color: #8270F2;    /* цвет плашки */
-  border-radius: 17px;       /* закругления плашки */
-  border: 0px 10px 33px #8270F2;  /* padding вокруг плашки */
+	width: 12px;
+	/* ширина scrollbar */
 }
 
-.text-of-new-post:focus{
-     box-shadow: 0px 15px 20px #362982;
+.text-of-new-post::-webkit-scrollbar-track {
+	background: black;
+	/* цвет дорожки */
+}
+
+.text-of-new-post::-webkit-scrollbar-thumb {
+	background-color: #8270F2;
+	/* цвет плашки */
+	border-radius: 17px;
+	/* закругления плашки */
+	border: 0px 10px 33px #8270F2;
+	/* padding вокруг плашки */
+}
+
+.text-of-new-post:focus {
+	box-shadow: 0px 15px 20px #362982;
 }
 
 .input-file-row {
 	display: flex;
 	border: 4px dashed #362982;
 	border-radius: 14px;
-    width: 96%;
-    padding: 1%;
-    margin: 1%;
+	width: 96%;
+	padding: 1%;
+	margin: 1%;
 	height: 30vh;
 }
+
 .input-file {
 	position: relative;
 	display: inline-block;
 	margin: auto;
 }
+
 .input-file span {
 	position: relative;
 	display: inline-block;
@@ -79,6 +132,7 @@ export default {}
 	margin: 0;
 	transition: background-color 0.2s;
 }
+
 .input-file input[type=file] {
 	position: absolute;
 	z-index: -1;
@@ -89,20 +143,21 @@ export default {}
 }
 
 /* Focus */
-.input-file input[type=file]:focus + span {
-	box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+.input-file input[type=file]:focus+span {
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
 }
 
 /* Hover/active */
 .input-file:hover span {
 	background-color: #5b4bbe;
 }
+
 .input-file:active span {
 	background-color: #362982;
 }
 
 /* Disabled */
-.input-file input[type=file]:disabled + span {
+.input-file input[type=file]:disabled+span {
 	background-color: #eee;
 }
 
@@ -113,11 +168,13 @@ export default {}
 	vertical-align: top;
 	position: relative;
 }
+
 .input-file-list-item img {
 	width: 50%;
 	margin: 100px 25%;
 	border-radius: 14px;
 }
+
 .input-file-list-name {
 	text-align: center;
 	display: block;
@@ -126,6 +183,7 @@ export default {}
 	text-overflow: ellipsis;
 	overflow: hidden;
 }
+
 .input-file-list-remove {
 	color: #fff;
 	text-decoration: none;
