@@ -23,5 +23,14 @@ export const post = {
         response => response.posts
       );
     },
+    async addPost(_, payload) {
+      let data = {
+        photo: payload.photo,
+        content: payload.content,
+      };
+      return PostService.addPost(data).then(
+        response => response.id
+      );
+    }
   }
 }

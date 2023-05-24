@@ -20,6 +20,23 @@ class PostService {
     let url = 'bookmarks';
     return $axios.get(url).then(response => response.data);
   }
+
+  addPost(data) {
+    if (!data.photo && !data.content)
+      return;
+
+    let photo = data.photo ? data.photo : ''
+    let content = data.content ? data.content : ''
+    let url = 'post/new';
+    
+    let form = new FormData();
+    form.append('content', content);
+    form.append('photo', photo);
+    
+    return $axios.post(url, form).then(
+      response => response.data
+    );
+  }
 }; 
 
 export default new PostService();

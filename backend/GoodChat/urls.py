@@ -40,6 +40,7 @@ urlpatterns = [
     path('api/post/<int:id>/comments', main_api.GetComments.as_view()),
     path('api/post/getUserPosts/<int:id>', main_api.GetUserPosts.as_view()),
     path('api/post/getFeed', main_api.GetFeed.as_view()),
+    path('api/post/new', main_api.AddPost.as_view()),
     path('api/comment/send', main_api.SendComment.as_view()),
     path('api/bookmarks', main_api.GetBookmarks.as_view()),
     
