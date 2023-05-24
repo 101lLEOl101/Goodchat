@@ -21,15 +21,17 @@ window.$ = $;
 let dt = new DataTransfer();
 export default {
 	mounted() {
-		console.log(document.body.getElementsByTagName("script").length)
-		if (document.body.getElementsByTagName("script").length == 0){
+		if (document.body.getElementsByTagName("script").length == 0) {
+			let tag = document.createElement("script");
+			tag.setAttribute("src", "https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js");
+			document.body.appendChild(tag);
 			const s = document.createElement("script");
 			s.innerHTML = addImageCodeFragment;
 			document.body.appendChild(s);
 		}
 	},
 	methods: {
-		open: function(event) {
+		open: function (event) {
 			dt = new DataTransfer();
 			let $files_list = $(document.getElementById("id_photo")).closest('.input-file').next();
 			$files_list.empty();
