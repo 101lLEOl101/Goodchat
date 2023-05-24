@@ -18,7 +18,7 @@ export default {
     },
     async writeMessage() {
       let dialog_id =  await this.$store.dispatch(
-        'chat/getDialog', 
+        'chat/getDialogId', 
         {id: this.friend.id}
       );
       this.$router.push(`/chat/${dialog_id}`);
