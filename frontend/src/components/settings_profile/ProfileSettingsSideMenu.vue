@@ -7,7 +7,7 @@
     <a href="#profile_data" class="settings_link">Personal Data</a>
 
     <div class="settings_buttons">
-      <router-link to="/settingsprofile" class="settings_btn settings_btn1">Settings Profile</router-link>
+      <router-link to="/settings" class="settings_btn settings_btn1">Cancel</router-link>
       <button class="settings_btn settings_btn2 settings_save" form="edit_form">Apply</button>
     </div>
   </div>
@@ -50,6 +50,7 @@ export default {
   font-size: 100%;
   font-weight: bolder;
   cursor: pointer;
+  text-align: center;
 }
 
 .settings_save {
