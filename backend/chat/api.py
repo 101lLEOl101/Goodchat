@@ -6,8 +6,10 @@ from rest_framework import permissions
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .models import Chat
 from .models import Message
+from users.models import User
 from .utils import chat_access
 from .utils import get_chats
+from .utils import get_dialog
 from .serializers import ChatSerializer
 
 class GetChat(APIView):
@@ -59,3 +61,12 @@ class SendMessage(APIView):
         message = ChatSerializer.messageToDict(message, user)
         return Response({'message': message})
         
+class GetDialog(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get(self, request, id):
+        interlocutor = get_object_or_404(User, id=id)
+        dialog = get_dialog(request.user, interlocutor)
+        
+        return Response({'dialog_id': dialog.id})

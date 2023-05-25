@@ -113,13 +113,13 @@ def get_friend_add_button_state(user_id: User, opponent_id: User):
     return state 
 
 def refuse_friendship(user1: User, user2: User):
-    friendship1 = Friend.objects.filter(friends__in=[user1])
-    friendship2 = Friend.objects.filter(friends__in=[user2])
-    for i in friendship1:
-        for j in friendship2:
-            if i == j:
-                i.delete()
-                break
+    user1_friendships = Friend.objects.filter(friends__in=[user1])
+    for friendship in user1_friendships:
+        if user2 in friendship.friends.all():
+            friendship.delete()
+            return
+        
+    print('error: no friendships')
 
 def deny_friend_request(inviter: User, recipient: User):
     invitation = FriendRequest.objects.get(inviter=inviter, recipient=recipient)

@@ -5,8 +5,11 @@ from rest_framework.response import Response
 from rest_framework import permissions
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .serializers import UserSerializer
+from .serializers import FriendSerializer
 from .models import User
 from .signals import user_created
+from .utils import get_friends
+from .utils import refuse_friendship
 
 
 class Register(APIView):
@@ -55,3 +58,34 @@ class GetProfile(APIView):
         user = get_object_or_404(User, id=id)
         response = {'user': UserSerializer.toFullProfileDict(user)}
         return Response(response)
+    
+class GetFriendList(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get(self, request, id):
+        user = get_object_or_404(User, id=id)
+        user_friends = get_friends(user)
+        user_friends = [FriendSerializer.toDict(friend)
+                        for friend in user_friends]
+        
+        return Response({'friends': user_friends})
+    
+class RefuseFriendship(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def refuse_request_permission(self, user_id, user1_id, user2_id):
+        return user_id == user1_id or user_id == user2_id
+    
+    def post(self, request):
+        user1 = get_object_or_404(User, id=request.data['user1_id'])
+        user2 = get_object_or_404(User, id=request.data['user2_id'])
+        if not self.refuse_request_permission(request.user.id,
+                                              user1.id, 
+                                              user2.id):
+            raise PermissionError('It\'s not your friendship!!!')
+        
+        refuse_friendship(user1, user2)
+        
+    

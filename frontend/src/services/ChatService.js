@@ -21,6 +21,13 @@ class ChatService {
       response => response.data
     );
   }
+
+  getDialogId(id) {
+    let url = `dialog/get/${id}`;
+    return $axios.get(url).then(
+      response => response.data
+    );
+  }
 }
 
 export default new ChatService();

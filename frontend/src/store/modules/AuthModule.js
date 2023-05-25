@@ -71,5 +71,10 @@ export const auth = {
         }
       );
     }
+  },
+  getters: {
+    user(store) {
+      return store.user;
+    }
   }
 };
