@@ -70,5 +70,5 @@ class GetDialog(APIView):
             raise ValueError('You can\'t talk with yourself!')
         interlocutor = get_object_or_404(User, id=id)
         dialog = get_dialog(request.user, interlocutor)
-        
+
         return Response({'dialog_id': dialog.id})

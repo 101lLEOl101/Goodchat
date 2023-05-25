@@ -14,6 +14,23 @@ export const friend = {
         user2_id: payload.friend_id,
       }
       return FriendService.refuseFriendship(data)
-    }
+    },
+    getFriendshipStatus(_, payload) {
+      return FriendService.getFriendshipStatus(payload.id).then(
+        response => response.status
+      )
+    },
+    sendFriendRequest(_, payload) {
+      return FriendService.sendFriendRequest(payload.id)
+    },
+    withdrawFriendRequest(_, payload) {
+      return FriendService.withdrawFriendRequest(payload.id)
+    },
+    acceptFriendRequest(_, payload) {
+      return FriendService.acceptFriendRequest(payload.id)
+    },
+    declineFriendRequest(_, payload) {
+      return FriendService.declineFriendRequest(payload.id)
+    },
   }
 }; 

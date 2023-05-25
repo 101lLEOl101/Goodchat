@@ -17,7 +17,7 @@
     </div>
 
     <dialog-button v-if="user && !userIsMe" class="btn_profile" :id="user.id" />
-    <a v-if="!userIsMe" class="btn_profile" href="{% url 'add-friend' user.id%}">Add as Friend</a>
+    <friend-state-button v-if="!userIsMe" class="btn_profile" :id="user.id"/>
 
     <label for="toggle" class="btn_profile">More</label>
   </div>
@@ -25,10 +25,12 @@
 
 <script>
 import DialogButton from '@/components/chat/DialogButton';
+import FriendStateButton from '@/components/friendlist/FriendStateButton';
 
 export default {
   components: {
     DialogButton,
+    FriendStateButton,
   },
   data() {
     return {}

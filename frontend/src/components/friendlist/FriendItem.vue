@@ -3,7 +3,7 @@
     <img :src="friend.avatar" class="friend-avatar image_avatar">
     <router-link class="friend_name" :to="`/profile/${friend.id}`">{{ friend.fullName }}</router-link>
     <button type="button" class="button_write accept" @click="deleteFriend">Delete</button>
-    <dialog-button :id="friend.id"/>
+    <dialog-button class="button_write accept" :id="friend.id"/>
   </div>
 </template>
 

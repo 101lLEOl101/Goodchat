@@ -52,6 +52,12 @@ urlpatterns = [
     
     path('api/friendlist/<int:id>', users_api.GetFriendList.as_view()),
     path('api/friendship/refuse', users_api.RefuseFriendship.as_view()),
+    path('api/friendship/status/<int:friend_id>', users_api.GetFriendshipStatus.as_view()),
+    
+    path('api/friend/request/send/<int:friend_id>', users_api.SendFriendRequest.as_view()),
+    path('api/friend/request/withdraw/<int:friend_id>', users_api.WithdrawFriendRequest.as_view()),
+    path('api/friend/request/accept/<int:friend_id>', users_api.AcceptFriendRequest.as_view()),
+    path('api/friend/request/decline/<int:friend_id>', users_api.DeclineFriendRequest.as_view()),
     
     path('admin/', admin.site.urls),
     path('', main_views.main_page, name='home'),

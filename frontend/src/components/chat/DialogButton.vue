@@ -13,15 +13,15 @@ export default {
     id: Number,
   },
   methods: {
-    writeMessage() {
-      if (!this.dialog_id) this.getDialogId();
-      this.$router.push(`/chat/${this.dialog_id}`);
-    },
     getDialogId() {
-      if (this.id)
-        this.$store.dispatch('chat/getDialogId', {id: this.id})
+        return this.$store.dispatch('chat/getDialogId', {id: this.id})
           .then(response => this.dialog_id = response);
-    }
+    },
+    writeMessage() {
+      this.getDialogId().then(
+        _ => this.$router.push(`/chat/${this.dialog_id}`)
+      )
+    },
   }
 }
 </script>

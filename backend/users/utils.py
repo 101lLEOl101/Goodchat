@@ -20,7 +20,7 @@ def convert_profile_to_dict(profile: Profile):
     return profile_dict
 
 
-def get_user(id:id):
+def get_user(id: id):
     try:
         user = User.objects.get(id=id)
         return user
@@ -76,17 +76,21 @@ def friend_able_to_invite(inviter, recipient) -> bool:
 
     return True
 
+
 def friend_invited(inviter: User, recipient: User) -> bool:
-    try: 
-        invitation = FriendRequest.objects.get(inviter=inviter, recipient=recipient)
+    try:
+        invitation = FriendRequest.objects.get(
+            inviter=inviter, recipient=recipient)
     except FriendRequest.DoesNotExist:
         return False
     else:
         return True
 
+
 def accept_friend_request(inviter: User, recipient: User):
     try:
-        invitation = FriendRequest.objects.get(inviter=inviter, recipient=recipient)
+        invitation = FriendRequest.objects.get(
+            inviter=inviter, recipient=recipient)
     except FriendRequest.DoesNotExist:
         raise ValueError('Null request can\'t be accepted')
     else:
@@ -95,7 +99,8 @@ def accept_friend_request(inviter: User, recipient: User):
         friendship.friends.set([inviter, recipient])
         friendship.save()
         invitation.delete()
-        
+
+
 def get_friend_add_button_state(user_id: User, opponent_id: User):
     user = User.objects.get(id=user_id)
     opponent = User.objects.get(id=opponent_id)
@@ -108,8 +113,9 @@ def get_friend_add_button_state(user_id: User, opponent_id: User):
         state = 'Offer friendship'
     elif are_friends(user, opponent):
         state = 'Stop being friends'
-    
-    return state 
+
+    return state
+
 
 def refuse_friendship(user1: User, user2: User):
     user1_friendships = Friend.objects.filter(friends__in=[user1])
@@ -117,19 +123,22 @@ def refuse_friendship(user1: User, user2: User):
         if user2 in friendship.friends.all():
             friendship.delete()
             return
-        
+
     print('error: no friendships')
 
+
 def deny_friend_request(inviter: User, recipient: User):
-    invitation = FriendRequest.objects.get(inviter=inviter, recipient=recipient)
+    invitation = FriendRequest.objects.get(
+        inviter=inviter, recipient=recipient)
     invitation.delete()
+
 
 def execute_find_users_querry(querry):
     response = []
-    try:        
+    try:
         id = int(querry)
         response.extend(Profile.objects.filter(id=id))
-    except ValueError:    
+    except ValueError:
         fullname = querry
         try:
             name, surname = list(fullname.split())
@@ -142,13 +151,81 @@ def execute_find_users_querry(querry):
             surname = fullname
 
         response.extend([profile
-                            for profile
-                            in Profile.objects.filter(name__icontains=name)
-                            if profile not in response])
+                         for profile
+                         in Profile.objects.filter(name__icontains=name)
+                         if profile not in response])
         response.extend([profile
-                            for profile
-                            in Profile.objects.filter(surname__icontains=surname)
-                            if profile not in response])
+                         for profile
+                         in Profile.objects.filter(surname__icontains=surname)
+                         if profile not in response])
 
     response = [get_user(profile.id) for profile, _ in groupby(response)]
     return response
+
+
+def get_friendship_status(user: User, friend: User):
+    response = {}
+    response['are_friends'] = are_friends(user, friend)
+    response['you_invited'] = (False if response['are_friends']
+                               else friend_invited(user, friend))
+    response['friend_invited'] = (False if response['are_friends']
+                                  else friend_invited(friend, user))
+    
+    return response
+
+
+def send_friend_request(user: User, friend: User):
+    status = get_friendship_status(user, friend)
+    if status['are_friends']:
+        raise ValueError('You are already friends!')
+    if status['you_invited']:
+        raise ValueError('You have already sent request!')
+    if status['friend_invited']:
+        return accept_friend_request(user, friend)
+    
+    friend_request = FriendRequest(inviter=user, recipient=friend)
+    friend_request.save()
+
+
+def withdraw_friend_request(user: User, friend: User):
+    status = get_friendship_status(user, friend)
+    if status['are_friends']:
+        raise ValueError('You are already friends!')
+    if not status['you_invited']:
+        raise ValueError('Nothing to withdraw')
+    if status['friend_invited']:
+        decline_friend_request(user, friend)
+        
+    friend_request = FriendRequest.objects.get(inviter=user, recipient=friend)
+    friend_request.delete()
+
+
+def accept_friend_request(user: User, friend: User):
+    status = get_friendship_status(user, friend)
+    if status['are_friends']:
+        raise ValueError('You are already friends!')
+    if not status['friend_invited']:
+        raise ValueError('Nothing to accept')
+    if status['you_invited']:
+        raise ValueError(f'Waiting for {friend.name} accept your request')
+
+    friend_request = FriendRequest.objects.get(inviter=friend, recipient=user)
+    friendship = Friend()
+    friendship.save()
+    friendship.friends.add(user, friend)
+    friendship.save()
+    friend_request.delete()
+    
+    
+def decline_friend_request(user: User, friend: User):
+    status = get_friendship_status(user, friend)
+    if status['are_friends']:
+        raise ValueError('You are already friends!')
+    if not status['friend_invited']:
+        raise ValueError('Nothing to decline')
+    if status['you_invited']:
+        withdraw_friend_request()
+  
+    friend_request = FriendRequest.objects.get(inviter=friend, recipient=user)
+    friend_request.delete()
+        
