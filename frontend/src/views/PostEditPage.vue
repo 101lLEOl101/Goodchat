@@ -1,6 +1,6 @@
 <template>
     <div class="post-workspace">
-        <post-form :isEdit="true" />
+        <post-form :isEdit="true" :HaveImg="true" />
     </div>
 </template>
 <script>

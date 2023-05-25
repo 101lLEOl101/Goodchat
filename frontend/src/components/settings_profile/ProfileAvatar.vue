@@ -1,21 +1,11 @@
 <template>
-	<div class="new-post-header">
-		<button v-if=!isEdit class="btn_post" @click="createPost">Create Post</button>
-		<button v-else class="btn_post" @click="editPost">Edit Post</button>
-	</div>
-	<div class="new-post-text-img">
-		<form id="new-post-form" class="form-add-post" enctype="multipart/form-data">
-			<textarea name="content" cols="40" rows="10" class="text-of-new-post" placeholder="Your text" required=""
-				id="id_content" v-model="content"></textarea>
-			<div v-if=!HaveImg class="input-file-row" id="box-img">
-				<label class="input-file" id="add_btn" @change="open($event)">
-					<input type="file" name="photo" accept="image/*" id="id_photo">
-					<span>Add an Image</span>
-				</label>
-				<div id="input-list" class="input-file-list"></div>
-			</div>
-			<div v-else class="input-file-row" style="height: auto;" id="box-img">
-				<label class="input-file" id="add_btn" style="visibility: hidden; width: 0px; height: 0px; margin: 0px;">
+	remove
+	<div id="profile_avatar" class="settings_settings_devider">
+		<h3 class="settings_block_tittle">Profile Picture</h3>
+		<div class="settings_change_menu">
+			<div class="input-file-row" id="box-img">
+				<label class="input-file" id="add_btn" style="visibility: hidden; width: 0px; height: 0px; margin: 0px;"
+					@change="open($event)">
 					<input type="file" name="avatar-profile-form" accept="image/*" id="id_photo" value="">
 					<span>Select an Image</span>
 				</label>
@@ -23,13 +13,16 @@
 					<div class="input-file-list-item">
 						<a href="#" onclick="removeFilesItem(this); return false;" class="input-file-list-remove">x</a>
 						<img class="input-file-list-img" src="@/assets/logo.png">
-						<span class="input-file-list-name">logo.png</span>
 					</div>
 				</div>
 			</div>
-		</form>
+			<div class="settings_info_box">
+				<p id="img-name" class="displayed_info">{{ namephoto }}</p>
+			</div>
+		</div>
 	</div>
 </template>
+
 <script>
 import { addImageCodeFragment } from "@/utils/ImgAdd.js"
 import jQuery from "jquery";
@@ -37,30 +30,10 @@ const $ = jQuery;
 window.$ = $;
 let dt = new DataTransfer();
 export default {
-	props: {
-		isEdit: Boolean,
-		HaveImg: Boolean,
-	},
 	data() {
-		return {
-			content: null,
-		}
+		return {}
 	},
 	methods: {
-		createPost() {
-			let photo = document.getElementById("id_photo").files[0]
-			if (photo || this.content) {
-				let data = {
-					photo: photo,
-					content: this.content,
-				};
-				this.$store.dispatch('post/addPost', data).then(
-					response => this.$router.push(`/post/${response}`)
-				);
-			}
-		},
-		editPost() {
-		},
 		open: function (event) {
 			dt = new DataTransfer();
 			let $files_list = $(document.getElementById("id_photo")).closest('.input-file').next();
@@ -70,11 +43,11 @@ export default {
 				dt.items.add(file);
 				let reader = new FileReader();
 				reader.readAsDataURL(file);
+				document.getElementById("img-name").innerHTML = file.name
 				reader.onloadend = function () {
-					let new_file_input = '<div class="input-file-list-item">' +
-						'<img id="post-img" class="input-file-list-img" src="' + reader.result + '">' +
-						'<span class="input-file-list-name">' + file.name + '</span>' +
-						'<a href="#" onclick="removeFilesItem(this); return false;" class="input-file-list-remove">x</a>' +
+					let new_file_input = '<div style="display: inline-block; vertical-align: top; position: relative;" class="input-file-list-item">' +
+						'<a href="#" onclick="removeFilesItem(this); return false;" style="color: #fff;text-decoration: none; display: inline-block; position: absolute; padding: 0; margin: 0; top: 5px; right: 5px; background: #ff0202; width: 16px; height: 16px; text-align: center; line-height: 16px; border-radius: 50%;" class="input-file-list-remove">x</a>' +
+						'<img id="post-img" class="input-file-list-img" style="height: 10vw; border-radius: 100%; aspect-ratio: 1/1; object-fit: cover;" src="' + reader.result + '">' +
 						'</div>';
 					$files_list.append(new_file_input);
 				}
@@ -85,7 +58,6 @@ export default {
 			btn.style.width = '0';
 			btn.style.height = '0';
 			btn.style.margin = '0';
-			document.getElementById("box-img").style.height = "auto";
 			document.getElementById("input-list").style.margin = "0 auto";
 		},
 	},
@@ -101,51 +73,37 @@ export default {
 	},
 }
 </script>
-<style>
-.text-of-new-post {
-	width: 96%;
-	font-size: 16px;
-	margin: 1%;
-	padding: 1%;
-	background: #000;
-	color: white;
-	border-radius: 14px;
-	transition: all 0.5s;
-	resize: none;
-	border: 2px solid #362982;
+
+<style scoped>
+.settings_settings_devider {
+	color: #ffffff;
+	width: 100%;
+	height: fit-content;
+	border-bottom: 1px solid #ffffff;
+	padding-bottom: 1%;
+	margin-bottom: 0;
 }
 
-.text-of-new-post::-webkit-scrollbar {
-	width: 12px;
-	/* ширина scrollbar */
+.settings_block_tittle {
+	color: #ffffff;
+	text-align: left;
+	padding-left: 5%;
+
 }
 
-.text-of-new-post::-webkit-scrollbar-track {
-	background: black;
-	/* цвет дорожки */
+.settings_change_menu {
+	margin-top: 2%;
+
 }
 
-.text-of-new-post::-webkit-scrollbar-thumb {
-	background-color: #8270F2;
-	/* цвет плашки */
-	border-radius: 17px;
-	/* закругления плашки */
-	border: 0px 10px 33px #8270F2;
-	/* padding вокруг плашки */
-}
-
-.text-of-new-post:focus {
-	box-shadow: 0px 15px 20px #362982;
-}
 
 .input-file-row {
 	display: flex;
-	border: 4px dashed #362982;
-	border-radius: 14px;
-	width: 96%;
-	padding: 1%;
-	margin: 1%;
-	height: 30vh;
+	margin: 10px;
+	border: 2px dashed #ffffff;
+	border-radius: 100%;
+	width: fit-content;
+	height: 10vw;
 }
 
 .input-file {
@@ -156,23 +114,23 @@ export default {
 
 .input-file span {
 	position: relative;
-	display: inline-block;
 	cursor: pointer;
 	outline: none;
 	text-decoration: none;
 	font-size: 14px;
+	display: table-cell;
 	vertical-align: middle;
-	color: black;
+	color: #ffffff;
 	text-align: center;
-	border-radius: 4px;
-	background-color: #8270f2;
+	border-radius: 100%;
+	background-color: black;
 	line-height: 22px;
-	height: 40px;
-	padding: 10px 20px;
+	height: 10vw;
 	box-sizing: border-box;
 	border: none;
 	margin: 0;
 	transition: background-color 0.2s;
+	width: 10vw;
 }
 
 .input-file input[type=file] {
@@ -191,11 +149,11 @@ export default {
 
 /* Hover/active */
 .input-file:hover span {
-	background-color: #5b4bbe;
+	background-color: #1F1F1F;
 }
 
 .input-file:active span {
-	background-color: #362982;
+	background-color: #0F0F0F;
 }
 
 /* Disabled */
@@ -211,10 +169,11 @@ export default {
 	position: relative;
 }
 
-.input-file-list-item img {
-	width: 50%;
-	margin: 100px 25%;
-	border-radius: 14px;
+.input-file-list-img {
+	height: 10vw;
+	border-radius: 100%;
+	aspect-ratio: 1/1;
+	object-fit: cover;
 }
 
 .input-file-list-name {
@@ -241,5 +200,20 @@ export default {
 	text-align: center;
 	line-height: 16px;
 	border-radius: 50%;
+}
+
+.settings_info_box {
+	margin-left: 2%;
+	margin-top: 0%;
+}
+
+.displayed_info {
+	color: #ffffff;
+	padding: 0.5%;
+	background-color: #000000;
+	width: fit-content;
+	border: 1px solid #ffffff;
+	border-radius: 16px;
+
 }
 </style>
