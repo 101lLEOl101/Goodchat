@@ -14,6 +14,7 @@ import CreatePostPage from '@/views/CreatePostPage'
 import FindFriendPage from '@/views/FindFriendPage'
 import FriendListPage from '@/views/FriendListPage'
 import SettingsProfilePage from '@/views/SettingsProfilePage'
+import PostEditPage from '@/views/PostEditPage'
 
 
 const routes = [
@@ -43,10 +44,10 @@ const routes = [
     name: 'profile',
     component: ProfilePage
   },
-  { 
-    path: '/:pathMatch(.*)*', 
-    name: 'NotFound', 
-    component: NotFoundPage 
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: NotFoundPage
   },
   {
     path: '/chat/:id',
@@ -85,6 +86,11 @@ const routes = [
     props: true,
     name: 'friendlist',
     component: FriendListPage,
+  },
+  {
+    path: '/editpost',
+    name: 'editpost',
+    component: PostEditPage,
   },
   {
     path: '/settingsprofile',

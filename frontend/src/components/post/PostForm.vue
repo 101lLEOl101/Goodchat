@@ -7,12 +7,25 @@
 		<form id="new-post-form" class="form-add-post" enctype="multipart/form-data">
 			<textarea name="content" cols="40" rows="10" class="text-of-new-post" placeholder="Your text" required=""
 				id="id_content" v-model="content"></textarea>
-			<div class="input-file-row" id="box-img">
+			<div v-if=!HaveImg class="input-file-row" id="box-img">
 				<label class="input-file" id="add_btn" @change="open($event)">
 					<input type="file" name="photo" accept="image/*" id="id_photo">
 					<span>Add an Image</span>
 				</label>
 				<div id="input-list" class="input-file-list"></div>
+			</div>
+			<div v-else class="input-file-row" style="height: auto;" id="box-img">
+				<label class="input-file" id="add_btn" style="visibility: hidden; width: 0px; height: 0px; margin: 0px;">
+					<input type="file" name="avatar-profile-form" accept="image/*" id="id_photo" value="">
+					<span>Select an Image</span>
+				</label>
+				<div id="input-list" class="input-file-list" style="margin: 0px auto;">
+					<div class="input-file-list-item">
+						<a href="#" onclick="removeFilesItem(this); return false;" class="input-file-list-remove">x</a>
+						<img class="input-file-list-img" src="@/assets/logo.png">
+						<span class="input-file-list-name">logo.png</span>
+					</div>
+				</div>
 			</div>
 		</form>
 	</div>
@@ -26,6 +39,7 @@ let dt = new DataTransfer();
 export default {
 	props: {
 		isEdit: Boolean,
+		HaveImg: Boolean,
 	},
 	data() {
 		return {
@@ -57,10 +71,10 @@ export default {
 				let reader = new FileReader();
 				reader.readAsDataURL(file);
 				reader.onloadend = function () {
-					let new_file_input = '<div class="input-file-list-item" style=" display: inline-block; vertical-align: top; position: relative;">' +
-						'<img style="width: 50%; margin: 100px 25%; border-radius: 14px;" id="post-img" class="input-file-list-img" src="' + reader.result + '">' +
-						'<span style="text-align: center; display: block; font-size: 12px; color: white; text-overflow: ellipsis; overflow: hidden;" id="img-name" class="input-file-list-name">' + file.name + '</span>' +
-						'<a style ="color: #fff; text-decoration: none; display: inline-block; position: absolute; padding: 0; margin: 0; top: 5px; right: 5px; background: #ff0202; width: 16px; height: 16px; text-align: center; line-height: 16px; border-radius: 50%;" href="#" onclick="removeFilesItem(this); return false;" class="input-file-list-remove">x</a>' +
+					let new_file_input = '<div class="input-file-list-item">' +
+						'<img id="post-img" class="input-file-list-img" src="' + reader.result + '">' +
+						'<span class="input-file-list-name">' + file.name + '</span>' +
+						'<a href="#" onclick="removeFilesItem(this); return false;" class="input-file-list-remove">x</a>' +
 						'</div>';
 					$files_list.append(new_file_input);
 				}
@@ -87,7 +101,7 @@ export default {
 	},
 }
 </script>
-<style scoped>
+<style>
 .text-of-new-post {
 	width: 96%;
 	font-size: 16px;
