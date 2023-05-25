@@ -1,10 +1,10 @@
 <template>
   <div class="messenger_box" id="messenger_box">
     <h2 style="text-align:center;"> messages </h2>
-    <chat-header :info="chat.info"/>
-    <message-container :messages="chat.messages"/>
-    <message-form @send="send"/>
-  </div>  
+    <chat-header :info="chat.info" />
+    <message-container :messages="chat.messages" />
+    <message-form @send="send" />
+  </div>
 </template>
   
 <script>
@@ -35,12 +35,19 @@ export default {
       }).then(
         response => this.chat.messages.push(response)
       )
-    }
+    },
+    loadChat() {
+      this.$store.dispatch('chat/getChat', { id: this.id }).then(
+        response => this.chat = response
+      );
+    },
   },
   created() {
-    this.$store.dispatch('chat/getChat', {id: this.id}).then(
-      response => this.chat = response
-    );
+    this.loadChat();
+    this.interval = setInterval(this.loadChat, 2 * 1000);
+  },
+  beforeUnmount() {
+    clearInterval(this.interval);
   }
 }
 </script>

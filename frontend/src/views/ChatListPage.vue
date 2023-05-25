@@ -18,10 +18,19 @@ export default {
       chats: [],
     }
   },
+  methods: {
+    loadChats() {
+      this.$store.dispatch('chat/getChatlist').then(
+        response => this.chats = response
+      );
+    }
+  },
   created() {
-    this.$store.dispatch('chat/getChatlist').then(
-      response => this.chats = response
-    );
+    this.loadChats();
+    this.interval = setInterval(this.loadChats, 1.5 * 1000);
+  },
+  beforeUnmount() {
+    clearInterval(this.interval);
   }
 }
 </script>
