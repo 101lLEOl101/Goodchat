@@ -1,6 +1,6 @@
 <template>
 	<div class="new-post-header">
-		<button v-if=isEdit class="btn_post" @click="createPost">Create Post</button>
+		<button v-if=!isEdit class="btn_post" @click="createPost">Create Post</button>
 		<button v-else class="btn_post" @click="editPost">Edit Post</button>
 	</div>
 	<div class="new-post-text-img">
