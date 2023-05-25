@@ -119,10 +119,10 @@ export default {
   border: #8270F2 solid 2px;
   padding: 15px;
   color: #8270F2;
-  width: 50%;
+  width: -webkit-fill-available;
   font-size: 20px;
   transition: all 0.5s;
-  margin: 10px 20%;
+  margin: 10px 25%;
   display: inline-block;
   text-align: center;
   transition: all 1s;
