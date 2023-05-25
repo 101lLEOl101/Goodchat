@@ -1,7 +1,8 @@
 <template>
 	<div class="new-post-header">
-      <button class="btn_post" @click="createPost">Create Post</button>
-  </div>
+		<button v-if=!isEdit class="btn_post" @click="createPost">Create Post</button>
+		<button v-else class="btn_post" @click="editPost">Edit Post</button>
+	</div>
 	<div class="new-post-text-img">
 		<form id="new-post-form" class="form-add-post" enctype="multipart/form-data">
 			<textarea name="content" cols="40" rows="10" class="text-of-new-post" placeholder="Your text" required=""
@@ -23,6 +24,9 @@ const $ = jQuery;
 window.$ = $;
 let dt = new DataTransfer();
 export default {
+	props: {
+		isEdit: Boolean,
+	},
 	data() {
 		return {
 			content: null,
@@ -31,7 +35,7 @@ export default {
 	methods: {
 		createPost() {
 			let photo = document.getElementById("id_photo").files[0]
-			if (photo || this.content){
+			if (photo || this.content) {
 				let data = {
 					photo: photo,
 					content: this.content,
@@ -40,6 +44,8 @@ export default {
 					response => this.$router.push(`/post/${response}`)
 				);
 			}
+		},
+		editPost() {
 		},
 		open: function (event) {
 			dt = new DataTransfer();

@@ -1,6 +1,6 @@
 <template>
   <div class="post-workspace">
-    <post-form />
+    <post-form :isEdit="false" />
   </div>
 </template>
 <script>

@@ -10,7 +10,7 @@
             :class="{ in_zakladka: post.isBookmark, zakladka: !post.isBookmark }"
             title="Bookmark" 
           />
-          <router-link v-if=!isTemplate to="/" class="round edit" title="Edit" />
+          <router-link v-if=!isTemplate to="/editpost" class="round edit" title="Edit" />
           <router-link v-if=!isTemplate to="/" class="round delete" title="Delete" />
       </div>
       <mini-user-profile :user="post.author"/>
