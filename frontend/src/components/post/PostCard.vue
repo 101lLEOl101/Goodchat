@@ -1,19 +1,17 @@
 <template>
-  <div v-bind:class="{'post-margin post-box': !isTemplate, 'post-box': isTemplate}">
+  <div v-bind:class="{ 'post-margin post-box': !isTemplate, 'post-box': isTemplate }">
     <div class="post-header">
       <div class="btn_box_post">
-          <router-link v-if=isTemplate :to="`/post/${post.id}`" class="round open" title="Open Full" />
-          <router-link
-            v-if=isTemplate
-            to="/bookmarks" 
-            class="round" 
-            :class="{ in_zakladka: post.isBookmark, zakladka: !post.isBookmark }"
-            title="Bookmark" 
-          />
-          <router-link v-if=!isTemplate to="/editpost" class="round edit" title="Edit" />
-          <router-link v-if=!isTemplate to="/" class="round delete" title="Delete" />
+        <router-link v-if=isTemplate :to="`/post/${post.id}`" class="round open" title="Open Full">
+          <div class="arrow"></div>
+          <div class="arrow_diff"></div>
+        </router-link>
+        <router-link v-if=isTemplate to="/bookmarks" class="round"
+          :class="{ in_zakladka: post.isBookmark, zakladka: !post.isBookmark }" title="Bookmark" />
+        <router-link v-if=!isTemplate to="/editpost" class="round edit" title="Edit" />
+        <router-link v-if=!isTemplate to="/" class="round delete" title="Delete" />
       </div>
-      <mini-user-profile :user="post.author"/>
+      <mini-user-profile :user="post.author" />
     </div>
     <div class="text-wrap">
       <div class="post-text">{{ post.content }}</div>
@@ -39,28 +37,28 @@ export default {
 }
 </script>
 <style>
-.edit{
-    background-color: #36C849;
+.edit {
+  background-color: #36C849;
 }
 
-.delete{
-    background-color: #FD5754;
+.delete {
+  background-color: #FD5754;
 }
 
-.delete:hover{
-    background-image: url("@/assets/trash.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-size: 14px 14px;
+.delete:hover {
+  background-image: url("@/assets/trash.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-size: 14px 14px;
 }
 
-.edit:hover{
-    background-image: url("@/assets/pencil.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-size: 28px 28px;
+.edit:hover {
+  background-image: url("@/assets/pencil.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-size: 28px 28px;
 }
 
 .round {
@@ -156,6 +154,7 @@ export default {
   top: 3px;
   transform: rotate(180deg);
 }
+
 .post-box {
   background: rgba(0, 0, 0, 0.75);
   border-radius: 37px;
@@ -167,9 +166,10 @@ export default {
   box-shadow: 0px 10px 10px #8270f2;
 }
 
-.post-margin{
+.post-margin {
   margin-top: 9vh;
 }
+
 .post-header {
   width: 100%;
   display: flex;
