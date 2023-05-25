@@ -10,6 +10,7 @@ from .models import User
 from .signals import user_created
 from .utils import get_friends
 from .utils import refuse_friendship
+from .utils import execute_find_users_querry
 
 
 class Register(APIView):
@@ -88,4 +89,13 @@ class RefuseFriendship(APIView):
         
         refuse_friendship(user1, user2)
         
+class FindUser(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
     
+    def post(self, request):
+        querry = request.data['querry']
+        users = execute_find_users_querry(querry)
+        users = [UserSerializer.toShortProfileDict(user)
+                 for user in users]
+        return Response({'users': users})

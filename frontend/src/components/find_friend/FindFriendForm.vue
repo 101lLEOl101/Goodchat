@@ -1,13 +1,43 @@
 <template>
   <div class="input_friend">
-    <form method="POST" class="form_friend">
-      <input type="text" name="querry" class="search-id-input" placeholder="Search(ID/Name)" required="" id="id_querry">
-      <button type="submit" class="btn_message">Search</button>
+    <form @submit.prevent class="form_friend">
+      <input type="text" name="querry" class="search-id-input" placeholder="Search(ID/Name)" required="" id="id_querry" v-model="querry">
+      <button type="submit" class="btn_message" @click="find">Search</button>
+      <p 
+        :class="`friend_error ${message.type}`"
+        v-if="message"
+      >
+      {{ message.content }}
+      </p>
     </form>
   </div>
 </template>
 <script>
-
+export default {
+  data() {
+    return {
+      querry: '',
+      message: {
+        type: null,
+        content: null,
+      }
+    }
+  },
+  methods: {
+    find() {
+      if (this.querry.length > 2 || Number(this.querry)) {
+        this.$emit('find', this.querry)
+        this.message = {}
+      }
+      else {
+        this.message = {
+          type: 'error',
+          content: 'Too few simbols in the querry'
+        }
+      }
+    }
+  }
+}
 </script>
 <style>
 .input_friend {

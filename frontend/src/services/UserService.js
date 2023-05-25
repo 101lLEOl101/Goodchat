@@ -10,6 +10,16 @@ class UserService {
         }
       );
   }
+
+  findUser(querry) {
+    let url =  'users/find';
+    let data = {
+      querry: querry,
+    }
+    return $axios.post(url, data).then(
+      response => response.data
+    );
+  }
 }
 
 export default new UserService();

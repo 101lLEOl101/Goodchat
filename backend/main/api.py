@@ -93,3 +93,4 @@ class AddPost(APIView):
         post.save()
         
         return Response({'id': post.id})
+    

@@ -1,5 +1,4 @@
-from typing import Optional
-
+from itertools import groupby
 from .models import User
 from .models import Profile
 from .models import Friend
@@ -21,7 +20,7 @@ def convert_profile_to_dict(profile: Profile):
     return profile_dict
 
 
-def get_user(id:id) -> Optional[User]:
+def get_user(id:id):
     try:
         user = User.objects.get(id=id)
         return user
@@ -124,3 +123,32 @@ def refuse_friendship(user1: User, user2: User):
 def deny_friend_request(inviter: User, recipient: User):
     invitation = FriendRequest.objects.get(inviter=inviter, recipient=recipient)
     invitation.delete()
+
+def execute_find_users_querry(querry):
+    response = []
+    try:        
+        id = int(querry)
+        response.extend(Profile.objects.filter(id=id))
+    except ValueError:    
+        fullname = querry
+        try:
+            name, surname = list(fullname.split())
+            response.extend(Profile.objects.filter(
+                name=name, surname=surname))
+            response.extend(Profile.objects.filter(
+                name=surname, surname=name))
+        except ValueError:
+            name = fullname
+            surname = fullname
+
+        response.extend([profile
+                            for profile
+                            in Profile.objects.filter(name__icontains=name)
+                            if profile not in response])
+        response.extend([profile
+                            for profile
+                            in Profile.objects.filter(surname__icontains=surname)
+                            if profile not in response])
+
+    response = [get_user(profile.id) for profile, _ in groupby(response)]
+    return response

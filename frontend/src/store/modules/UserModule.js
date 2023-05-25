@@ -28,5 +28,10 @@ export const user = {
     isUserSelf({ state }, payload) {
       return state.user.id == payload.id;
     },
+    findUser(_, payload) {
+      return UserService.findUser(payload.querry).then(
+        response => response.users
+      );
+    }
   }
 }

@@ -25,6 +25,7 @@ class UserSerializer:
             'login': user.username,
             'email': user.email,
             'avatar': imageToUrl(profile.avatar),
+            'about': profile.about,
         }
         
         return response
