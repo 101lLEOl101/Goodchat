@@ -4,7 +4,7 @@
       <h2 class="requests_h1" id="title">Friends List</h2>
       <router-link to="/requestlist/{{id}}" class="btn_request_h2" id="btn">Friend Requests</router-link>
     </div>
-    <friend-list :friends="requests" :IsFriends=true />
+    <friend-list :friends="friends" :IsFriends=true />
   </div>
 </template>
 
@@ -18,7 +18,7 @@ export default {
   },
   data() {
     return {
-      requests: [],
+      friends: [],
     }
   },
   methods: {
