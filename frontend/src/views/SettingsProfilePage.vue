@@ -1,13 +1,13 @@
 <template>
   <div class="profile_box">
-    <ProfileSettingsSideMenu/>
+    <profile-settings-side-menu />
 
     <div class = "content_settings">
       <form method="POST" id="edit_form" enctype="multipart/form-data">
-        <ProfileAvatar/>
-        <ProfileName/>
-        <ProfileInformation/>
-        <ProfileData/>
+        <profile-avatar/>
+        <profile-name/>
+        <profile-information/>
+        <profile-data/>
       </form>
     </div>
   </div>
