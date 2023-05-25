@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <dialog-button v-if="!userIsMe" class="btn_profile" :id="user.id" />
+    <dialog-button v-if="user && !userIsMe" class="btn_profile" :id="user.id" />
     <a v-if="!userIsMe" class="btn_profile" href="{% url 'add-friend' user.id%}">Add as Friend</a>
 
     <label for="toggle" class="btn_profile">More</label>

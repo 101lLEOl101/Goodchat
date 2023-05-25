@@ -66,6 +66,8 @@ class GetDialog(APIView):
     permission_classes = [permissions.IsAuthenticated]
     
     def get(self, request, id):
+        if (request.user.id == id):
+            raise ValueError('You can\'t talk with yourself!')
         interlocutor = get_object_or_404(User, id=id)
         dialog = get_dialog(request.user, interlocutor)
         
