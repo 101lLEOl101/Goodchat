@@ -4,7 +4,6 @@
 
     <div class = "content_settings">
       <form method="POST" id="edit_form" enctype="multipart/form-data">
-        {% csrf_token %}
         <ProfileAvatar/>
         <ProfileName/>
         <ProfileInformation/>
@@ -21,7 +20,6 @@ import ProfileName from "@/components/settings_profile/ProfileName";
 import ProfileInformation from "@/components/settings_profile/ProfileInformation";
 import ProfileData from "@/components/settings_profile/ProfileData";
 export default {
-  name: "ProfileSettingsPage",
   components: {ProfileData, ProfileInformation, ProfileName, ProfileAvatar, ProfileSettingsSideMenu}
 }
 </script>
