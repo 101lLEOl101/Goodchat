@@ -1,9 +1,10 @@
 <template>
   <div class="friend_box">
     <div class="title_h">
-      <h2 class="requests_h1" id="title">Friends List</h2>\
+      <h2 class="requests_h1" id="title">Friends List</h2>
+      <router-link to="/requestlist/{{id}}" class="btn_request_h2" id="btn">Friend Requests</router-link>
     </div>
-    <friend-list :friends="friends" />
+    <friend-list :friends="requests" :IsFriends=true />
   </div>
 </template>
 
@@ -17,16 +18,16 @@ export default {
   },
   data() {
     return {
-      friends: [],
+      requests: [],
     }
   },
   methods: {
     loadFriendList() {
-      this.$store.dispatch('friend/getFriendList', {'id': this.id}).then(
+      this.$store.dispatch('friend/getFriendList', { 'id': this.id }).then(
         response => this.friends = response
       )
     }
-  },  
+  },
   mounted() {
     this.loadFriendList();
   }
@@ -35,6 +36,18 @@ export default {
 </script>
 
 <style>
+.btn_request_h2 {
+  color: black;
+  margin-left: 10px;
+  font-weight: bold;
+  padding: 10px;
+  background-color: rgba(131, 113, 242, 0.70);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px #8270F2;
+  cursor: pointer;
+}
+
 .requests_h1 {
   display: block;
   cursor: default;

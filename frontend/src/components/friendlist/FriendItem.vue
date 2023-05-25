@@ -2,8 +2,10 @@
   <div class="friendlist_item" id="friend_item">
     <img :src="friend.avatar" class="friend-avatar image_avatar">
     <router-link class="friend_name" :to="`/profile/${friend.id}`">{{ friend.fullName }}</router-link>
-    <button type="button" class="button_write accept" @click="deleteFriend">Delete</button>
-    <dialog-button class="button_write accept" :id="friend.id"/>
+    <button v-if=IsFriend type="button" class="button_write accept" @click="deleteFriend">Delete</button>
+    <dialog-button v-if=IsFriend class="button_write accept" :id="friend.id" />
+    <button v-if=!IsFriend type="button" class="button_write accept" >Accept</button>
+    <button v-if=!IsFriend type="button" class="button_write accept" >Deny</button>
   </div>
 </template>
 
@@ -16,10 +18,11 @@ export default {
   },
   props: {
     friend: Object,
+    IsFriend: Boolean,
   },
   methods: {
     deleteFriend() {
-      this.$emit('deleteFriend', {id: this.friend.id});
+      this.$emit('deleteFriend', { id: this.friend.id });
     }
   },
 }
@@ -78,4 +81,5 @@ export default {
 
 .reject {
   left: 45%;
-}</style>
+}
+</style>
