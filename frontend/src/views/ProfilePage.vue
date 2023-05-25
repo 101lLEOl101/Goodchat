@@ -1,17 +1,17 @@
 <template>
   <input type="checkbox" id="toggle">
-  <div class="profile_page"> 
-    <post-feed v-if="posts" :posts="posts" :isTemplate="true"/>
+  <div class="profile_page">
+    <post-feed v-if="posts" :posts="posts" :isTemplate="true" />
     <div v-else-if="userIsMe" class="zero_bookmarks">
       <p class="alarm_posts">This user has no posts :c</p>
     </div>
     <div v-else class="zero_bookmarks">
       <p class="alarm_posts">You don't have any posts yet :c</p>
-      <router-link to="/addpost" class="btn_add" >Add Post</router-link>
+      <router-link to="/addpost" class="btn_add">Add Post</router-link>
     </div>
   </div>
 
-  <profile-card :user="user" :userIsMe="userIsMe" />
+  <profile-card v-if="user" :user="user" :userIsMe="userIsMe" />
 </template>
 
 <script>
@@ -31,24 +31,38 @@ export default {
       posts: []
     }
   },
+  methods: {
+    async loadUserData() {
+      let userId = this.$route.params.id;
+      await this.$store.dispatch('user/getUser', { id: userId })
+        .then(
+          response => {
+            this.user = response;
+          }
+        )
+        .catch(
+          reason => {
+            this.$router.push(`/profilenotfound`);
+            console.log(reason);
+          }
+        )
+      //console.log(this.user)
+      this.$store.dispatch('user/isUserSelf', { id: this.user.id })
+        .then(
+          response => this.userIsMe = response,
+          error => console.log(error)
+        );
+      this.$store.dispatch('post/getUserPosts', { id: this.id })
+        .then(response => this.posts = response);
+    },
+  },
   created() {
-    let userId = this.$route.params.id;
-    this.$store.dispatch('user/getUser', { id: userId })
-      .then(
-        response => {
-          this.user = response
-        }
-      )
-      .catch(
-        reason => {
-          this.$router.push(`/profilenotfound`);
-          console.log(reason);
-        }
-      )
-    //console.log(this.user)
-    this.userIsMe = this.$store.dispatch('user/isUserSelf', {id: this.user.id});
-    this.$store.dispatch('post/getUserPosts', {id: this.id})
-      .then(response => this.posts = response);
+    this.loadUserData();
+  },
+  watch: {
+    id() {
+      this.loadUserData();
+    }
   }
 }
 </script>
@@ -221,4 +235,5 @@ export default {
 
 .row {
   display: flex;
-}</style>
+}
+</style>

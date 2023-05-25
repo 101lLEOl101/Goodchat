@@ -40,12 +40,17 @@ urlpatterns = [
     path('api/post/<int:id>/comments', main_api.GetComments.as_view()),
     path('api/post/getUserPosts/<int:id>', main_api.GetUserPosts.as_view()),
     path('api/post/getFeed', main_api.GetFeed.as_view()),
+    path('api/post/new', main_api.AddPost.as_view()),
     path('api/comment/send', main_api.SendComment.as_view()),
     path('api/bookmarks', main_api.GetBookmarks.as_view()),
     
     path('api/chat/<int:id>', chat_api.GetChat.as_view()),
     path('api/chatlist', chat_api.GetChatlist.as_view()),
     path('api/chat/sendMessage', chat_api.SendMessage.as_view()),
+    path('api/dialog/get/<int:id>', chat_api.GetDialog.as_view()),
+    
+    path('api/friendlist/<int:id>', users_api.GetFriendList.as_view()),
+    path('api/friendship/refuse', users_api.RefuseFriendship.as_view()),
     
     path('admin/', admin.site.urls),
     path('', main_views.main_page, name='home'),

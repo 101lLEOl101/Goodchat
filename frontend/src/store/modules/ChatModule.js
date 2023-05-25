@@ -19,6 +19,11 @@ export const chat = {
       return ChatService.sendMessage(data).then(
         response => response.message
       );
-    }
+    },
+    async getDialogId(_, payload){
+      return ChatService.getDialogId(payload.id).then(
+        response => response.dialog_id,
+      )
+    },
   }
 }

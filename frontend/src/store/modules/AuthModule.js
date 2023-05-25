@@ -10,9 +10,9 @@ export const auth = {
   namespaced: true,
   state: initialState,
   mutations: {
-    loginSuccess(state) {
+    loginSuccess(state, user) {
       state.status.loggedIn = true;
-      state.user = UserManager.getUser();
+      state.user = user;
     },
     loginFailure(state) {
       state.status.loggedIn = false;
@@ -33,9 +33,10 @@ export const auth = {
     login({ commit }, user) {
       return AuthService.login(user)
         .then(
-          response => {
-            commit('loginSuccess');
-            return Promise.resolve(response.status);
+          user => {
+            commit('loginSuccess', UserManager.getUser());
+            commit('user/setUser', user, {root: true});
+            return Promise.resolve('login success');
           },
           error => {
             commit('loginFailure');
@@ -69,6 +70,11 @@ export const auth = {
           return Promise.reject(error);
         }
       );
+    }
+  },
+  getters: {
+    user(store) {
+      return store.user;
     }
   }
 };

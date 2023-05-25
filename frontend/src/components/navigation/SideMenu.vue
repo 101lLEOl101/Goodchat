@@ -21,7 +21,16 @@
             </router-link>
         </div>
         <div  id = "friend" class = "side_icon">
-            <router-link to="/settings" class = "hr" >
+            <router-link
+                v-if="$store.state.auth.status.loggedIn"
+                :to="`/friendlist/${$store.state.auth.user.id}`"
+                class = "hr" >
+                <i class="fa-solid fa-user-group icona"></i>
+            </router-link>
+            <router-link
+                v-else
+                :to="`/login`"
+                class = "hr" >
                 <i class="fa-solid fa-user-group icona"></i>
             </router-link>
         </div>
