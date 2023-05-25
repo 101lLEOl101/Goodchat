@@ -1,44 +1,44 @@
 <template>
-    <div class = "setting_page">
-    <a href = "{% url 'edit' %}" class="setting-btn">Settings Profile</a>
-    <a href = "{% url 'logout' %}" class="setting-btn">Exit</a>
-    </div>
-  </template>
+  <div class="setting_page">
+    <router-link to="/settingsprofile" class="setting-btn">Settings Profile</router-link>
+    <a href="{% url 'logout' %}" class="setting-btn">Exit</a>
+  </div>
+</template>
   
-  <script>
+<script>
+
+</script>
   
-  </script>
-  
-  <style>
-  .setting_page{
-    width: 50%;
-    height: 75vh;
-    margin: 0 auto;
-    background-color: #000000;
-    border-radius: 73px;
-    box-shadow: 0px 10px 30px #8270f2;
-    padding-top: 100px;
+<style>
+.setting_page {
+  width: 50%;
+  height: 75vh;
+  margin: 0 auto;
+  background-color: #000000;
+  border-radius: 73px;
+  box-shadow: 0px 10px 30px #8270f2;
+  padding-top: 100px;
 }
 
-.ou-setting-btn{
-    margin:80px;
-    width: 40%;
+.ou-setting-btn {
+  margin: 80px;
+  width: 40%;
 }
 
-.setting-btn{
-    padding:1%;
-    color:white;
-    font-size: calc(24px + 16 * (100vw / 2560));
-    padding-right:auto;
-    padding-left:auto;
-    border: 2px solid white;
-    background-color:black;
-    border-radius:20px;
-    text-decoration: none;
-    width: 50%;
-    display: grid;
-    text-align: center;
-    margin:auto;
-    margin-top:10%;
+.setting-btn {
+  padding: 1%;
+  color: white;
+  font-size: calc(24px + 16 * (100vw / 2560));
+  padding-right: auto;
+  padding-left: auto;
+  border: 2px solid white;
+  background-color: black;
+  border-radius: 20px;
+  text-decoration: none;
+  width: 50%;
+  display: grid;
+  text-align: center;
+  margin: auto;
+  margin-top: 10%;
 }
-  </style>
+</style>
