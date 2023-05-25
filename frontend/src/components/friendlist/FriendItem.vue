@@ -2,26 +2,24 @@
   <div class="friendlist_item" id="friend_item">
     <img :src="friend.avatar" class="friend-avatar image_avatar">
     <router-link class="friend_name" :to="`/profile/${friend.id}`">{{ friend.fullName }}</router-link>
-    <button type="buuton" class="button_write accept" @click="deleteFriend">Delete</button>
-    <button type="buuton" class="button_write reject" @click="writeMessage">Message</button>
+    <button type="button" class="button_write accept" @click="deleteFriend">Delete</button>
+    <dialog-button :id="friend.id"/>
   </div>
 </template>
 
 <script>
+import DialogButton from '@/components/chat/DialogButton.vue';
+
 export default {
+  components: {
+    DialogButton,
+  },
   props: {
     friend: Object,
   },
   methods: {
     deleteFriend() {
       this.$emit('deleteFriend', {id: this.friend.id});
-    },
-    async writeMessage() {
-      let dialog_id =  await this.$store.dispatch(
-        'chat/getDialogId', 
-        {id: this.friend.id}
-      );
-      this.$router.push(`/chat/${dialog_id}`);
     }
   },
 }

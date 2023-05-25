@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <a v-if="!userIsMe" class="btn_profile" href="{% url 'open-dialog' user.id %}">Send a Message</a>
+    <dialog-button v-if="!userIsMe" class="btn_profile" :id="user.id" />
     <a v-if="!userIsMe" class="btn_profile" href="{% url 'add-friend' user.id%}">Add as Friend</a>
 
     <label for="toggle" class="btn_profile">More</label>
@@ -24,7 +24,12 @@
 </template>
 
 <script>
+import DialogButton from '@/components/chat/DialogButton';
+
 export default {
+  components: {
+    DialogButton,
+  },
   data() {
     return {}
   },
@@ -104,5 +109,27 @@ export default {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.btn_profile {
+  background-color: #000000;
+  border-radius: 12px;
+  border: #8270F2 solid 2px;
+  padding: 15px;
+  color: #8270F2;
+  width: 50%;
+  font-size: 20px;
+  transition: all 0.5s;
+  margin: 10px 20%;
+  display: inline-block;
+  text-align: center;
+  transition: all 1s;
+}
+
+.btn_profile:hover {
+  background-color: #000000;
+  border-radius: 12px;
+  border: #000000 solid 2px;
+  box-shadow: 0px 0px 33px #8270F2;
 }
 </style>
