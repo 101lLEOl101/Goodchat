@@ -1,6 +1,10 @@
 <template>
   <div class="main_page">
-    <post-feed :posts="posts" :isTemplate="true" />
+    <post-feed v-if="posts.length!=0" :posts="posts" :isTemplate="true" />
+    <div v-else class="zero_bookmarks">
+      <p class="alarm_posts">We don't have any posts yet :c</p>
+      <router-link to="/addpost" class="btn_add">Add Post</router-link>
+    </div>
   </div>
 </template>
   
