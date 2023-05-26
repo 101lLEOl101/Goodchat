@@ -14,6 +14,7 @@ import CreatePostPage from '@/views/CreatePostPage'
 import FindFriendPage from '@/views/FindFriendPage'
 import FriendListPage from '@/views/FriendListPage'
 import FriendRequestPage from '@/views/FriendRequestPage'
+import SecretPage from '@/views/SecretPage'
 
 
 const routes = [
@@ -90,6 +91,11 @@ const routes = [
     path: '/friendrequest',
     name: 'friendrequest',
     component: FriendRequestPage,
+  },
+  {
+    path: '/dev',
+    name: 'dev',
+    component: SecretPage,
   }
 ]
 
