@@ -1,13 +1,10 @@
 <template>
-  <div>
-  <label for="members">Members:</label>
-                <div  class="friendlist_item">
-                    <img :src="member.avatar" class="friend-avatar">
-                    <a class="friend_name" href="{% url 'profile' member.id %}">{{ member.name }} {{ member.surname }}</a>
-                    <span class="friend_name">{{ member.access_description }}</span>
-                    <input type="checkbox" name="members-checkbox-form" checked value="{{ member.id }}">
-                </div>
-   </div>
+    <div class="friendlist_item">
+        <img class="friend-avatar">
+        <a class="friend_name" href="{% url 'profile' member.id %}"></a>
+        <span class="friend_name"></span>
+        <input type="checkbox" name="members-checkbox-form" value="">
+    </div>
 </template>
 
 <script>
@@ -17,7 +14,7 @@ export default {
 </script>
 
 <style>
-.friend-avatar{
+.friend-avatar {
     margin-left: 2%;
     object-fit: cover;
     aspect-ratio: 1/1;
@@ -25,12 +22,13 @@ export default {
     border-radius: 100%;
 }
 
-.friend_name{
+.friend_name {
     color: #8270F2;
     width: 20%;
     text-align: center;
 }
-.friendlist_item{
+
+.friendlist_item {
     display: flex;
     justify-content: start;
     align-items: center;

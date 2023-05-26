@@ -6,6 +6,8 @@
       <img :src="chat.avatar" class="chat-avatar-info">
     </div>
     <chat-member-list :members="members"/>
+    <router-link to="/multychatsettings" class="btn-save" href="/chat/settings/1">Edit</router-link>
+    <router-link to="/chatlist" class="btn-discard" href="/chat/leave/1">Exit Chat</router-link>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-bottom: 30px;">
     <chat-member-item 
       v-for="member in members" 
       :key="member.id" 
