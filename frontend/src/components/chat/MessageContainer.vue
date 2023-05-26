@@ -24,6 +24,6 @@ export default {
 
 <style>
 .messager_container{
-    min-height:80vh;
+    min-height:58.4vh;
 }
 </style>
