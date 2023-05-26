@@ -4,7 +4,9 @@
     :key="friend.id" 
     :friend="friend"
     :IsFriend=IsFriends
-    @deleteFriend="deleteFriend"/>
+    @deleteFriend="deleteFriend"
+    @acceptFriendRequest="acceptFriendRequest"
+    @declineFriendRequest="declineFriendRequest"/>
 </template>
 
 <script>
@@ -20,8 +22,14 @@ export default {
   },
   methods: {
     deleteFriend(friend_id) {
-      this.$store.dispatch('friend/refuseFriendship', {friend_id: friend_id})
-    } 
+      this.$emit('deleteFriend', friend_id);
+    },
+    acceptFriendRequest(friend_id) {
+      this.$emit('acceptFriendRequest', friend_id);
+    },
+    declineFriendRequest(friend_id) {
+      this.$emit('declineFriendRequest', friend_id);
+    },
   }
 }
 </script>

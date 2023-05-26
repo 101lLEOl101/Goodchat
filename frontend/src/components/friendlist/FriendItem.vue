@@ -2,10 +2,10 @@
   <div class="friendlist_item" id="friend_item">
     <img :src="friend.avatar" class="friend-avatar image_avatar">
     <router-link class="friend_name" :to="`/profile/${friend.id}`">{{ friend.fullName }}</router-link>
-    <button v-if=IsFriend type="button" class="button_write accept" @click="deleteFriend">Delete</button>
+    <button @click="this.$emit('deleteFriend', friend.id)" v-if=IsFriend type="button" class="button_write accept">Delete</button>
     <dialog-button v-if=IsFriend class="button_write accept" :id="friend.id" />
-    <button v-if=!IsFriend type="button" class="button_write accept" >Accept</button>
-    <button v-if=!IsFriend type="button" class="button_write accept" >Deny</button>
+    <button @click="$emit('acceptFriendRequest', friend.id)" v-if=!IsFriend type="button" class="button_write accept" >Accept</button>
+    <button @click="$emit('declineFriendRequest', friend.id)" v-if=!IsFriend type="button" class="button_write accept" >Decline</button>
   </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     deleteFriend() {
-      this.$emit('deleteFriend', { id: this.friend.id });
+      this.$emit('deleteFriend', this.friend.id);
     }
   },
 }

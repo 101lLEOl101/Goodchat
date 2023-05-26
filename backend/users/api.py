@@ -142,6 +142,8 @@ class RefuseFriendship(APIView):
             raise PermissionError('It\'s not your friendship!!!')
 
         refuse_friendship(user1, user2)
+        
+        return Response()
 
 
 class FindUser(APIView):

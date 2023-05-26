@@ -6,7 +6,12 @@
         Friends List
       </router-link>
     </div>
-    <friend-list :friends="friends" :IsFriends=false />
+    <friend-list
+      @acceptFriendRequest="acceptFriendRequest"
+      @declineFriendRequest="declineFriendRequest"  
+      :friends="friends" 
+      :IsFriends=false 
+      />
   </div>
 </template>
   
@@ -28,8 +33,15 @@ export default {
       this.$store.dispatch('friend/getFriendRequestList').then(
         response => this.friends = response
       )
-    }
-
+    },
+    acceptFriendRequest(friend_id) {
+      this.$store.dispatch('friend/acceptFriendRequest', {id: friend_id});
+      this.friends = this.friends.filter(friend => friend.id != friend_id);
+    },
+    declineFriendRequest(friend_id) {
+      this.$store.dispatch('friend/declineFriendRequest', {id: friend_id});
+      this.friends = this.friends.filter(friend => friend.id != friend_id);
+    },
   },
   mounted() {
     this.loadRequestList();

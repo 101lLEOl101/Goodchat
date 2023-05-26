@@ -11,7 +11,11 @@
         Friend Requests
       </router-link>
     </div>
-    <friend-list :friends="friends" :IsFriends=true />
+    <friend-list 
+      @deleteFriend="deleteFriend"
+      :friends="friends" 
+      :IsFriends=true 
+      />
   </div>
 </template>
 
@@ -33,7 +37,11 @@ export default {
       this.$store.dispatch('friend/getFriendList', { 'id': this.id }).then(
         response => this.friends = response
       )
-    }
+    },
+    deleteFriend(friend_id) {
+      this.$store.dispatch('friend/refuseFriendship', {friend_id: friend_id});
+      this.friends = this.friends.filter(friend => friend.id != friend_id);
+    },
   },
   mounted() {
     this.loadFriendList();

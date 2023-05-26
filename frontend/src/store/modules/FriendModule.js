@@ -15,7 +15,7 @@ export const friend = {
     },
     refuseFriendship({ rootGetters }, payload) {
       let data = {
-        user1_id: rootGetters['auth/user'],
+        user1_id: rootGetters['auth/user'].id,
         user2_id: payload.friend_id,
       }
       return FriendService.refuseFriendship(data)
