@@ -3,9 +3,9 @@
     <h3 class="settings_block_tittle">Profile Name</h3>
     <div class="settings_change_menu">
       <div class="settings_info_box">
-        <input placeholder="" id="name_input" type="text" class="settings_input" required minlength="2" maxlength="14"
+        <input :value="name" @input="updateName" placeholder="" id="name_input" type="text" class="settings_input" required minlength="2" maxlength="14"
           size="100">
-        <input placeholder="" id="surname_input" type="text" class="settings_input" required minlength="7" maxlength="14"
+        <input :value="surname" @input="updateSurname" placeholder="" id="surname_input" type="text" class="settings_input" required minlength="7" maxlength="14"
           size="100">
       </div>
     </div>
@@ -14,8 +14,17 @@
 
 <script>
 export default {
-  data() {
-    return {}
+  props: {
+    name: String,
+    surname: String,
+  },
+  methods: {
+    updateName(event) {
+      this.$emit('update:name', event.target.value)
+    },
+    updateSurname(event) {
+      this.$emit('update:surname', event.target.value)
+    },
   },
 }
 </script>

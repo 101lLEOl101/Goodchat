@@ -14,6 +14,9 @@ export const auth = {
       state.status.loggedIn = true;
       state.user = user;
     },
+    updateUser(state, user){
+      state.user = user;
+    },
     loginFailure(state) {
       state.status.loggedIn = false;
       state.user = null;
@@ -70,6 +73,10 @@ export const auth = {
           return Promise.reject(error);
         }
       );
+    },
+    reloadUser({ commit }) {
+      console.log('userreloaded');
+      commit('updateUser', UserManager.getUser());
     }
   },
   getters: {

@@ -100,7 +100,7 @@ const routes = [
     component: PostEditPage,
   },
   {
-    path: '/settingsprofile',
+    path: '/settings/profile',
     name: 'settingsprofile',
     component: SettingsProfilePage,
   }

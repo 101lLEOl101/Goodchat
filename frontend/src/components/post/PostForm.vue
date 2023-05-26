@@ -70,10 +70,8 @@ export default {
 					photo = document.getElementById("id_photo").files[0];
 				}
 			}
-			console.log(isPhotoOld)
 
-			if (this.content || withPhoto)
-			{
+			if (this.content || withPhoto){
 				let post_data = {
 					id: this.oldPost.id,
 					content: this.content,

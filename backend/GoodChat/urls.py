@@ -35,6 +35,7 @@ urlpatterns = [
     path('api/register', users_api.Register.as_view()),
     path('api/profile/self', users_api.SelfProfile.as_view()),
     path('api/profile/<int:id>', users_api.GetProfile.as_view()),
+    path('api/profile/edit', users_api.EditProfile.as_view()),
     path('api/users/find', users_api.FindUser.as_view()),
     
     path('api/post/<int:id>', main_api.GetPost.as_view()),

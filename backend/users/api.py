@@ -8,6 +8,7 @@ from .serializers import UserSerializer
 from .serializers import FriendSerializer
 from .models import User
 from .signals import user_created
+from .utils import get_profile
 from .utils import get_friends
 from .utils import get_friend_inviters
 from .utils import refuse_friendship
@@ -67,6 +68,39 @@ class GetProfile(APIView):
         response = {'user': UserSerializer.toFullProfileDict(user)}
         return Response(response)
 
+
+class EditProfile(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def post(self, request):
+        profile_data = request.data
+        if not profile_data['name'] or not profile_data['surname']:
+            raise ValueError('Name and surname is required!')
+        
+        print(profile_data)
+        
+        user = request.user
+        profile = get_profile(user)
+        profile.name = profile_data['name']
+        profile.surname = profile_data['surname']
+        profile.about = profile_data['about']
+        profile.hobby = profile_data['hobby']
+        profile.city = profile_data['city']
+        profile.education = profile_data['education']
+        profile.company = profile_data['company']
+        
+        if profile_data['with_photo'] == 'true':
+            if profile_data['photo_old'] == 'false':
+                print('setphoto')
+                profile.avatar = profile_data['photo']
+        else: 
+            print('setphotodefault')
+            profile.avatar = 'images/DEFAULT_AVATAR.png'
+        
+        profile.save()
+        
+        return Response({'id': profile.id})
 
 class GetFriendList(APIView):
     authentication_classes = [JWTAuthentication]

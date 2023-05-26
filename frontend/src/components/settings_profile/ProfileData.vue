@@ -4,17 +4,56 @@
     <div class="settings_change_menu">
       <div class="settings_info_box">
         <label for="id_hobby">I like: </label>
-        <input id="settings_hobby" type="text" class="settings_input" required minlength="2" maxlength="100" size="100"
-          placeholder="">
+        <input 
+          :value="hobby"
+          @input="updateHobby"
+          id="settings_hobby" 
+          type="text" 
+          class="settings_input" 
+          required minlength="2" 
+          maxlength="100" 
+          size="100"
+          placeholder=""
+          >
         <label for="id_hobby">City/Town: </label>
-        <input id="settings_city" type="text" class="settings_input" required minlength="2" maxlength="20" size="100"
-          placeholder="">
+        <input 
+          :value="city"
+          @input="updateCity"
+          id="settings_city" 
+          type="text" 
+          class="settings_input" 
+          required 
+          minlength="2" 
+          maxlength="20" 
+          size="100"
+          placeholder=""
+          >
         <label for="id_hobby">Education: </label>
-        <input id="settings_edu" type="text" class="settings_input" required minlength="2" maxlength="40" size="100"
-          placeholder="">
+        <input 
+          :value="education"
+          @input="updateEducation"
+          id="settings_edu" 
+          type="text" 
+          class="settings_input" 
+          required 
+          minlength="2" 
+          maxlength="40" 
+          size="100"
+          placeholder=""
+          >
         <label for="id_hobby">Company: </label>
-        <input id="settings_company" type="text" class="settings_input" required minlength="2" maxlength="40" size="100"
-          placeholder="">
+        <input 
+          :value="company"
+          @input="updateCompany"
+          id="settings_company" 
+          type="text" 
+          class="settings_input" 
+          required 
+          minlength="2" 
+          maxlength="40" 
+          size="100"
+          placeholder=""
+          >
       </div>
     </div>
   </div>
@@ -22,9 +61,26 @@
 
 <script>
 export default {
-  data() {
-    return {}
+  props: {
+    hobby: String,
+    city: String,
+    education: String,
+    company: String,
   },
+  methods: {
+    updateHobby(event){
+      this.$emit('update:hobby', event.target.value);
+    },
+    updateCity(event){
+      this.$emit('update:city', event.target.value);
+    },
+    updateEducation(event){
+      this.$emit('update:education', event.target.value);
+    },
+    updateCompany(event){
+      this.$emit('update:company', event.target.value);
+    },
+  }
 }
 </script>
 

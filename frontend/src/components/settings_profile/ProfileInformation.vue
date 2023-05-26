@@ -3,7 +3,7 @@
     <h3 class="settings_block_tittle">About</h3>
     <div class="settings_change_menu">
       <div class="settings_info_box">
-        <textarea class="settings_input" rows="5" cols="33"></textarea>
+        <textarea :value="about" @input="updateAbout" class="settings_input" rows="5" cols="33"></textarea>
       </div>
     </div>
   </div>
@@ -11,9 +11,14 @@
 
 <script>
 export default {
-  data() {
-    return {}
+  props: {
+    about: String,
   },
+  methods: {
+    updateAbout(event) {
+      this.$emit('update:about', event.target.value);
+    }
+  }
 }
 </script>
 

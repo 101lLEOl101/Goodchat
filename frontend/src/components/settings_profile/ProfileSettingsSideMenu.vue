@@ -8,7 +8,7 @@
 
     <div class="settings_buttons">
       <router-link to="/settings" class="settings_btn settings_btn1">Cancel</router-link>
-      <button class="settings_btn settings_btn2 settings_save" form="edit_form">Apply</button>
+      <button @click="$emit('edit')" class="settings_btn settings_btn2 settings_save" form="edit_form">Apply</button>
     </div>
   </div>
 </template>

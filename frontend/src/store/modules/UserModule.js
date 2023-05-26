@@ -32,6 +32,32 @@ export const user = {
       return UserService.findUser(payload.querry).then(
         response => response.users
       );
+    },
+    editProfile({ dispatch }, payload) {
+      let data = {
+        name: payload.name,
+        surname: payload.surname,
+        about: payload.about,
+        hobby: payload.hobby,
+        city: payload.city,
+        education: payload.education,
+        company: payload.company,
+        with_photo: payload.with_photo,
+        photo_old: payload.photo_old,
+        photo: payload.photo,
+      }
+  
+      return UserService.editProfile(data).then(
+        response => {
+          UserManager.loadUser().then(
+            user => {
+              console.log(user);
+              dispatch('loadSelfUser');
+              dispatch('auth/reloadUser', {}, {root: true});
+            }
+          );
+        }
+      )
     }
   }
 }

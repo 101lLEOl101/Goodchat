@@ -20,6 +20,15 @@ class UserService {
       response => response.data
     );
   }
+
+  editProfile(data){
+    let url = 'profile/edit';
+
+    console.log(data);
+    return $axios.postForm(url, data).then(
+      response => response.data
+    )
+  }
 }
 
 export default new UserService();

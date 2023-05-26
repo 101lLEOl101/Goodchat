@@ -1,12 +1,18 @@
 <template>
   <div class="setting_page">
-    <router-link to="/settingsprofile" class="setting-btn">Settings Profile</router-link>
-    <a href="{% url 'logout' %}" class="setting-btn">Exit</a>
+    <router-link to="/settings/profile" class="setting-btn">Settings Profile</router-link>
+    <button @click="logout" class="setting-btn">Exit</button>
   </div>
 </template>
   
 <script>
 export default {
+  methods: {
+    logout() {
+      this.$store.dispatch('auth/logout');
+      location.reload(true);
+    }
+  },
   mounted() {
     if (document.getElementsByClassName("now-side_icon").length != 0) {
       let icon = document.getElementsByClassName("now-side_icon")[0];
