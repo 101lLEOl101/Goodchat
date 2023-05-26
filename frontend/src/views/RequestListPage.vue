@@ -6,12 +6,10 @@
         Friends List
       </router-link>
     </div>
-    <friend-list
-      @acceptFriendRequest="acceptFriendRequest"
-      @declineFriendRequest="declineFriendRequest"  
-      :friends="friends" 
-      :IsFriends=false 
-      />
+
+    <div v-if="friends.length == 0" class="message_none" style="display:flex;">No requests yet</div>
+    <friend-list @acceptFriendRequest="acceptFriendRequest" @declineFriendRequest="declineFriendRequest"
+      :friends="friends" :IsFriends=false />
   </div>
 </template>
   
@@ -35,11 +33,11 @@ export default {
       )
     },
     acceptFriendRequest(friend_id) {
-      this.$store.dispatch('friend/acceptFriendRequest', {id: friend_id});
+      this.$store.dispatch('friend/acceptFriendRequest', { id: friend_id });
       this.friends = this.friends.filter(friend => friend.id != friend_id);
     },
     declineFriendRequest(friend_id) {
-      this.$store.dispatch('friend/declineFriendRequest', {id: friend_id});
+      this.$store.dispatch('friend/declineFriendRequest', { id: friend_id });
       this.friends = this.friends.filter(friend => friend.id != friend_id);
     },
   },
@@ -63,6 +61,21 @@ export default {
 </script>
   
 <style>
+.message_none {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  text-align: center;
+  color: white;
+  width: 98%;
+  padding: 50px;
+  background-color: black;
+  border: 1px solid #8270F2;
+  border-radius: 10px;
+  margin: 10px auto;
+  box-shadow: 0px 0px 5px #8270F2;
+}
+
 .btn_request_h2 {
   color: black;
   margin-left: 10px;
