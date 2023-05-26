@@ -4,12 +4,19 @@ export const chat = {
   namespaced: true,
   actions: {
     async getChat(_, payload) {
-      return ChatService.getChat(payload.id).then(response => response.chat);
+      return ChatService.getChat(payload.id).then(
+        response => response.chat
+      );
+    },
+    async getChatInfo(_, payload) {
+      return ChatService.getChatInfo(payload.id).then(
+        response => response
+      )
     },
     async getChatlist() {
       return ChatService.getChatlist().then(
         response => response.chats
-      );
+      )
     },
     async sendMessage(_, payload) {
       let data = {

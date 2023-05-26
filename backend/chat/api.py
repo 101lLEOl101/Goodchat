@@ -10,6 +10,7 @@ from users.models import User
 from .utils import chat_access
 from .utils import get_chats
 from .utils import get_dialog
+from .utils import get_chat_members
 from .serializers import ChatSerializer
 
 class GetChat(APIView):
@@ -25,6 +26,23 @@ class GetChat(APIView):
         
         chat = ChatSerializer.chatToFullDict(chat, request.user)
         return Response({'chat': chat})
+    
+class GetChatInfo(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get(self, request, id):
+        access = chat_access(request.user.id, id)
+        if access and access.mode != 0:
+            chat = access.chat
+        else:
+            raise PermissionDenied
+        
+        members = get_chat_members(chat)
+        members = [ChatSerializer.memberAccessToDict(access) 
+                   for access in members]
+        chat = ChatSerializer.chatToItemDict(chat, request.user)
+        return Response({'chat': chat, 'members': members})
     
 class GetChatlist(APIView):
     authentication_classes = [JWTAuthentication]

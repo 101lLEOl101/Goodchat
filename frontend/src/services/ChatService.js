@@ -15,6 +15,13 @@ class ChatService {
     );
   }
 
+  getChatInfo(id) {
+    let url = `chat/${id}/info`;
+    return $axios.get(url).then(
+      response => response.data
+    );
+  }
+
   sendMessage(data) {
     let url = 'chat/sendMessage';
     return $axios.post(url, data).then(

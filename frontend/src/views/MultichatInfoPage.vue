@@ -5,17 +5,37 @@
       <h2 class="chat-name">Name: {{ chat.name }}</h2>
       <img :src="chat.avatar" class="chat-avatar-info">
     </div>
+    <chat-member-list :members="members"/>
   </div>
 </template>
 
 <script>
 import ChatMemberList from '@/components/chat/ChatMemberList';
+
 export default {
-  comopnents: {
+  components: {
     ChatMemberList,
   },
-  created: {
-
+  data() {
+    return {
+      chat: {},
+      members: [],
+    }
+  },
+  props: ['id'],
+  methods: {
+    loadChat() {
+      console.log('execute')
+      this.$store.dispatch('chat/getChatInfo', {id: this.id}).then(
+        response => {
+          this.chat = response.chat;
+          this.members = response.members;
+        }
+      )
+    }
+  },
+  created() {
+    this.loadChat();
   }
 }
 </script>

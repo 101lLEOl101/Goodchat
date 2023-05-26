@@ -16,6 +16,7 @@ import FriendListPage from '@/views/FriendListPage'
 import RequestListPage from '@/views/RequestListPage'
 import SettingsProfilePage from '@/views/SettingsProfilePage'
 import PostEditPage from '@/views/PostEditPage'
+import MultichatInfoPage from '@/views/MultichatInfoPage'
 
 
 const routes = [
@@ -103,7 +104,12 @@ const routes = [
     path: '/settings/profile',
     name: 'settingsprofile',
     component: SettingsProfilePage,
-  }
+  },
+  {
+    path: '/chat/:id/info',
+    props: true,
+    component: MultichatInfoPage,
+  },
 ]
 
 const router = createRouter({
