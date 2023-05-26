@@ -3,7 +3,7 @@
     v-for="friend in friends" 
     :key="friend.id" 
     :friend="friend"
-    :isFriend="isFriends"
+    :IsFriend=IsFriends
     @deleteFriend="deleteFriend"/>
 </template>
 
@@ -16,7 +16,7 @@ export default {
   },
   props: {
     friends: Array,
-    isFriends: Boolean,
+    IsFriends: Boolean,
   },
   methods: {
     deleteFriend(friend_id) {
