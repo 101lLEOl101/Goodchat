@@ -62,9 +62,10 @@ export default {
     document.getElementById("mes").classList.remove("side_icon");
     document.getElementById("mes").childNodes[0].childNodes[0].classList.add("now-icona");
     document.getElementById("mes").childNodes[0].childNodes[0].classList.remove("icona");
-    window.addEventListener('load', function () {
+    function Start() {
       document.getElementById("messenger_box").scrollTop = document.getElementById("messenger_box").scrollHeight;
-    });
+    }
+    setTimeout(Start, 70);
   },
 }
 </script>
