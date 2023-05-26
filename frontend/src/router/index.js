@@ -13,6 +13,7 @@ import BookmarksPage from '@/views/BookmarksPage'
 import CreatePostPage from '@/views/CreatePostPage'
 import FindFriendPage from '@/views/FindFriendPage'
 import FriendListPage from '@/views/FriendListPage'
+import SecretPage from '@/views/SecretPage'
 import RequestListPage from '@/views/RequestListPage'
 import SettingsProfilePage from '@/views/SettingsProfilePage'
 import PostEditPage from '@/views/PostEditPage'
@@ -103,6 +104,11 @@ const routes = [
     path: '/settings/profile',
     name: 'settingsprofile',
     component: SettingsProfilePage,
+  },
+  {
+    path: '/dev',
+    name: 'dev',
+    component: SecretPage,
   }
 ]
 
