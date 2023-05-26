@@ -94,7 +94,8 @@ const routes = [
     component: FriendListPage,
   },
   {
-    path: '/editpost',
+    path: '/editpost/:id',
+    props: true,
     name: 'editpost',
     component: PostEditPage,
   },

@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404
+from django.core.exceptions import PermissionDenied
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import permissions
@@ -94,3 +95,24 @@ class AddPost(APIView):
         
         return Response({'id': post.id})
     
+    
+class EditPost(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def post(self, request, id):
+        post_data = request.data
+        print(dict(post_data))
+        post = get_object_or_404(Post, id=id)
+        if post.author != request.user:
+            raise PermissionDenied
+        
+        post.content = post_data['content']
+        if post_data['with_photo'] == 'true':
+            if post_data['photo_old'] == 'false':
+                post.photo = post_data['photo']
+        else:
+            post.photo = None
+            
+        post.save()
+        return Response({'id': id})

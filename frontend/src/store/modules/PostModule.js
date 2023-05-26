@@ -31,6 +31,19 @@ export const post = {
       return PostService.addPost(data).then(
         response => response.id
       );
+    },
+    async editPost(_, payload) {
+      let data = {
+        id: payload.id,
+        content: payload.content,
+        withPhoto: payload.withPhoto,
+        isPhotoOld: payload.isPhotoOld,
+        photo: payload.photo
+      };
+
+      return PostService.editPost(data).then(
+        response => response.id
+      )
     }
   }
 }

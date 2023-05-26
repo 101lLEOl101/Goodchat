@@ -22,8 +22,8 @@
 				<div id="input-list" class="input-file-list" style="margin: 0px auto;">
 					<div class="input-file-list-item">
 						<a href="#" onclick="removeFilesItem(this); return false;" class="input-file-list-remove">x</a>
-						<img class="input-file-list-img" src="@/assets/logo.png">
-						<span id ="img-name" class="input-file-list-name">logo.png</span>
+						<img class="input-file-list-img" :src="oldPost.photo">
+						<span id ="img-name" class="input-file-list-name"></span>
 					</div>
 				</div>
 			</div>
@@ -40,10 +40,11 @@ export default {
 	props: {
 		isEdit: Boolean,
 		HaveImg: Boolean,
+		oldPost: Object,
 	},
 	data() {
 		return {
-			content: null,
+			content: this.oldPost ? this.oldPost.content : '',
 		}
 	},
 	methods: {
@@ -60,6 +61,39 @@ export default {
 			}
 		},
 		editPost() {
+			let withPhoto = !(document.getElementsByClassName("input-file-list-img").length == 0)
+			let isPhotoOld = true;
+			let photo = null;
+			if (withPhoto){
+				isPhotoOld = document.getElementById("id_photo").files.length == 0;
+				if (!isPhotoOld){
+					photo = document.getElementById("id_photo").files[0];
+				}
+			}
+			console.log(isPhotoOld)
+
+			if (this.content || withPhoto)
+			{
+				let post_data = {
+					id: this.oldPost.id,
+					content: this.content,
+					withPhoto: withPhoto,
+					isPhotoOld: null,
+					photo: null,
+				};
+				if (withPhoto){
+					post_data.isPhotoOld = isPhotoOld;
+					if (!isPhotoOld){
+						post_data.photo = photo;
+					}
+				}
+
+				this.$store.dispatch('post/editPost', post_data).then(
+					response => {
+						this.$router.push(`/post/${response}`);
+					}
+				)
+			}
 		},
 		open: function (event) {
 			dt = new DataTransfer();
