@@ -8,7 +8,21 @@ import PostForm from '@/components/post/PostForm.vue';
 export default {
   components: {
     PostForm,
-  }
+  },
+  mounted() {
+    if (document.getElementsByClassName("now-side_icon").length != 0) {
+      let icon = document.getElementsByClassName("now-side_icon")[0];
+      let icona = document.getElementsByClassName("now-icona")[0];
+      icona.classList.remove("now-icona");
+      icon.classList.remove("now-side_icon");
+      icona.classList.add("icona");
+      icon.classList.add("side_icon");
+    }
+    document.getElementById("add").classList.add("now-side_icon");
+    document.getElementById("add").classList.remove("side_icon");
+    document.getElementById("add").childNodes[0].childNodes[0].classList.add("now-icona");
+    document.getElementById("add").childNodes[0].childNodes[0].classList.remove("icona");
+  },
 }
 
 </script>

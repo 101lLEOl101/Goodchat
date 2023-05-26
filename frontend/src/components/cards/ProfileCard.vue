@@ -38,7 +38,7 @@ export default {
   props: {
     user: Object,
     userIsMe: Boolean,
-  }
+  },
 }
 </script>
 
