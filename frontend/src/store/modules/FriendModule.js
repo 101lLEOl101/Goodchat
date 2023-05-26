@@ -8,6 +8,11 @@ export const friend = {
         response => response.friends
       );
     },
+    getFriendRequestList() {
+      return FriendService.getFriendRequestList().then(
+        response => response.inviters
+      )
+    },
     refuseFriendship({ rootGetters }, payload) {
       let data = {
         user1_id: rootGetters['auth/user'],

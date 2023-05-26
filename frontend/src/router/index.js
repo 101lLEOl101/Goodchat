@@ -83,8 +83,7 @@ const routes = [
     component: FindFriendPage,
   },
   {
-    path: '/requestlist/:id',
-    props: true,
+    path: '/requestlist',
     name: 'requestlist',
     component: RequestListPage,
   },

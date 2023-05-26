@@ -45,6 +45,12 @@ def get_friends(user: User):
 
     return friends
 
+def get_friend_inviters(user: User):
+    invitations = FriendRequest.objects.filter(recipient=user)
+    inviters = [invitation.inviter
+                for invitation in invitations]
+    return inviters
+
 
 def are_friends(user1: User, user2: User) -> bool:
     user1_friends = get_friends(user1)

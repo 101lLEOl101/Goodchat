@@ -51,6 +51,7 @@ urlpatterns = [
     path('api/dialog/get/<int:id>', chat_api.GetDialog.as_view()),
     
     path('api/friendlist/<int:id>', users_api.GetFriendList.as_view()),
+    path('api/friend/request/list', users_api.GetFriendRequestList.as_view()),
     path('api/friendship/refuse', users_api.RefuseFriendship.as_view()),
     path('api/friendship/status/<int:friend_id>', users_api.GetFriendshipStatus.as_view()),
     

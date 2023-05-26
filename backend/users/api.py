@@ -9,6 +9,7 @@ from .serializers import FriendSerializer
 from .models import User
 from .signals import user_created
 from .utils import get_friends
+from .utils import get_friend_inviters
 from .utils import refuse_friendship
 from .utils import execute_find_users_querry
 from .utils import get_friendship_status
@@ -78,6 +79,17 @@ class GetFriendList(APIView):
                         for friend in user_friends]
 
         return Response({'friends': user_friends})
+    
+class GetFriendRequestList(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get(self, request):
+        inviters = get_friend_inviters(request.user)
+        inviters = [FriendSerializer.toDict(inviter)
+                    for inviter in inviters]
+        
+        return Response({'inviters': inviters})
 
 
 class RefuseFriendship(APIView):

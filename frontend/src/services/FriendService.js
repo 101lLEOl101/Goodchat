@@ -8,6 +8,13 @@ class FriendService {
     );
   }
 
+  getFriendRequestList() {
+    let url = 'friend/request/list';
+    return $axios.get(url).then(
+      response => response.data
+    );
+  }
+
   getFriendshipStatus(id) {
     let url = `friendship/status/${id}`;
     return $axios.get(url).then(

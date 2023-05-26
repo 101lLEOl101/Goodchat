@@ -2,7 +2,14 @@
   <div class="friend_box">
     <div class="title_h">
       <h2 class="requests_h1" id="title">Friends List</h2>
-      <router-link to="/requestlist/{{id}}" class="btn_request_h2" id="btn">Friend Requests</router-link>
+      <router-link 
+        v-if="id == $store.state.auth.user.id" 
+        to="/requestlist/" 
+        class="btn_request_h2" 
+        id="btn"
+        >
+        Friend Requests
+      </router-link>
     </div>
     <friend-list :friends="friends" :IsFriends=true />
   </div>
