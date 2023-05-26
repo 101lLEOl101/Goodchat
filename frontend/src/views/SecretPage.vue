@@ -3,45 +3,50 @@
     <div class="title_h">
         <h2 class="requests_h1" id = "title">Developer Page</h2>
     </div>
-    <div  class="friendlist_item" id="friend_item">
-                <img src="@/assets/killua.jpg" class="friend-avatar image_avatar">
+    <div style = "border: 2px solid #FFD700;"  class="friendlist_item" id="friend_item">
+                <img style = "border: 2px solid #FFD700;" src="@/assets/killua.jpg" class="friend-avatar image_avatar">
                 <a class="friend_name">Егор Назайкин</a>
                 <p>- Гл. Бекендер </p>
+                <img style="margin-left: auto; width: 5%; cover; aspect-ratio: 1/1; margin-right: 30px;" src="@/assets/pngwing.com.png">
     </div>
-    <div  class="friendlist_item" id="friend_item">
-                <img src="@/assets/TSEAdGqJQA0.jpg" class="friend-avatar image_avatar">
+    <div style = "border: 2px solid #FFD700;"  class="friendlist_item" id="friend_item">
+                <img style = "border: 2px solid #FFD700;" src="@/assets/TSEAdGqJQA0.jpg" class="friend-avatar image_avatar">
                 <a class="friend_name">Леонид Кучук</a>
-                <p>- Тимлид</p>ы
+                <p>- Тимлид</p>
+                <img style="margin-left: auto; width: 5%; cover; aspect-ratio: 1/1; margin-right: 30px;" src="@/assets/pngwing.com.png">
     </div>
-    <div  class="friendlist_item" id="friend_item">
-                <img src="@/assets/blank-profile-picture-973460_1280.webp" class="friend-avatar image_avatar">
+    <div style = "border: 2px solid #FFD700;"  class="friendlist_item" id="friend_item">
+                <img style = "border: 2px solid #FFD700;" src="@/assets/264x264-000000-80-0-0.jpg" class="friend-avatar image_avatar">
                 <a class="friend_name">Давид Какубава</a>
                 <p>- Фронтендер и бекендер</p>
+                <img style="margin-left: auto; width: 5%; cover; aspect-ratio: 1/1; margin-right: 30px;" src="@/assets/pngwing.com.png">
     </div>
-    <div  class="friendlist_item" id="friend_item">
-                <img src="@/assets/blank-profile-picture-973460_1280.webp" class="friend-avatar image_avatar">
-                <a class="friend_name">Марк Камалитдинов</a>
-                <p>- Фронтендер и дизайнер</p>
-    </div>
-    <div  class="friendlist_item" id="friend_item">
-                <img src="@/assets/blank-profile-picture-973460_1280.webp" class="friend-avatar image_avatar">
+    <div style = "border: 2px solid #FFD700;"  class="friendlist_item" id="friend_item">
+                <img style = "border: 2px solid #FFD700;" src="@/assets/f4a9f86d273f84cc8e2f632d0e168220.jpg" class="friend-avatar image_avatar">
                 <a class="friend_name">Михаил Шатохин</a>
                 <p>- Гл. Фронтендер</p>
+                <img style="margin-left: auto; width: 5%; cover; aspect-ratio: 1/1; margin-right: 30px;" src="@/assets/pngwing.com.png">
+    </div>
+    <div style = "border: 2px solid #FFD700;" class="friendlist_item" id="friend_item">
+                <img style = "border: 2px solid #FFD700;" src="@/assets/Papich-seksualno-stonet-sadyas-na-shpagat.webp" class="friend-avatar image_avatar">
+                <a class="friend_name">Марк Камалитдинов</a>
+                <p>- Фронтендер и дизайнер</p>
+                <img style="margin-left: auto; width: 5%; cover; aspect-ratio: 1/1; margin-right: 30px;" src="@/assets/pngwing.com.png">
     </div>
     <div  class="friendlist_item" id="friend_item">
-                <img src="@/assets/blank-profile-picture-973460_1280.webp" class="friend-avatar image_avatar">
-                <a class="friend_name">Анна Гордиенко</a>
-                <p>- Бекендерша</p>
+                <img src="@/assets/images.jpeg" class="friend-avatar image_avatar">
+                <a class="friend_name">Данила Дерябин</a>
+                <p>- Фронтендер</p>
     </div>
     <div  class="friendlist_item" id="friend_item">
-                <img src="@/assets/blank-profile-picture-973460_1280.webp" class="friend-avatar image_avatar">
+                <img src="@/assets/tumblr_3b537417ba9240a06cbb4cbe5e1aab6b_d0beb585_540.jpg" class="friend-avatar image_avatar">
                 <a class="friend_name">Николай Прошурин</a>
                 <p>- Фронтендер</p>
     </div>
     <div  class="friendlist_item" id="friend_item">
-                <img src="@/assets/blank-profile-picture-973460_1280.webp" class="friend-avatar image_avatar">
-                <a class="friend_name">Данила Дерябин</a>
-                <p>- Фронтендер</p>
+                <img src="@/assets/3eab185eeb793ec135ba112b0975ad89--k-on-sleep.jpg" class="friend-avatar image_avatar">
+                <a class="friend_name">Анна Гордиенко</a>
+                <p>- Бекендерша</p>
     </div>
 </div>
 </template>
