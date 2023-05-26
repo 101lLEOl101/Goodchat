@@ -15,6 +15,7 @@ export default {
       icona.classList.add("icona");
       icon.classList.add("side_icon");
     }
+    document.title = "404";
   },
 }
 </script>

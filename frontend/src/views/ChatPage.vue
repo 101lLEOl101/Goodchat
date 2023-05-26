@@ -66,6 +66,7 @@ export default {
       document.getElementById("messenger_box").scrollTop = document.getElementById("messenger_box").scrollHeight;
     }
     setTimeout(Start, 70);
+    document.title = "chat";
   },
 }
 </script>

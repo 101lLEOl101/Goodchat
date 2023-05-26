@@ -55,6 +55,7 @@ export default {
     document.getElementById("friend").classList.remove("side_icon");
     document.getElementById("friend").childNodes[0].childNodes[0].classList.add("now-icona");
     document.getElementById("friend").childNodes[0].childNodes[0].classList.remove("icona");
+    document.title = "requests-list";
   }
 
 }

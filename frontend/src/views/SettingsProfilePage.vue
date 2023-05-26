@@ -161,6 +161,7 @@ export default {
       s.innerHTML = addImageCodeFragment;
       document.body.appendChild(s);
     }
+    document.title = "settings-profile";
   },
 }
 

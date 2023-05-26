@@ -50,6 +50,7 @@ export default {
     document.getElementById("mes").classList.remove("side_icon");
     document.getElementById("mes").childNodes[0].childNodes[0].classList.add("now-icona");
     document.getElementById("mes").childNodes[0].childNodes[0].classList.remove("icona");
+    document.title = "chat-list";
   },
 }
 </script>

@@ -26,6 +26,7 @@ export default {
     document.getElementById("set").classList.remove("side_icon");
     document.getElementById("set").childNodes[0].childNodes[0].classList.add("now-icona");
     document.getElementById("set").childNodes[0].childNodes[0].classList.remove("icona");
+    document.title = "settings";
   },
 }
 </script>

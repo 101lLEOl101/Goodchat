@@ -63,6 +63,7 @@ export default {
       icona.classList.add("icona");
       icon.classList.add("side_icon");
     }
+    document.title = "post";
   },
 
 }

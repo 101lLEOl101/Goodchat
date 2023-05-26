@@ -80,6 +80,7 @@ export default {
       document.getElementById("prof").childNodes[0].childNodes[0].classList.add("now-icona");
     }
     setTimeout(Start, 50);
+    document.title = "profile";
   },
 }
 </script>

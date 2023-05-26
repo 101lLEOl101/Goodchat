@@ -48,6 +48,7 @@ export default {
     document.getElementById("f").classList.remove("side_icon");
     document.getElementById("f").childNodes[0].childNodes[0].classList.add("now-icona");
     document.getElementById("f").childNodes[0].childNodes[0].classList.remove("icona");
+    document.title = "find-users-page";
   },
 }
 </script>

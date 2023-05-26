@@ -1,9 +1,9 @@
 <template>
   <div class="reg_box">
-    <club-rules/>
+    <club-rules />
     <div class="input_form">
       <h1 class="reg-header">Registration</h1><br>
-      <registration-form @register="register"/>
+      <registration-form @register="register" />
       <p v-if="message" :class="`message ${message.type}`">{{ message.content }}</p>
       <a class="auth-link" href="login">Already a gogorik?</a>
     </div>
@@ -35,7 +35,7 @@ export default {
     register(user) {
       this.$store.dispatch('auth/register', user)
         .catch(error => {
-          if (error.code === 900){
+          if (error.code === 900) {
             this.message = {
               type: 'error',
               content: 'User with such data is already registered',
@@ -52,13 +52,14 @@ export default {
   },
   mounted() {
     if (document.getElementsByClassName("now-side_icon").length != 0) {
-            let icon = document.getElementsByClassName("now-side_icon")[0];
-            let icona = document.getElementsByClassName("now-icona")[0];
-            icona.classList.remove("now-icona");
-            icon.classList.remove("now-side_icon");
-            icona.classList.add("icona");
-            icon.classList.add("side_icon");
-        }
+      let icon = document.getElementsByClassName("now-side_icon")[0];
+      let icona = document.getElementsByClassName("now-icona")[0];
+      icona.classList.remove("now-icona");
+      icon.classList.remove("now-side_icon");
+      icona.classList.add("icona");
+      icon.classList.add("side_icon");
+    }
+    document.title = "registation";
   },
 }
 </script>

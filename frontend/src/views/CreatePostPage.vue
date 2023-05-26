@@ -22,6 +22,7 @@ export default {
     document.getElementById("add").classList.remove("side_icon");
     document.getElementById("add").childNodes[0].childNodes[0].classList.add("now-icona");
     document.getElementById("add").childNodes[0].childNodes[0].classList.remove("icona");
+    document.title = "create-post";
   },
 }
 

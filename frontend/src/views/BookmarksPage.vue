@@ -34,6 +34,7 @@ export default {
     document.getElementById("book").classList.remove("side_icon");
     document.getElementById("book").childNodes[0].childNodes[0].classList.add("now-icona");
     document.getElementById("book").childNodes[0].childNodes[0].classList.remove("icona");
+    document.title = "bookmark";
   },
   created() {
     this.$store.dispatch('post/getBookmarks').then(

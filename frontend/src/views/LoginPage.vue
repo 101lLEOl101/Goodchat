@@ -25,6 +25,9 @@ export default {
       message: {},
     }
   },
+  metaInfo: {
+    title: "Login"
+  },
   methods: {
     login(user) {
       this.$store.dispatch('auth/login', user)
@@ -53,6 +56,7 @@ export default {
       icona.classList.add("icona");
       icon.classList.add("side_icon");
     }
+    document.title = "login";
   },
 }
 </script>

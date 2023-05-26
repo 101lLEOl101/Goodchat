@@ -39,6 +39,7 @@ export default {
     document.getElementById("glob").classList.remove("side_icon");
     document.getElementById("glob").childNodes[0].childNodes[0].classList.add("now-icona");
     document.getElementById("glob").childNodes[0].childNodes[0].classList.remove("icona");
+    document.title = "main-page";
   },
 }
 </script>
