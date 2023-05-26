@@ -79,7 +79,7 @@ export default {
       document.getElementById("prof").childNodes[0].childNodes[0].classList.remove("icona");
       document.getElementById("prof").childNodes[0].childNodes[0].classList.add("now-icona");
     }
-    setTimeout(Start, 5);
+    setTimeout(Start, 15);
   },
 }
 </script>
