@@ -7,7 +7,7 @@
     </div>
     <chat-member-list :members="members" />
     <router-link v-if="mode > 2" :to="`/chat/${chat.id}/edit`" class="btn-save">Edit</router-link>
-    <router-link to="/chatlist" class="btn-discard">Exit Chat</router-link>
+    <button @click="leaveChat" class="btn-discard">Exit Chat</button>
   </div>
 </template>
 
@@ -41,6 +41,11 @@ export default {
             }
           )
         }
+      )
+    },
+    leaveChat() {
+      this.$store.dispatch('chat/leaveChat', {id: this.chat.id}).then(
+        _ => this.$router.push('/chatlist')
       )
     }
   },

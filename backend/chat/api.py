@@ -186,4 +186,19 @@ class CreateChat(APIView):
             access.save()
             
         return Response({'id': chat.id})
+    
+class LeaveChat(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get(self, request, id):
+        chat = get_object_or_404(Chat, id=id)
+        access = chat_access(request.user.id, id)
+        if access and access.mode != 0:
+            pass
+        else:
+            raise PermissionDenied
         
+        access.delete()
+        
+        return Response()

@@ -52,6 +52,7 @@ urlpatterns = [
     path('api/chat/<int:id>/access', chat_api.GetChatAccessMode.as_view()),
     path('api/chat/<int:id>/info', chat_api.GetChatInfo.as_view()),
     path('api/chat/<int:id>/edit', chat_api.EditChat.as_view()),
+    path('api/chat/<int:id>/leave', chat_api.LeaveChat.as_view()),
     path('api/chatlist', chat_api.GetChatlist.as_view()),
     path('api/chat/sendMessage', chat_api.SendMessage.as_view()),
     path('api/dialog/get/<int:id>', chat_api.GetDialog.as_view()),

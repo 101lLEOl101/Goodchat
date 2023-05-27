@@ -46,6 +46,9 @@ export const chat = {
       return ChatService.getChatAccessMode(payload.id).then(
         response => response.mode
       )
+    },
+    async leaveChat(_, payload) {
+      return ChatService.leaveChat(payload.id)
     }
   }
 }

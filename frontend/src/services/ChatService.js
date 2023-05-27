@@ -61,6 +61,13 @@ class ChatService {
       response => response.data
     )
   }
+
+  leaveChat(id) {
+    let url = `chat/${id}/leave`;
+    return $axios.get(url).then(
+      response => response.data
+    )
+  }
 }
 
 export default new ChatService();
