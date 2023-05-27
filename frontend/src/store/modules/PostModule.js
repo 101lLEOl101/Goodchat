@@ -47,6 +47,11 @@ export const post = {
     },
     async deletePost(_, payload) {
       return PostService.deletePost(payload.id)
-    } 
+    },
+    async addDeleteBookmark(_, payload) {
+      return PostService.addDeleteBookmark(payload.id).then(
+        response => response.status
+      )
+    }
   }
 }

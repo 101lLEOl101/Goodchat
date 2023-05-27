@@ -39,6 +39,7 @@ urlpatterns = [
     path('api/users/find', users_api.FindUser.as_view()),
     
     path('api/post/<int:id>', main_api.GetPost.as_view()),
+    path('api/post/<int:id>/bookmark', main_api.AddDeleteBookmark.as_view()),
     path('api/post/<int:id>/delete', main_api.DeletePost.as_view()),
     path('api/post/<int:id>/edit', main_api.EditPost.as_view()),
     path('api/post/<int:id>/comments', main_api.GetComments.as_view()),

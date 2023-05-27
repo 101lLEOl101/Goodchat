@@ -53,6 +53,13 @@ class PostService {
     let url = `post/${id}/delete`;
     return $axios.get(url).then((response) => response.data)
   }
+
+  addDeleteBookmark(id) {
+    let url = `post/${id}/bookmark`;
+    return $axios.get(url).then(
+      (response) => response.data
+    )
+  }
 }
 
 export default new PostService();

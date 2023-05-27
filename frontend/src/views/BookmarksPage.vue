@@ -1,6 +1,6 @@
 <template>
   <div class="main_page">
-    <post-feed v-if="posts.length!=0" :posts="posts" :isTemplate="true"/>
+    <post-feed @addDeleteBookmark="addDeleteBookmark" v-if="posts.length!=0" :posts="posts" :isTemplate="true"/>
     <div v-else class="zero_bookmarks">
       <p class="alarm_posts">You don't have any bookmark posts yet :c</p>
       <router-link to="/feed" class="btn_add">Add Bookmark Post</router-link>
@@ -20,6 +20,17 @@ export default {
       message: {},
       posts: []
     }
+  },
+  methods: {
+    addDeleteBookmark(id) {
+      this.$store.dispatch('post/addDeleteBookmark', {id: id}).then(
+        response => {
+          let idx = this.posts.indexOf(this.posts.find(post => post.id == id));
+          console.log(idx);
+          this.posts[idx].isBookmark = response;
+        }
+      )
+    },
   },
   mounted() {
     if(document.getElementsByClassName("now-side_icon").length != 0){

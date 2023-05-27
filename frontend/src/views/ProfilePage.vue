@@ -1,7 +1,7 @@
 <template>
   <input type="checkbox" id="toggle">
   <div class="profile_page">
-    <post-feed v-if="posts.length!=0" :posts="posts" :isTemplate="true" />
+    <post-feed @addDeleteBookmark="addDeleteBookmark" v-if="posts.length!=0" :posts="posts" :isTemplate="true" />
     <div v-else-if="!userIsMe" class="zero_bookmarks">
       <p class="alarm_posts">This user has no posts :c</p>
     </div>
@@ -54,6 +54,15 @@ export default {
         );
       this.$store.dispatch('post/getUserPosts', { id: this.id })
         .then(response => this.posts = response);
+    },
+    addDeleteBookmark(id) {
+      this.$store.dispatch('post/addDeleteBookmark', {id: id}).then(
+        response => {
+          let idx = this.posts.indexOf(this.posts.find(post => post.id == id));
+          console.log(idx);
+          this.posts[idx].isBookmark = response;
+        }
+      )
     },
   },
   created() {

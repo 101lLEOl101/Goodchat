@@ -1,6 +1,6 @@
 <template>
   <div class="post-feed">
-    <post-card 
+    <post-card @addDeleteBookmark="addDeleteBookmark"
       v-for="post in posts"
       :key="post.id" 
       :post="post"
@@ -18,6 +18,11 @@ export default {
   props: {
     posts: Array,
     isTemplate: Boolean,
+  },
+  methods: {
+    addDeleteBookmark(id) {
+      this.$emit('addDeleteBookmark', id);
+    }
   }
 }
 </script>

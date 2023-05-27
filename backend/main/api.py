@@ -6,10 +6,12 @@ from rest_framework import permissions
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .models import Post
 from .models import Comment
+from .models import Bookmark
 from users.models import User
 from .serializers import PostSerializer
 from .serializers import CommentSerializer
 from .utils import get_bookmarks
+from .utils import is_in_bookmark
 from .utils import get_comments
 
 class GetPost(APIView):
@@ -60,10 +62,17 @@ class AddDeleteBookmark(APIView):
     permission_classes = [permissions.IsAuthenticated]
     
     def get(self, request, id):
+        post = get_object_or_404(Post, id=id)
+        if is_in_bookmark(request.user, post):
+            bookmark = Bookmark.objects.get(post=post, user=request.user)
+            bookmark.delete()
+        else:
+            bookmark = Bookmark(post=post, user=request.user)
+            bookmark.save() 
         
-        return Response() 
+        return Response({'status': is_in_bookmark(request.user, post)})
 
-    
+
 class GetComments(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [permissions.IsAuthenticated]

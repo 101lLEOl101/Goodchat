@@ -6,7 +6,7 @@
           <div class="arrow"></div>
           <div class="arrow_diff"></div>
         </router-link>
-        <router-link v-if=isTemplate to="/bookmarks" class="round"
+        <button @click="addDeleteBookmark" v-if=isTemplate to="/bookmarks" class="round"
           :class="{ in_zakladka: post.isBookmark, zakladka: !post.isBookmark }" title="Bookmark" />
         <router-link v-if="!isTemplate && post.author.id == this.$store.getters['auth/user'].id" :to="`/editpost/${post.id}`" class="round edit" title="Edit" />
         <button @click="deletePost" v-if="!isTemplate && post.author.id == this.$store.getters['auth/user'].id" class="round delete" title="Delete" />
@@ -39,7 +39,10 @@ export default {
       this.$store.dispatch('post/deletePost', {id: this.post.id}).then(
         _ => this.$router.push(`/profile/${this.$store.getters['auth/user'].id}`)
       )
-    }
+    },
+    addDeleteBookmark() {
+      this.$emit('addDeleteBookmark', this.post.id)
+    },
   }
 }
 </script>
