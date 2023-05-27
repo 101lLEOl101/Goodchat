@@ -74,7 +74,7 @@ export default {
           _o => {
             this.filterInvitable();
             this.addCheckedFields();
-            if (!this.chat.is_multy) 
+            if (!this.chat.isMulty) 
               this.$router.push('/chatlist');
           }
         )
