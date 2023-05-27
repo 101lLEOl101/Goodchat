@@ -171,7 +171,7 @@ export default {
 			console.log(data);
 			this.$store.dispatch('chat/createChat', data).then(
 				response => {
-					//this.$router.push(`/chat/${response}`);
+					this.$router.push(`/chat/${response}`);
 				}
 			);
 		},
