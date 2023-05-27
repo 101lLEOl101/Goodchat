@@ -379,5 +379,6 @@ export default {
 
 .displayed_info {
 	text-align: center;
+	margin: 10px auto;
 }
 </style>
