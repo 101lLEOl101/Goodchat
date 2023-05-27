@@ -112,7 +112,6 @@ const routes = [
     path: '/dev',
     name: 'dev',
     component: SecretPage,
-  }
   },
   {
     path: '/chat/:id/info',
