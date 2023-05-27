@@ -54,6 +54,9 @@ class GetChatlist(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [permissions.IsAuthenticated]
     
+    def comporator(self, chat):
+        return chat['lastMessage']['date_create']
+    
     def get(self, request):
         chats = get_chats(request.user)
         print(*chats)
@@ -62,6 +65,8 @@ class GetChatlist(APIView):
             normilized_chat = ChatSerializer.chatToItemDict(chat, request.user)
             if normilized_chat:
                 normilized_chats.append(normilized_chat)
+                
+        normilized_chats.sort(key=self.comporator, reverse=True)
         
         return Response({'chats': normilized_chats})
     
