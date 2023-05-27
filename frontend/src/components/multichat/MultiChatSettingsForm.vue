@@ -28,7 +28,7 @@
 		</div>
 		<div class="members" id="members">
 			<div class="input-chat">
-				<input @input="updateName" type="text" id="chat-name-input" name="chat-name-form" :value="name" placeholder="Name">
+				<input @input="updateName" class = "input-from-multychat" type="text" id="chat-name-input" name="chat-name-form" :value="name" placeholder="Name">
 			</div>
 		</div>
 		<div class="invitable" v-if=!IsEdit>
@@ -342,7 +342,7 @@ export default {
 	border-radius: 50%;
 }
 
-input[type="text"] {
+.input-from-multychat {
 	background-color: #000000;
 	border-radius: 12px;
 	border: #8270F2 solid 2px;
