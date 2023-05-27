@@ -228,7 +228,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .friendlist_item {
 	display: flex;
 	justify-content: start;
