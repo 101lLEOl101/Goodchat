@@ -116,3 +116,16 @@ class EditPost(APIView):
             
         post.save()
         return Response({'id': id})
+    
+    
+class DeletePost(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get(self, request, id):
+        post = get_object_or_404(Post, id=id)
+        if post.author != request.user:
+            raise PermissionDenied
+        
+        post.delete()
+        return Response()

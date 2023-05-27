@@ -44,6 +44,9 @@ export const post = {
       return PostService.editPost(data).then(
         response => response.id
       )
-    }
+    },
+    async deletePost(_, payload) {
+      return PostService.deletePost(payload.id)
+    } 
   }
 }

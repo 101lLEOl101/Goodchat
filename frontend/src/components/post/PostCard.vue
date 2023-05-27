@@ -9,7 +9,7 @@
         <router-link v-if=isTemplate to="/bookmarks" class="round"
           :class="{ in_zakladka: post.isBookmark, zakladka: !post.isBookmark }" title="Bookmark" />
         <router-link v-if="!isTemplate && post.author.id == this.$store.getters['auth/user'].id" :to="`/editpost/${post.id}`" class="round edit" title="Edit" />
-        <router-link v-if="!isTemplate && post.author.id == this.$store.getters['auth/user'].id" to="/" class="round delete" title="Delete" />
+        <button @click="deletePost" v-if="!isTemplate && post.author.id == this.$store.getters['auth/user'].id" class="round delete" title="Delete" />
       </div>
       <mini-user-profile :user="post.author" />
     </div>
@@ -33,6 +33,13 @@ export default {
   props: {
     post: Object,
     isTemplate: Boolean
+  },
+  methods: {
+    deletePost() {
+      this.$store.dispatch('post/deletePost', {id: this.post.id}).then(
+        _ => this.$router.push(`/profile/${this.$store.getters['auth/user'].id}`)
+      )
+    }
   }
 }
 </script>

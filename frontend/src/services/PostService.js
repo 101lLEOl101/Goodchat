@@ -48,6 +48,11 @@ class PostService {
 
     return $axios.post(url, form).then((response) => response.data);
   }
+
+  deletePost(id) {
+    let url = `post/${id}/delete`;
+    return $axios.get(url).then((response) => response.data)
+  }
 }
 
 export default new PostService();
