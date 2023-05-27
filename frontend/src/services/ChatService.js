@@ -35,6 +35,21 @@ class ChatService {
       response => response.data
     );
   }
+
+  editChat(data) {
+    let url = `chat/${data.id}/edit`;
+    console.log(data)
+    return $axios.postForm(url, data).then(
+      response => response.data
+    )
+  }
+
+  getChatAccessMode(id) {
+    let url = `chat/${id}/access`;
+    return $axios.get(url).then(
+      response => response.data
+    )
+  }
 }
 
 export default new ChatService();

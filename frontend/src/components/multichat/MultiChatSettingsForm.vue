@@ -1,7 +1,7 @@
 <template>
 	<h1 v-if=!IsEdit class="chat-info-title">New Multychat</h1>
 	<h1 v-if=IsEdit class="chat-info-title">Settings Chat</h1>
-	<form id="members-form" method="POST" enctype="multipart/form-data">
+	<form id="members-form" @submit.prevent enctype="multipart/form-data">
 		<div class="input-img">
 			<div v-if=IsEdit class="input-file-row" id="box-img">
 				<label @change="open($event)" class="input-file" id="add_btn" style="visibility: hidden; width: 0px; height: 0px; margin: 0px;">
@@ -11,7 +11,7 @@
 				<div id="input-list" class="input-file-list" style="margin: 0px auto;">
 					<div class="input-file-list-item">
 						<a href="#" onclick="removeFilesItem(this); return false;" class="input-file-list-remove">x</a>
-						<img class="input-file-list-img" src="">
+						<img class="input-file-list-img" :src="defaultAvatar">
 					</div>
 				</div>
 			</div>
@@ -23,29 +23,47 @@
 				<div id="input-list" class="input-file-list"></div>
 			</div>
 			<div class="settings_info_box">
-				<p id="img-name" class="displayed_info"></p>
+				<p id="img-name" class="displayed_info">currentavatar.png</p>
 			</div>
 		</div>
 		<div class="members" id="members">
 			<div class="input-chat">
-				<input type="text" id="chat-name-input" name="chat-name-form" value="" placeholder="Name">
+				<input @input="updateName" type="text" id="chat-name-input" name="chat-name-form" :value="name" placeholder="Name">
 			</div>
 		</div>
 		<div class="invitable" v-if=!IsEdit>
 			<label for="invitable">Friends:</label>
 			<chat-member-choice />
 		</div>
+		<div class="invitable" v-if=IsEdit>
+			<label for="invitable">Members:</label>
+			<div 
+				class="friendlist_item" 
+				v-for="member in members"
+				:key="member.id"
+			>
+				<img class="friend-avatar" :src="member.avatar">
+				<router-link class="friend_name" :to="`/profile/${member.id}`"></router-link>
+				<span class="friend_name">{{ member.name }} {{ member.surname }}</span>
+				<input type="checkbox" name="members-checkbox-form" v-model="member.checked">
+			</div>
+		</div>
 		<div style="margin-bottom: 20px;" class="invitable" v-if=IsEdit>
 			<label for="invitable">Invitable:</label>
-			<chat-member-choice />
-		</div>
-		<div style="margin-bottom: 20px;" class="banned" v-if=IsEdit>
-			<label for="banned">Banned:</label>
-			<chat-member-choice />
+			<div 
+				class="friendlist_item" 
+				v-for="member in invitable"
+				:key="member.id"
+			>
+				<img class="friend-avatar" :src="member.avatar">
+				<router-link class="friend_name" :to="`/profile/${member.id}`"></router-link>
+				<span class="friend_name">{{ member.name }} {{ member.surname }}</span>
+				<input type="checkbox" name="members-checkbox-form" v-model="member.checked">
+			</div>
 		</div>
 		<button v-if=!IsEdit class="btn-save" type="submit" form="members-form">Create</button>
 		<router-link v-if=!IsEdit to="/chatlist" class="btn-discard">Cancel</router-link>
-		<button v-if=IsEdit class="btn-save" type="submit" form="members-form">Save</button>
+		<button @click="editChat" v-if=IsEdit class="btn-save" type="submit" form="members-form">Save</button>
 		<router-link v-if=IsEdit to="/chat/1/info" class="btn-discard" href="/chatlist">Cancel</router-link>
 	</form>
 </template>
@@ -62,10 +80,63 @@ export default {
 	components: {
 		ChatMemberChoice,
 	},
+	data() {
+		return {
+			members: [],
+			invitable: [],
+		}
+	},
 	props: {
 		IsEdit: Boolean,
+		oldMembers: Array,
+		oldInvitable: Array,
+		name: String,
+		id: Number,
+		defaultAvatar: String,
 	},
 	methods: {
+		updateName(event) {
+			this.$emit('update:name', event.target.value);
+		},
+		editChat() {
+			let withPhoto = !(document.getElementsByClassName("input-file-list-img").length == 0)
+      let isPhotoOld = true;
+			let photo = null;
+			if (withPhoto){
+				isPhotoOld = document.getElementById("id_photo").files.length == 0;
+				if (!isPhotoOld){
+					photo = document.getElementById("id_photo").files[0];
+				}
+			}
+
+			let members = [
+				...this.members.filter(member => member.checked),
+				...this.invitable.filter(member => member.checked),
+			]
+			let members_id = [];
+
+			members.forEach(member => {
+				members_id.push(member.id);
+			});
+
+			let chatname = this.name;
+
+			let data = {
+				id: this.id,
+				with_photo: withPhoto,
+				photo_old: isPhotoOld,
+				name: chatname,
+				photo: photo,
+				members: members_id,
+			}
+
+			console.log(data);
+			this.$store.dispatch('chat/editChat', data).then(
+				response => {
+					this.$router.push(`/chat/${response}`);
+				}
+			);
+		},
 		open: function (event) {
 			dt = new DataTransfer();
 			let $files_list = $(document.getElementById("id_photo")).closest('.input-file').next();
@@ -91,6 +162,14 @@ export default {
 			btn.style.height = '0';
 			btn.style.margin = '0';
 			document.getElementById("input-list").style.margin = "0 auto";
+		},
+	},
+	watch: {
+		oldMembers() {
+			this.members = this.oldMembers;
+		},
+		oldInvitable() {
+			this.invitable = this.oldInvitable;
 		},
 	},
 	mounted() {

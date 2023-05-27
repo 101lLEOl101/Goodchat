@@ -32,5 +32,15 @@ export const chat = {
         response => response.dialog_id,
       )
     },
+    async editChat(_, payload){
+      return ChatService.editChat(payload).then(
+        response => response.id,
+      )
+    },
+    async getChatAccessMode(_, payload) {
+      return ChatService.getChatAccessMode(payload.id).then(
+        response => response.mode
+      )
+    }
   }
 }

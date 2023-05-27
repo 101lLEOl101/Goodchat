@@ -117,9 +117,9 @@ const routes = [
     path: '/multychatcreate',
     component: MultychatCreate,
   },
-
   {
-    path: '/multychatsettings',
+    path: '/chat/:id/edit',
+    props: true,
     component: MultyChatSettings,
   },
 ]
