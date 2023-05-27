@@ -14,7 +14,7 @@ def get_chats(user) -> list:
     chats = [access.chat
              for access
              in Access.objects.filter(user=user)
-             if access.mode != 0]
+             if access.mode > 0]
 
     return chats
 

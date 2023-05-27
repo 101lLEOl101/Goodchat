@@ -99,7 +99,7 @@ class GetDialog(APIView):
     
     
 
-class getChatAccessMode(APIView):
+class GetChatAccessMode(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [permissions.IsAuthenticated]
     
@@ -154,5 +154,36 @@ class EditChat(APIView):
             
         chat.save()
         
+        return Response({'id': chat.id})
+    
+class CreateChat(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def post(self, request):
+        chat_data = request.data
+        print(chat_data)
+        chat = Chat(name=chat_data['name'], is_multy=True)
+        print(chat_data['with_photo']) 
+        if chat_data['with_photo'] == 'true':
+            chat.avatar = chat_data['photo']
+        else: 
+            print('setphotodefault')
+            chat.avatar = 'images/DEFAULT_AVATAR.png'
+            
+        chat.save()
+        creator_access = Access(user=request.user, chat=chat, mode=4)
+        creator_access.save()
+        
+        first_message = Message(chat=chat, author=request.user, content="WELCOME!!!")
+        first_message.save()
+                
+        members = [get_user(int(id))
+                   for id in dict(chat_data)['members[]']]
+    
+        for member in members:
+            access = Access(chat=chat, user=member, mode=1)
+            access.save()
+            
         return Response({'id': chat.id})
         

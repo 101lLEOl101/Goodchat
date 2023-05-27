@@ -47,8 +47,9 @@ urlpatterns = [
     path('api/comment/send', main_api.SendComment.as_view()),
     path('api/bookmarks', main_api.GetBookmarks.as_view()),
     
+    path('api/chat/create', chat_api.CreateChat.as_view()),
     path('api/chat/<int:id>', chat_api.GetChat.as_view()),
-    path('api/chat/<int:id>/access', chat_api.getChatAccessMode.as_view()),
+    path('api/chat/<int:id>/access', chat_api.GetChatAccessMode.as_view()),
     path('api/chat/<int:id>/info', chat_api.GetChatInfo.as_view()),
     path('api/chat/<int:id>/edit', chat_api.EditChat.as_view()),
     path('api/chatlist', chat_api.GetChatlist.as_view()),

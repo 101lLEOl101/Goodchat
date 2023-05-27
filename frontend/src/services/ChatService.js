@@ -11,7 +11,10 @@ class ChatService {
   getChatlist() {
     let url = 'chatlist';
     return $axios.get(url).then(
-      response => response.data
+      response => {
+        console.log(response.data)
+        return response.data
+      }
     );
   }
 
@@ -38,6 +41,14 @@ class ChatService {
 
   editChat(data) {
     let url = `chat/${data.id}/edit`;
+    console.log(data)
+    return $axios.postForm(url, data).then(
+      response => response.data
+    )
+  }
+
+  createChat(data) {
+    let url = `chat/create`;
     console.log(data)
     return $axios.postForm(url, data).then(
       response => response.data

@@ -33,7 +33,16 @@
 		</div>
 		<div class="invitable" v-if=!IsEdit>
 			<label for="invitable">Friends:</label>
-			<chat-member-choice />
+			<div 
+				class="friendlist_item" 
+				v-for="member in invitable"
+				:key="member.id"
+			>
+				<img class="friend-avatar" :src="member.avatar">
+				<router-link class="friend_name" :to="`/profile/${member.id}`"></router-link>
+				<span class="friend_name">{{ member.name }} {{ member.surname }}</span>
+				<input type="checkbox" name="members-checkbox-form" v-model="member.checked">
+			</div>
 		</div>
 		<div class="invitable" v-if=IsEdit>
 			<label for="invitable">Members:</label>
@@ -61,7 +70,7 @@
 				<input type="checkbox" name="members-checkbox-form" v-model="member.checked">
 			</div>
 		</div>
-		<button v-if=!IsEdit class="btn-save" type="submit" form="members-form">Create</button>
+		<button @click="createChat" v-if=!IsEdit class="btn-save" type="submit" form="members-form">Create</button>
 		<router-link v-if=!IsEdit to="/chatlist" class="btn-discard">Cancel</router-link>
 		<button @click="editChat" v-if=IsEdit class="btn-save" type="submit" form="members-form">Save</button>
 		<router-link v-if=IsEdit to="/chat/1/info" class="btn-discard" href="/chatlist">Cancel</router-link>
@@ -134,6 +143,35 @@ export default {
 			this.$store.dispatch('chat/editChat', data).then(
 				response => {
 					this.$router.push(`/chat/${response}`);
+				}
+			);
+		},
+		createChat() {
+			let withPhoto = !(document.getElementsByClassName("input-file-list-img").length == 0)
+      let photo = document.getElementById("id_photo").files[0]
+
+			let members = [
+				...this.invitable.filter(member => member.checked),
+			]
+			let members_id = [];
+
+			members.forEach(member => {
+				members_id.push(member.id);
+			});
+
+			let chatname = this.name;
+
+			let data = {
+				with_photo: withPhoto,
+				name: chatname,
+				photo: photo,
+				members: members_id,
+			}
+
+			console.log(data);
+			this.$store.dispatch('chat/createChat', data).then(
+				response => {
+					//this.$router.push(`/chat/${response}`);
 				}
 			);
 		},

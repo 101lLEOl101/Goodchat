@@ -37,6 +37,11 @@ export const chat = {
         response => response.id,
       )
     },
+    async createChat(_, payload){
+      return ChatService.createChat(payload).then(
+        response => response.id,
+      )
+    },
     async getChatAccessMode(_, payload) {
       return ChatService.getChatAccessMode(payload.id).then(
         response => response.mode
