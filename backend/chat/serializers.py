@@ -24,7 +24,7 @@ class ChatSerializer:
             'id': message.id,
             'author': author.name,
             'content': message.content,
-            'date_create': message.date_create,
+            'date_create': message.date_create.strftime("%d %b %H:%M"),
             'isMyown': message.author == user,
         }
 

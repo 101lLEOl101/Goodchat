@@ -22,7 +22,7 @@ class CommentSerializer:
         response = {
             'author': UserSerializer.toShortProfileDict(comment.author),
             'content': comment.content,
-            'timestamp': comment.date_create,
+            'timestamp': comment.date_create.strftime("%d %b %H:%M"),
         }
         
         return response
