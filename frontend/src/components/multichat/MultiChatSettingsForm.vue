@@ -147,6 +147,11 @@ export default {
 			);
 		},
 		createChat() {
+			if (!this.name) {
+				alert('Chat name is required')
+				return false;
+			};
+
 			let withPhoto = !(document.getElementsByClassName("input-file-list-img").length == 0)
       let photo = document.getElementById("id_photo").files[0]
 

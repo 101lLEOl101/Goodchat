@@ -54,6 +54,16 @@ class GetBookmarks(APIView):
         
         return Response({'posts': posts})
     
+
+class AddDeleteBookmark(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get(self, request, id):
+        
+        return Response() 
+
+    
 class GetComments(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [permissions.IsAuthenticated]

@@ -182,13 +182,14 @@ class CreateChat(APIView):
         
         first_message = Message(chat=chat, author=request.user, content="WELCOME!!!")
         first_message.save()
-                
-        members = [get_user(int(id))
-                   for id in dict(chat_data)['members[]']]
-    
-        for member in members:
-            access = Access(chat=chat, user=member, mode=1)
-            access.save()
+         
+        if 'members[]' in dict(chat_data):       
+            members = [get_user(int(id))
+                    for id in dict(chat_data)['members[]']]
+        
+            for member in members:
+                access = Access(chat=chat, user=member, mode=1)
+                access.save()
             
         return Response({'id': chat.id})
     
