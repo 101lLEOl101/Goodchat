@@ -5,17 +5,47 @@
       <h2 class="chat-name">Name: {{ chat.name }}</h2>
       <img :src="chat.avatar" class="chat-avatar-info">
     </div>
+    <chat-member-list :members="members" />
+    <router-link v-if="mode > 2" :to="`/chat/${chat.id}/edit`" class="btn-save">Edit</router-link>
+    <router-link to="/chatlist" class="btn-discard">Exit Chat</router-link>
   </div>
 </template>
 
 <script>
 import ChatMemberList from '@/components/chat/ChatMemberList';
+
 export default {
-  comopnents: {
+  components: {
     ChatMemberList,
   },
-  created: {
-
+  data() {
+    return {
+      chat: {},
+      members: [],
+      mode: 0,
+    }
+  },
+  props: ['id'],
+  methods: {
+    loadChat() {
+      console.log('execute')
+      this.$store.dispatch('chat/getChatInfo', { id: this.id }).then(
+        response => {
+          this.chat = response.chat;
+          this.members = response.members;
+          this.$store.dispatch('chat/getChatAccessMode', {id: this.id}).then(
+            mode => {
+              console.log(mode);
+              this.mode = mode;
+              if (mode < 1) this.$router.push('/chatlist');
+            }
+          )
+        }
+      )
+    }
+  },
+  created() {
+    this.loadChat()
   }
 }
 </script>

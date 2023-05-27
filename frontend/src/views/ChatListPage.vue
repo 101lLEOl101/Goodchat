@@ -1,6 +1,6 @@
 <template>
   <div class="chat_box">
-    <a href="" class="create_chat"><i class="fa-solid fa-comment-medical create"></i></a>
+    <router-link to="/multychatcreate" class="create_chat"><i class="fa-solid fa-comment-medical create"></i></router-link>
     <h2 style="text-align:center;"> Personal Chats </h2>
     <chat-list v-if="chats.length != 0" :chats="chats" />
     <div v-else class="chat_item">

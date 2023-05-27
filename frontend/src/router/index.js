@@ -17,6 +17,9 @@ import SecretPage from '@/views/SecretPage'
 import RequestListPage from '@/views/RequestListPage'
 import SettingsProfilePage from '@/views/SettingsProfilePage'
 import PostEditPage from '@/views/PostEditPage'
+import MultichatInfoPage from '@/views/MultichatInfoPage'
+import MultychatCreate from '@/views/MultychatCreate'
+import MultyChatSettings from '@/views/MultyChatSettings'
 
 
 const routes = [
@@ -110,6 +113,22 @@ const routes = [
     name: 'dev',
     component: SecretPage,
   }
+  },
+  {
+    path: '/chat/:id/info',
+    props: true,
+    component: MultichatInfoPage,
+  },
+
+  {
+    path: '/multychatcreate',
+    component: MultychatCreate,
+  },
+  {
+    path: '/chat/:id/edit',
+    props: true,
+    component: MultyChatSettings,
+  },
 ]
 
 const router = createRouter({

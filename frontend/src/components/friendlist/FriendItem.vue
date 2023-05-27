@@ -1,7 +1,7 @@
 <template>
   <div class="friendlist_item" id="friend_item">
     <img :src="friend.avatar" class="friend-avatar image_avatar">
-    <router-link class="friend_name" :to="`/profile/${friend.id}`">{{ friend.fullName }}</router-link>
+    <router-link class="friend_name" :to="`/profile/${friend.id}`">{{ friend.name }} {{ friend.surname }}</router-link>
     <button @click="this.$emit('deleteFriend', friend.id)" v-if=IsFriend type="button" class="button_write accept">Delete</button>
     <dialog-button v-if=IsFriend class="button_write accept" :id="friend.id" />
     <button @click="$emit('acceptFriendRequest', friend.id)" v-if=!IsFriend type="button" class="button_write accept" >Accept</button>

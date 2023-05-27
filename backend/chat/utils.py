@@ -156,9 +156,7 @@ def normalize_chat_member(member_access: Access) -> dict:
     return normalized_member
 
 def get_chat_members(chat: Chat) -> list:
-    members = [normalize_chat_member(access)
-               for access
-               in Access.objects.filter(chat=chat)]
+    members = Access.objects.filter(chat=chat)
 
     return members
 

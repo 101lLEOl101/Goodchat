@@ -14,7 +14,7 @@ export default {
     headerLink() {
       let link = '';
       if (this.info.isMulty)
-        link = '/multy';
+        link = `/chat/${this.info.id}/info`;
       else 
         link = `/profile/${this.info.interlocutorID}`;
       return link; 

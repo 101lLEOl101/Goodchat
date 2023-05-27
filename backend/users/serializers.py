@@ -54,7 +54,8 @@ class FriendSerializer:
         friend_profile = get_profile(friend)
         response = {
             'id': friend.id,
-            'fullName': f'{friend_profile.name} {friend_profile.surname}',
+            'name': friend_profile.name,
+            'surname': friend_profile.surname,
             'avatar': imageToUrl(friend_profile.avatar),
         }
         

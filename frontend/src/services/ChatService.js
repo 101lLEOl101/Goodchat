@@ -15,6 +15,13 @@ class ChatService {
     );
   }
 
+  getChatInfo(id) {
+    let url = `chat/${id}/info`;
+    return $axios.get(url).then(
+      response => response.data
+    );
+  }
+
   sendMessage(data) {
     let url = 'chat/sendMessage';
     return $axios.post(url, data).then(
@@ -27,6 +34,21 @@ class ChatService {
     return $axios.get(url).then(
       response => response.data
     );
+  }
+
+  editChat(data) {
+    let url = `chat/${data.id}/edit`;
+    console.log(data)
+    return $axios.postForm(url, data).then(
+      response => response.data
+    )
+  }
+
+  getChatAccessMode(id) {
+    let url = `chat/${id}/access`;
+    return $axios.get(url).then(
+      response => response.data
+    )
   }
 }
 
