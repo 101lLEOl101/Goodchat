@@ -58,9 +58,6 @@ export default {
 </script>
 
 <style>
-p{
-  color: white;
-}
 .friend_name{
     color: white;
     width: 20%;
