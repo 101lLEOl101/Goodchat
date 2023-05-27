@@ -157,7 +157,9 @@ def normalize_chat_member(member_access: Access) -> dict:
 
 def get_chat_members(chat: Chat) -> list:
     members = Access.objects.filter(chat=chat)
-
+    members = [access
+               for access in members
+               if access.mode > 0]
     return members
 
 def give_or_save_access(user: User, chat: Chat) -> None:
