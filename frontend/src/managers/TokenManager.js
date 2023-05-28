@@ -15,7 +15,7 @@ class TokenManager {
   }
 
   refreshToken() {
-    let url = 'http://127.0.0.1:8000/api/token/refresh';
+    let url = 'https://goodchat.pythonanywhere.com/api/token/refresh';
     let token = this.getToken();
     let data = {
       refresh: token.refresh, 

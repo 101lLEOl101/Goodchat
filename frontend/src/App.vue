@@ -26,6 +26,23 @@
 
 <script>
 import SideMenu from '@/components/navigation/SideMenu';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCsq1EGNK7pD2mzbKrfOgCmJ8JwDRp9zmo",
+  authDomain: "goodchad-4cb90.firebaseapp.com",
+  projectId: "goodchad-4cb90",
+  storageBucket: "goodchad-4cb90.appspot.com",
+  messagingSenderId: "143906054141",
+  appId: "1:143906054141:web:540a8bb175ddf8bf18c394"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 export default{
   components: {
     SideMenu,
