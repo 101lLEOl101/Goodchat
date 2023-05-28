@@ -13,7 +13,7 @@ from .utils import get_interlocutor
 
 def imageToUrl(image):
     if image:
-        return f'http://127.0.0.1:8000{image.url}'
+        return f'https://goodchat.pythonanywhere.com{image.url}'
     return image
 
 

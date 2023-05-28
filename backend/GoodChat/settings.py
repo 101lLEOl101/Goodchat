@@ -28,7 +28,10 @@ SECRET_KEY = 'django-insecure-_)p15!=#^2jqboajf!c-!6cibb0)n%$6g5e$*@nt(!dx&^0ysd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['goodchat.pythonanywhere.com',
+                 'localhost',
+                 '127.0.0.1'
+]
 
 
 # Application definition
@@ -132,6 +135,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -191,13 +195,14 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
 
-# CORS 
+# CORS
 
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8080',
     'http://127.0.0.1:8081',
     'http://localhost:8080',
     'http://localhost:8081',
+    'https://goodchat-frontend.onrender.com/',
 ]
 
 # CSRF
@@ -207,4 +212,5 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:8081",
     'http://localhost:8080',
     'http://localhost:8081',
+    'https://goodchat-frontend.onrender.com/',
 ]
