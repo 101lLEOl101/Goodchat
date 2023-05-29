@@ -56,6 +56,28 @@ export default {
 </script>
 
 <style>
+
+.btn-save {
+  color: white;
+  background-color: black;
+  border: solid 2px #8270F2;
+  border-radius: 20px;
+  padding: 1rem;
+	width: 10em;
+	font-size: large;
+	cursor: pointer;
+}
+.btn-discard{
+	color: black;
+  background-color: #8270F2;
+  border: solid 2px #5a4daf;
+  border-radius: 20px;
+  padding: 1rem;
+	width: 10em;
+	font-size: large;
+	cursor: pointer;
+}
+
 .container {
   display: block;
   height: 80%;
