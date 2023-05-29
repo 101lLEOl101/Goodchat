@@ -167,7 +167,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 .profile_box {
   position: fixed;
   transform: translate(-50%, -50%);
