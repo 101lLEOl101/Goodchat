@@ -5,7 +5,7 @@
       <h1 class="reg-header">Registration</h1><br>
       <registration-form @register="register" />
       <p v-if="message" :class="`${message.type}`">{{ message.content }}</p>
-      <a class="auth-link" href="login">Already a gogorik?</a>
+      <router-link to="/login" class="auth-link">Already a gogorik?</router-link>
     </div>
   </div>
 </template>

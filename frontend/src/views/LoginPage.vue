@@ -6,7 +6,7 @@
       <h1 class="reg-header">Authorization</h1><br>
       <login-form @login="login" />
       <p v-if="message" :class="`form-error ${message.type}`">{{ message.content }}</p>
-      <a class="auth-link" href="registration">No Account?</a>
+      <router-link to="/registration" class="auth-link">No Account?</router-link>
     </div>
   </div>
 </template>
