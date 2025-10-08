@@ -2,7 +2,7 @@ import axios from 'axios';
 import TokenManager from '@/managers/TokenManager';
 import UserManager from '@/managers/UserManager';
 
-const BASE_URL = "https://goodchat.pythonanywhere.com/";
+const BASE_URL = "http://localhost:8000/";
 
 class AuthService {
   login(user) {

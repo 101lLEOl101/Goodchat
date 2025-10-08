@@ -4,7 +4,7 @@ import TokenManager from "@/managers/TokenManager";
 import UserManager from "@/managers/UserManager";
 
 const $axios = axios.create({
-  baseURL: "https://goodchat.pythonanywhere.com/api/",
+  baseURL: "http://localhost:8000/api/",
   timeout: 1000,
 });
 
