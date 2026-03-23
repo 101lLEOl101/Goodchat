@@ -1,20 +1,27 @@
-version: "3.9"
-
 services:
   backend:
     build:
-      context: .
-      dockerfile: backend/Dockerfile
+      context: ./backend
+      dockerfile: Dockerfile
     container_name: goodchat_backend
+    restart: unless-stopped
     env_file:
       - .env
+    working_dir: /app
     ports:
       - "8000:8000"
+    volumes:
+      - ./backend/db.sqlite3:/app/db.sqlite3
+      - ./backend/media:/app/media
+    command: python manage.py runserver 0.0.0.0:8000
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: goodchat_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
     ports:
-      - "3000:3000"
+      - "3000:80"
