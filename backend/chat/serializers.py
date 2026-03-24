@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from .models import Chat
 from .models import Message
 from .models import Access
@@ -13,7 +15,7 @@ from .utils import get_interlocutor
 
 def imageToUrl(image):
     if image:
-        return f'http://localhost:8000{image.url}'
+        return f"{settings.BACKEND_PUBLIC_URL}{image.url}"
     return image
 
 

@@ -2,6 +2,11 @@ FROM node:18-alpine AS build
 
 WORKDIR /app
 
+ARG VUE_APP_API_BASE_URL=http://localhost:8000/api
+ARG VUE_APP_SITE_URL=http://localhost:3000
+ENV VUE_APP_API_BASE_URL=$VUE_APP_API_BASE_URL
+ENV VUE_APP_SITE_URL=$VUE_APP_SITE_URL
+
 COPY package.json package-lock.json ./
 RUN npm ci --no-audit --no-fund
 

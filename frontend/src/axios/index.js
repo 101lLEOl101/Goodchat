@@ -1,10 +1,11 @@
 import axios from "axios";
-import authHeader from "@/utils/AuthHeader";
 import TokenManager from "@/managers/TokenManager";
 import UserManager from "@/managers/UserManager";
+import authHeader from "@/utils/AuthHeader";
+import { API_URL } from "@/config";
 
 const $axios = axios.create({
-  baseURL: "http://localhost:8000/api/",
+  baseURL: API_URL,
   timeout: 1000,
 });
 
@@ -27,7 +28,7 @@ $axios.interceptors.response.use(
 
     if (error.response.status === 401 && !config.sent) {
       config.sent = true;
-      const result = await TokenManager.refreshToken().then((result) => result);
+      const result = await TokenManager.refreshToken().then((response) => response);
 
       if (result.access) {
         config.headers = {

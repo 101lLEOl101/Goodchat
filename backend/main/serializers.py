@@ -1,10 +1,12 @@
+from django.conf import settings
+
 from .models import Post
 from .models import Comment
 from users.models import User
 from .utils import is_in_bookmark
 from users.serializers import UserSerializer 
 
-BASE_MEDIA_URL = 'http://localhost:8000'
+BASE_MEDIA_URL = settings.BACKEND_PUBLIC_URL
 class PostSerializer:
     def toDict(post: Post, user: User):
         response = {

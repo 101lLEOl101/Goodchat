@@ -1,122 +1,108 @@
 """
-Django settings for GoodChat project (локальная версия).
+Django settings for GoodChat project.
 """
 
-from pathlib import Path
-from datetime import timedelta
 import os
+from datetime import timedelta
+from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# -------------------------
-# Основные настройки
-# -------------------------
-SECRET_KEY = 'django-insecure-LOCAL-DEV-KEY'  # Можно оставить временный ключ для локалки
-DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
-# -------------------------
-# Приложения
-# -------------------------
+def get_env_bool(name, default):
+    value = os.getenv(name)
+    if value is None:
+        return default
+    return value.lower() in {"1", "true", "yes", "on"}
+
+
+def get_env_list(name, default):
+    value = os.getenv(name)
+    if value is None:
+        return default
+    return [item.strip() for item in value.split(",") if item.strip()]
+
+
+SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-LOCAL-DEV-KEY")
+DEBUG = get_env_bool("DEBUG", True)
+ALLOWED_HOSTS = get_env_list("DJANGO_ALLOWED_HOSTS", ["127.0.0.1", "localhost"])
+BACKEND_PUBLIC_URL = os.getenv("BACKEND_PUBLIC_URL", "http://localhost:8000").rstrip("/")
+FRONTEND_PUBLIC_URL = os.getenv("FRONTEND_PUBLIC_URL", "http://localhost:3000").rstrip("/")
+
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-
-    # Сторонние библиотеки
-    'rest_framework',
-    'rest_framework_simplejwt',
-    'corsheaders',
-
-    # Ваши приложения
-    'main',
-    'users',
-    'chat',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "rest_framework",
+    "rest_framework_simplejwt",
+    "corsheaders",
+    "main",
+    "users",
+    "chat",
 ]
 
-# -------------------------
-# Middleware
-# -------------------------
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  # Должен идти перед CommonMiddleware
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'GoodChat.urls'
+ROOT_URLCONF = "GoodChat.urls"
 
-# -------------------------
-# Templates
-# -------------------------
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # Можно использовать шаблоны в папке templates
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'main.context_processors.get_self_profile',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                "main.context_processors.get_self_profile",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'GoodChat.wsgi.application'
+WSGI_APPLICATION = "GoodChat.wsgi.application"
 
-# -------------------------
-# База данных
-# -------------------------
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
-# -------------------------
-# Аутентификация
-# -------------------------
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = "users.User"
 
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'users.backends.AuthBackend',
+    "django.contrib.auth.backends.ModelBackend",
+    "users.backends.AuthBackend",
 )
 
-# -------------------------
-# Время и язык
-# -------------------------
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = "en-us"
+TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-# -------------------------
-# Статические и медиа файлы
-# -------------------------
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-# -------------------------
-# Django REST Framework + JWT
-# -------------------------
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     )
 }
 
@@ -128,26 +114,26 @@ SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
-# -------------------------
-# CORS / CSRF настройки для фронтенда на localhost
-# -------------------------
-CORS_ALLOWED_ORIGINS = [
-    'http://127.0.0.1:8080',
-    'http://127.0.0.1:3000',
-    'http://localhost:8080',
-    'http://localhost:3000',
-]
+CORS_ALLOWED_ORIGINS = get_env_list(
+    "DJANGO_CORS_ALLOWED_ORIGINS",
+    [
+        "http://127.0.0.1:8080",
+        "http://127.0.0.1:3000",
+        "http://localhost:8080",
+        "http://localhost:3000",
+    ],
+)
 
-CSRF_TRUSTED_ORIGINS = [
-    'http://127.0.0.1:8080',
-    'http://127.0.0.1:3000',
-    'http://localhost:8080',
-    'http://localhost:3000',
-]
+CSRF_TRUSTED_ORIGINS = get_env_list(
+    "DJANGO_CSRF_TRUSTED_ORIGINS",
+    [
+        "http://127.0.0.1:8080",
+        "http://127.0.0.1:3000",
+        "http://localhost:8080",
+        "http://localhost:3000",
+    ],
+)
 
-# -------------------------
-# Прочее
-# -------------------------
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_URL = 'login'
-LOGOUT_REDIRECT_URL = 'home'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+LOGIN_URL = "login"
+LOGOUT_REDIRECT_URL = "home"
