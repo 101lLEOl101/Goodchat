@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='chat',
             name='avatar',
-            field=models.ImageField(blank=True, default='images/DEFAULT_CHAT_AVATAR.jpg', upload_to='images/chat_avatars/'),
+            field=models.ImageField(blank=True, default='images/DEFAULT_CHAT_AVATAR.png', upload_to='images/chat_avatars/'),
         ),
     ]

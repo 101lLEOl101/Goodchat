@@ -144,7 +144,7 @@ def multichat_settings(request, chat_id):
             chat.avatar = photo[0]
             chat.save()
         elif dict(request.POST)['is_del'][0] == "1":
-            chat.avatar = "images/DEFAULT_CHAT_AVATAR.jpg"
+            chat.avatar = "images/DEFAULT_CHAT_AVATAR.png"
             chat.save()
         members = [access.user
                    for access

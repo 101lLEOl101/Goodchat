@@ -12,7 +12,7 @@ class Chat(models.Model):
     name = models.CharField(max_length=50, blank=True,
                             verbose_name=_('chat name'))
     avatar = models.ImageField(upload_to="images/chat_avatars/",
-                               default="images/DEFAULT_CHAT_AVATAR.jpg",
+                               default="images/DEFAULT_CHAT_AVATAR.png",
                                blank=True)
     is_multy = models.BooleanField(default=False,
                                    verbose_name=_('is multichat'))
